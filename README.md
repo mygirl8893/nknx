@@ -14,8 +14,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```

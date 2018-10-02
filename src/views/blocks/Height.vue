@@ -66,7 +66,7 @@ export default {
   mounted() {
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get("http://localhost:8000/api/blocks/"+this.$route.params.height+"/flat").then(function(response){
+      axios.get("http://nknx.org/api/blocks/"+this.$route.params.height+"/flat").then(function(response){
           self.items = response.data[0];
           self.loader = false;
       });

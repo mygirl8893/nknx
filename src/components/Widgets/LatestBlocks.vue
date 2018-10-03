@@ -66,7 +66,7 @@ export default {
     getLatestBlocks() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('http://nknx.org/api/blocks/?latest=5').then(function(response){
+      axios.get('https://nknx.org/api/blocks/?latest=5').then(function(response){
         self.latestBlocks = response.data;
         self.loader= false
       });

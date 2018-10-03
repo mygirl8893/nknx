@@ -9,6 +9,7 @@ import VueI18n from 'vue-i18n'
 import fullscreen from 'vue-fullscreen'
 import moment from 'moment-timezone'
 import UploadButton from 'vuetify-upload-button'
+import VueClipboard from 'vue-clipboard2'
 
 // global components
 import GlobalComponents from './globalComponents'
@@ -60,6 +61,7 @@ router.afterEach((to, from) => {
 })
 
 
+VueClipboard.config.autoSetContainer = true // add this line
 
 // plugins
 Vue.use(Vuetify, {
@@ -71,6 +73,7 @@ Vue.use(Notifications, { velocity })
 Vue.use(fullscreen);
 Vue.use(GlobalComponents);
 Vue.use(UploadButton);
+Vue.use(VueClipboard);
 moment.tz.setDefault('Atlantic/Reykjavik')
 Vue.prototype.$moment = moment
 

@@ -88,7 +88,7 @@ export default {
 			const rowsPerPage = this.pagination.rowsPerPage
 			const pageNumber = this.pagination.page
 			//Call to NKN-API https://github.com/CrackDavid/nkn-api
-			const res = await axios.get(`http://nknx.org/api/blocks/?page=${pageNumber}&per_page=${rowsPerPage}`)
+			const res = await axios.get(`https://nknx.org/api/blocks/?page=${pageNumber}&per_page=${rowsPerPage}`)
 			this.latestBlocks = res.data.data
 			this.loader = false;
 		},
@@ -99,7 +99,7 @@ export default {
     getLatestBlocks() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('http://nknx.org/api/blocks/').then(function(response){
+      axios.get('https://nknx.org/api/blocks/').then(function(response){
 		self.pagination.page = response.data.current_page;
       	self.pagination.rowsPerPage = response.data.per_page;
       	self.pagination.totalItems = response.data.total;

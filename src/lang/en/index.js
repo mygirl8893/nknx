@@ -44,7 +44,14 @@ export default {
   openWalletfromFile:"From wallet file",
   openWalletfromPK:"From private key",
   selectWalletFile: "Select wallet file",
-  pasteOrTypePK:"Paste or type private key"
-
+  pasteOrTypePK:"Paste or type private key",
+  saveYourWalletFile:"Save your wallet file:",
+  downloadWallet:"Download wallet",
+  saveYourPK:"Save your private key:",
+  newWalletAdvice:"<p><b>Do not loose it!</b> It can only be recovered if you know your private key and your password.</p><p><b>Do not share it!</b> Your funds will be stolen if you use this file on a malicious phishing site.</p><p><b>Make a backup!</b> Secure it like the millions of dollars it may one day be worth.</p>",
+  newPkAdvice:"<p><b>Do not loose it!</b> It can not be recovered.</p><p><b>Do not share it!</b> Your funds will be stolen if you use this file on a malicious phishing site.</p><p><b>Make a backup!</b> Secure it like the millions of dollars it may one day be worth.</p>",
+  continue:"Continue",
+  PkCopiedSuccessful:"Private key was successfully copied to your clipboard.",
+  done:"Done"
 
 }

@@ -24,6 +24,7 @@
     "velocity-animate": "^1.5.2",
     "vue": "^2.5.17",
     "vue-chartjs": "^3.4.0",
+    "vue-clipboard2": "^0.2.1",
     "vue-count-to": "^1.0.13",
     "vue-draggable-resizable": "^1.7.1",
     "vue-fullscreen": "^2.1.3",

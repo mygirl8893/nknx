@@ -13,9 +13,7 @@
 								<v-data-table
 									:headers="headers"
 									:items="latestBlocks"
-									:total-items="pagination.totalItems"
-									:pagination.sync="pagination"
-									:rows-per-page-items="[5,10,25,50,100]"
+									hide-actions
 								>
 									<template slot="headers" slot-scope="props">
 										<tr>
@@ -26,9 +24,9 @@
 									</template>
 									<template slot="items" slot-scope="props">
 										<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
-										<td>{{ props.item.transactions.length }}</td>
+										<td>{{ props.item.transactions_count }}</td>
 										<td>{{ props.item.header.signer }}</td>
-								<td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
+										<td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
 									</template>
 								</v-data-table>
 					</div>
@@ -45,8 +43,8 @@ export default {
   data() {
     return {
       loader: true,
-	  latestBlocks: [],
-	  pagination: {
+	  	latestBlocks: [],
+	  	pagination: {
       	page: 1,
       	rowsPerPage: 25,
       	totalItems: 0
@@ -75,35 +73,19 @@ export default {
       ]
     };
   },
-  destroyed () {
-		clearInterval(this.getLatestBlocks);
-	},
 	mounted: function(){
 		this.getLatestBlocks();
 	},
 	watch: {
-		pagination: {
-		async handler () {
-			this.loader = true;
-			const rowsPerPage = this.pagination.rowsPerPage
-			const pageNumber = this.pagination.page
-			//Call to NKN-API https://github.com/CrackDavid/nkn-api
-			const res = await axios.get(`https://nknx.org/api/blocks/?page=${pageNumber}&per_page=${rowsPerPage}`)
-			this.latestBlocks = res.data.data
-			this.loader = false;
-		},
-		deep: true
-		}
+
 	},
   methods: {
     getLatestBlocks() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/blocks/').then(function(response){
-		self.pagination.page = response.data.current_page;
-      	self.pagination.rowsPerPage = response.data.per_page;
-      	self.pagination.totalItems = response.data.total;
-        self.latestBlocks = response.data.data;
+      axios.get('https://nknx.org/api/blocks/?latest=30').then(function(response){
+				self.latestBlocks= response.data;
+				self.pagination.page = response.data;
         self.loader= false
       });
       

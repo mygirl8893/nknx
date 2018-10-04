@@ -41,17 +41,18 @@ export default {
 		}
 	},
 	destroyed () {
-		clearInterval(this.getMarketPrice);
+		clearInterval(this.interval);
 	},
 	mounted: function(){
 
 		this.getMarketPrice();
-		setInterval(this.getMarketPrice, 10000);
+		this.interval = setInterval(this.getMarketPrice, 10000);
 
 	},
 
 	data(){
 		return {
+			interval:null,
 			nknUSD: 0,
 			nknETH: 0,
 		}

@@ -52,6 +52,10 @@ export default {
   newPkAdvice:"<p><b>Do not loose it!</b> It can not be recovered.</p><p><b>Do not share it!</b> Your funds will be stolen if you use this file on a malicious phishing site.</p><p><b>Make a backup!</b> Secure it like the millions of dollars it may one day be worth.</p>",
   continue:"Continue",
   PkCopiedSuccessful:"Private key was successfully copied to your clipboard.",
-  done:"Done"
-
+  done:"Done",
+  created: "Created",
+  txType: "Transaction type",
+  signatureChainTransaction: "Signature Chain transaction",
+  miningReward: "Mining Reward",
+  transfer: "Transfer"
 }

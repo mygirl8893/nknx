@@ -8,14 +8,14 @@
 		>
 			<template slot="headers" slot-scope="props">
 				<tr>
-					<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.text">
-						{{ header.text }}
+					<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.value">
+						{{ $t('message.'+header.text) }}
 					</th>
 				</tr>
 			</template>
 			<template slot="items" slot-scope="props">
 				<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
-				<td>{{ props.item.transactions.length }}</td>
+				<td>{{ props.item.transactions_count}}</td>
 				<td>{{ props.item.header.signer }}</td>
         <td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
 			</template>
@@ -29,26 +29,27 @@ import axios from "axios";
 export default {
   data() {
     return {
+      interval:null,
       loader: true,
       latestBlocks: [],
       headers: [
         {
-          text: "Height",
+          text: "height",
           sortable: false,
           value: "height"
         },
         {
-          text: "Transactions",
+          text: "transactions",
           sortable: false,
           value: "transactions"
         },
         {
-          text: "Block proposer",
+          text: "signer",
           sortable: false,
           value: "signer"
         },
         {
-          text: "Created",
+          text: "created",
           sortable: false,
           value: "timestamp"
         }
@@ -56,11 +57,11 @@ export default {
     };
   },
   destroyed () {
-		clearInterval(this.getLatestBlocks);
+		clearInterval(this.interval);
 	},
 	mounted: function(){
 		this.getLatestBlocks();
-		setInterval(this.getLatestBlocks, 10000);
+		this.interval = setInterval(this.getLatestBlocks, 10000);
 	},
   methods: {
     getLatestBlocks() {

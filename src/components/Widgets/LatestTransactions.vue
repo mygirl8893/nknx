@@ -3,23 +3,39 @@
     <app-section-loader :status="loader"></app-section-loader>
 		<v-data-table
 			:headers="headers"
-			:items="latestBlocks"
-      item-key="height"
+			:items="latestTransactions"
+      item-key="hash"
 			hide-actions
 		>
-			<template slot="headers" slot-scope="props">
+    	<template slot="headers" slot-scope="props">
 				<tr>
-					<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.text">
-						{{ header.text }}
+					<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.value">
+						{{ $t('message.'+header.text) }}
 					</th>
 				</tr>
 			</template>
 			<template slot="items" slot-scope="props">
         <tr @click="props.expanded = !props.expanded">
-          <td>{{ props.item.height }}</td>
-          <td>{{ props.item.transactions }}</td>
-          <td>{{ props.item.signer }}</td>
-          <td>{{ props.item.timestamp }}</td>
+          <td>
+            <span v-if="props.item.txType == 66">
+              {{$t('message.signatureChainTransaction')}}
+            </span>
+            <span v-else-if="props.item.txType == 0">
+              {{$t('message.miningReward')}}
+            </span>
+            <span v-else-if="props.item.txType == 16">
+              {{$t('message.transfer')}}
+            </span>
+            
+
+            <span v-else>
+              {{ props.item.txType }}
+            </span>
+
+          </td>
+          <td>{{ props.item.hash }}</td>
+          <td>{{ props.item.block.header.height }}</td>
+          <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
         </tr>
 			</template>
       <template slot="expand" slot-scope="props">
@@ -32,58 +48,56 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   data() {
     return {
+      interval :null,
       loader: true,
-      latestBlocks: [],
+      latestTransactions: [],
       headers: [
         {
-          text: "Height",
+          text: "txType",
+          sortable: false,
+          value: "tx"
+        },
+        {
+          text: "hash",
+          sortable: false,
+          value: "hash"
+        },
+        {
+          text: "height",
           sortable: false,
           value: "height"
         },
         {
-          text: "Transactions",
-          sortable: false,
-          value: "transactions"
-        },
-        {
-          text: "Block proposer",
-          sortable: false,
-          value: "signer"
-        },
-        {
-          text: "Created",
+          text: "created",
           sortable: false,
           value: "timestamp"
         }
       ]
     };
   },
-  mounted() {
-    this.getLatestBlocks();
-  },
-
-  // a3e24c2be711afee146df3cccbc283ee921b251059c4cb0d2355426db1142e74 = Mining reward
-  // 01992bb729bfbf06291c708a0ab292917481595a0914e275fd8ed0b338960904 = Signature Chain
-  // Height 101720
+  destroyed () {
+    clearInterval(this.interval);
+	},
+	mounted: function(){
+		this.getLatestTransactions();
+		this.interval = setInterval(this.getLatestTransactions, 10000);
+	},
   methods: {
-    getLatestBlocks() {
+    getLatestTransactions() {
       const self = this;
-      //some axios stuff
-      self.latestBlocks=[
-        {
-          height: 13456,
-          transactions: 10,
-          signer: "1413502450d3106f8c63bdf6779fa3e6324f6ecbecf5738e3bafdf832d942e5c",
-          timestamp: "12 seconds ago"
-        },
-
-      ]
-      self.loader= false
+      //Call to NKN-API https://github.com/CrackDavid/nkn-api
+      axios.get('https://nknx.org/api/transactions/?latest=5?withoutpayload=true').then(function(response){
+        self.latestTransactions = response.data;
+        self.loader= false
+      });
+      
     }
   }
 };
 </script>
+

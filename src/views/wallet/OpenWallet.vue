@@ -22,18 +22,37 @@
 							
 						</v-flex>
 						<v-flex xs6>
-							<upload-btn :title="$t('message.selectWalletFile')" v-if="radioButton==='file'"></upload-btn>
-							<v-text-field v-if="radioButton==='pk'"
-								v-model="pk"
-								:append-icon="show1 ? 'visibility_off' : 'visibility'"
-								:rules="[rules.required]"
-								:label="$t('message.pasteOrTypePK')"
-								:type="show1 ? 'text' : 'password'"
-								@click:append="show1 = !show1"
-							></v-text-field>
+							<div v-if="radioButton==='file'">
+								<upload-btn style="display:inline" :fileChangedCallback="fileChangedCallback" :title="$t('message.selectWalletFile')" ></upload-btn> 
+								<span>{{walletFile.name}}</span>
+								<v-text-field v-if="filevalid"
+									v-model="password"
+									:append-icon="show1 ? 'visibility_off' : 'visibility'"
+									:label="$t('message.password')"
+									:type="show1 ? 'text' : 'password'"
+									@click:append="show1 = !show1"
+								></v-text-field>
+							</div>
+							<div v-if="radioButton==='pk'">
+								<v-text-field
+									v-model="pk"
+									:append-icon="show1 ? 'visibility_off' : 'visibility'"
+									:label="$t('message.pasteOrTypePK')"
+									:type="show1 ? 'text' : 'password'"
+									@click:append="show1 = !show1"
+								></v-text-field>
+								<v-text-field v-if="pkvalid"
+									v-model="password"
+									:append-icon="show1 ? 'visibility_off' : 'visibility'"
+									:label="$t('message.password')"
+									:type="show1 ? 'text' : 'password'"
+									@click:append="show1 = !show1"
+								></v-text-field>
+							</div>
 						</v-flex>
 
 					</v-layout>
+					<v-btn :loading="loading" :disabled="!s1valid" v-on:click="loadWallet()" slot="footer" color="primary" small>{{$t('message.continue')}}</v-btn>
 				</app-card>
 			</v-layout>
 
@@ -44,13 +63,96 @@
 
 <script>
 	import UploadButton from 'vuetify-upload-button';
+	import nknWallet from "nkn-wallet";
   export default {
 	components: {
 		'upload-btn': UploadButton
 		
 	},
+	watch: {
+    radioButton: function () {
+      if(this.radioButton == "pk" && this.pk != ""){
+				this.pkvalid = true;
+			}
+			else if(this.radioButton == "file" && this.walletFile.name != ""){
+				this.filevalid = true;
+			}
+			else{
+				this.pkvalid = false;
+				this.filevalid = false;
+			}
+			if(this.pkvalid && this.password != ""){
+				this.s1valid = true;
+			}
+			else if(this.filevalid && this.password != ""){
+				this.s1valid = true;
+			}
+			else{
+				this.s1valid = false;
+			}
+    },
+    pk: function (val) {
+      if (val != ""){
+				this.pkvalid = true;
+			}
+			else{
+				this.pkvalid = false;
+			}
+			if(this.pkvalid && this.password != ""){
+				this.s1valid = true;
+			}
+			else{
+				this.s1valid = false;
+			}
+		},
+		password: function(){
+			if(this.pkvalid && this.password != ""){
+				this.s1valid = true;
+			}
+			else if(this.filevalid && this.password != ""){
+				this.s1valid = true;
+			}
+			else{
+				this.s1valid = false;
+			}
+		}
+  },
+	methods:{
+		fileChangedCallback($file){
+			this.walletFile = $file;
+			this.filevalid = true;
+			if(this.filevalid && this.password != ""){
+				this.s1valid = true;
+			}
+			else{
+				this.s1valid = false;
+			}
+		},
+		loadWallet(){
+			if(this.radioButton == "pk"){
+				this.wallet = nknWallet.restoreWalletByPrivateKey(this.pk, this.password);
+				console.log(this.wallet);
+			}
+			else if(this.radioButton == "file"){
+				var self = this;
+				const read = new FileReader();
+				read.readAsText(this.walletFile);
+				read.onloadend = function(){
+						self.wallet = nknWallet.loadJsonWallet((read.result), self.password);
+				}
+			
+			}
+		}
+	},
    data () {
       return {
+				wallet:null,
+				password:"",
+				filevalid :false,
+				pkvalid: false,
+				s1valid:false,
+				loading:false,
+				walletFile:{name:""},
 				radioButton: "",
 				pk:"",
 				show1: false,

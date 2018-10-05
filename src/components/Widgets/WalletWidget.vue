@@ -61,7 +61,7 @@
 					</v-flex>
 					<template v-else>
 						<v-flex xs12>
-							<h3 class="balance-header">{{$t('message.yourWalletBalance')}}</h3>
+							<h3 class="balance-header">{{$t('message.activeWallet')}}: <b>{{$store.getters.walletfile.address}}</b></h3>
 							<div class="balance">{{balance}} <span class="primary--text">NKN</span></div>
 						</v-flex>
 					</template>

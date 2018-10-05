@@ -59,6 +59,12 @@ export default {
   miningReward: "Mining Reward",
   transfer: "Transfer",
   password:"Password",
-  yourWalletBalance: "Your wallet balance",
-  storedWallets: "Stored wallets"
+  activeWallet: "Active wallet",
+  storedWallets: "Stored wallets",
+  unlock:"unlock",
+  amount:"Amount",
+  yourAddress:"Your address",
+  walletFile:"Wallet file",
+  yourPk:"Your private key",
+  AddressCopiedSuccessful:"Address copied successful"
 }

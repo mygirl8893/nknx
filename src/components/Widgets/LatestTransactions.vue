@@ -91,7 +91,7 @@ export default {
     getLatestTransactions() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/transactions/?latest=5?withoutpayload=true').then(function(response){
+      axios.get('https://nknx.org/api/transactions/?latest=5&withoutpayload=true').then(function(response){
         self.latestTransactions = response.data;
         self.loader= false
       });

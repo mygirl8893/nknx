@@ -9,7 +9,7 @@
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
 					<div class="table-responsive">
-    							<app-section-loader :status="loader"></app-section-loader>
+    						<app-section-loader :status="loader"></app-section-loader>
 								<v-data-table
 									:headers="headers"
 									:items="latestTransactions"
@@ -105,7 +105,7 @@ export default {
     getLatestTransactions() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/transactions/?latest=30?withoutpayload=true').then(function(response){
+      axios.get('https://nknx.org/api/transactions/?latest=30&withoutpayload=true').then(function(response){
         self.latestTransactions = response.data;
         self.loader= false
       });

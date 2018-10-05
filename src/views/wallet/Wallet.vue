@@ -31,11 +31,7 @@
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
-					<v-layout row wrap>
-						<v-flex xs12>
-							{{$t('message.transactionsNoWallet')}}
-						</v-flex>
-					</v-layout>
+					<latest-wallet-transactions></latest-wallet-transactions>
 				</app-card>
 			</v-layout>
 			<v-layout row wrap>
@@ -44,11 +40,7 @@
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
-					<v-layout row wrap>
-						<v-flex xs12>
-							{{$t('message.transfersNoWallet')}}
-						</v-flex>
-					</v-layout>
+					<latest-wallet-transfers></latest-wallet-transfers>
 				</app-card>
 			</v-layout>
 			<v-layout row wrap>
@@ -57,11 +49,7 @@
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
-					<v-layout row wrap>
-						<v-flex xs12>
-							{{$t('message.detailsNoWallet')}}
-						</v-flex>
-					</v-layout>
+					<wallet-details></wallet-details>
 				</app-card>
 			</v-layout>
 		</v-container>
@@ -70,12 +58,27 @@
 
 <script>
 import WalletWidget from "Components/Widgets/WalletWidget";
+import LatestWalletTransactions from "Components/Widgets/LatestWalletTransactions";
+import LatestWalletTransfers from "Components/Widgets/LatestWalletTransfers";
+import WalletDetails from "Components/Widgets/WalletDetails";
+import axios from "axios";
   export default {
 	components: {
 		WalletWidget,
+		LatestWalletTransactions,
+		LatestWalletTransfers,
+		WalletDetails
 	},
-    data: () => ({
-
-    })
+	methods: {
+		
+	},
+	mounted: function(){
+		
+	},
+	data(){
+		return {
+		}
+	}
+	
   }
 </script>

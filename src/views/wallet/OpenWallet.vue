@@ -131,7 +131,9 @@
 		loadWallet(){
 			if(this.radioButton == "pk"){
 				this.wallet = nknWallet.restoreWalletByPrivateKey(this.pk, this.password);
-				console.log(this.wallet);
+				this.$store.dispatch("setWalletfile", this.wallet);
+				this.$store.dispatch("addToWalletStore", {address: this.wallet.address, pk:this.wallet.getPrivateKey()});
+				this.$router.push({ path: '/wallet' })
 			}
 			else if(this.radioButton == "file"){
 				var self = this;
@@ -139,6 +141,9 @@
 				read.readAsText(this.walletFile);
 				read.onloadend = function(){
 						self.wallet = nknWallet.loadJsonWallet((read.result), self.password);
+						self.$store.dispatch("setWalletfile", self.wallet);
+						self.$store.dispatch("addToWalletStore", {address: self.wallet.address, pk:self.wallet.getPrivateKey()});
+						self.$router.push({ path: '/wallet'})
 				}
 			
 			}

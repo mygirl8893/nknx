@@ -57,5 +57,8 @@ export default {
   txType: "Transaction type",
   signatureChainTransaction: "Signature Chain transaction",
   miningReward: "Mining Reward",
-  transfer: "Transfer"
+  transfer: "Transfer",
+  password:"Password",
+  yourWalletBalance: "Your wallet balance",
+  storedWallets: "Stored wallets"
 }

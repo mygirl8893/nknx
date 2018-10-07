@@ -14,6 +14,7 @@
 				v-model="horizontalLayoutSidebar"
 				:width="250"
 			>
+        <app-sidebar></app-sidebar>
 			</v-navigation-drawer>
 			<!-- App Main Content -->
 			<v-content>
@@ -37,6 +38,7 @@ import AppHorizontalMenus from "Components/AppHorizontalMenus/AppHorizontalMenus
 import PageTitleBar from "Components/PageTitleBar/PageTitleBar";
 import { mapGetters } from "vuex";
 import Footer from "Components/Footer/Footer.vue";
+import Sidebar from "Components/Sidebar/Sidebar";
 
 export default {
   data() {
@@ -49,6 +51,7 @@ export default {
     appFooter: Footer,
     appHorizontalMenus: AppHorizontalMenus,
     PageTitleBar,
+     appSidebar: Sidebar
   },
   mounted() {
     setTimeout(() => {

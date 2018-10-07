@@ -11,7 +11,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout row wrap>
-                    <v-flex xs4>
+                    <v-flex xl4 lg4 md4 sm12 xs12>
                         <v-text-field
                             style="padding-top:0px"
                             v-clipboard:copy="address"
@@ -37,7 +37,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout row wrap>
-                    <v-flex xs4>
+                    <v-flex xl4 lg4 md4 sm12 xs12>
                         <v-text-field
                             :type="show1 ? 'text' : 'password'"
                             style="padding-top:0px"

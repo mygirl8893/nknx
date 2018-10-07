@@ -8,28 +8,39 @@
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
-					<div class="table-responsive">
-    							<app-section-loader :status="loader"></app-section-loader>
-								<v-data-table
-									:headers="headers"
-									:items="latestBlocks"
-									hide-actions
-								>
-									<template slot="headers" slot-scope="props">
-										<tr>
-											<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.text">
-												{{ header.text }}
-											</th>
-										</tr>
-									</template>
-									<template slot="items" slot-scope="props">
-										<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
-										<td>{{ props.item.transactions_count }}</td>
-										<td>{{ props.item.header.signer }}</td>
-										<td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
-									</template>
-								</v-data-table>
-					</div>
+					<v-layout row wrap>
+						<v-flex xs12>
+									<app-section-loader :status="loader"></app-section-loader>
+									<v-data-table
+										:headers="headers"
+										:items="latestBlocks"
+										hide-actions
+									>
+										<template slot="headers" slot-scope="props">
+											<tr>
+												<th class="text-xs-left fw-bold" v-bind:class="{ 'hidden-sm-and-down' : header.value=='signer' }" v-for="header in props.headers" :key="header.text">
+													{{ header.text }}
+												</th>
+											</tr>
+										</template>
+										<template slot="items" slot-scope="props">
+											<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
+											<td>{{ props.item.transaction_count }}</td>
+											<td class="hidden-sm-and-down">{{ props.item.header.signer }}</td>
+											<td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
+										</template>
+									</v-data-table>
+						</v-flex>
+					</v-layout>
+					<v-layout row wrap justify-center>
+									<v-btn v-on:click.native="getPrevBlockPage" :disabled="!prev_page" small fab color="primary">
+										<v-icon>zmdi-chevron-left</v-icon>
+									</v-btn>
+									<span style="padding: 15px;">{{current_page}}</span>
+									<v-btn v-on:click.native="getNextBlockPage" :disabled="!next_page" small fab color="primary">
+										<v-icon>zmdi-chevron-right</v-icon>
+									</v-btn>
+					</v-layout>
 				</app-card>
 			</v-layout>
 		</v-container>
@@ -42,13 +53,12 @@ import axios from "axios";
 export default {
   data() {
     return {
+			next_page:null,
+			prev_page:null,
+			current_page:1,
       loader: true,
-	  	latestBlocks: [],
-	  	pagination: {
-      	page: 1,
-      	rowsPerPage: 25,
-      	totalItems: 0
-      },
+			latestBlocks: [],
+			
       headers: [
         {
           text: "Height",
@@ -83,12 +93,37 @@ export default {
     getLatestBlocks() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/blocks/?latest=30').then(function(response){
-				self.latestBlocks= response.data;
-				self.pagination.page = response.data;
+      axios.get('https://nknx.org/api/blocks/').then(function(response){
+				self.next_page = response.data.next_page_url;
+				self.prev_page = response.data.prev_page_url;
+				self.current_page = response.data.current_page;
+				self.latestBlocks= response.data.data;
         self.loader= false
       });
-      
+		},
+		getNextBlockPage() {
+			const self = this;
+			this.loader = true;
+      //Call to NKN-API https://github.com/CrackDavid/nkn-api
+      axios.get(this.next_page).then(function(response){
+				self.next_page = response.data.next_page_url;
+				self.prev_page = response.data.prev_page_url;
+				self.current_page = response.data.current_page;
+				self.latestBlocks= response.data.data;
+        self.loader= false
+      });
+		},
+		getPrevBlockPage() {
+			const self = this;
+			this.loader = true;
+      //Call to NKN-API https://github.com/CrackDavid/nkn-api
+      axios.get(this.prev_page).then(function(response){
+				self.next_page = response.data.next_page_url;
+				self.prev_page = response.data.prev_page_url;
+				self.current_page = response.data.current_page;
+				self.latestBlocks= response.data.data;
+        self.loader= false
+      });
     }
   }
 };

@@ -8,7 +8,7 @@
 		>
 			<template slot="headers" slot-scope="props">
 				<tr>
-					<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.value">
+					<th class="text-xs-left fw-bold" v-bind:class="{ 'hidden-sm-and-down' : header.value=='signer' }" v-for="header in props.headers" :key="header.value">
 						{{ $t('message.'+header.text) }}
 					</th>
 				</tr>
@@ -16,7 +16,7 @@
 			<template slot="items" slot-scope="props">
 				<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
 				<td>{{ props.item.transaction_count}}</td>
-				<td>{{ props.item.header.signer }}</td>
+				<td class="hidden-sm-and-down">{{ props.item.header.signer }}</td>
         <td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
 			</template>
 		</v-data-table>

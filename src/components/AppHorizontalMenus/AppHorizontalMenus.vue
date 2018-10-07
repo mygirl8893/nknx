@@ -19,13 +19,12 @@
     <div>
       <div class="search-form">
         <v-text-field flat solo prepend-icon="search" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
-        <div class="mobile-search d-none">
-          <v-btn flat small icon class="mobile-search-btn my-1 mx-3">
-            <v-icon class="grey--text font-md">search</v-icon>
-          </v-btn>
-        </div>
+        
+          <mobile-search-form></mobile-search-form>
+
+
       </div>
-      <mobile-search-form></mobile-search-form>
+      
     </div>
   	</div>
 </template>
@@ -38,15 +37,7 @@ import MobileSearchForm from "../Header/MobileSearchForm";
 export default {
   data() {
     return {
-      categories: 
-        {
-         'message.general': "zmdi zmdi-view-dashboard",
-         'message.modules': "zmdi zmdi-widgets",
-         'message.components':"zmdi zmdi-view-carousel",
-         'message.applications': "zmdi zmdi-assignment-check",
-         'message.features':"zmdi zmdi-wrench",
-         'message.extensions':"zmdi zmdi-file"
-       }
+
     }
   },
   components: {

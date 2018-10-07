@@ -74,5 +74,6 @@ export default {
   transferInformation: "You are about to make a transaction that cannot be undone. Are you sure you want to do this? Following transaction will be done:",
   confirmByPassword: "Confirm the transaction by typing in your password.",
   amountSentSuccessful: "Amount successfully sent!",
-  amountSentError: "There was an error sending your Tokens. Please check your inputs!"
+  amountSentError: "There was an error sending your Tokens. Please check your inputs!",
+  nextBlockHash: "Next Hash"
 }

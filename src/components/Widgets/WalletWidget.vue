@@ -1,7 +1,7 @@
 <template>
     <div>
                 <v-layout row wrap>
-					<v-flex v-if="$store.getters.walletstore.length" xs4 style="padding-top:0px">
+					<v-flex v-if="$store.getters.walletstore.length" xl4 lg4 md4 sm12 xs12 style="padding-top:0px">
 						<v-select
 							v-model="selectedWallet"
 							:items="items"
@@ -10,7 +10,7 @@
 							:label="$t('message.storedWallets')"
 						></v-select>
 					</v-flex>
-					<v-flex xs4 style="padding-top:0px">
+					<v-flex xl4 lg4 md4 sm12 xs12 style="padding-top:0px">
 						<v-layout row wrap style="margin-top: 5px;">
 							<v-btn :to="{path: '/wallet/create'}" raised color="primary">{{$t('message.newWallet')}}</v-btn>
 							<v-btn :to="{path: '/wallet/open'}" raised color="primary">{{$t('message.openWallet')}}</v-btn>
@@ -40,7 +40,7 @@
 					</v-flex>
 				</v-layout>
 				<v-layout row wrap v-if="selectedWallet && (selectedWallet != pkFromStore)">
-					<v-flex xs4>
+					<v-flex xl4 lg4 md4 sm12 xs12>
 						<v-text-field
 							v-model="password"
 							:append-icon="show1 ? 'visibility_off' : 'visibility'"
@@ -49,7 +49,7 @@
 							@click:append="show1 = !show1"
 						></v-text-field>
 					</v-flex>
-					<v-flex xs4>
+					<v-flex xl4 lg4 md4 sm12 xs12>
 						<v-layout row wrap style="margin-top: 5px;">
 							<v-btn v-on:click.native="unlockWallet" raised color="primary">{{$t('message.unlock')}}</v-btn>
 						</v-layout>

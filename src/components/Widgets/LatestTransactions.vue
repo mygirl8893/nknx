@@ -9,7 +9,7 @@
 		>
     	<template slot="headers" slot-scope="props">
 				<tr>
-					<th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.value">
+					<th class="text-xs-left fw-bold" v-bind:class="{ 'hidden-sm-and-down' : header.value=='hash' }" v-for="header in props.headers" :key="header.value">
 						{{ $t('message.'+header.text) }}
 					</th>
 				</tr>
@@ -33,7 +33,7 @@
             </span>
 
           </td>
-          <td>{{ props.item.hash }}</td>
+          <td class="hidden-sm-and-down">{{ props.item.hash }}</td>
           <td>{{ props.item.block.header.height }}</td>
           <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
         </tr>

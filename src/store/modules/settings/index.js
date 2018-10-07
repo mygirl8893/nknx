@@ -9,6 +9,7 @@ const state = {
 	rtlLayout: false,                                      // rtl layout
 	languages,                                             // languages
 	selectedLocale: languages[0],                          // selected locale
+	horizontalLayoutSidebar: false,
 }
 
 // getters
@@ -22,6 +23,9 @@ const getters = {
 	languages: state => {
 		return state.languages;
 	},
+	horizontalLayoutSidebar: state => {
+		return state.horizontalLayoutSidebar;
+	}
 }
 
 // actions
@@ -29,6 +33,9 @@ const actions = {
 	changeLanguage(context, payload) {
 		context.commit('changeLanguageHandler', payload);
 	},
+	toggleHorizontalLayoutSidebar(context, payload) {
+		context.commit('toggleHorizontalLayoutSidebarHandler', payload);
+	}
 }
 
 // mutations
@@ -41,6 +48,9 @@ const mutations = {
 			state.rtlLayout = false;
 		}
 	},
+	toggleHorizontalLayoutSidebarHandler(state, value) {
+		state.horizontalLayoutSidebar = value;
+	}
 }
 
 export default {

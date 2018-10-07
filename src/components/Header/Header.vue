@@ -81,12 +81,6 @@ export default {
     ])
   },
   methods: {
-    // toggle full screen method
-    toggleFullScreen() {
-      if (screenfull.enabled) {
-        screenfull.toggle();
-      }
-		},
 		getMenuLink(link) {
 			return '/' + getCurrentAppLayout(this.$router) + link;
 		}

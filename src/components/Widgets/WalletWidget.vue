@@ -124,6 +124,7 @@ export default {
 			const wallet = nknWallet.restoreWalletByPrivateKey(this.selectedWallet, this.password);
 			this.$store.dispatch("setWalletfile", wallet);
 			this.getBalance();
+			this.password="";
 		},
 		getBalance(){
 			if(this.$store.getters.walletfile){

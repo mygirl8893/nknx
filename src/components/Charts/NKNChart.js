@@ -1,7 +1,6 @@
 // Line Chart Widget
 import { Line } from 'vue-chartjs'
 import { ChartConfig } from "Constants/chart-config";
-import { hexToRgbA } from "Helpers/helpers";
 import axios from "axios";
 
 export default {
@@ -13,8 +12,8 @@ export default {
              priceUSD :[],
              priceETH :[]
          },
-         gradient1: null,
          options: {
+            elements: { point: { radius:0,hitRadius: 5, hoverRadius: 5  } },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -47,7 +46,26 @@ export default {
                xAxes: [{
                   ticks: {
                      display: true,
-                     beginAtZero: true
+                     beginAtZero: true,
+                     autoSkip: false,
+                     userCallback: function(item, index) {
+                        var dt = new Date(item);
+                        var monthNames = [
+                            "Jan", "Feb", "Mar",
+                            "Apr", "May", "June", "July",
+                            "Aug", "Sep", "Oct",
+                            "Nov", "Dec"
+                          ];
+                        if (dt.getHours()==0) {          
+                                return dt.getDate() + '.' + monthNames[dt.getMonth()];
+                        }
+                        else if (dt.getHours()==12){
+                            return dt.getHours() + ":00";
+                        }
+
+
+                      }
+                
                   },
                   gridLines: {
                      display: true,
@@ -70,37 +88,19 @@ export default {
    mounted() {
     const self = this;
     //some axios stuff
-      axios.get('https://min-api.cryptocompare.com/data/histoday?fsym=NKN&tsym=USD').then(function(responseUSD){
+      axios.get('https://min-api.cryptocompare.com/data/histohour?fsym=NKN&tsym=USD').then(function(responseUSD){
         responseUSD.data.Data.forEach(function(entry) {
-            self.chartdata.days.push(self.$moment.unix(entry.time).format('MMM DD'));
+            self.chartdata.days.push(self.$moment.unix(entry.time));
             self.chartdata.priceUSD.push(entry.open);
         });
-        axios.get('https://min-api.cryptocompare.com/data/histoday?fsym=NKN&tsym=ETH').then(function(responseETH){
+        axios.get('https://min-api.cryptocompare.com/data/histohour?fsym=NKN&tsym=ETH').then(function(responseETH){
             responseETH.data.Data.forEach(function(entry) {
                 self.chartdata.priceETH.push(entry.open);
             });
 
            
-            let ctx = self.$refs.canvas.getContext('2d')
-            let _stroke = ctx.stroke
-            ctx.stroke = function () {
-                ctx.save()
-                ctx.shadowColor = 'rgba(0,0,0,0.5)'
-                ctx.shadowBlur = 8
-                ctx.shadowOffsetX = 0
-                ctx.shadowOffsetY = 4
-                _stroke.apply(this, arguments)
-                ctx.restore()
-            }
         
-            let gradientColor = ' '
-            self.gradient1 = self.$refs.canvas.getContext('2d').createLinearGradient(0, 110, 0, 0)
-            self.gradient1.addColorStop(0, hexToRgbA(ChartConfig.color.white, 0.2))
-            self.gradient1.addColorStop(0.5, hexToRgbA(ChartConfig.color.info, 0.2))
-        
-            self.gradient2 = self.$refs.canvas.getContext('2d').createLinearGradient(0, 110, 0, 0)
-            self.gradient2.addColorStop(0, hexToRgbA(ChartConfig.color.white, 0.1))
-            self.gradient2.addColorStop(0.5, hexToRgbA(ChartConfig.color.primary, 0.1))
+
         
             self.renderChart({
                 labels: self.chartdata.days,
@@ -109,21 +109,21 @@ export default {
                         label: 'USD',
                         yAxisID: 'USD',
                         data: self.chartdata.priceUSD,
-                        lineTension: 0.5,
+                        lineTension: 0.1,
                         backgroundColor: "transparent",
                         borderColor: ChartConfig.color.primary,
-                        lineTension: 0,
-                        fill: true
+                        fill: false,
+                        borderWidth: 2 // and not lineWidth
                     },
                     {
                         label: 'ETH',
                         yAxisID: 'ETH',
                         data: self.chartdata.priceETH,
-                        lineTension: 0.5,
+                        lineTension: 0.1,
                         backgroundColor: "transparent",
                         borderColor: ChartConfig.color.secondary,
-                        lineTension: 0,
-                        fill: true
+                        fill: false,
+                        borderWidth: 2 // and not lineWidth
                         },
                 ]
             }, self.options);

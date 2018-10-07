@@ -18,11 +18,7 @@
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
-					<v-layout row wrap>
-						<v-flex xs12>
-							{{$t('message.transferNoWallet')}}
-						</v-flex>
-					</v-layout>
+					<wallet-transfer></wallet-transfer>
 				</app-card>
 			</v-layout>
 			<v-layout row wrap>
@@ -61,13 +57,15 @@ import WalletWidget from "Components/Widgets/WalletWidget";
 import LatestWalletTransactions from "Components/Widgets/LatestWalletTransactions";
 import LatestWalletTransfers from "Components/Widgets/LatestWalletTransfers";
 import WalletDetails from "Components/Widgets/WalletDetails";
+import WalletTransfer from "Components/Widgets/WalletTransfer";
 import axios from "axios";
   export default {
 	components: {
 		WalletWidget,
 		LatestWalletTransactions,
 		LatestWalletTransfers,
-		WalletDetails
+		WalletDetails,
+		WalletTransfer
 	},
 	methods: {
 		

@@ -66,5 +66,13 @@ export default {
   yourAddress:"Your address",
   walletFile:"Wallet file",
   yourPk:"Your private key",
-  AddressCopiedSuccessful:"Address copied successful"
+  AddressCopiedSuccessful:"Address copied successful",
+  to:"To",
+  send:"send",
+  confirmTransfer:"Please confirm your transfer",
+  cancel : "Cancel",
+  transferInformation: "You are about to make a transaction that cannot be undone. Are you sure you want to do this? Following transaction will be done:",
+  confirmByPassword: "Confirm the transaction by typing in your password.",
+  amountSentSuccessful: "Amount successfully sent!",
+  amountSentError: "There was an error sending your Tokens. Please check your inputs!"
 }

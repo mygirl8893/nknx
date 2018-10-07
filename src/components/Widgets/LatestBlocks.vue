@@ -15,7 +15,7 @@
 			</template>
 			<template slot="items" slot-scope="props">
 				<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
-				<td>{{ props.item.transactions_count}}</td>
+				<td>{{ props.item.transaction_count}}</td>
 				<td>{{ props.item.header.signer }}</td>
         <td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
 			</template>

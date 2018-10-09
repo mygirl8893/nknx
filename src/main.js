@@ -75,6 +75,7 @@ Vue.use(GlobalComponents);
 Vue.use(UploadButton);
 Vue.use(VueClipboard);
 moment.tz.setDefault('Atlantic/Reykjavik')
+moment.locale(store.getters.selectedLocale.locale)
 Vue.prototype.$moment = moment
 
 // Create VueI18n instance with options

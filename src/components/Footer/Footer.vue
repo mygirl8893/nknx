@@ -13,7 +13,7 @@
       </ul>-->
 
       <v-flex style="padding-left:20px" shrink>
-      <h6 class="mb-0 fw-normal">Donate (NEO):APAZqVTTXpgMa3FQ3UmqYTwstMsdTY5r4H<br>Donate (NKN Testnet):NNP6M8EGZcWSZNgA2ebQfMVyNkwX6sGBQW</h6>
+      <h6 class="mb-0 fw-normal">Coded with <i class="ti ti-heart"></i> by ChrisT - translated by the whole NKN community (you are awesome!)</h6>
       </v-flex>
 
 

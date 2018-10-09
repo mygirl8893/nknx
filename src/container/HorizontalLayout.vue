@@ -22,9 +22,9 @@
 				<transition name="router-anim" :enter-active-class="`animated ${'slideInUp'}`">
 					<router-view></router-view>
 				</transition>
-        <!--<v-footer> 
+        <v-footer> 
           <app-footer></app-footer>
-        </v-footer>-->
+        </v-footer>
 			</v-content>
 
 		</template>

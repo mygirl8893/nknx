@@ -7,7 +7,7 @@ import ru from './ru';
 import zh from './zh';
 import fi from './fi';
 import es from './es';
-import ro from './ro';
+
 
 export default {
     en: {
@@ -37,8 +37,6 @@ export default {
     es: {
         message: es
     },
-    ro: {
-        message: ro
-    },
+
   
 }

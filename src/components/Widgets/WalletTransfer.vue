@@ -91,6 +91,9 @@ import nknWallet from "nkn-wallet";
         },
     },
 	mounted: function(){
+        nknWallet.configure({
+            rpcAddr: 'https://newkindofwallet.com:30003',
+        });
 		
     },
     watch: {

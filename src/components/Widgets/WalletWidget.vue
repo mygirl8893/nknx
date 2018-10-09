@@ -72,6 +72,9 @@
 import nknWallet from "nkn-wallet";
 export default {
 	mounted: function(){
+		nknWallet.configure({
+			rpcAddr: 'https://newkindofwallet.com:30003',
+		});
 		this.getBalance();
 		this.interval = setInterval(this.getBalance, 10000);
 		if(this.$store.getters.walletstore.length){

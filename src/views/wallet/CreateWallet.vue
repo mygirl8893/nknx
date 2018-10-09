@@ -100,6 +100,11 @@
   export default {
 		components: {
 		},
+		mounted: function(){
+			nknWallet.configure({
+				rpcAddr: 'https://newkindofwallet.com:30003',
+			});
+		},
 		methods: {
 			createWallet(){
 				if(this.valid){

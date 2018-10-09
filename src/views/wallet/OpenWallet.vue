@@ -69,6 +69,11 @@
 		'upload-btn': UploadButton
 		
 	},
+	mounted: function(){
+		nknWallet.configure({
+			rpcAddr: 'https://newkindofwallet.com:30003',
+		});
+	},
 	watch: {
     radioButton: function () {
       if(this.radioButton == "pk" && this.pk != ""){

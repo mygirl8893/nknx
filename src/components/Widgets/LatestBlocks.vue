@@ -2,15 +2,15 @@
    <div class="table-responsive">
     <app-section-loader :status="loader"></app-section-loader>
 		<v-data-table
-			:headers="headers"
 			:items="latestBlocks"
 			hide-actions
 		>
 			<template slot="headers" slot-scope="props">
 				<tr>
-					<th class="text-xs-left fw-bold" v-bind:class="{ 'hidden-sm-and-down' : header.value=='signer' }" v-for="header in props.headers" :key="header.value">
-						{{ $t('message.'+header.text) }}
-					</th>
+          <th>{{ $t('message.height') }}</th>
+          <th>{{ $t('message.transactions') }}</th>
+          <th style="width:40%;" class="hidden-sm-and-down">{{ $t('message.signer') }}</th>
+          <th>{{ $t('message.created') }}</th>
 				</tr>
 			</template>
 			<template slot="items" slot-scope="props">
@@ -32,28 +32,6 @@ export default {
       interval:null,
       loader: true,
       latestBlocks: [],
-      headers: [
-        {
-          text: "height",
-          sortable: false,
-          value: "height"
-        },
-        {
-          text: "transactions",
-          sortable: false,
-          value: "transactions"
-        },
-        {
-          text: "signer",
-          sortable: false,
-          value: "signer"
-        },
-        {
-          text: "created",
-          sortable: false,
-          value: "timestamp"
-        }
-      ]
     };
   },
   destroyed () {

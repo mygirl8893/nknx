@@ -32,12 +32,9 @@
 						<img src="/static/img/site-logo.png" alt="site logo" width="100" height="30">
 					</router-link>
 				</div>
-				<v-text-field flat solo prepend-icon="search" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
-				<div class="mobile-search d-none">
-					<v-btn flat icon  small class="mobile-search-btn" >
-						<v-icon class="font-md">Search by block/tx/address hash or block index</v-icon>
-					</v-btn>
-				</div>
+				<v-form style="flex: auto;" @submit.prevent="search">
+					<v-text-field  flat solo prepend-icon="search" v-model="searchString" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
+				 </v-form>
 			</div>
 			<div class="navbar-right">
 				<language-provider></language-provider>
@@ -63,6 +60,7 @@ export default {
   },
   data() {
     return {
+			searchString:"",
       collapsed: false, // collapse sidebar
       drawer: true, // sidebar drawer default true
       sidebarImages: "", // sidebar background images
@@ -81,6 +79,14 @@ export default {
     ])
   },
   methods: {
+		search(){
+			if(isNaN(parseFloat(this.searchString))){
+				this.$router.push({ path: '/block/hash/'+this.searchString})
+			}
+			else{
+				this.$router.push({ path: '/block/height/'+this.searchString})
+			}
+		},
 		getMenuLink(link) {
 			return '/' + getCurrentAppLayout(this.$router) + link;
 		}

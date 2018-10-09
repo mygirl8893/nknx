@@ -7,13 +7,14 @@
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
-                    <template>
-                        <v-expansion-panel class="mb-4" value="1">
+                <app-section-loader :status="loader"></app-section-loader>
+                    <template v-if="!loader && block">
+                        <v-expansion-panel class="mb-4" v-model="openGeneral">
                             <v-expansion-panel-content>
                             <div slot="header">{{$t('message.generalInformation')}}</div>
-                            <div style="padding:15px;">
+                            <div style="padding:15px;" v-if="block">
         
-                                <app-section-loader :status="loader"></app-section-loader>
+                                
                                 <v-layout row wrap>
                                     <v-flex xl4 lg4 md4 sm4 xs12 b-50 style="padding: 1rem 1.25rem;font-weight:bold;">
                                         {{ $t('message.hash') }}
@@ -73,27 +74,27 @@
                                 </div>
                             </v-expansion-panel-content>
                         </v-expansion-panel>
-                        <v-expansion-panel class="mb-4" value="1">
+                        <v-expansion-panel class="mb-4" v-model="openTransactions">
                             <v-expansion-panel-content>
                             <div slot="header">{{$t('message.transactions')}}</div>
-                            <div style="padding:15px;">
+                            <div style="padding:15px;" v-if="block">
         
                                 <app-section-loader :status="loader"></app-section-loader>
                                 <v-layout row wrap>
                                     <v-flex xs12 style="padding: 1rem 1.25rem;font-weight:bold;">
                                        <v-data-table
-                                            :headers="headers"
                                             :items="block.transactions"
                                             item-key="hash"
                                             hide-actions
                                         >
-                                        <template slot="headers" slot-scope="props">
-                                                <tr>
-                                                    <th class="text-xs-left fw-bold" v-bind:class="{ 'hidden-sm-and-down' : header.value=='hash' }" v-for="header in props.headers" :key="header.value">
-                                                        {{ $t('message.'+header.text) }}
-                                                    </th>
-                                                </tr>
-                                            </template>
+                                        	<template slot="headers" slot-scope="props">
+												<tr>
+													<th>{{ $t('message.txType') }}</th>
+													<th style="width:50%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+													<th>{{ $t('message.height') }}</th>
+													<th>{{ $t('message.created') }}</th>
+												</tr>
+											</template>
                                             <template slot="items" slot-scope="props">
                                         <tr @click="props.expanded = !props.expanded">
                                         <td>
@@ -113,16 +114,16 @@
                                             </span>
 
                                         </td>
-                                        <td class="hidden-sm-and-down">{{ props.item.hash }}</td>
+                                        <td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
                                         <td>{{ block.header.height }}</td>
                                         <td>{{ $moment(block.header.timestamp).fromNow() }}</td>
                                         </tr>
                                             </template>
-                                    <template slot="expand" slot-scope="props">
+                                                <!--<template slot="expand" slot-scope="props">
                                                         <v-card flat>
                                                             <v-card-text>Peek-a-boo!</v-card-text>
                                                         </v-card>
-                                                </template>
+                                                </template>-->
                                         </v-data-table>
                                     </v-flex>
 
@@ -131,6 +132,9 @@
                             </div>
                             </v-expansion-panel-content>
                         </v-expansion-panel>
+                    </template>
+                    <template v-if="!loader && !block">
+                        {{$t('message.noBlockFound')}}
                     </template>
 				</app-card>
 			</v-layout>
@@ -144,43 +148,29 @@ import axios from "axios"
 export default {
   data() {
     return {
+      openGeneral:0,
+      openTransactions:null,
       loader:true,
       block: null,
-      headers: [
-        {
-          text: "txType",
-          sortable: false,
-          value: "tx"
-        },
-        {
-          text: "hash",
-          sortable: false,
-          value: "hash"
-        },
-        {
-          text: "height",
-          sortable: false,
-          value: "height"
-        },
-        {
-          text: "created",
-          sortable: false,
-          value: "timestamp"
-        }
-       ]
+      error:false
     };
   },
   mounted() {
       self = this;
+      this.error = false;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("https://nknx.org/api/blocks/"+this.$route.params.hash).then(function(response){
           self.block = response.data[0];
           self.loader=false;
-      });
+      }).catch(function(error) {
+          self.loader=false;
+          self.error = true;
+        });
   },
   watch:{
     $route (to, from){
       this.loader=true;
+      this.error = false;
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("https://nknx.org/api/blocks/"+this.$route.params.hash).then(function(response){

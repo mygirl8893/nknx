@@ -16,8 +16,10 @@ const vuexLocalStorage = new VuexPersist({
     key: 'vuex', // The key to store the state on in the storage provider.
     storage: window.localStorage, // or window.sessionStorage or localForage
     reducer: state => ({
-        walletstore: state.walletstore
-        // getRidOfThisModule: state.getRidOfThisModule (No one likes it.)
+        walletstore: state.walletstore,
+        settings: {
+            selectedLocale: state.settings.selectedLocale
+        }
       })
   })
 

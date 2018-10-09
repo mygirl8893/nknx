@@ -2,7 +2,7 @@
 export default {
   fullScreen: "Fullscreen",
   create: "create",
-  block: "block",
+  block: "Block",
   menu: "Menu",
   language: "Language",
   viewAll: "View all",
@@ -10,7 +10,7 @@ export default {
   blocks: "Blocks",
   transactions: "Transactions",
   addresses: "Addresses",
-  search: "Search by block/tx/address hash or block index",
+  search: "Search by block hash or block index",
   latestBlocks: "Latest Blocks",
   latestTransactions: "Latest Transactions",
   hash: "Hash",
@@ -55,7 +55,7 @@ export default {
   done:"Done",
   created: "Created",
   txType: "Transaction type",
-  signatureChainTransaction: "Signature Chain transaction",
+  signatureChainTransaction: "Signature Chain",
   miningReward: "Mining Reward",
   transfer: "Transfer",
   password:"Password",
@@ -75,5 +75,13 @@ export default {
   confirmByPassword: "Confirm the transaction by typing in your password.",
   amountSentSuccessful: "Amount successfully sent!",
   amountSentError: "There was an error sending your Tokens. Please check your inputs!",
-  nextBlockHash: "Next Hash"
+  nextBlockHash: "Next Hash",
+  miningAddress: "Mining Address",
+  transaction: "Transaction",
+  payload:"Payload",
+  sigchain:"Sigchain data",
+  submitter:"Submitter",
+  noPayload:"No payload available for this transaction",
+  noBlockFound:"Sorry, there was no block found!",
+  from:"From"
 }

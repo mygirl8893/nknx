@@ -12,26 +12,28 @@
                         hide-actions
                     >
                         <template slot="headers" slot-scope="props">
-                                    <tr>
-                                        <th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.value">
-                                            {{ $t('message.'+header.text) }}
-                                        </th>
-                                    </tr>
-                                </template>
-                                <template slot="items" slot-scope="props">
-                            <tr @click="props.expanded = !props.expanded">
-                            <td>
-                                {{ props.item.outputs[0].value }}
-                            </td>
-                            <td>{{ props.item.hash }}</td>
-                            <td>{{ props.item.block.header.height }}</td>
-                            <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
-                            </tr>
+                                <tr>
+                                    <th>{{ $t('message.amount') }}</th>
+                                    <th style="width:30%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+                                    <th style="width:20%;">{{ $t('message.from') }}</th>
+                                    <th style="width:20%;">{{ $t('message.to') }}</th>
+                                    <th>{{ $t('message.height') }}</th>
+                                    <th>{{ $t('message.created') }}</th>
+                                </tr>
                         </template>
-                        <template slot="expand" slot-scope="props">
-                            <v-card flat>
-                                <v-card-text>Peek-a-boo!</v-card-text>
-                            </v-card>
+                        <template slot="items" slot-scope="props">
+                            <tr :key="output.id" v-for="output in props.item.outputs">
+                                <td>
+                                    <span v-if="$store.getters.walletfile.address == props.item.sender">-</span>
+                                    <span v-if="$store.getters.walletfile.address == output.address">+</span>
+                                    {{ output.value }} NKN
+                                </td>
+                                <td><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
+                                <td v-if="$store.getters.walletfile.address == props.item.sender">{{$t('message.yourWallet')}}</td><td v-else>{{ props.item.sender }}</td>
+                                <td v-if="$store.getters.walletfile.address == output.address">{{$t('message.yourWallet')}}</td><td v-else>{{ output.address }}</td>
+                                <td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
+                                <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
+                            </tr>
                         </template>
                 </v-data-table>
             </v-flex>
@@ -49,7 +51,7 @@ import { mapGetters } from 'vuex'
 				self.loader= true;
 				//Call to NKN-API https://github.com/CrackDavid/nkn-api
 				axios.get('https://nknx.org/api/transactions/?latest=5&txType=16&withoutpayload=true&address='+this.$store.getters.walletfile.address).then(function(response){
-					self.latestTransfers = response.data;
+                    self.latestTransfers = response.data;
 					self.loader= false
 				});
 			}
@@ -90,6 +92,16 @@ import { mapGetters } from 'vuex'
 					text: "hash",
 					sortable: false,
 					value: "hash"
+                },
+                {
+					text: "from",
+					sortable: false,
+					value: "from"
+                },
+                {
+					text: "to",
+					sortable: false,
+					value: "to"
 				},
 				{
 					text: "height",

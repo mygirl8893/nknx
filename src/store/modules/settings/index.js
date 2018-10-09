@@ -41,7 +41,6 @@ const actions = {
 // mutations
 const mutations = {
 	changeLanguageHandler(state, language) {
-		state.selectedLocale = language;
 		if (language.locale === 'he' || language.locale === 'ar') {
 			state.rtlLayout = true;
 		} else {

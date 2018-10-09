@@ -30,6 +30,7 @@
 		methods: {
 			changeLanguage(language) {
 				this.$i18n.locale = language.locale;
+				this.$moment.locale(language.locale);
 				this.$store.dispatch("changeLanguage", language);
 			}
 		}

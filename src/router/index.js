@@ -9,8 +9,9 @@ const OpenWallet = () => import('Views/wallet/OpenWallet');
 const AddressBrowser = () => import('Views/browser/Addresses');
 const BlockBrowser = () => import('Views/browser/Blocks');
 const TransactionBrowser = () => import('Views/browser/Transactions');
-const BlockHeight = () => import('Views/blocks/Height');
-const BlockHash = () => import('Views/blocks/Hash');
+const BlockHeight = () => import('Views/block/Height');
+const BlockHash = () => import('Views/block/Hash');
+const Transaction = () => import('Views/transaction/Transaction');
 
 Vue.use(Router)
 
@@ -102,7 +103,16 @@ export default new Router({
 					title: 'message.block',
 					breadcrumb: 'Home / Blocks / Block'
 				 }
-			  }
+			  },
+			  {
+				component: Transaction,
+				path: '/transaction/:hash',
+				meta: {
+				   requiresAuth: true,
+				   title: 'message.transaction',
+				   breadcrumb: 'Home / Transactions / Transaction'
+				}
+			 }
 			]
 		}
 	]

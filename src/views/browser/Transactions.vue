@@ -12,19 +12,19 @@
 						<v-flex xs12>
     						<app-section-loader :status="loader"></app-section-loader>
 								<v-data-table
-									:headers="headers"
 									:items="latestTransactions"
 									hide-actions
 								>
 									<template slot="headers" slot-scope="props">
 												<tr>
-													<th class="text-xs-left fw-bold" v-bind:class="{ 'hidden-sm-and-down' : header.value=='hash' }" v-for="header in props.headers" :key="header.value">
-														{{ $t('message.'+header.text) }}
-													</th>
+													<th>{{ $t('message.txType') }}</th>
+													<th style="width:50%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+													<th>{{ $t('message.height') }}</th>
+													<th>{{ $t('message.created') }}</th>
 												</tr>
 											</template>
 											<template slot="items" slot-scope="props">
-										<tr @click="props.expanded = !props.expanded">
+										<tr>
 										<td>
 											<span v-if="props.item.txType == 66">
 											{{$t('message.signatureChainTransaction')}}
@@ -42,16 +42,12 @@
 											</span>
 
 										</td>
-										<td class="hidden-sm-and-down">{{ props.item.hash }}</td>
-										<td>{{ props.item.block.header.height }}</td>
+										<td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
+										<td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
 										<td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
 										</tr>
 											</template>
-									<template slot="expand" slot-scope="props">
-														<v-card flat>
-															<v-card-text>Peek-a-boo!</v-card-text>
-														</v-card>
-									</template>
+
 								</v-data-table>
 							</v-flex>
 					</v-layout>
@@ -117,7 +113,7 @@ export default {
     getLatestTransactions() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/transactions/?withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true').then(function(response){
+      axios.get('https://nknx.org/api/transactions/?withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true&txType=0,16,66').then(function(response){
 				self.latestTransactions = response.data.data;
 			  self.next_page = response.data.next_page_url;
 				self.prev_page = response.data.prev_page_url;
@@ -130,7 +126,7 @@ export default {
 			const self = this;
 			this.loader = true;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get(this.next_page+'&withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true').then(function(response){
+      axios.get(this.next_page+'&withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true&txType=0,16,66').then(function(response){
 				self.next_page = response.data.next_page_url;
 				self.prev_page = response.data.prev_page_url;
 				self.current_page = response.data.current_page;
@@ -142,7 +138,7 @@ export default {
 			const self = this;
 			this.loader = true;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get(this.prev_page+'&withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true').then(function(response){
+      axios.get(this.prev_page+'&withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true&txType=0,16,66').then(function(response){
 				self.next_page = response.data.next_page_url;
 				self.prev_page = response.data.prev_page_url;
 				self.current_page = response.data.current_page;

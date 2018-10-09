@@ -11,7 +11,7 @@
         <v-form>
           <v-text-field 
             dark
-            v-model="search"
+            v-model="searchString"
             prepend-icon="search"
             :placeholder="$t('message.search')"
             autocomplete="true"
@@ -31,29 +31,17 @@ export default {
   data() {
     return {
       open:false,
-      search: ""
-    };
-  },
-  mounted() {
-    const mobSearchBtn = document.querySelector('.mobile-search-btn');
-    console.log(mobSearchBtn)
-    mobSearchBtn.onclick = function(event) {
-      event.stopPropagation();
-      console.log("open!");
-      document.querySelector(".search-form-wrap").classList.add('search-slide');
-    };
-    document.querySelector(".close-btn").onclick = function(event) {
-      event.stopPropagation();
-      document.querySelector(".search-form-wrap").classList.remove('search-slide');
-    };
-    document.querySelector(".search-form-wrap").onclick =  function(event) {
-      event.stopPropagation();
-      document.querySelector(".search-form-wrap").classList.remove('search-slide');
+      searchString: ""
     };
   },
   methods: {
     onClickSearch() {
-      console.log("work");
+      if(isNaN(parseFloat(this.searchString))){
+				this.$router.push({ path: '/block/hash/'+this.searchString})
+			}
+			else{
+				this.$router.push({ path: '/block/height/'+this.searchString})
+			}
     }
   }
 };

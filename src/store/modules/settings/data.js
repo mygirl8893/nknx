@@ -5,7 +5,7 @@ export const languages = [
       locale: "en"
    },
    {
-      name: "German",
+      name: "Deutsch",
       icon: "de",
       locale: "de"
    },

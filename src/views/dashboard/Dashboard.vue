@@ -29,7 +29,7 @@
 					:footer="true"
 				>
 					<latest-blocks></latest-blocks>
-					<v-btn slot="footer" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer" :to="{path: '/browse/blocks'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 				<!-- Latest Transactions -->
 				<app-card
@@ -41,7 +41,7 @@
 					:footer="true"
 				>
 					<latest-transactions></latest-transactions>
-					<v-btn slot="footer" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer" :to="{path: '/browse/txs'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 			</v-layout>
 

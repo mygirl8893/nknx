@@ -7,19 +7,19 @@
             <v-flex xs12 v-else>
                     <app-section-loader :status="loader"></app-section-loader>
                     <v-data-table
-                        :headers="headers"
                         :items="latestTransactions"
                         hide-actions
                     >
                         <template slot="headers" slot-scope="props">
                                     <tr>
-                                        <th class="text-xs-left fw-bold" v-for="header in props.headers" :key="header.value">
-                                            {{ $t('message.'+header.text) }}
-                                        </th>
+                                        <th>{{ $t('message.txType') }}</th>
+                                        <th style="width:50%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+                                        <th>{{ $t('message.height') }}</th>
+                                        <th>{{ $t('message.created') }}</th>
                                     </tr>
                                 </template>
                                 <template slot="items" slot-scope="props">
-                            <tr @click="props.expanded = !props.expanded">
+                            <tr>
                             <td>
                                 <span v-if="props.item.txType == 66">
                                 {{$t('message.signatureChainTransaction')}}
@@ -37,15 +37,10 @@
                                 </span>
 
                             </td>
-                            <td>{{ props.item.hash }}</td>
-                            <td>{{ props.item.block.header.height }}</td>
+							<td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
+							<td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
                             <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
                             </tr>
-                        </template>
-                        <template slot="expand" slot-scope="props">
-                            <v-card flat>
-                                <v-card-text>Peek-a-boo!</v-card-text>
-                            </v-card>
                         </template>
                 </v-data-table>
             </v-flex>
@@ -62,7 +57,7 @@ import { mapGetters } from 'vuex'
 				const self = this;
 				self.loader= true;
 				//Call to NKN-API https://github.com/CrackDavid/nkn-api
-				axios.get('https://nknx.org/api/transactions/?latest=5&withoutpayload=true&address='+this.$store.getters.walletfile.address).then(function(response){
+				axios.get('https://nknx.org/api/transactions/?latest=5&withoutpayload=true&txType=0,16,66&address='+this.$store.getters.walletfile.address).then(function(response){
 					self.latestTransactions = response.data;
 					self.loader= false
 				});
@@ -94,28 +89,7 @@ import { mapGetters } from 'vuex'
             interval:null,
 			latestTransactions:[],
 			loader:false,
-			headers: [
-				{
-					text: "txType",
-					sortable: false,
-					value: "tx"
-				},
-				{
-					text: "hash",
-					sortable: false,
-					value: "hash"
-				},
-				{
-					text: "height",
-					sortable: false,
-					value: "height"
-				},
-				{
-					text: "created",
-					sortable: false,
-					value: "timestamp"
-				}
-			]
+
 
 		}
 	}

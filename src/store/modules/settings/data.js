@@ -44,5 +44,10 @@ export const languages = [
     icon: "es",
     locale: "es"
    },
+   {
+    name: "Română",
+    icon: "ro",
+    locale: "ro"
+   },
 ]
 

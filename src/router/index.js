@@ -12,6 +12,7 @@ const TransactionBrowser = () => import('Views/browser/Transactions');
 const BlockHeight = () => import('Views/block/Height');
 const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
+const Profile = () => import('Views/profile/Profile');
 
 Vue.use(Router)
 
@@ -111,6 +112,15 @@ export default new Router({
 				   requiresAuth: true,
 				   title: 'message.transaction',
 				   breadcrumb: 'Home / Transactions / Transaction'
+				}
+			 },
+			  {
+				component: Profile,
+				path: '/profile',
+				meta: {
+				   requiresAuth: true,
+				   title: 'message.profile',
+				   breadcrumb: 'Home / Profile '
 				}
 			 }
 			]

@@ -8,6 +8,8 @@ import zh from './zh';
 import fi from './fi';
 import es from './es';
 import ro from './ro';
+import pt from './pt';
+import cs from './cs';
 
 
 export default {
@@ -40,6 +42,12 @@ export default {
     },
     ro: {
         message: ro
+    },
+    pt: {
+        message: pt
+    },
+    cs: {
+        message: cs
     },
 
   

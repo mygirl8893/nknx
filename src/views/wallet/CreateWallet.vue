@@ -102,7 +102,7 @@
 		},
 		mounted: function(){
 			nknWallet.configure({
-				rpcAddr: 'https://newkindofwallet.com:30003',
+				rpcAddr: 'https://nknx.org:30003',
 			});
 		},
 		methods: {

@@ -5,28 +5,34 @@
             <v-text-field
                 v-model="blocktime"
                 :label="$t('message.blockPerSec')"
+                style = 'margin: 5px'
             ></v-text-field>
             <v-text-field
                 v-model="totalNodes"
                 :label="$t('message.totalNodes')"
+                style = 'margin: 5px'
             ></v-text-field>
             <v-text-field
                 v-model="userNodes"
                 :label="$t('message.userNodes')"
+                style = 'margin: 5px'
             ></v-text-field>
         </v-flex>
         <v-flex d-flex>
             <v-text-field
                 v-model="workingTime"
                 :label="$t('message.workingTime')"
+                style = 'margin: 5px'
             ></v-text-field>
             <v-text-field
                 v-model="nodeCost"
                 :label="$t('message.nodeCost')"
+                style = 'margin: 5px'
             ></v-text-field>
             <v-text-field
                 v-model="bandWidthCost"
                 :label="$t('message.bandWidthCost')"
+                style = 'margin: 5px'
             ></v-text-field>
         </v-flex>
         <v-container fluid pt-0 grid-list-xl>

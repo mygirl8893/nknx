@@ -21,7 +21,6 @@
 					customClasses="mb-0"
 					:fullScreen="true"
 					:fullBlock="true"
-					:footer="true"
 				>
 					<mining-calc></mining-calc>
 				</app-card>

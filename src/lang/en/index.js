@@ -82,5 +82,11 @@ export default {
   submitter:"Submitter",
   noPayload:"No payload available for this transaction",
   noBlockFound:"Sorry, there was no block found!",
-  from:"From"
+  from:"From",
+  myNodes: "My Nodes",
+  profile: "Profile",
+  node: "Node",
+  status: "Status",
+  latestBlock: "Latest Block",
+  tx: "Tx"
 }

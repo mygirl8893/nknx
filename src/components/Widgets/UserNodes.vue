@@ -1,0 +1,118 @@
+<template>
+    <div class="table-responsive">
+        <app-section-loader :status="loader"></app-section-loader>
+        <v-data-table :items="userNodesData" hide-actions>
+            <template slot="headers" slot-scope="props">
+                <tr>
+                    <th style="width:10%;">#</th>
+                    <th>{{ $t('message.node') }}</th>
+                    <th>{{ $t('message.status') }}</th>
+                    <th>{{ $t('message.latestBlock') }}</th>
+                    <th>{{ $t('message.tx') }}</th>
+                    <th>{{ $t('message.version') }}</th>
+                </tr>
+            </template>
+            <template slot="items" slot-scope="props">
+                <td>{{props.index+1}}</td>
+                <td>{{props.item.Addr}}</td>
+                <td>{{props.item.SyncState}}</td>
+                <td>{{props.item.latestBlocks}}</td>
+                <td>{{props.item.TxnCnt}}</td>
+                <td>{{props.item.version}}</td>
+            </template>
+        </v-data-table>
+    </div>
+</template>
+<script>
+import axios from "axios";
+
+export default {
+    data() {
+        return {
+            interval: null,
+            loader: true,
+            userNodes: ['138.68.76.78:30003',
+                '139.59.130.53:30003'
+            ],
+            userNodesData: []
+        };
+    },
+    destroyed() {
+        clearInterval(this.interval);
+    },
+    created: function() {
+        this.getUserNodes();
+    },
+    mounted: function() {
+        this.userNodesSync();
+        // this.interval = setInterval(this.getUserNodes, 10000);
+    },
+    methods: {
+        userNodesSync() {
+            console.log(this.userNodes.length, this.userNodesData.length)
+            const self = this;
+            if (self.userNodes.length === self.userNodesData.length) {
+                self.getUserNodesBlocks()
+                self.getUserNodesVersion()
+                setTimeout(() => {
+                    self.loader = false
+                }, 1000)
+
+
+            } else {
+                setTimeout(() => {
+                    self.userNodesSync()
+                }, 1000)
+            }
+        },
+        getUserNodes() {
+            const self = this;
+            self.userNodesData = []
+            for (let i = 0; i < self.userNodes.length; i++) {
+                axios.post('http://' + self.userNodes[i], {
+                        "jsonrpc": "2.0",
+                        "method": "getnodestate",
+                        "params": {},
+                        "id": 1
+                    })
+                    .then((response) => {
+                        self.userNodesData.push(response.data.result)
+                    })
+                    .catch((error) => {
+                        self.userNodesData.push({ 'Addr': self.userNodes[i], 'SyncState': 'Error' })
+                    });
+            }
+
+        },
+        getUserNodesBlocks() {
+            const self = this
+            for (let i = 0; i < self.userNodes.length; i++) {
+                axios.post('http://' + self.userNodes[i], {
+                        "jsonrpc": "2.0",
+                        "method": "getlatestblockheight",
+                        "params": {},
+                        "id": 1
+                    })
+                    .then((response) => {
+                        self.userNodesData[i].latestBlocks = response.data.result
+                    })
+            }
+
+        },
+        getUserNodesVersion() {
+          const self = this
+            for (let i = 0; i < self.userNodes.length; i++) {
+                axios.post('http://' + self.userNodes[i], {
+                        "jsonrpc": "2.0",
+                        "method": "getversion",
+                        "params": {},
+                        "id": 1
+                    })
+                    .then((response) => {
+                        self.userNodesData[i].version = response.data.result
+                    })
+            }
+        }
+    }
+};
+</script>

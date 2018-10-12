@@ -10,6 +10,8 @@ import fullscreen from 'vue-fullscreen'
 import moment from 'moment-timezone'
 import UploadButton from 'vuetify-upload-button'
 import VueClipboard from 'vue-clipboard2'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 // global components
 import GlobalComponents from './globalComponents'
@@ -61,6 +63,7 @@ router.afterEach((to, from) => {
 })
 
 
+
 VueClipboard.config.autoSetContainer = true // add this line
 
 // plugins
@@ -74,8 +77,12 @@ Vue.use(fullscreen);
 Vue.use(GlobalComponents);
 Vue.use(UploadButton);
 Vue.use(VueClipboard);
+Vue.use(VueAxios, axios);
+
 moment.tz.setDefault('Atlantic/Reykjavik')
 moment.locale(store.getters.selectedLocale.locale)
+axios.defaults.baseURL = 'https://nknx.org/api';
+
 Vue.prototype.$moment = moment
 
 // Create VueI18n instance with options
@@ -83,6 +90,15 @@ const i18n = new VueI18n({
 	locale: store.getters.selectedLocale.locale, // set locale
 	messages, // set locale messages
 })
+
+Vue.router= router;
+
+Vue.use(require('@websanova/vue-auth'), {
+	auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+	http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
+	router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+	authRedirect: { path: '/login' }
+});
 
 
 /* eslint-disable no-new */

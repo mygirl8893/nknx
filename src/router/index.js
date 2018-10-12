@@ -2,7 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HorizontalLayout from 'Container/HorizontalLayout'
 
+
+
 const Dashboard = () => import('Views/dashboard/Dashboard');
+const Login = () => import('Views/login/Login');
+const Register = () => import('Views/register/Register');
 const Wallet = () => import('Views/wallet/Wallet');
 const CreateWallet = () => import('Views/wallet/CreateWallet');
 const OpenWallet = () => import('Views/wallet/OpenWallet');
@@ -14,6 +18,12 @@ const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
 const Profile = () => import('Views/profile/Profile');
 
+
+
+
+
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -24,105 +34,123 @@ export default new Router({
 			component: HorizontalLayout,
 			redirect: '/dashboard',
 			children: [
-			 {
-				 component: Dashboard,
-				 path: '/dashboard',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.ecommerce',
-					breadcrumb: 'Dashboard / Ecommerce'
-				 }
-			  },
-			 {
-				 component: Wallet,
-				 path: '/wallet',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.wallet',
-					breadcrumb: 'Wallet'
-				 }
-			  },
-			  {
-				 component: CreateWallet,
-				 path: '/wallet/create',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.createWallet',
-					breadcrumb: 'Wallet / Create'
-				 }
-			  },
-			  {
-				 component: OpenWallet,
-				 path: '/wallet/open',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.openWallet',
-					breadcrumb: 'Wallet / Open'
-				 }
-			  },
-			  {
-				 component: AddressBrowser,
-				 path: '/browse/addresses',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.addresses',
-					breadcrumb: 'Addresses'
-				 }
-			  },
-			  {
-				 component: BlockBrowser,
-				 path: '/browse/blocks',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.blocks',
-					breadcrumb: 'Blocks'
-				 }
-			  },
-			  {
-				 component: TransactionBrowser,
-				 path: '/browse/txs',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.transactions',
-					breadcrumb: 'Transactions'
-				 }
-			  },
-			  {
-				 component: BlockHeight,
-				 path: '/block/height/:height',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.block',
-					breadcrumb: 'Home / Blocks / Block'
-				 }
-			  },
-			  {
-				 component: BlockHash,
-				 path: '/block/hash/:hash',
-				 meta: {
-					requiresAuth: true,
-					title: 'message.block',
-					breadcrumb: 'Home / Blocks / Block'
-				 }
-			  },
-			  {
-				component: Transaction,
-				path: '/transaction/:hash',
-				meta: {
-				   requiresAuth: true,
-				   title: 'message.transaction',
-				   breadcrumb: 'Home / Transactions / Transaction'
+				{
+					component: Login,
+					path: '/login',
+					meta: {
+					   title: 'message.login',
+					   breadcrumb: 'login',
+					   auth: false
+					}
+				},
+				{
+					component: Register,
+					path: '/register',
+					meta: {
+					   title: 'message.register',
+					   breadcrumb: 'register',
+					   auth: false
+					}
+				},
+				{
+					component: Dashboard,
+					path: '/dashboard',
+					meta: {
+						title: 'message.dashboard',
+						breadcrumb: 'Dashboard',
+						auth: false
+					}
+				},
+				{
+					component: Wallet,
+					path: '/wallet',
+					meta: {
+						title: 'message.wallet',
+						breadcrumb: 'Wallet',
+						auth: false
+					}
+				},
+				{
+					component: CreateWallet,
+					path: '/wallet/create',
+					meta: {
+						title: 'message.createWallet',
+						breadcrumb: 'Wallet / Create',
+						auth: false
+					}
+				},
+				{
+					component: OpenWallet,
+					path: '/wallet/open',
+					meta: {
+						title: 'message.openWallet',
+						breadcrumb: 'Wallet / Open',
+						auth: false
+					}
+				},
+				{
+					component: AddressBrowser,
+					path: '/browse/addresses',
+					meta: {
+						title: 'message.addresses',
+						breadcrumb: 'Addresses',
+						auth: false
+					}
+				},
+				{
+					component: BlockBrowser,
+					path: '/browse/blocks',
+					meta: {
+						title: 'message.blocks',
+						breadcrumb: 'Blocks',
+						auth: false
+					}
+				},
+				{
+					component: TransactionBrowser,
+					path: '/browse/txs',
+					meta: {
+						title: 'message.transactions',
+						breadcrumb: 'Transactions',
+						auth: false
+					}
+				},
+				{
+					component: BlockHeight,
+					path: '/block/height/:height',
+					meta: {
+						title: 'message.block',
+						breadcrumb: 'Home / Blocks / Block',
+						auth: false
+					}
+				},
+				{
+					component: BlockHash,
+					path: '/block/hash/:hash',
+					meta: {
+						title: 'message.block',
+						breadcrumb: 'Home / Blocks / Block',
+						auth: false
+					}
+				},
+				{
+					component: Transaction,
+					path: '/transaction/:hash',
+					meta: {
+					title: 'message.transaction',
+					breadcrumb: 'Home / Transactions / Transaction',
+					auth: false
+					}
+				},
+				{
+					component: Profile,
+					path: '/profile',
+					meta: {
+					title: 'message.profile',
+					breadcrumb: 'Home / Profile ',
+					auth: true
+					}
 				}
-			 },
-			  {
-				component: Profile,
-				path: '/profile',
-				meta: {
-				   requiresAuth: true,
-				   title: 'message.profile',
-				   breadcrumb: 'Home / Profile '
-				}
-			 }
 			]
 		}
 	]

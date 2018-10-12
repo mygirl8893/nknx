@@ -8,6 +8,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^2.21.14-beta",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "chart.js": "^2.7.2",
@@ -23,6 +24,7 @@
     "screenfull": "^3.3.2",
     "velocity-animate": "^1.5.2",
     "vue": "^2.5.17",
+    "vue-axios": "^2.1.4",
     "vue-chartjs": "^3.4.0",
     "vue-clipboard2": "^0.2.1",
     "vue-count-to": "^1.0.13",

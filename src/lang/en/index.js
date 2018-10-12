@@ -88,5 +88,13 @@ export default {
   node: "Node",
   status: "Status",
   latestBlock: "Latest Block",
-  tx: "Tx"
+  tx: "Tx",
+  nodesManager: "Nodes Manager",
+  marketcap: "Marketcap",
+  dailyVolume: "Daily Volume",
+  marketRank: "Market Rank",
+  change24: "Change 24",
+  autoRefresher: "Auto Refresher",
+  nodesFilter: "Nodes Filter"
+
 }

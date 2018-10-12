@@ -13,7 +13,7 @@
 					:footer="true"
 				>
 					<user-Nodes></user-Nodes>
-					<v-btn slot="footer" :to="{path: '/profile/nodes'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer" :to="{path: '/profile/NodesManager'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 			</v-layout>
 

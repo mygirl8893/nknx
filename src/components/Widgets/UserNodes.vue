@@ -34,7 +34,7 @@ export default {
             userNodes: ['138.68.76.78:30003',
                 '139.59.130.53:30003'
             ],
-            userNodesData: []
+            userNodesData: [],
         };
     },
     destroyed() {
@@ -44,12 +44,10 @@ export default {
         this.getUserNodes();
     },
     mounted: function() {
-        this.userNodesSync();
-        // this.interval = setInterval(this.getUserNodes, 10000);
+        
     },
     methods: {
         userNodesSync() {
-            console.log(this.userNodes.length, this.userNodesData.length)
             const self = this;
             if (self.userNodes.length === self.userNodesData.length) {
                 self.getUserNodesBlocks()
@@ -82,6 +80,7 @@ export default {
                         self.userNodesData.push({ 'Addr': self.userNodes[i], 'SyncState': 'Error' })
                     });
             }
+            this.userNodesSync();
 
         },
         getUserNodesBlocks() {

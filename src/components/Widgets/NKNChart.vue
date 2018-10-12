@@ -5,19 +5,19 @@
 			<div class="d-custom-flex w-50 w-xs-full">
 				<div class="w-20 d-md-half-block w-xs-full">
 					<h4 class="green--text mb-0">${{nknCap}}M</h4>
-					<p class="fs-12 grey--text mb-0">Marketcap</p>
+					<p class="fs-12 grey--text mb-0">{{$t('message.marketcap')}}</p>
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
 					<h4 class="green--text mb-0">${{nknVolume}}K</h4>
-					<p class="fs-12 grey--text mb-0">Daily Bolume</p>
+					<p class="fs-12 grey--text mb-0">{{$t('message.dailyVolume')}}</p>
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
 					<h4 class="green--text mb-0">#{{nknRank}}</h4>
-					<p class="fs-12 grey--text mb-0">Market Rank</p>
+					<p class="fs-12 grey--text mb-0">{{$t('message.marketRank')}}</p>
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
 					<h4 class="green--text mb-0">{{nkn24}}%</h4>
-					<p class="fs-12 grey--text mb-0">Change 24 hours</p>
+					<p class="fs-12 grey--text mb-0">{{$t('message.change24')}}s</p>
 				</div>
 			</div>
 			<div class="d-custom-flex w-20 w-xs-full">

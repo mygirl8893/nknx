@@ -13,6 +13,7 @@ const BlockHeight = () => import('Views/block/Height');
 const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
 const Profile = () => import('Views/profile/Profile');
+const NodesManager = () => import('Views/profile/NodesManager');
 
 Vue.use(Router)
 
@@ -121,6 +122,15 @@ export default new Router({
 				   requiresAuth: true,
 				   title: 'message.profile',
 				   breadcrumb: 'Home / Profile '
+				}
+			 },
+			 {
+				component: NodesManager,
+				path: '/profile/NodesManager',
+				meta: {
+				   requiresAuth: true,
+				   title: 'message.nodesManager',
+				   breadcrumb: 'Home / Profile / Nodes Manager'
 				}
 			 }
 			]

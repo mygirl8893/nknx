@@ -95,6 +95,19 @@ export default {
   marketRank: "Market Rank",
   change24: "Change 24",
   autoRefresher: "Auto Refresher",
-  nodesFilter: "Nodes Filter"
+  nodesFilter: "Nodes Filter",
+  miningCalculator: "Mining Calculator",
+  blockPerSec: "Average block time in seconds:",
+  totalNodes: "Current node count in NKN network:",
+  userNodes: "Amount of your nodes:",
+  workingTime: "Your nodes working time in months:",
+  nodeCost: "1 Node/1 Month cost in USD",
+  bandWidthCost: "Bandwidth/Month cost in USD",
+  testnetPerDay: "Approximate amount of NKN testnet tokens mined per day",
+  testnetTotal: "Total testnet tokens mined per",
+  mainnetTotal: "NKN mainnet tokens (1:5 ratio) per",
+  usdDaily: "USD Profit per day",
+  usdMonthly: "USD Profit per",
+  months: "Months"
 
 }

@@ -64,6 +64,13 @@ export default {
                     self.nkn24 = response.data.data.quotes.USD.percent_change_24h
                     self.nknWeekly = response.data.data.quotes.USD.percent_change_7d
                 })
+                .catch(function(error){
+                	self.nknRank = 'error';
+                    self.nknCap = 'error';
+                    self.nknVolume = 'error';
+                    self.nkn24 = 'error';
+                    self.nknWeekly = 'error';
+                })
 
 		}
 	},

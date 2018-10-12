@@ -2,7 +2,7 @@
 	<div>
 	<page-title-bar></page-title-bar>
 		<v-container fluid pt-0 grid-list-xl>
-						<v-layout row wrap>
+			<v-layout row wrap>
 				<!-- User Nodes -->
 				<app-card
 					:heading="$t('message.myNodes')"
@@ -12,8 +12,18 @@
 					:fullBlock="true"
 					:footer="true"
 				>
-					<user-Nodes></user-Nodes>
+					<user-nodes></user-nodes>
 					<v-btn slot="footer" :to="{path: '/profile/NodesManager'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+				</app-card>
+				<app-card
+					:heading="$t('message.miningCalculator')"
+					colClasses="xl6 lg6 md6 sm12 xs12"
+					customClasses="mb-0"
+					:fullScreen="true"
+					:fullBlock="true"
+					:footer="true"
+				>
+					<mining-calc></mining-calc>
 				</app-card>
 			</v-layout>
 
@@ -24,10 +34,12 @@
 <script>
 
 import UserNodes from "Components/Widgets/UserNodes";
+import MiningCalc from "Components/Widgets/MiningCalc";
 
 export default {
   components: {
-	UserNodes
+  	UserNodes,
+	MiningCalc
   },
   data() {
     return {

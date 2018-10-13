@@ -108,6 +108,7 @@ export default {
   mainnetTotal: "NKN mainnet tokens (1:5 ratio) per",
   usdDaily: "USD Profit per day",
   usdMonthly: "USD Profit per",
-  months: "Months"
+  months: "Months",
+  price: "Price"
 
 }

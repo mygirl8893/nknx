@@ -364,6 +364,11 @@ hr {
 }
 
 @media (max-width: 600px) {
+   .w-600-full {
+      max-width: 100% !important;
+      flex-basis: 100% !important;
+      margin-bottom: 10px;
+   }
    .input-label {
       .pt-4 {
          padding-top: 0 !important;

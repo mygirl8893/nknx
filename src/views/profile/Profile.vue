@@ -2,6 +2,10 @@
 	<div>
 	<page-title-bar></page-title-bar>
 		<v-container fluid pt-0 grid-list-xl>
+			<!-- Market Stats -->
+			<div class="card-stats">
+				<market-stats></market-stats>
+			</div>
 			<v-layout row wrap>
 				<!-- User Nodes -->
 				<app-card
@@ -15,6 +19,7 @@
 					<user-nodes></user-nodes>
 					<v-btn slot="footer" :to="{path: '/profile/NodesManager'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
+				<!-- Calc -->
 				<app-card
 					:heading="$t('message.miningCalculator')"
 					colClasses="xl6 lg6 md6 sm12 xs12"
@@ -34,11 +39,13 @@
 
 import UserNodes from "Components/Widgets/UserNodes";
 import MiningCalc from "Components/Widgets/MiningCalc";
+import MarketStats from "Components/Widgets/MarketStats";
 
 export default {
   components: {
   	UserNodes,
-	MiningCalc
+	MiningCalc,
+	MarketStats
   },
   data() {
     return {

@@ -17,7 +17,7 @@
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
 					<h4 class="green--text mb-0">{{nkn24}}%</h4>
-					<p class="fs-12 grey--text mb-0">{{$t('message.change24')}}s</p>
+					<p class="fs-12 grey--text mb-0">{{$t('message.change24')}}h</p>
 				</div>
 			</div>
 			<div class="d-custom-flex w-20 w-xs-full">

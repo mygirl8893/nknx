@@ -32,7 +32,7 @@ export default {
             interval: null,
             loader: true,
             userNodes: ['138.68.76.78:30003',
-                '139.59.130.53:30003'
+                '139.59.130.53:30003',
             ],
             userNodesData: [],
         };
@@ -49,7 +49,7 @@ export default {
     methods: {
         userNodesSync() {
             const self = this;
-            if (self.userNodes.length === self.userNodesData.length) {
+            if (5 === self.userNodesData.length) {
                 self.getUserNodesBlocks()
                 self.getUserNodesVersion()
                 setTimeout(() => {
@@ -66,7 +66,7 @@ export default {
         getUserNodes() {
             const self = this;
             self.userNodesData = []
-            for (let i = 0; i < self.userNodes.length; i++) {
+            for (let i = 0; i < 5; i++) {
                 axios.post('http://' + self.userNodes[i], {
                         "jsonrpc": "2.0",
                         "method": "getnodestate",
@@ -85,7 +85,7 @@ export default {
         },
         getUserNodesBlocks() {
             const self = this
-            for (let i = 0; i < self.userNodes.length; i++) {
+            for (let i = 0; i < 5; i++) {
                 axios.post('http://' + self.userNodes[i], {
                         "jsonrpc": "2.0",
                         "method": "getlatestblockheight",
@@ -100,7 +100,7 @@ export default {
         },
         getUserNodesVersion() {
           const self = this
-            for (let i = 0; i < self.userNodes.length; i++) {
+            for (let i = 0; i < 5; i++) {
                 axios.post('http://' + self.userNodes[i], {
                         "jsonrpc": "2.0",
                         "method": "getversion",

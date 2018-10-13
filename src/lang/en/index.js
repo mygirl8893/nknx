@@ -109,6 +109,11 @@ export default {
   usdDaily: "USD Profit per day",
   usdMonthly: "USD Profit per",
   months: "Months",
-  price: "Price"
+  price: "Price",
+  totalNodes: "Network Nodes",
+  networkStatus: "Network Status",
+  networkMempool: "Network Mempool",
+  networkVersion: "Network Version",
+  networkCurrentBlock: "Network Current Block"
 
 }

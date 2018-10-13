@@ -4,7 +4,7 @@
 		<v-container fluid pt-0 grid-list-xl>
 			<!-- Market Stats -->
 			<div class="card-stats">
-				<market-stats></market-stats>
+				<network-stats></network-stats>
 			</div>
 			<v-layout row wrap>
 				<!-- User Nodes -->
@@ -31,6 +31,11 @@
 				</app-card>
 			</v-layout>
 
+			<!-- Network Stats -->
+			<div class="card-stats">
+				<market-stats></market-stats>
+			</div>
+
 		</v-container>
 	</div>
 </template>
@@ -40,12 +45,14 @@
 import UserNodes from "Components/Widgets/UserNodes";
 import MiningCalc from "Components/Widgets/MiningCalc";
 import MarketStats from "Components/Widgets/MarketStats";
+import NetworkStats from "Components/Widgets/NetworkStats";
 
 export default {
   components: {
   	UserNodes,
 	MiningCalc,
-	MarketStats
+	MarketStats,
+	NetworkStats
   },
   data() {
     return {

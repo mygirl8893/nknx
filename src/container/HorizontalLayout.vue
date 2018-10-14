@@ -20,7 +20,7 @@
 			<v-content>
 				<!-- App Router -->
 				<transition name="router-anim" :enter-active-class="`animated ${'slideInUp'}`">
-					<router-view></router-view>
+					<router-view style="min-height:calc(100% - 32px);margin-bottom:25px;"></router-view>
 				</transition>
         <v-footer> 
           <app-footer></app-footer>

@@ -81,7 +81,7 @@ Vue.use(VueAxios, axios);
 
 moment.tz.setDefault('Atlantic/Reykjavik')
 moment.locale(store.getters.selectedLocale.locale)
-axios.defaults.baseURL = 'https://nknx.org/api';
+axios.defaults.baseURL = 'http://localhost:8000/api';
 
 Vue.prototype.$moment = moment
 

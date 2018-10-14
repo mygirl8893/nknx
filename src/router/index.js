@@ -5,8 +5,8 @@ import HorizontalLayout from 'Container/HorizontalLayout'
 
 
 const Dashboard = () => import('Views/dashboard/Dashboard');
-const Login = () => import('Views/login/Login');
-const Register = () => import('Views/register/Register');
+const Login = () => import('Views/auth/Login');
+const Register = () => import('Views/auth/Register');
 const Wallet = () => import('Views/wallet/Wallet');
 const CreateWallet = () => import('Views/wallet/CreateWallet');
 const OpenWallet = () => import('Views/wallet/OpenWallet');

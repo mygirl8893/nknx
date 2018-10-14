@@ -88,5 +88,14 @@ export default {
   node: "Node",
   status: "Status",
   latestBlock: "Latest Block",
-  tx: "Tx"
+  loginHeader: "Login to MyNKNx",
+  enterUsernameAndPasswordToAccess: "Enter username and password to access your personalized data like miners overview, mining calculator and many more!",
+  forgotPassword: "Forgot password?",
+  login: "login",
+  createAccount: "create account",
+  rememberMe: "Remember me",
+  email: "eMail",
+  signUpHeader: "Sign up to MyNKNx",
+  havingAnAccount: "Having an account?",
+  signUp: "Sign up",
 }

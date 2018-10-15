@@ -155,12 +155,13 @@
 	color: #06b67b!important
 }
 
+//Wallet Tracker
 .assets{
 	overflow: hidden !important;
 	padding: 16px;
     padding-left: 85px;
     position: relative;
-	width: 24%;
+	width: 23%;
     margin: 9px;
     background-color: #fafafa;
     &-wrapper{
@@ -208,7 +209,7 @@
     }
 
     &-preview{
-    	position: absolute;
+	position: absolute;
     background-color: #06b67b;
     left: -15px;
     top: -25px;

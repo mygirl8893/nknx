@@ -1,7 +1,7 @@
 <template>
     <div class='assets-wrapper'>
         <app-section-loader :status="loader"></app-section-loader>
-        <v-card v-for="(wallet, index) in walletsCopy" v-bind:key="index" class='assets'>
+        <v-card v-for="(wallet, index) in walletsCopy" v-bind:key="index" class='assets d-md-full'>
             <div class="assets-item">
                 <div class="assets-preview">
                     <div class="assets-preview__text">{{wallet.preview}}</div>

@@ -39,7 +39,7 @@
 			<!-- User Wallets -->
 			<app-card
 					:heading="$t('message.walletTracker')"
-					colClasses="xl12 lg12 md6 sm12 xs12"
+					colClasses="xl2"
 					customClasses=""
 					:fullScreen="true"
 					:fullBlock="true"

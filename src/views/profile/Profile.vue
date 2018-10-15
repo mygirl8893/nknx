@@ -2,7 +2,7 @@
 	<div>
 	<page-title-bar></page-title-bar>
 		<v-container fluid pt-0 grid-list-xl>
-			<!-- Market Stats -->
+			<!-- Network Stats -->
 			<div class="card-stats">
 				<network-stats></network-stats>
 			</div>
@@ -31,11 +31,23 @@
 				</app-card>
 			</v-layout>
 
-			<!-- Network Stats -->
+			<!-- Market Stats -->
 			<div class="card-stats">
 				<market-stats></market-stats>
 			</div>
 
+			<!-- User Wallets -->
+			<app-card
+					:heading="$t('message.walletTracker')"
+					colClasses="xl12 lg12 md6 sm12 xs12"
+					customClasses=""
+					:fullScreen="true"
+					:fullBlock="true"
+					:footer="true"
+				>
+				<wallet-tracker></wallet-tracker>
+				<v-btn slot="footer" :to="{path: '/profile/WalletTracker'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+</app-card>
 		</v-container>
 	</div>
 </template>
@@ -46,13 +58,15 @@ import UserNodes from "Components/Widgets/UserNodes";
 import MiningCalc from "Components/Widgets/MiningCalc";
 import MarketStats from "Components/Widgets/MarketStats";
 import NetworkStats from "Components/Widgets/NetworkStats";
+import WalletTracker from "Components/Widgets/WalletTracker";
 
 export default {
   components: {
   	UserNodes,
 	MiningCalc,
 	MarketStats,
-	NetworkStats
+	NetworkStats,
+	WalletTracker
   },
   data() {
     return {

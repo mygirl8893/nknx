@@ -114,6 +114,8 @@ export default {
   networkStatus: "Network Status",
   networkMempool: "Network Mempool",
   networkVersion: "Network Version",
-  networkCurrentBlock: "Network Current Block"
+  networkCurrentBlock: "Network Current Block",
+  walletTracker: "Wallet Tracker",
+  balance: "Balance"
 
 }

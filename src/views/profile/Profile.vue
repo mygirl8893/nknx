@@ -35,7 +35,7 @@
 			<div class="card-stats">
 				<market-stats></market-stats>
 			</div>
-
+			<v-layout>
 			<!-- User Wallets -->
 			<app-card
 					:heading="$t('message.walletTracker')"
@@ -47,7 +47,21 @@
 				>
 				<wallet-tracker></wallet-tracker>
 				<v-btn slot="footer" :to="{path: '/profile/WalletTracker'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
-</app-card>
+			</app-card>
+
+			</v-layout>
+			<!-- Top 50 Miners -->
+			<v-layout>
+			<app-card
+					:heading="$t('message.miners')"
+					colClasses="xl4 lg4 md4 sm12 xs12"
+					customClasses="mt-10"
+					:fullScreen="true"
+					:fullBlock="true"
+				>
+				<miners-chart></miners-chart>
+			</app-card>
+			</v-layout>
 		</v-container>
 	</div>
 </template>
@@ -59,6 +73,7 @@ import MiningCalc from "Components/Widgets/MiningCalc";
 import MarketStats from "Components/Widgets/MarketStats";
 import NetworkStats from "Components/Widgets/NetworkStats";
 import WalletTracker from "Components/Widgets/WalletTracker";
+import MinersChart from "Components/Widgets/MinersChart";
 
 export default {
   components: {
@@ -66,7 +81,8 @@ export default {
 	MiningCalc,
 	MarketStats,
 	NetworkStats,
-	WalletTracker
+	WalletTracker,
+	MinersChart
   },
   data() {
     return {

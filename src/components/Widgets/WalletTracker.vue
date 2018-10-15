@@ -83,7 +83,7 @@ export default {
         })
         for(let i in self.wallets){
 
-            axios.post("http://testnet-node-0001.nkn.org:30003/",
+            axios.post("https://nknx.org:30003/",
             { 
                 "jsonrpc": "2.0",
                 "method": "getunspendoutput",

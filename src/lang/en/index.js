@@ -116,6 +116,9 @@ export default {
   networkVersion: "Network Version",
   networkCurrentBlock: "Network Current Block",
   walletTracker: "Wallet Tracker",
-  balance: "Balance"
+  balance: "Balance",
+  miners: "Miners",
+  topMinersDecr: "This chart shows the top 50 mining addresses with the most NKN value in the network. Remember that several nodes can mine for one address.",
+  minersTotal: "Total amount of miners in network"
 
 }

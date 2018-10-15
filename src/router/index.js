@@ -7,6 +7,8 @@ import HorizontalLayout from 'Container/HorizontalLayout'
 const Dashboard = () => import('Views/dashboard/Dashboard');
 const Login = () => import('Views/auth/Login');
 const Register = () => import('Views/auth/Register');
+const ForgotPassword = () => import('Views/auth/ForgotPassword')
+const NewPassword = () => import('Views/auth/NewPassword')
 const Wallet = () => import('Views/wallet/Wallet');
 const CreateWallet = () => import('Views/wallet/CreateWallet');
 const OpenWallet = () => import('Views/wallet/OpenWallet');
@@ -40,6 +42,7 @@ export default new Router({
 					meta: {
 					   title: 'message.login',
 					   breadcrumb: 'login',
+					   auth: false
 					}
 				},
 				{
@@ -48,6 +51,25 @@ export default new Router({
 					meta: {
 					   title: 'message.register',
 					   breadcrumb: 'register',
+					   auth: false
+					}
+				},
+				{
+					component: ForgotPassword,
+					path: '/forgot-password',
+					meta: {
+					   title: 'message.forgotPassword',
+					   breadcrumb: 'Forgot password',
+					   auth: false
+					}
+				},
+				{
+					component: NewPassword,
+					path: '/newpassword/:token',
+					meta: {
+					   title: 'message.newPassword',
+					   breadcrumb: 'New Password',
+					   auth: false
 					}
 				},
 				{

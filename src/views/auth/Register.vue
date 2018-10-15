@@ -28,26 +28,26 @@
 					</p>
 					<v-form v-model="valid" class="mb-4">
 						<v-text-field 
-							label="Username" 
+							:label="$t('message.username')" 
 							v-model="name" 
 							:rules="nameRules" 
 							:counter="20" 
 							required
 						></v-text-field>
 						<v-text-field 
-							label="E-mail ID" 
+							:label="$t('message.email')" 
 							v-model="email" 
 							:rules="emailRules" 
 							required
 						></v-text-field>
 						<v-text-field 
-							label="Password" 
+							:label="$t('message.password')"
 							v-model="password" 
 							:rules="passwordRules" 
 							type="password" 
 							required
 						></v-text-field>
-						<v-btn large @click="submit" block color="primary" class="mb-3">{{$t('message.signUp')}}</v-btn>
+						<v-btn :disabled="!valid" large @click="submit" block color="primary" class="mb-3">{{$t('message.signUp')}}</v-btn>
 					<!--	<p>{{$t('message.bySigningUpYouAgreeTo')}}</p>
 						<router-link to="">{{$t('message.termsOfService')}}</router-link>-->
 					</v-form>

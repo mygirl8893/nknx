@@ -34,7 +34,8 @@ export default {
             userNodes: ['138.68.76.78:30003',
                 '139.59.130.53:30003'
             ],
-            userNodesData: []
+            userNodesWidget: [],
+            userNodesData: [],
         };
     },
     destroyed() {
@@ -44,14 +45,12 @@ export default {
         this.getUserNodes();
     },
     mounted: function() {
-        this.userNodesSync();
-        // this.interval = setInterval(this.getUserNodes, 10000);
+        
     },
     methods: {
         userNodesSync() {
-            console.log(this.userNodes.length, this.userNodesData.length)
             const self = this;
-            if (self.userNodes.length === self.userNodesData.length) {
+            if (self.userNodesWidget.length === self.userNodesData.length) {
                 self.getUserNodesBlocks()
                 self.getUserNodesVersion()
                 setTimeout(() => {
@@ -68,8 +67,13 @@ export default {
         getUserNodes() {
             const self = this;
             self.userNodesData = []
-            for (let i = 0; i < self.userNodes.length; i++) {
-                axios.post('http://' + self.userNodes[i], {
+            if(self.userNodes.length >=5){
+                self.userNodesWidget = self.userNodes.slice(0, 5)
+            } else{
+                self.userNodesWidget = self.userNodes
+            }
+            for (let i = 0; i < self.userNodesWidget.length; i++) {
+                axios.post('http://' + self.userNodesWidget[i], {
                         "jsonrpc": "2.0",
                         "method": "getnodestate",
                         "params": {},
@@ -79,15 +83,16 @@ export default {
                         self.userNodesData.push(response.data.result)
                     })
                     .catch((error) => {
-                        self.userNodesData.push({ 'Addr': self.userNodes[i], 'SyncState': 'Error' })
+                        self.userNodesData.push({ 'Addr': self.userNodesWidget[i], 'SyncState': 'Error' })
                     });
             }
+            this.userNodesSync();
 
         },
         getUserNodesBlocks() {
             const self = this
-            for (let i = 0; i < self.userNodes.length; i++) {
-                axios.post('http://' + self.userNodes[i], {
+            for (let i = 0; i < self.userNodesWidget.length; i++) {
+                axios.post('http://' + self.userNodesWidget[i], {
                         "jsonrpc": "2.0",
                         "method": "getlatestblockheight",
                         "params": {},
@@ -101,8 +106,8 @@ export default {
         },
         getUserNodesVersion() {
           const self = this
-            for (let i = 0; i < self.userNodes.length; i++) {
-                axios.post('http://' + self.userNodes[i], {
+            for (let i = 0; i < self.userNodesWidget.length; i++) {
+                axios.post('http://' + self.userNodesWidget[i], {
                         "jsonrpc": "2.0",
                         "method": "getversion",
                         "params": {},

@@ -19,6 +19,7 @@ const BlockHeight = () => import('Views/block/Height');
 const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
 const Profile = () => import('Views/profile/Profile');
+const NodesManager = () => import('Views/profile/NodesManager');
 
 
 
@@ -159,6 +160,15 @@ export default new Router({
 					title: 'message.profile',
 					breadcrumb: 'Home / Profile ',
 					auth: true
+					}
+				},
+				{
+					component: NodesManager,
+					path: '/profile/NodesManager',
+					meta: {
+					requiresAuth: true,
+					title: 'message.nodesManager',
+					breadcrumb: 'Home / Profile / Nodes Manager'
 					}
 				}
 			]

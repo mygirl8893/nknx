@@ -25,6 +25,7 @@
         <v-footer> 
           <app-footer></app-footer>
         </v-footer>
+        <snackbar></snackbar>
 			</v-content>
 
 		</template>
@@ -39,6 +40,7 @@ import PageTitleBar from "Components/PageTitleBar/PageTitleBar";
 import { mapGetters } from "vuex";
 import Footer from "Components/Footer/Footer.vue";
 import Sidebar from "Components/Sidebar/Sidebar";
+import Snackbar from "Components/Snackbar/Snackbar.vue";
 
 export default {
   data() {
@@ -51,7 +53,8 @@ export default {
     appFooter: Footer,
     appHorizontalMenus: AppHorizontalMenus,
     PageTitleBar,
-     appSidebar: Sidebar
+    appSidebar: Sidebar,
+    Snackbar
   },
   mounted() {
     setTimeout(() => {

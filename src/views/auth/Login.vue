@@ -74,10 +74,12 @@ export default {
               email: app.email,
               password: app.password
             }, 
-            success: function () {},
+            success: function () {
+							this.$store.dispatch("setSnackbar", this.$t('message.successfullyLoggedIn'));
+						},
             error: function () {},
             rememberMe: true,
-            redirect: '/dashboard',
+            redirect: '/profile',
             fetchUser: true,
         });       
       },

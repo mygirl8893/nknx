@@ -38,14 +38,19 @@
 			</div>
 			<div class="navbar-right">
 				<language-provider></language-provider>
+				<v-btn v-if="!$auth.check()" color="primary" tag="link" :to="'/login'">{{ $t('message.login') }}</v-btn>
+				<user v-if="$auth.check()"></user>
 			</div>
 		</v-toolbar>
 		<mobile-search-form></mobile-search-form>
+
+
 	</div>
 </template>
 
 <script>
 import screenfull from "screenfull";
+import User from "./User";
 import LanguageProvider from "./LanguageProvider";
 import MobileSearchForm from "./MobileSearchForm";
 import { getCurrentAppLayout } from "Helpers/helpers";
@@ -66,7 +71,7 @@ export default {
       sidebarImages: "", // sidebar background images
       enableDefaultSidebar: false
     };
-  },
+	},
   computed: {
     ...mapGetters([
       "rtlLayout",
@@ -93,7 +98,8 @@ export default {
   },
   components: {
     LanguageProvider,
-    MobileSearchForm
+		MobileSearchForm,
+		User
   }
 };
 </script>

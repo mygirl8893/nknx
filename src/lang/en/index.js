@@ -98,4 +98,8 @@ export default {
   signUpHeader: "Sign up to MyNKNx",
   havingAnAccount: "Having an account?",
   signUp: "Sign up",
+  userProfile: "User profile",
+  logOut: "Log out",
+  successfullyLoggedOut: "You are successfully logged out",
+  successfullyLoggedIn: "You are successfully logged in"
 }

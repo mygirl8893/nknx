@@ -8,6 +8,7 @@ import settings from './modules/settings';
 import sidebar from './modules/sidebar';
 import walletfile from './modules/walletfile';
 import walletstore from './modules/walletstore';
+import snackbar from './modules/snackbar';
 
 
 Vue.use(Vuex);
@@ -29,6 +30,7 @@ export const store = new Vuex.Store({
         settings,
         sidebar,
         walletfile,
-        walletstore
+        walletstore,
+        snackbar
     }
 })

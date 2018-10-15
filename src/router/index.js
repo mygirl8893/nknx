@@ -40,7 +40,6 @@ export default new Router({
 					meta: {
 					   title: 'message.login',
 					   breadcrumb: 'login',
-					   auth: false
 					}
 				},
 				{
@@ -49,7 +48,6 @@ export default new Router({
 					meta: {
 					   title: 'message.register',
 					   breadcrumb: 'register',
-					   auth: false
 					}
 				},
 				{
@@ -58,7 +56,6 @@ export default new Router({
 					meta: {
 						title: 'message.dashboard',
 						breadcrumb: 'Dashboard',
-						auth: false
 					}
 				},
 				{
@@ -67,7 +64,6 @@ export default new Router({
 					meta: {
 						title: 'message.wallet',
 						breadcrumb: 'Wallet',
-						auth: false
 					}
 				},
 				{
@@ -76,7 +72,6 @@ export default new Router({
 					meta: {
 						title: 'message.createWallet',
 						breadcrumb: 'Wallet / Create',
-						auth: false
 					}
 				},
 				{
@@ -85,7 +80,6 @@ export default new Router({
 					meta: {
 						title: 'message.openWallet',
 						breadcrumb: 'Wallet / Open',
-						auth: false
 					}
 				},
 				{
@@ -94,7 +88,6 @@ export default new Router({
 					meta: {
 						title: 'message.addresses',
 						breadcrumb: 'Addresses',
-						auth: false
 					}
 				},
 				{
@@ -103,7 +96,6 @@ export default new Router({
 					meta: {
 						title: 'message.blocks',
 						breadcrumb: 'Blocks',
-						auth: false
 					}
 				},
 				{
@@ -112,7 +104,6 @@ export default new Router({
 					meta: {
 						title: 'message.transactions',
 						breadcrumb: 'Transactions',
-						auth: false
 					}
 				},
 				{
@@ -121,7 +112,6 @@ export default new Router({
 					meta: {
 						title: 'message.block',
 						breadcrumb: 'Home / Blocks / Block',
-						auth: false
 					}
 				},
 				{
@@ -130,7 +120,6 @@ export default new Router({
 					meta: {
 						title: 'message.block',
 						breadcrumb: 'Home / Blocks / Block',
-						auth: false
 					}
 				},
 				{
@@ -138,8 +127,7 @@ export default new Router({
 					path: '/transaction/:hash',
 					meta: {
 					title: 'message.transaction',
-					breadcrumb: 'Home / Transactions / Transaction',
-					auth: false
+					breadcrumb: 'Home / Transactions / Transaction'
 					}
 				},
 				{

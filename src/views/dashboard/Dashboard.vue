@@ -1,6 +1,5 @@
 <template>
 	<div>
-
 		<v-container fluid px-0 py-0 class="mb-30">
 			<NKN-chart></NKN-chart>
 		</v-container>

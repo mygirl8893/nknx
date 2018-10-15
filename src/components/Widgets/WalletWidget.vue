@@ -72,6 +72,7 @@
 import nknWallet from "nkn-wallet";
 export default {
 	mounted: function(){
+
 		nknWallet.configure({
 			rpcAddr: 'https://nknx.org:30003',
 		});

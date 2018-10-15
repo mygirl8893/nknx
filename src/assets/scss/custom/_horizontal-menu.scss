@@ -28,6 +28,11 @@
          display: none;
       }
    }
+   @media(min-width:960px){
+        .v-menu.user-block-wrap{
+            display:inline-block !important;
+        }
+    }
 }
 
 .horizontal-menu {

@@ -82,14 +82,6 @@
 					<v-btn :to="{path: '/wallet'}" :disabled="!s2valid" slot="footer" color="primary" small>{{$t('message.done')}}</v-btn>
 				</app-card>
 			</v-layout>
-				<v-snackbar
-					:timeout="3000"
-					v-model="snackbar"
-				>
-				{{ $t('message.PkCopiedSuccessful') }}
-				</v-snackbar>
-
-
 		</v-container>
 	</div>
 </template>
@@ -122,7 +114,7 @@
 				this.step = 2;
 			},
 			onCopy(){
-				this.snackbar = true;
+				this.$store.dispatch("setSnackbar", this.$t('message.PkCopiedSuccessful'));
 				this.s2valid=true;
 			}
 

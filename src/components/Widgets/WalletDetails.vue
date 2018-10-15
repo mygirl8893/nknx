@@ -50,18 +50,6 @@
                 </v-layout>
             </v-flex>
         </v-layout>
-            <v-snackbar
-                :timeout="3000"
-                v-model="snackbar1"
-            >
-            {{ $t('message.AddressCopiedSuccessful') }}
-            </v-snackbar>
-            <v-snackbar
-                :timeout="3000"
-                v-model="snackbar2"
-            >
-            {{ $t('message.PkCopiedSuccessful') }}
-            </v-snackbar>
     </div>
 </template>
 <script>
@@ -76,10 +64,10 @@ import { mapGetters } from 'vuex'
 			}
         },
         onCopy1(){
-            this.snackbar1 = true;
+            this.$store.dispatch("setSnackbar", this.$t('message.AddressCopiedSuccessful'));
         },
         onCopy2(){
-            this.snackbar2 = true;
+            this.$store.dispatch("setSnackbar", this.$t('message.PkCopiedSuccessful'));
         }
     },
 	mounted: function(){

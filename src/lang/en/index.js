@@ -150,6 +150,9 @@ export default {
   balance: "Balance",
   miners: "Miners",
   topMinersDecr: "This chart shows the top 50 mining addresses with the most NKN value in the network. Remember that several nodes can mine for one address.",
-  minersTotal: "Total amount of miners in network"
+  minersTotal: "Total amount of miners in network",
+  ip: "IP Address of the node",
+  label: "Node label",
+  addNode: "Add Node"
 
 }

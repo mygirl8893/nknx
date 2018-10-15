@@ -14,7 +14,7 @@
 												:key="order.value"
 												:label="order.label"
 												:value="order.value"
-												color="primary"></v-radio>
+												color="green"></v-radio>
 										</v-radio-group>
                                     </div>
                                 </v-card-title>
@@ -32,12 +32,30 @@
 												:label="radio.label"
 												:value="radio.value"
 												:disabled="refreshActive.active"
-												color="primary"></v-radio>
+												color="green"></v-radio>
 										</v-radio-group>
 										<v-switch v-model="refreshActive.active" color="green" v-on:change="refreshToggle" v-bind:label="refreshActive.title"></v-switch>
                                     </div>
                                 </v-card-title>
                             </v-card>
+                        </v-flex>
+                        <v-flex xs2>
+                            <v-form v-model="valid" class="mb-4">
+                                <v-text-field 
+                                    :label="$t('message.ip')" 
+                                    v-model="addIp"
+                                    :rules="ipRules" 
+                                    required
+                                ></v-text-field>
+                                <v-text-field 
+                                    :label="$t('message.label')" 
+                                    v-model="addLabel" 
+                                    required
+                                ></v-text-field>
+                                <div>
+                                    <v-btn :disabled="!valid"  large @click="addNode" block color="warning">{{$t('message.addNode')}}</v-btn>
+                                </div>
+                            </v-form>
                         </v-flex>
                     </v-layout>
             <v-layout row wrap>
@@ -64,7 +82,7 @@
             </template>
             <template slot="items" slot-scope="props">
                 <td>{{props.index+1}}</td>
-                <td>{{props.item.Addr}}</td>
+                <td>{{props.item.Addr}} <v-chip v-if="props.item.label != ''" label outline color="orange">{{props.item.label}}</v-chip></td>
                 <td>{{props.item.SyncState}}</td>
                 <td>{{props.item.latestBlocks}}</td>
                 <td>{{props.item.TxnCnt}}</td>
@@ -85,9 +103,19 @@ export default {
         return {
 			interval: null,
             loader: true,
-            userNodes: [
-            	'138.68.76.78',
-                '139.59.130.523'
+            valid: false,
+            userNodes: [{
+                'addr': '138.68.76.78',
+                'label': 'DO node'
+            }
+            ],
+            addIp: '',
+            addLabel: '',
+            ipRules: [
+            v => !!v || "IP Address of node is required!",
+            v =>
+            /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(v) ||
+            "IP address must be valid"
             ],
             userNodesData: [],
         	timer: "",
@@ -200,6 +228,11 @@ export default {
                 	this.getUserNodes()
             	}
     	},
+        addNode(){
+            const self = this;
+            self.userNodes.push({'addr':self.addIp, 'label':self.addLabel})
+            this.getUserNodes()
+        },
 		userNodesSync() {
             const self = this;
             self.loader = true
@@ -222,17 +255,18 @@ export default {
             const self = this;
             self.userNodesData = []
             for (let i = 0; i < self.userNodes.length; i++) {
-                axios.post('http://' + self.userNodes[i] + ":30003/", {
+                axios.post('http://' + self.userNodes[i].addr + ":30003/", {
                         "jsonrpc": "2.0",
                         "method": "getnodestate",
                         "params": {},
                         "id": 1
                     })
                     .then((response) => {
+                        response.data.result.label = self.userNodes[i].label
                         self.userNodesData.push(response.data.result)
                     })
                     .catch((error) => {
-                        self.userNodesData.push({ 'Addr': self.userNodes[i], 'SyncState': 'Error' })
+                        self.userNodesData.push({ 'Addr': self.userNodes[i].addr, 'SyncState': 'Error', 'label':self.userNodes[i].label})
                     });
             }
             this.userNodesSync();
@@ -269,6 +303,11 @@ export default {
         },
         getNodesDataCounter: function() {
         	const self = this
+            self.userNodesDataCounter.pf = 0
+            self.userNodesDataCounter.sf = 0
+            self.userNodesDataCounter.ss = 0
+            self.userNodesDataCounter.er = 0
+
             for (let i in self.userNodesData) {
                 switch (self.userNodesData[i].SyncState) {
                     case 'PersistFinished':

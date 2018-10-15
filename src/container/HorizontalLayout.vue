@@ -18,6 +18,13 @@
 			</v-navigation-drawer>
 			<!-- App Main Content -->
 			<v-content>
+        	<v-alert
+            v-if="$auth.check()"
+            :value="!$auth.user().verified"
+            type="warning"
+          >
+            {{$t('message.mailNotVerified')}}<a href="#" @click.prevent="resendVerification">{{$t('message.resendVerificationMail')}}</a>
+          </v-alert>
 				<!-- App Router -->
 				<transition name="router-anim" :enter-active-class="`animated ${'slideInUp'}`">
 					<router-view style="min-height:calc(100% - 32px);margin-bottom:25px;"></router-view>
@@ -41,6 +48,7 @@ import { mapGetters } from "vuex";
 import Footer from "Components/Footer/Footer.vue";
 import Sidebar from "Components/Sidebar/Sidebar";
 import Snackbar from "Components/Snackbar/Snackbar.vue";
+import axios from "axios";
 
 export default {
   data() {
@@ -77,6 +85,17 @@ export default {
     },
     pageBreadcrumb() {
       return this.$breadcrumbs[0].meta.breadcrumb;
+    }
+  },
+  methods : {
+    resendVerification() {
+        var self = this;
+        axios.get("auth/resendVerification").then(function(response){
+          self.$store.dispatch("setSnackbar", self.$t('message.verificationSentSuccessfully'));
+        }).catch(function(error) {
+          self.$store.dispatch("setSnackbar", self.$t('message.verificationSentError'));
+        })
+
     }
   }
 };

@@ -101,5 +101,12 @@ export default {
   userProfile: "User profile",
   logOut: "Log out",
   successfullyLoggedOut: "You are successfully logged out",
-  successfullyLoggedIn: "You are successfully logged in"
+  successfullyLoggedIn: "You are successfully logged in",
+  registrationSuccess: "Registration successful! We've sent you an email to verify your account.",
+  errorRegistrationEmail : "Email has already been taken.",
+  errorRegistrationName : "Username has already been taken.",
+  mailNotVerified : "Your Email adress is not verified yet, please check your inbox or ",
+  resendVerificationMail : "resend verification mail",
+  verificationSentSuccessfully: "Verification mail sent successfully",
+  verificationSentError:"There was an error sending your verification mail. Please contact ChrisT or lightmyfire in Discord."
 }

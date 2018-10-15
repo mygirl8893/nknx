@@ -78,7 +78,7 @@ export default {
 							this.$store.dispatch("setSnackbar", this.$t('message.successfullyLoggedIn'));
 						},
             error: function () {},
-            rememberMe: true,
+            rememberMe: this.checkbox,
             redirect: '/profile',
             fetchUser: true,
         });       

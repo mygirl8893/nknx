@@ -1,5 +1,18 @@
 <template>
 	<div>
+		   <v-alert
+      :value="success"
+      type="success"
+    >
+      {{$t('message.registrationSuccess')}}
+    </v-alert>
+    <v-alert
+      :value="error"
+      type="error"
+    >
+			<span v-for="(key,value) in errors" :key="key">{{$t('message.errorRegistration'+ value.replace(/^\w/, c => c.toUpperCase()))}} </span>
+      
+    </v-alert>
 
 			<div class="session-table-cell">
 				<div class="session-content">

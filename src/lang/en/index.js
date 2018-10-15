@@ -113,7 +113,6 @@ export default {
   backToSignIn: "Back to sign in",
   sendMail: "send email",
   enterYourEmailToSendYouAResetLink: "Enter your email to send you a reset link.",
-  forgotPassword: "Forgot Password",
   username: "Username",
   resetPassword : "Reset your Password",
   enterNewPasswordOfAccount: "Please enter the new password of your account.",

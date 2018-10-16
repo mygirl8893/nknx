@@ -14,11 +14,11 @@
             </template>
             <template slot="items" slot-scope="props">
                 <td>{{props.index+1}}</td>
-                <td>{{props.item.Addr}}</td>
-                <td>{{props.item.SyncState}}</td>
-                <td>{{props.item.latestBlocks}}</td>
-                <td>{{props.item.TxnCnt}}</td>
-                <td>{{props.item.version}}</td>
+                <td>{{props.item.addr}}</td>
+                <td>{{props.item.syncState}}</td>
+                <td>{{props.item.latestBlockHeight}}</td>
+                <td>{{props.item.txnCnt}}</td>
+                <td>{{props.item.softwareVersion}}</td>
             </template>
         </v-data-table>
     </div>
@@ -48,75 +48,19 @@ export default {
         
     },
     methods: {
-        userNodesSync() {
-            const self = this;
-            if (self.userNodesWidget.length === self.userNodesData.length) {
-                self.getUserNodesBlocks()
-                self.getUserNodesVersion()
-                setTimeout(() => {
-                    self.loader = false
-                }, 1000)
-
-
-            } else {
-                setTimeout(() => {
-                    self.userNodesSync()
-                }, 1000)
-            }
-        },
         getUserNodes() {
             const self = this;
-            self.userNodesData = []
-            if(self.userNodes.length >=5){
-                self.userNodesWidget = self.userNodes.slice(0, 5)
-            } else{
-                self.userNodesWidget = self.userNodes
-            }
-            for (let i = 0; i < self.userNodesWidget.length; i++) {
-                axios.post('http://' + self.userNodesWidget[i], {
-                        "jsonrpc": "2.0",
-                        "method": "getnodestate",
-                        "params": {},
-                        "id": 1
-                    })
-                    .then((response) => {
-                        self.userNodesData.push(response.data.result)
-                    })
-                    .catch((error) => {
-                        self.userNodesData.push({ 'Addr': self.userNodesWidget[i], 'SyncState': 'Error' })
-                    });
-            }
-            this.userNodesSync();
-
-        },
-        getUserNodesBlocks() {
-            const self = this
-            for (let i = 0; i < self.userNodesWidget.length; i++) {
-                axios.post('http://' + self.userNodesWidget[i], {
-                        "jsonrpc": "2.0",
-                        "method": "getlatestblockheight",
-                        "params": {},
-                        "id": 1
-                    })
-                    .then((response) => {
-                        self.userNodesData[i].latestBlocks = response.data.result
-                    })
-            }
-
-        },
-        getUserNodesVersion() {
-          const self = this
-            for (let i = 0; i < self.userNodesWidget.length; i++) {
-                axios.post('http://' + self.userNodesWidget[i], {
-                        "jsonrpc": "2.0",
-                        "method": "getversion",
-                        "params": {},
-                        "id": 1
-                    })
-                    .then((response) => {
-                        self.userNodesData[i].version = response.data.result
-                    })
-            }
+            axios.get('nodes', {
+            })
+            .then((response) => {
+                self.userNodesData = response.data
+                if(self.userNodesData.length >=5){
+                    self.userNodesWidget = self.userNodesData.slice(0, 5)
+                } else{
+                    self.userNodesWidget = self.userNodesData
+                }
+            })
+            self.loader = false;
         }
     }
 };

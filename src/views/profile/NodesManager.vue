@@ -95,9 +95,7 @@
                                 <td>{{props.item.syncState}}</td>
                                 <td>{{props.item.latestBlockHeight}}</td>
                                 <td>{{props.item.txnCnt}}</td>
-                                <td>{{props.item.softwareVersion}}
-                                
-                                </td>
+                                <td>{{props.item.softwareVersion}}</td>
                                 <td><v-btn
                                 color="red"
                                 dark
@@ -105,7 +103,7 @@
                                 fab
                                 @click='removeNode(props.item.addr)'
                                 >
-                                <v-icon>remove</v-icon>
+                                <v-icon>delete</v-icon>
                                 </v-btn></td>
                             </template>
                         </v-data-table>

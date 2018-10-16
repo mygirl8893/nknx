@@ -73,7 +73,7 @@
                 :fullScreen="true" 
                 :fullBlock="true" 
                 :footer="true"
-                v-if="userNodes.length>0"
+                v-if="userNodesData.length>0"
                 >
                 	<div class="table-responsive">
                         <app-section-loader :status="loader"></app-section-loader>
@@ -91,11 +91,11 @@
                             </template>
                             <template slot="items" slot-scope="props">
                                 <td>{{props.index+1}}</td>
-                                <td>{{props.item.Addr}} <v-chip v-if="props.item.label != ''" label outline color="orange">{{props.item.label}}</v-chip></td>
-                                <td>{{props.item.SyncState}}</td>
-                                <td>{{props.item.latestBlocks}}</td>
-                                <td>{{props.item.TxnCnt}}</td>
-                                <td>{{props.item.version}}
+                                <td>{{props.item.addr}} <v-chip v-if="props.item.label != ''" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td>{{props.item.syncState}}</td>
+                                <td>{{props.item.latestBlockHeight}}</td>
+                                <td>{{props.item.txnCnt}}</td>
+                                <td>{{props.item.softwareVersion}}
                                 
                                 </td>
                                 <td><v-btn
@@ -125,18 +125,19 @@ export default {
             loader: true,
             valid: false,
             isCopy: false,
-            userNodes: [{
-                'addr': '138.68.76.78',
-                'label': 'DO node'
-            },
-            {
-                'addr': '35.204.218.101',
-                'label': 'Google Cloud'
-            },
-            {
-                'addr': '138.68.76.77',
-                'label': ''
-            }
+            userNodes: [
+            // {
+            //     'addr': '138.68.76.78',
+            //     'label': 'DO node'
+            // },
+            // {
+            //     'addr': '35.204.218.101',
+            //     'label': 'Google Cloud'
+            // },
+            // {
+            //     'addr': '138.68.76.77',
+            //     'label': ''
+            // }
             ],
             addIp: '',
             addLabel: '',
@@ -215,6 +216,9 @@ export default {
     created: function(){
     	this.getUserNodes();
     },
+    mounted: function(){
+
+    },
     computed: {
     	sortedArray: function() {
 		let customNodes = []
@@ -259,93 +263,45 @@ export default {
     	},
         addNode(){
             const self = this;
-            for(let i in self.userNodes){
-                if(self.userNodes[i].addr === self.addIp){
+            for(let i in self.userNodesData){
+                if(self.userNodesData[i].addr === self.addIp){
                     self.isCopy = true
                 }
             }
             if(self.isCopy != true){
-                self.userNodes.push({'addr':self.addIp, 'label':self.addLabel})
-                this.getUserNodes()
+                axios.post('https://nknx.org/api/nodes', {
+                'ip': self.addIp, 'label': self.addLabel
+                    })
+                    .then((response) => {
+                        this.getUserNodes()
+                    })
             }
         },
         removeNode(node) {
             const self = this;
-            let index = 0
-            for(let i in self.userNodes){
-                if(self.userNodes[i].addr === node)
-                index = i
+            let id = 0
+            for(let i in self.userNodesData){
+                if(self.userNodesData[i].addr === node)
+                id = self.userNodesData[i].id
             }
-            self.userNodes.splice(index, 1)
-            this.getUserNodes()
-        },
-		userNodesSync() {
-            const self = this;
-            self.loader = true
-            if (self.userNodes.length === self.userNodesData.length) {
-                self.getUserNodesBlocks()
-                self.getUserNodesVersion()
-                self.getNodesDataCounter()
-                setTimeout(() => {
-                    self.loader = false
-                }, 1000)
-
-
-            } else {
-                setTimeout(() => {
-                    self.userNodesSync()
-                }, 1000)
-            }
+            axios.delete('https://nknx.org/api/nodes/'+id, {
+                    })
+            .then((response) => {
+                this.getUserNodes()
+            })
         },
         getUserNodes() {
             const self = this;
-            self.userNodesData = []
-            for (let i = 0; i < self.userNodes.length; i++) {
-                axios.post('http://' + self.userNodes[i].addr + ":30003/", {
-                        "jsonrpc": "2.0",
-                        "method": "getnodestate",
-                        "params": {},
-                        "id": 1
-                    })
-                    .then((response) => {
-                        response.data.result.label = self.userNodes[i].label
-                        self.userNodesData.push(response.data.result)
-                    })
-                    .catch((error) => {
-                        self.userNodesData.push({ 'Addr': self.userNodes[i].addr, 'SyncState': 'Error', 'label':self.userNodes[i].label})
-                    });
-            }
-            this.userNodesSync();
 
-        },
-        getUserNodesBlocks() {
-            const self = this
-            for (let i = 0; i < self.userNodesData.length; i++) {
-                axios.post('http://' + self.userNodesData[i].Addr + ":30003/", {
-                        "jsonrpc": "2.0",
-                        "method": "getlatestblockheight",
-                        "params": {},
-                        "id": 1
-                    })
-                    .then((response) => {
-                        self.userNodesData[i].latestBlocks = response.data.result
-                    })
-            }
 
-        },
-        getUserNodesVersion() {
-          const self = this
-            for (let i = 0; i < self.userNodesData.length; i++) {
-                axios.post('http://' + self.userNodesData[i].Addr + ":30003/", {
-                        "jsonrpc": "2.0",
-                        "method": "getversion",
-                        "params": {},
-                        "id": 1
+            axios.get('https://nknx.org/api/nodes', {
                     })
                     .then((response) => {
-                        self.userNodesData[i].version = response.data.result
+                        self.userNodesData = response.data
+                        this.getNodesDataCounter()
                     })
-            }
+
+                    self.loader = false
         },
         getNodesDataCounter: function() {
         	const self = this
@@ -353,9 +309,8 @@ export default {
             self.userNodesDataCounter.sf = 0
             self.userNodesDataCounter.ss = 0
             self.userNodesDataCounter.er = 0
-
             for (let i in self.userNodesData) {
-                switch (self.userNodesData[i].SyncState) {
+                switch (self.userNodesData[i].syncState) {
                     case 'PersistFinished':
                         self.userNodesDataCounter.pf++
                         break;
@@ -373,7 +328,7 @@ export default {
             for(let y in self.orderOptions){
             	switch (self.orderOptions[y].value) {
             		case 'Default':
-                        self.orderOptions[y].count = self.userNodes.length
+                        self.orderOptions[y].count = self.userNodesData.length
                         self.orderOptions[y].label = "All (" + self.orderOptions[y].count+")"
                         break;
                     case 'PersistFinished':

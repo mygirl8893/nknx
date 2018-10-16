@@ -167,7 +167,7 @@ export default new Router({
 					component: NodesManager,
 					path: '/profile/NodesManager',
 					meta: {
-					requiresAuth: true,
+					auth: true,
 					title: 'message.nodesManager',
 					breadcrumb: 'Home / Profile / Nodes Manager'
 					}
@@ -176,7 +176,7 @@ export default new Router({
 					component: WalletTracker,
 					path: '/profile/WalletTracker',
 					meta: {
-					requiresAuth: true,
+					auth: true,
 					title: 'message.walletTracker',
 					breadcrumb: 'Home / Profile / Wallet Tracker'
 					}

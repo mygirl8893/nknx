@@ -103,7 +103,7 @@
                                 dark
                                 small
                                 fab
-                                @click='removeNode(props.item.Addr)'
+                                @click='removeNode(props.item.addr)'
                                 >
                                 <v-icon>remove</v-icon>
                                 </v-btn></td>
@@ -125,20 +125,6 @@ export default {
             loader: true,
             valid: false,
             isCopy: false,
-            userNodes: [
-            // {
-            //     'addr': '138.68.76.78',
-            //     'label': 'DO node'
-            // },
-            // {
-            //     'addr': '35.204.218.101',
-            //     'label': 'Google Cloud'
-            // },
-            // {
-            //     'addr': '138.68.76.77',
-            //     'label': ''
-            // }
-            ],
             addIp: '',
             addLabel: '',
             ipRules: [
@@ -233,7 +219,7 @@ export default {
             return this.userNodesData.sort(compare);
         } else {
             for (let i = 0; i < this.userNodesData.length; i++) {
-                if (this.userNodesData[i].SyncState === this.currentOrder) {
+                if (this.userNodesData[i].syncState === this.currentOrder) {
                     customNodes.push(this.userNodesData[i])
                 }
             }
@@ -269,7 +255,7 @@ export default {
                 }
             }
             if(self.isCopy != true){
-                axios.post('https://nknx.org/api/nodes', {
+                axios.post('nodes', {
                 'ip': self.addIp, 'label': self.addLabel
                     })
                     .then((response) => {
@@ -281,10 +267,11 @@ export default {
             const self = this;
             let id = 0
             for(let i in self.userNodesData){
-                if(self.userNodesData[i].addr === node)
-                id = self.userNodesData[i].id
+                if(self.userNodesData[i].addr === node){
+                    id = self.userNodesData[i].id
+                }
             }
-            axios.delete('https://nknx.org/api/nodes/'+id, {
+            axios.delete('nodes/'+id, {
                     })
             .then((response) => {
                 this.getUserNodes()
@@ -292,9 +279,7 @@ export default {
         },
         getUserNodes() {
             const self = this;
-
-
-            axios.get('https://nknx.org/api/nodes', {
+            axios.get('nodes', {
                     })
                     .then((response) => {
                         self.userNodesData = response.data

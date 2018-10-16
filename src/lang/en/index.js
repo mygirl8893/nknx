@@ -153,6 +153,10 @@ export default {
   minersTotal: "Total amount of miners in network",
   ip: "IP Address of the node",
   label: "Node label",
-  addNode: "Add Node"
+  addNode: "Add Node",
+  nknWalletAddress: "NKN wallet address",
+  walletLabel: "Wallet label",
+  addWallet: "Add Wallet"
+
 
 }

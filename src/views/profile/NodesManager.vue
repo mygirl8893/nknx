@@ -65,31 +65,32 @@
                 customClasses="mb-0" 
                 :fullScreen="true" 
                 :fullBlock="true" 
-                :footer="true" 
+                :footer="true"
+                v-if="userNodes.length>0"
                 >
-	<div class="table-responsive">
-        <app-section-loader :status="loader"></app-section-loader>
-        <v-data-table :items="sortedArray" hide-actions>
-            <template slot="headers" slot-scope="props">
-                <tr>
-                    <th style="width:10%;">#</th>
-                    <th>{{ $t('message.node') }}</th>
-                    <th>{{ $t('message.status') }}</th>
-                    <th>{{ $t('message.latestBlock') }}</th>
-                    <th>{{ $t('message.tx') }}</th>
-                    <th>{{ $t('message.version') }}</th>
-                </tr>
-            </template>
-            <template slot="items" slot-scope="props">
-                <td>{{props.index+1}}</td>
-                <td>{{props.item.Addr}} <v-chip v-if="props.item.label != ''" label outline color="orange">{{props.item.label}}</v-chip></td>
-                <td>{{props.item.SyncState}}</td>
-                <td>{{props.item.latestBlocks}}</td>
-                <td>{{props.item.TxnCnt}}</td>
-                <td>{{props.item.version}}</td>
-            </template>
-        </v-data-table>
-    </div>
+                	<div class="table-responsive">
+                        <app-section-loader :status="loader"></app-section-loader>
+                        <v-data-table :items="sortedArray" hide-actions>
+                            <template slot="headers" slot-scope="props">
+                                <tr>
+                                    <th style="width:10%;">#</th>
+                                    <th>{{ $t('message.node') }}</th>
+                                    <th>{{ $t('message.status') }}</th>
+                                    <th>{{ $t('message.latestBlock') }}</th>
+                                    <th>{{ $t('message.tx') }}</th>
+                                    <th>{{ $t('message.version') }}</th>
+                                </tr>
+                            </template>
+                            <template slot="items" slot-scope="props">
+                                <td>{{props.index+1}}</td>
+                                <td>{{props.item.Addr}} <v-chip v-if="props.item.label != ''" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td>{{props.item.SyncState}}</td>
+                                <td>{{props.item.latestBlocks}}</td>
+                                <td>{{props.item.TxnCnt}}</td>
+                                <td>{{props.item.version}}</td>
+                            </template>
+                        </v-data-table>
+                    </div>
                 </app-card>
             </v-layout>
         </v-container>

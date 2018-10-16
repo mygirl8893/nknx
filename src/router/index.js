@@ -20,6 +20,7 @@ const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
 const Profile = () => import('Views/profile/Profile');
 const NodesManager = () => import('Views/profile/NodesManager');
+const WalletTracker = () => import('Views/profile/WalletTracker');
 
 
 
@@ -169,6 +170,15 @@ export default new Router({
 					requiresAuth: true,
 					title: 'message.nodesManager',
 					breadcrumb: 'Home / Profile / Nodes Manager'
+					}
+				},
+				{
+					component: WalletTracker,
+					path: '/profile/WalletTracker',
+					meta: {
+					requiresAuth: true,
+					title: 'message.walletTracker',
+					breadcrumb: 'Home / Profile / Wallet Tracker'
 					}
 				}
 			]

@@ -12,6 +12,7 @@ import UploadButton from 'vuetify-upload-button'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import JSONBigInt from 'json-bigint';
 
 // global components
 import GlobalComponents from './globalComponents'
@@ -83,6 +84,11 @@ Vue.use(VueAxios, axios);
 moment.tz.setDefault('Atlantic/Reykjavik')
 moment.locale(store.getters.selectedLocale.locale)
 axios.defaults.baseURL = 'https://nknx.org/api';
+
+axios.defaults.transformResponse =  [function (data) {
+	return JSONBigInt.parse(data);
+}]
+
 
 
 Vue.prototype.$moment = moment

@@ -78,14 +78,15 @@
                 	<div class="table-responsive">
                         <app-section-loader :status="loader"></app-section-loader>
                         <v-data-table :items="sortedArray" hide-actions>
-                            <template>
+                            <template slot='headers' slot-scope='props'>
                                 <tr>
-                                    <th style="width:10%;">#</th>
+                                    <th style="width:5%;">#</th>
                                     <th>{{ $t('message.node') }}</th>
                                     <th>{{ $t('message.status') }}</th>
                                     <th>{{ $t('message.latestBlock') }}</th>
                                     <th>{{ $t('message.tx') }}</th>
                                     <th>{{ $t('message.version') }}</th>
+                                    <th></th>
                                 </tr>
                             </template>
                             <template slot="items" slot-scope="props">
@@ -95,7 +96,9 @@
                                 <td>{{props.item.latestBlocks}}</td>
                                 <td>{{props.item.TxnCnt}}</td>
                                 <td>{{props.item.version}}
-                                <v-btn
+                                
+                                </td>
+                                <td><v-btn
                                 color="red"
                                 dark
                                 small
@@ -103,8 +106,7 @@
                                 @click='removeNode(props.item.Addr)'
                                 >
                                 <v-icon>remove</v-icon>
-                                </v-btn>
-                                </td>
+                                </v-btn></td>
                             </template>
                         </v-data-table>
                     </div>

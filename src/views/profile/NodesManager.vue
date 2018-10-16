@@ -47,6 +47,13 @@
                                     :rules="ipRules" 
                                     required
                                 ></v-text-field>
+                                <v-alert
+                                v-model='isCopy'
+                                type="error"
+                                dismissible
+                                >
+                                {{$t('message.nodeExistError')}}
+                                </v-alert>
                                 <v-text-field 
                                     :label="$t('message.label')" 
                                     v-model="addLabel" 
@@ -71,7 +78,7 @@
                 	<div class="table-responsive">
                         <app-section-loader :status="loader"></app-section-loader>
                         <v-data-table :items="sortedArray" hide-actions>
-                            <template slot="headers" slot-scope="props">
+                            <template>
                                 <tr>
                                     <th style="width:10%;">#</th>
                                     <th>{{ $t('message.node') }}</th>
@@ -87,7 +94,17 @@
                                 <td>{{props.item.SyncState}}</td>
                                 <td>{{props.item.latestBlocks}}</td>
                                 <td>{{props.item.TxnCnt}}</td>
-                                <td>{{props.item.version}}</td>
+                                <td>{{props.item.version}}
+                                <v-btn
+                                color="red"
+                                dark
+                                small
+                                fab
+                                @click='removeNode(props.item.Addr)'
+                                >
+                                <v-icon>remove</v-icon>
+                                </v-btn>
+                                </td>
                             </template>
                         </v-data-table>
                     </div>
@@ -105,9 +122,18 @@ export default {
 			interval: null,
             loader: true,
             valid: false,
+            isCopy: false,
             userNodes: [{
                 'addr': '138.68.76.78',
                 'label': 'DO node'
+            },
+            {
+                'addr': '35.204.218.101',
+                'label': 'Google Cloud'
+            },
+            {
+                'addr': '138.68.76.77',
+                'label': ''
             }
             ],
             addIp: '',
@@ -231,7 +257,24 @@ export default {
     	},
         addNode(){
             const self = this;
-            self.userNodes.push({'addr':self.addIp, 'label':self.addLabel})
+            for(let i in self.userNodes){
+                if(self.userNodes[i].addr === self.addIp){
+                    self.isCopy = true
+                }
+            }
+            if(self.isCopy != true){
+                self.userNodes.push({'addr':self.addIp, 'label':self.addLabel})
+                this.getUserNodes()
+            }
+        },
+        removeNode(node) {
+            const self = this;
+            let index = 0
+            for(let i in self.userNodes){
+                if(self.userNodes[i].addr === node)
+                index = i
+            }
+            self.userNodes.splice(index, 1)
             this.getUserNodes()
         },
 		userNodesSync() {

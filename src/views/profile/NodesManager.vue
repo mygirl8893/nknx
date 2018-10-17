@@ -2,8 +2,11 @@
     <div>
         <page-title-bar></page-title-bar>
         <v-container fluid pt-0 grid-list-xl>
-					<v-layout>
-                        <v-flex xs2>
+            <div class="card-stats">
+                <network-stats></network-stats>
+            </div>
+					<v-layout style='flex-flow: row wrap;'>
+                        <v-flex lg2 md6>
                             <v-card>
                                 <v-card-title primary-title>
                                     <div>
@@ -20,7 +23,7 @@
                                 </v-card-title>
                             </v-card>
                         </v-flex>
-						<v-flex xs2>
+						<v-flex lg2 md6>
                             <v-card>
                                 <v-card-title primary-title>
                                     <div>
@@ -39,30 +42,84 @@
                                 </v-card-title>
                             </v-card>
                         </v-flex>
-                        <v-flex xs2>
-                            <v-form v-model="valid" class="mb-4">
-                                <v-text-field 
+                        <v-flex lg4 md-12>
+                            <v-card>
+                            <v-card-title >
+                                <v-tabs
+                                    slot="extension"
+                                    v-model="tabs"
+                                    fixed-tabs
+                                    color="transparent"
+                                    class='w-100'
+                                  >
+                                    <v-tabs-slider></v-tabs-slider>
+                                    <v-tab href="#single-node" class="primary--text">
+                                      {{$t('message.singleNode')}}
+                                    </v-tab>
+                                    <v-tab href="#multi-nodes" class="primary--text">
+                                      {{$t('message.multipleNodes')}}
+                                    </v-tab>
+                                </v-tabs>
+                                <v-tabs-items v-model="tabs" class='w-100'>
+                                <v-tab-item v-model="valid" id='single-node'>
+                                <v-text-field
                                     :label="$t('message.ip')" 
                                     v-model="addIp"
                                     :rules="ipRules" 
                                     required
+                                    class='w-100'
                                 ></v-text-field>
                                 <v-alert
-                                v-model='isCopy'
+                                v-if='isCopy===true'
+                                v-model='isError'
                                 type="error"
                                 dismissible
+                                class='w-100'
                                 >
-                                {{$t('message.nodeExistError')}}
+                                {{isError}}
                                 </v-alert>
                                 <v-text-field 
                                     :label="$t('message.label')" 
                                     v-model="addLabel" 
                                     required
+                                    class='w-100'
                                 ></v-text-field>
                                 <div>
                                     <v-btn :disabled="!valid"  large @click="addNode" block color="warning">{{$t('message.addNode')}}</v-btn>
                                 </div>
-                            </v-form>
+                                  </v-tab-item>
+                                <v-tab-item v-model="multiValid" id='multi-nodes'>
+                                <v-textarea
+                                    :label="$t('message.multiIp')" 
+                                    v-model="addMultiIp"
+                                    :rules="multiIpRules" 
+                                    required
+                                    class='w-100'
+                                    :no-resize='true'
+                                ></v-textarea>
+                                <v-alert
+                                v-if='isMultiCopy===true'
+                                v-model='isMultiError'
+                                type="error"
+                                dismissible
+                                class='w-100'
+                                >
+                                {{isMultiError}}
+                                </v-alert>
+                                <v-text-field 
+                                    :label="$t('message.multiLabel')" 
+                                    v-model="addMultiLabel" 
+                                    required
+                                    class='w-100'
+                                ></v-text-field>
+                                <div>
+                                    <v-btn :disabled="!multiValid"  large @click="addMultiNode" block color="warning">{{$t('message.addNodes')}}</v-btn>
+                                </div>
+                                  </v-tab-item>
+                                </v-tabs-items>
+     
+                            </v-card-title>
+                            </v-card>
                         </v-flex>
                     </v-layout>
             <v-layout row wrap>
@@ -91,7 +148,7 @@
                             </template>
                             <template slot="items" slot-scope="props">
                                 <td>{{props.index+1}}</td>
-                                <td>{{props.item.addr}} <v-chip v-if="props.item.label != ''" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td>{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
                                 <td>{{props.item.syncState}}</td>
                                 <td>{{props.item.latestBlockHeight}}</td>
                                 <td>{{props.item.txnCnt}}</td>
@@ -103,7 +160,7 @@
                                 fab
                                 @click='removeNode(props.item.addr)'
                                 >
-                                <v-icon>delete</v-icon>
+                                <v-icon>delete_outline</v-icon>
                                 </v-btn></td>
                             </template>
                         </v-data-table>
@@ -115,26 +172,38 @@
 </template>
 <script>
 import axios from "axios";
+import NetworkStats from "Components/Widgets/NetworkStats";
 
 export default {
+    components: {
+    NetworkStats
+    },
     data() {
         return {
 			interval: null,
             loader: true,
             valid: false,
+            multiValid: false,
             isCopy: false,
+            isMultiCopy: false,
+            tabs: null,
             addIp: '',
             addLabel: '',
+            addMultiLabel: '',
+            addMultiIp: '',
             ipRules: [
             v => !!v || "IP Address of node is required!",
             v =>
             /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(v) ||
             "IP address must be valid"
             ],
+            multiIpRules: [v => !!v || "IP Addresses of nodes are required!"],
             userNodesData: [],
         	timer: "",
         	currentOrder: "Default",
         	refreshTime: "60",
+            isError: '',
+            isMultiError: '',
         	userNodesDataCounter: {
                 all: 0,
                 pf: 0,
@@ -247,18 +316,57 @@ export default {
     	},
         addNode(){
             const self = this;
+            self.isCopy = false
             for(let i in self.userNodesData){
                 if(self.userNodesData[i].addr === self.addIp){
                     self.isCopy = true
+                    self.isError = 'This node is already tracked'
                 }
             }
             if(self.isCopy != true){
-                axios.post('nodes', {
+                const nknx = 'https://nknx.org/api/nodes'
+                axios.post(nknx, {
                 'ip': self.addIp, 'label': self.addLabel
                     })
                     .then((response) => {
                         this.getUserNodes()
                     })
+                    .catch((error) =>{
+                        self.isCopy = true;
+                        self.isError = 'Node is not reachable!'
+
+                    })
+            }
+        },
+        addMultiNode(){
+            const self = this;
+            self.isMultiCopy = false
+            let ipArray = self.addMultiIp.trim().split(',')
+            for(let i in self.userNodesData){
+                for (let x in ipArray){
+                    if(self.userNodesData[i].addr === ipArray[x]){
+                    self.isMultiCopy = true
+                    self.isMultiError = 'One or more nodes are already tracked'
+                    }
+                }
+                
+            }
+            if(self.isMultiCopy != true){
+                const nknx = 'https://nknx.org/api/nodes'
+                for(let i in ipArray){
+                    axios.post(nknx, {
+                        'ip': ipArray[i], 'label': self.addMultiLabel
+                    })
+                    .then((response) => {
+                    })
+                    .catch((error) =>{
+                        self.isMultiCopy = true;
+                        self.isMultiError = 'One or many nodes are note reachable!'
+
+                    })
+                }
+                this.getUserNodes()
+
             }
         },
         removeNode(node) {

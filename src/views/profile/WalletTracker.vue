@@ -50,7 +50,7 @@
                             fab
                             @click='removeWallet(wallet)'
                             >
-                                <v-icon>remove</v-icon>
+                                <v-icon>delete_outline</v-icon>
                             </v-btn>
                             </div>
                             <div class="assets-balance">

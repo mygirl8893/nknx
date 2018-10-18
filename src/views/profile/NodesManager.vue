@@ -143,7 +143,7 @@
                                     <th>{{ $t('message.latestBlock') }}</th>
                                     <th>{{ $t('message.tx') }}</th>
                                     <th>{{ $t('message.version') }}</th>
-                                    <th></th>
+                                    <th style="text-align:center"><v-btn outline @click='removeAllNodes' color="red">{{ $t('message.removeAllNodes') }}</v-btn></th>
                                 </tr>
                             </template>
                             <template slot="items" slot-scope="props">
@@ -153,7 +153,7 @@
                                 <td>{{props.item.latestBlockHeight}}</td>
                                 <td>{{props.item.txnCnt}}</td>
                                 <td>{{props.item.softwareVersion}}</td>
-                                <td><v-btn
+                                <td style="text-align:center"><v-btn
                                 color="red"
                                 dark
                                 small
@@ -165,6 +165,23 @@
                             </template>
                         </v-data-table>
                     </div>
+                    <v-dialog v-model="dialog" max-width="500px">
+                        <v-card>
+                          <v-card-title>
+                            <span class="headline">{{ $t('message.warning') }}</span>
+                          </v-card-title>
+
+                          <v-card-text>
+                            {{ $t('message.removeNodesWarning') }}
+                          </v-card-text>
+
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" flat @click="close">{{ $t('message.cancel') }}</v-btn>
+                            <v-btn color="blue darken-1" flat @click="removeAllConfirm">{{ $t('message.removeAllNodes') }}</v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
                 </app-card>
             </v-layout>
         </v-container>
@@ -183,6 +200,7 @@ export default {
 			interval: null,
             loader: true,
             valid: false,
+            dialog: false,
             multiValid: false,
             isCopy: false,
             isMultiCopy: false,
@@ -358,6 +376,7 @@ export default {
                         'ip': ipArray[i], 'label': self.addMultiLabel
                     })
                     .then((response) => {
+                        this.getUserNodes()
                     })
                     .catch((error) =>{
                         self.isMultiCopy = true;
@@ -365,8 +384,6 @@ export default {
 
                     })
                 }
-                this.getUserNodes()
-
             }
         },
         removeNode(node) {
@@ -382,6 +399,23 @@ export default {
             .then((response) => {
                 this.getUserNodes()
             })
+        },
+        removeAllNodes(){
+            const self = this;
+            self.dialog = true
+        },
+        removeAllConfirm(){
+            const self = this;
+            axios.delete('nodes/', {
+                    })
+            .then((response) => {
+                this.getUserNodes()
+            })
+            this.close()
+        },
+        close(){
+            const self = this;
+            self.dialog = false
         },
         getUserNodes() {
             const self = this;

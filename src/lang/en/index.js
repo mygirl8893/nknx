@@ -163,7 +163,9 @@ export default {
   multiIp: "IP Addresses of your nodes separated by commas",
   multiLabel: "Label for your nodes",
   singleNode: "Single Node",
-  multipleNodes: "Multiple Nodes"
-
-
+  multipleNodes: "Multiple Nodes",
+  removeAllNodes: "Remove all nodes",
+  warning: "Warning!",
+  removeNodesWarning: "You are going to remove all nodes from the tracker, are you sure?",
+  cancel: "Cancel"
 }

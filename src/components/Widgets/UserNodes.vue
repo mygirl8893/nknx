@@ -1,7 +1,7 @@
-<template>
+    <template>
     <div class="table-responsive">
         <app-section-loader :status="loader"></app-section-loader>
-        <v-data-table :items="userNodesData" hide-actions>
+        <v-data-table :items="userNodesWidget" hide-actions>
             <template slot="headers" slot-scope="props">
                 <tr>
                     <th style="width:10%;">#</th>

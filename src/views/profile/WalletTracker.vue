@@ -2,6 +2,9 @@
     <div>
     <page-title-bar></page-title-bar>
         <v-container fluid pt-0 grid-list-xl>
+            <div class="card-stats">
+                <market-stats></market-stats>
+            </div>
             <v-layout>
                 <v-flex xs3>
                     <v-form v-model="valid" class="mb-4">
@@ -11,6 +14,15 @@
                             required
                             :rules='addressRules'
                         ></v-text-field>
+                        <v-alert
+                                v-if='isMultiCopy===true'
+                                v-model='isMultiError'
+                                type="error"
+                                dismissible
+                                class='w-100'
+                                >
+                                {{isMultiError}}
+                        </v-alert>
                         <v-text-field 
                             :label="$t('message.walletLabel')" 
                             v-model="addLabel" 
@@ -25,11 +37,12 @@
             </v-layout>
             <app-card
                     colClasses="xl12"
-                    customClasses=""
+                    customClasses="transparent no-box-shadow"
                     :fullScreen="true"
                     :fullBlock="true"
                     :footer="true"
                     v-if="wallets.length>0"
+
                 >
                 <div class='assets-wrapper'>
                     <app-section-loader :status="loader"></app-section-loader>
@@ -69,8 +82,12 @@
 </template>
 <script>
 import axios from "axios";
+import MarketStats from "Components/Widgets/MarketStats";
 
 export default {
+    components: {
+        MarketStats
+  },
     data() {
         return {
             interval: null,
@@ -78,6 +95,8 @@ export default {
             valid: false,
             addLabel: '',
             addAddress: '',
+            isMultiCopy: false,
+            isMultiError: '',
             addressRules: [
             v => !!v || "NKN Address is required!",
             v =>
@@ -85,36 +104,7 @@ export default {
             "NKN address must be valid"
             ],
             labelRules: [v => !!v || "Label is required"],
-            wallets: [
-            {
-                "label": "lightmyfire",
-                "address": "NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH",
-                "balance": null,
-                "balanceUsd": null,
-                "preview": ""
-            },
-            {
-                "label": "Ebudka",
-                "address": "NVKDBKYAJ55pXJSNj3TNFYaeZDGa8mT9V3",
-                "balance": null,
-                "balanceUsd": null,
-                "preview": ""
-            },
-            {
-                "label": "Karlik",
-                "address": "Ne45tkwdzQzvYbSG28W4nP45MVUpV3sY55",
-                "balance": null,
-                "balanceUsd": null,
-                "preview": ""
-            },
-            {
-                "label": "ChrisT",
-                "address": "NNP6M8EGZcWSZNgA2ebQfMVyNkwX6sGBQW",
-                "balance": null,
-                "balanceUsd": null,
-                "preview": ""
-            }
-            ],
+            wallets: [],
             nknPrice: null
         };
     },
@@ -130,12 +120,25 @@ export default {
     methods: {
     addWallet(){
         const self = this;
-        self.wallets.push({'address':self.addAddress, 'label':self.addLabel, 'balance':null, 'balanceUsd':null,'preview':null})
-        this.getWalletsBalance();
+        axios.post('walletAddresses/', {
+            'address':self.addAddress, 'label':self.addLabel
+                })
+        .then((response) => {
+            this.getWalletsBalance()
+        })
+        .catch((error) =>{
+           self.isMultiCopy = true
+           self.isMultiError = error.response.data.msg
+        })
     },
     removeWallet(wallet) {
         const self = this;
-        self.wallets.splice(self.wallets.indexOf(wallet), 1)
+        let id = wallet.id
+        axios.delete('walletAddresses/'+id, {
+                })
+        .then((response) => {
+            this.getWalletsBalance()
+        })
     },
     getWalletsBalance(){
         const self = this;
@@ -143,31 +146,19 @@ export default {
         .then(response => {
             self.nknPrice = response.data.data.quotes.USD.price
         })
-        for(let i in self.wallets){
 
-            axios.post("https://nknx.org:30003/",
-            { 
-                "jsonrpc": "2.0",
-                "method": "getunspendoutput",
-                "params": 
-                    { 
-                        "address": self.wallets[i].address, 
-                        "assetid": "4945ca009174097e6614d306b66e1f9cb1fce586cb857729be9e1c5cc04c9c02"
-                    },
-                "id": 1
-            }).then(function(response){
-                let balance = 0;
-                self.wallets[i].preview = self.wallets[i].label.charAt(0)
-                response.data.result.forEach(function(element) {
-                    self.wallets[i].balance = self.wallets[i].balance + element["Value"];
-                });
-                self.wallets[i].balanceUsd = (self.wallets[i].balance*self.nknPrice/5).toFixed(0)
-            }).catch(function(error) {
-                self.wallets[i].balance = 'Query balance fail.'
+        axios.get('walletAddresses/', {
             })
-
-        }
-
+            .then((response) => {
+                for(let i in response.data){
+                    response.data[i].balanceUsd = (response.data[i].balance*self.nknPrice/5).toFixed(0)
+                    response.data[i].preview = response.data[i].label.charAt(0)
+                }
+                self.wallets = response.data
+            })
+            .catch((error) =>{
+                console.log(error)
+            })
         self.loader = false;
 
         }

@@ -351,7 +351,7 @@ export default {
                     })
                     .catch((error) =>{
                         self.isCopy = true;
-                        self.isError = 'Node is not reachable!'
+                        self.isError = error.response.data.msg
 
                     })
             }
@@ -380,7 +380,7 @@ export default {
                     })
                     .catch((error) =>{
                         self.isMultiCopy = true;
-                        self.isMultiError = 'One or many nodes are note reachable!'
+                        self.isMultiError = error.response.data.msg
 
                     })
                 }

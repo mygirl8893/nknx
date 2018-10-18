@@ -154,7 +154,9 @@
 .green--text{
 	color: #06b67b!important
 }
-
+.no-box-shadow{
+	box-shadow: none !important;
+}
 //Wallet Tracker
 .assets{
 	overflow: hidden !important;

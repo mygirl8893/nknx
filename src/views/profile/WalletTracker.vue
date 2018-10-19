@@ -5,9 +5,12 @@
             <div class="card-stats">
                 <market-stats></market-stats>
             </div>
-            <v-layout>
-                <v-flex xs3>
-                    <v-form v-model="valid" class="mb-4">
+            <div class="d-custom-flex w-100 mb-4">
+                <v-flex xl3 md12>
+                    <v-card style='height:100%'>
+                    <v-card-title primary-title style='height:100%'>
+                    <h4>{{$t('message.newWallet')}}</h4>
+                    <v-form v-model="valid" class="mb-4 w-100">
                         <v-text-field 
                             :label="$t('message.nknWalletAddress')" 
                             v-model="addAddress"
@@ -33,8 +36,13 @@
                             <v-btn :disabled="!valid"  large @click="addWallet" block color="warning">{{$t('message.addWallet')}}</v-btn>
                         </div>
                     </v-form>
+                </v-card-title>
+                    </v-card>
                 </v-flex>
-            </v-layout>
+                <v-flex xl9 md12 v-if='wallets.length>0'>
+                    <wallet-chart :wallets='wallets'></wallet-chart>
+                </v-flex>
+            </div>
             <app-card
                     colClasses="xl12"
                     customClasses="transparent no-box-shadow"
@@ -83,10 +91,12 @@
 <script>
 import axios from "axios";
 import MarketStats from "Components/Widgets/MarketStats";
+import WalletChart from "Components/Widgets/WalletChart";
 
 export default {
     components: {
-        MarketStats
+        MarketStats,
+        WalletChart
   },
     data() {
         return {

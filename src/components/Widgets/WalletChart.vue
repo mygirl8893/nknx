@@ -1,6 +1,7 @@
 <template>
    <div class="mt-4 visitor-area-chart">
    	<div class="w-100 px-4 mb-4">
+	<h4>{{$t('message.miningStats')}}</h4>
 	<v-select
           v-model="select"
           :hint="`${select.address}`"

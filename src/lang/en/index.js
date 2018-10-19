@@ -167,5 +167,6 @@ export default {
   removeAllNodes: "Remove all nodes",
   warning: "Warning!",
   removeNodesWarning: "You are going to remove all nodes from the tracker, are you sure?",
-  cancel: "Cancel"
+  cancel: "Cancel",
+  miningStats: "Fortnightly Mining Stats"
 }

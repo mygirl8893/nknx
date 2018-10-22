@@ -1,5 +1,7 @@
 <template>
 	<div>
+		<app-section-loader :status="loader"></app-section-loader>
+		<h2>{{$t('message.totalNodesCounter')}} {{crawlCounter}}</h2>
 		<div id="world-map" style="width: 100%; height: 500px"></div>
 	</div>
 </template>
@@ -10,7 +12,21 @@ import { ChartConfig } from "Constants/chart-config";
 import axios from "axios";
 
 export default {
+  data(){
+  	return {
+		loader: true,
+		crawlCounter: 'Loading...'
+  	}
+  },
+  created: function(){
+  	const self = this;
+	axios.get('https://nknx.org/api/crawledNodes', {})
+    .then((response) => {
+        self.crawlCounter = response.data.length
+    }) 
+  },
   mounted() {
+  	const self = this;
   	let nodes = []
   	let countryNodeList= {}
   	axios.get('crawledNodes?withLocation=true').then(function(nodeList){
@@ -31,7 +47,7 @@ export default {
         			if(countryNodeList.hasOwnProperty(countryCode)){
         				countryNodeList[countryCode] ++
         			} else{
-        				countryNodeList[countryCode] = 0
+        				countryNodeList[countryCode] = 1
         			}
         	}
            nodes.push({latLng: [node.latitude, node.longitude], name: regionMarker})
@@ -61,9 +77,9 @@ export default {
         markers: nodes,
         series: {
         	regions: [{
-                  scale: ['#c4d9ec', '#08519C'],
-                  attribute: 'fill',
-                  values: countryNodeList
+          		scale: ['#c4d9ec', '#08519C'],
+          		attribute: 'fill',
+          		values: countryNodeList
         	}]
       },
         onRegionTipShow: function(event, label, index){
@@ -76,7 +92,8 @@ export default {
         );
       }
       });
-    };
+      self.loader= false
+    };	
   }
 };
 </script>

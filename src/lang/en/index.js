@@ -129,7 +129,7 @@ export default {
   nodesFilter: "Nodes Filter",
   miningCalculator: "Mining Calculator",
   blockPerSec: "Average block time in seconds:",
-  totalNodes: "Current node count in NKN network:",
+  totalNodesCounter: "Current node count in NKN network:",
   userNodes: "Amount of your nodes:",
   workingTime: "Your nodes working time in months:",
   nodeCost: "1 Node/1 Month cost in USD",

@@ -1,7 +1,7 @@
 <template>
     <div>
                 <v-layout row wrap>
-					<v-flex v-if="$store.getters.walletstore.length" xl4 lg4 md4 sm12 xs12 style="padding-top:0px">
+					<v-flex v-if="$store.getters.walletstore.length" xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-select
 							v-model="selectedWallet"
 							:items="items"
@@ -10,7 +10,7 @@
 							:label="$t('message.storedWallets')"
 						></v-select>
 					</v-flex>
-					<v-flex xl4 lg4 md4 sm12 xs12 style="padding-top:0px">
+					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-layout row wrap style="margin-top: 5px;">
 							<v-btn :to="{path: '/wallet/create'}" raised color="primary">{{$t('message.newWallet')}}</v-btn>
 							<v-btn :to="{path: '/wallet/open'}" raised color="primary">{{$t('message.openWallet')}}</v-btn>

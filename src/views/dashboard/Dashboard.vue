@@ -6,8 +6,17 @@
 		<v-container fluid pt-0 grid-list-xl>
 			<v-layout row wrap>
 				<app-card
+						:heading="$t('message.map')"
+						colClasses="xl7 lg7 md7 sm12 xs12"
+						customClasses="mb-30"
+						:fullScreen="true"
+					
+					>
+					<map-widget></map-widget>
+				</app-card>
+				<app-card
 						:heading="$t('message.yourWallet')"
-						colClasses="xl12 lg12 md12 sm12 xs12"
+						colClasses="xl5 lg5 md5 sm12 xs12"
 						customClasses="mb-30"
 						:fullScreen="true"
 					
@@ -15,7 +24,9 @@
 					<wallet-widget></wallet-widget>
 				</app-card>
 			</v-layout>
+
 		</v-container>
+
 		<v-container fluid pt-0 grid-list-xl>
 						<v-layout row wrap>
 				<!-- Latest Blocks -->
@@ -53,6 +64,7 @@
 import LatestBlocks from "Components/Widgets/LatestBlocks";
 import LatestTransactions from "Components/Widgets/LatestTransactions";
 import NKNChart from "Components/Widgets/NKNChart";
+import MapWidget from "Components/Widgets/Map";
 import WalletWidget from "Components/Widgets/WalletWidget";
 
 
@@ -62,6 +74,7 @@ export default {
 	LatestTransactions,
 	LatestBlocks,
 	NKNChart,
+	MapWidget
   },
   data() {
     return {

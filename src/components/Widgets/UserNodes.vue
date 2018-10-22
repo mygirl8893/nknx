@@ -1,7 +1,7 @@
     <template>
     <div class="table-responsive">
         <app-section-loader :status="loader"></app-section-loader>
-        <v-data-table :items="userNodesWidget" hide-actions>
+        <v-data-table :items="userNodesWidget" hide-actions item-key='props.item.index'>
             <template slot="headers" slot-scope="props">
                 <tr>
                     <th style="width:10%;">#</th>
@@ -56,8 +56,8 @@ export default {
                 } else{
                     self.userNodesWidget = self.userNodesData
                 }
+                self.loader = false;
             })
-            self.loader = false;
         }
     }
 };

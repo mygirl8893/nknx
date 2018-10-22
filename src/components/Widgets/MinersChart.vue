@@ -31,8 +31,8 @@ export default {
         const self = this;
         axios.get('https://nknx.org/api/outputs/?by_miner=true').then(function(addresses){
             self.totalMiners = addresses.data.length
+            self.loader = false
         });
-        this.loader = false
     },
     methods: {
     

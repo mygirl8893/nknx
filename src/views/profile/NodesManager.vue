@@ -23,25 +23,6 @@
                                 </v-card-title>
                             </v-card>
                         </v-flex>
-						<v-flex lg2 md6>
-                            <v-card>
-                                <v-card-title primary-title>
-                                    <div>
-                                        <h4>{{$t('message.autoRefresher')}}</h4>
-										<v-radio-group :mandatory="false" v-model="refreshTime">
-											<v-radio  
-												v-for="radio in refresherOptions"
-												:key="radio.label"
-												:label="radio.label"
-												:value="radio.value"
-												:disabled="refreshActive.active"
-												color="green"></v-radio>
-										</v-radio-group>
-										<v-switch v-model="refreshActive.active" color="green" v-on:change="refreshToggle" v-bind:label="refreshActive.title"></v-switch>
-                                    </div>
-                                </v-card-title>
-                            </v-card>
-                        </v-flex>
                         <v-flex lg4 md-12>
                             <v-card>
                             <v-card-title >
@@ -134,7 +115,7 @@
                 >
                 	<div class="table-responsive">
                         <app-section-loader :status="loader"></app-section-loader>
-                        <v-data-table :items="sortedArray" hide-actions>
+                        <v-data-table :items="sortedArray" hide-actions item-key='props.item.index'>
                             <template slot='headers' slot-scope='props'>
                                 <tr>
                                     <th style="width:5%;">#</th>
@@ -219,7 +200,6 @@ export default {
             userNodesData: [],
         	timer: "",
         	currentOrder: "Default",
-        	refreshTime: "60",
             isError: '',
             isMultiError: '',
         	userNodesDataCounter: {
@@ -229,32 +209,6 @@ export default {
                 sf: 0,
                 er: 0
             },
-        	refreshActive: {
-        		active: false,
-        		title: "Enable"
-        	},
-        	refresherOptions: [
-        	{
-        		label: "30 sec",
-        		value: "30"
-        	},
-        	{
-        		label: "60 sec",
-        		value: "60"
-        	},
-        	{
-        		label: "5 minutes",
-        		value: "300"
-        	},
-        	{
-        		label: "10 minutes",
-        		value: "600"
-        	},
-        	{
-        		label: "15 minutes",
-        		value: "900"
-        	}
-        	],
         	orderOptions: [
         	{
         		value: "Default",
@@ -313,25 +267,6 @@ export default {
     }
     },
     methods:{
-    	refreshToggle(){
-    		const self = this
-			clearInterval(self.timer)
-            switch (self.refreshActive.active) {
-                    case false:
-                        self.refreshActive.title = "Enable"
-                        break;
-                    case true:
-                        self.refreshActive.title = "Disable"
-                        break;
-               }
-			self.timer = setInterval(this.autoRefresh, self.refreshTime * 1000);
-    	},
-    	autoRefresh(){
-    		const self = this
-				if (self.refreshActive.active === true) {
-                	this.getUserNodes()
-            	}
-    	},
         addNode(){
             const self = this;
             self.isCopy = false

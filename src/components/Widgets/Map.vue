@@ -54,16 +54,16 @@ export default {
         },
         regionStyle: {
           initial: {
-            fill: ChartConfig.color.primary
+            fill: '#DEEBF7'
           }
         },
         backgroundColor: ChartConfig.color.white,
         markers: nodes,
         series: {
         	regions: [{
-          		scale: ['#DEEBF7', '#08519C'],
-          		attribute: 'fill',
-          		values: countryNodeList
+                  scale: ['#c4d9ec', '#08519C'],
+                  attribute: 'fill',
+                  values: countryNodeList
         	}]
       },
         onRegionTipShow: function(event, label, index){

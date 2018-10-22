@@ -37,9 +37,10 @@
 				 </v-form>
 			</div>
 			<div class="navbar-right">
-				<language-provider></language-provider>
+				<notifications v-if="$auth.check()"></notifications>
 				<v-btn v-if="!$auth.check()" color="primary" tag="link" :to="'/login'">{{ $t('message.login') }}</v-btn>
 				<user v-if="$auth.check()"></user>
+				<language-provider></language-provider>
 			</div>
 		</v-toolbar>
 		<mobile-search-form></mobile-search-form>
@@ -55,6 +56,7 @@ import LanguageProvider from "./LanguageProvider";
 import MobileSearchForm from "./MobileSearchForm";
 import { getCurrentAppLayout } from "Helpers/helpers";
 import { mapGetters } from "vuex";
+import Notifications from "./Notifications";
 
 export default {
   props: {
@@ -99,7 +101,8 @@ export default {
   components: {
     LanguageProvider,
 		MobileSearchForm,
-		User
+		User,
+		Notifications
   }
 };
 </script>

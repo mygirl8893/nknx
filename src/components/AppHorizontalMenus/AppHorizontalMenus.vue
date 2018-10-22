@@ -1,11 +1,10 @@
 <template>
 	<div class="horizontal-menu">
 		<ul class="list-unstyled nav">
-      <template v-for="category in menus" >
-        <li class="nav-item" v-for="(item, key) in category" :key="key">
+      <template v-for="(category, key) in menus">
+        <li class="nav-item" v-for="item in category" :key="item.path" v-if="key == 'general' || $auth.check()">
           <router-link :to="{path: item.path}" class="nav-link" >
             <i :class="'zmdi ' + item.action"></i>
-            
             <span class="menu-title">{{$t(item.title)}}</span>
           </router-link>
         </li>

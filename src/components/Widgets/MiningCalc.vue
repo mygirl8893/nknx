@@ -105,16 +105,19 @@ export default {
                 self.nknPrice = 'error';
             })
 
-            const requestUrl = 'http://testnet.nkn.org/node_list/NKNNodeList'
-            const proxy = "https://cors-anywhere.herokuapp.com/";
-            axios.get(proxy + requestUrl, {})
+            axios.get('https://nknx.org/api/crawledNodes', {})
             .then((response) => {
-                response = response.data.split('"').length / 2
-                self.crawlCounter = response = Math.ceil(response)
+                self.crawlCounter = response.data.length
                 self.totalNodes = self.crawlCounter
-            })  
+                self.loader = false
+            })
 
-             self.loader = false   
+            axios.get('nodes', {
+            })
+            .then((response) => {
+                self.userNodes = response.data.length
+            })
+ 
         }
     }
 };

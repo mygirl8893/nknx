@@ -31,9 +31,6 @@ export default {
         return {
             interval: null,
             loader: true,
-            userNodes: ['138.68.76.78:30003',
-                '139.59.130.53:30003'
-            ],
             userNodesWidget: [],
             userNodesData: [],
         };

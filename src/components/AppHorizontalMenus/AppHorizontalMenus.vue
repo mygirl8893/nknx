@@ -18,10 +18,7 @@
     <div>
       <div class="search-form">
         <v-text-field flat solo prepend-icon="search" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
-        
           <mobile-search-form></mobile-search-form>
-
-
       </div>
       
     </div>
@@ -29,7 +26,7 @@
 </template>
 
 <script>
-import AppMenuItem from "./AppMenuItem";
+
 import { mapGetters } from "vuex";
 import MobileSearchForm from "../Header/MobileSearchForm";
 
@@ -40,7 +37,6 @@ export default {
     }
   },
   components: {
-    AppMenuItem,
      MobileSearchForm
   },
   computed: {

@@ -11,7 +11,7 @@
 					</div>
 				<template v-for="(category, key) in menus">
 					<div :key="key">
-						<template v-for="item in category">
+						<template v-for="item in category" v-if="key == 'general' || $auth.check()">
 
 							<template>
 								<v-list-tile

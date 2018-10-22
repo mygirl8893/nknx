@@ -1,5 +1,5 @@
 <template>
-   <v-menu offset-y origin="right top" left content-class="language-dropdown" transition="slide-y-transition" nudge-top="-10" class="user-block-wrap d-none">
+   <v-menu offset-y origin="right top" left content-class="language-dropdown" transition="slide-y-transition" nudge-top="-10" class="user-block-wrap">
 		<v-btn icon large slot="activator">
 			<img src="/static/img/avatar_dummy.jpg" alt="avatar" height="40" width="40" class="img-responsive rounded-circle" />
 		</v-btn>

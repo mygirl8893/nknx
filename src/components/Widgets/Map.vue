@@ -31,6 +31,7 @@ export default {
   methods: {
     getMap(){
       $("#world-map").empty()
+      $(".jvectormap-tip").hide()
       const self = this;
       self.loader = true
       axios.get('https://nknx.org/api/crawledNodes', {})

@@ -21,6 +21,7 @@ const Transaction = () => import('Views/transaction/Transaction');
 const Profile = () => import('Views/user/Profile');
 const NodesManager = () => import('Views/user/NodesManager');
 const WalletTracker = () => import('Views/user/WalletTracker');
+const Network = () => import('Views/network/Network');
 
 
 
@@ -152,6 +153,15 @@ export default new Router({
 					meta: {
 					title: 'message.transaction',
 					breadcrumb: 'Home / Transactions / Transaction'
+					}
+				},
+				{
+					component: Network,
+					path: '/network',
+					meta: {
+					title: 'message.network',
+					breadcrumb: 'Home / Network ',
+					auth: true
 					}
 				},
 				{

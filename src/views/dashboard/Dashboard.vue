@@ -10,9 +10,11 @@
 						colClasses="xl7 lg7 md7 sm12 xs12"
 						customClasses="mb-30"
 						:fullScreen="true"
+						:footer="true"
 					
 					>
 					<map-widget></map-widget>
+					<v-btn slot="footer" :to="{path: '/network'}" color="primary" small>{{$t('message.viewDetails')}}</v-btn>
 				</app-card>
 				<app-card
 						:heading="$t('message.yourWallet')"

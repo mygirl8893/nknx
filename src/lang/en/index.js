@@ -169,5 +169,7 @@ export default {
   removeNodesWarning: "You are going to remove all nodes from the tracker, are you sure?",
   cancel: "Cancel",
   miningStats: "Fortnightly Mining Stats",
-  map: 'NKN Nodes Map'
+  map: 'NKN Nodes Map',
+  viewDetails: 'View Details',
+  network: 'Network'
 }

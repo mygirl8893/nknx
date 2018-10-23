@@ -45,16 +45,14 @@ export default {
           let regionMarker = ''
           if(node.city != null){
             regionMarker = node.city
-          } else if (node.region_name != null){
-            regionMarker = node.region_name
           } else if(node.country_name != null){
             regionMarker = node.country_name
           } else{
             regionMarker = '???'
           }
           //Nodes in country Counter
-          if(node.country_code != null){
-        let countryCode = node.country_code
+          if(node.country_code2 != null){
+        let countryCode = node.country_code2
               if(countryNodeList.hasOwnProperty(countryCode)){
                 countryNodeList[countryCode] ++
               } else{

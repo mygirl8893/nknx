@@ -48,12 +48,3 @@ export function hexToRgbA(hex, alpha) {
 	}
 	throw new Error('Bad Hex');
 }
-
-/**
- * Function to return currenr app layout
- */
-export function getCurrentAppLayout(router) {
-	let location = router.history.current.fullPath;
-	let path = location.split("/")
-	return path[1];
-}

@@ -54,7 +54,6 @@ import screenfull from "screenfull";
 import User from "./User";
 import LanguageProvider from "./LanguageProvider";
 import MobileSearchForm from "./MobileSearchForm";
-import { getCurrentAppLayout } from "Helpers/helpers";
 import { mapGetters } from "vuex";
 import Notifications from "./Notifications";
 
@@ -94,9 +93,6 @@ export default {
 				this.$router.push({ path: '/block/height/'+this.searchString})
 			}
 		},
-		getMenuLink(link) {
-			return '/' + getCurrentAppLayout(this.$router) + link;
-		}
   },
   components: {
     LanguageProvider,

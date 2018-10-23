@@ -27,7 +27,6 @@
 	</v-menu>
 </template>
 <script>
-   import { getCurrentAppLayout } from "Helpers/helpers";
    import { mapMutations } from 'vuex'
 
    export default{
@@ -52,9 +51,6 @@
          logoutUser() {
             this.$store.dispatch("setSnackbar", this.$t('message.successfullyLoggedOut'));
             this.$auth.logout();
-         },
-         getMenuLink(path) {
-            return '/' + getCurrentAppLayout(this.$router) +  path;
          },
       }
    }

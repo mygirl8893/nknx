@@ -18,9 +18,9 @@ const TransactionBrowser = () => import('Views/browser/Transactions');
 const BlockHeight = () => import('Views/block/Height');
 const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
-const Profile = () => import('Views/profile/Profile');
-const NodesManager = () => import('Views/profile/NodesManager');
-const WalletTracker = () => import('Views/profile/WalletTracker');
+const Profile = () => import('Views/user/Profile');
+const NodesManager = () => import('Views/user/NodesManager');
+const WalletTracker = () => import('Views/user/WalletTracker');
 
 
 

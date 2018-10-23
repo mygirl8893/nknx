@@ -15,7 +15,7 @@
 
 							<template>
 								<v-list-tile
-									:to="!item.exact ? `/${getCurrentAppLayoutHandler() + item.path}` : item.path"
+									:to="item.path"
 									:key="item.path"
 								>
 									<v-list-tile-content>
@@ -37,7 +37,6 @@
 
 <script>
 
-import { textTruncate, getCurrentAppLayout } from "Helpers/helpers";
 import { mapGetters } from "vuex";
 
 export default {
@@ -62,9 +61,6 @@ export default {
     textTruncate(text) {
       return textTruncate(text, 18);
     },
-    getCurrentAppLayoutHandler() {
-      return getCurrentAppLayout(this.$router);
-    }
   }
 };
 </script>

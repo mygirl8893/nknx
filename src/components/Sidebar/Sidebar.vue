@@ -21,7 +21,7 @@
 									<v-list-tile-content>
 										<v-list-tile-title>
 											<i class="mr-2 zmdi" :class="item.action"></i>
-											<span>{{ textTruncate($t(item.title)) }}</span>
+											<span>{{ $t(item.title) }}</span>
 										</v-list-tile-title>
 									</v-list-tile-content>
 								</v-list-tile>
@@ -58,9 +58,7 @@ export default {
 		this.$store.dispatch("setActiveMenuGroup", this.$router);
 	},
   methods: {
-    textTruncate(text) {
-      return textTruncate(text, 18);
-    },
+
   }
 };
 </script>

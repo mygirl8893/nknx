@@ -172,5 +172,6 @@ export default {
   map: 'NKN Nodes Map',
   viewDetails: 'View Details',
   network: 'Network',
-  countriesTotal: "Countries involved"
+  countriesTotal: "Countries involved",
+  nodeProviders: "Node Providers"
 }

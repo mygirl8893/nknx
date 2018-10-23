@@ -25,6 +25,16 @@
 						</v-flex>
 					</v-layout>
 				</app-card>
+				<app-card
+					customClasses="mb-30"
+					colClasses="xl6 lg6 md12 sm12 xs12"
+				>
+					<v-layout row wrap>
+						<v-flex xs12>
+							<NetworkProviders-chart></NetworkProviders-chart>
+						</v-flex>
+					</v-layout>
+				</app-card>
 			</v-layout>
 		</v-container>
 	
@@ -35,11 +45,13 @@
 import axios from "axios";
 import MapWidget from "Components/Widgets/Map";
 import NetworkCountriesChart from "Components/Widgets/NetworkCountriesChart";
+import NetworkProvidersChart from "Components/Widgets/NetworkProvidersChart";
 
 export default {
    components: {
 	MapWidget,
-	NetworkCountriesChart
+	NetworkCountriesChart,
+	NetworkProvidersChart
   },
   data() {
     return {

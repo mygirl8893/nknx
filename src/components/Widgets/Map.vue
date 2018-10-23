@@ -26,7 +26,7 @@ export default {
   	this.getMap()
   },
   mounted() {
-    this.interval = setInterval(this.getMap, 30000);
+    this.interval = setInterval(this.getMap, 60000);
   },
   methods: {
     getMap(){

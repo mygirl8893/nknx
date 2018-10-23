@@ -171,5 +171,6 @@ export default {
   miningStats: "Fortnightly Mining Stats",
   map: 'NKN Nodes Map',
   viewDetails: 'View Details',
-  network: 'Network'
+  network: 'Network',
+  countriesTotal: "Countries involved"
 }

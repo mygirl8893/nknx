@@ -160,8 +160,7 @@ export default new Router({
 					path: '/network',
 					meta: {
 					title: 'message.network',
-					breadcrumb: 'Home / Network ',
-					auth: true
+					breadcrumb: 'Home / Network '
 					}
 				},
 				{

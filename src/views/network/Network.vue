@@ -17,11 +17,11 @@
 				</app-card>
 				<app-card
 					customClasses="mb-30"
-					colClasses="xl12 lg12 md12 sm12 xs12"
+					colClasses="xl6 lg6 md12 sm12 xs12"
 				>
 					<v-layout row wrap>
 						<v-flex xs12>
-							
+							<NetworkCountries-chart></NetworkCountries-chart>
 						</v-flex>
 					</v-layout>
 				</app-card>
@@ -34,10 +34,12 @@
 
 import axios from "axios";
 import MapWidget from "Components/Widgets/Map";
+import NetworkCountriesChart from "Components/Widgets/NetworkCountriesChart";
 
 export default {
    components: {
-	MapWidget
+	MapWidget,
+	NetworkCountriesChart
   },
   data() {
     return {

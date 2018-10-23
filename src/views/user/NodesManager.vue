@@ -242,7 +242,10 @@ export default {
     	this.getUserNodes();
     },
     mounted: function(){
-
+        this.interval = setInterval(this.getUserNodes, 30000);
+    },
+    destroyed() {
+        clearInterval(this.interval);
     },
     computed: {
     	sortedArray: function() {

@@ -37,11 +37,12 @@ export default {
         this.getWalletsBalance();
     },
     mounted: function() {
-        
+        this.interval = setInterval(this.getWalletsBalance, 30000);
     },
     methods: {
         getWalletsBalance(){
         const self = this;
+        self.loader = true;
         axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
         .then(response => {
             self.nknPrice = response.data.data.quotes.USD.price
@@ -61,13 +62,11 @@ export default {
                 } else{
                     self.walletsCopy = self.wallets
                 }
+                self.loader = false;
             })
             .catch((error) =>{
                 console.log(error)
             })
-
-
-        self.loader = false;
 
         }
     

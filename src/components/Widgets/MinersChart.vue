@@ -25,17 +25,20 @@ export default {
         clearInterval(this.interval);
     },
     created: function() {
-        
+        this.getMiners()
     },
     mounted: function() {
-        const self = this;
-        axios.get('https://nknx.org/api/outputs/?by_miner=true').then(function(addresses){
-            self.totalMiners = addresses.data.length
-            self.loader = false
-        });
+        this.interval = setInterval(this.getMiners, 30000);
     },
     methods: {
-    
+        getMiners(){
+            const self = this;
+            self.loader = true
+            axios.get('https://nknx.org/api/outputs/?by_miner=true').then(function(addresses){
+                self.totalMiners = addresses.data.length
+            });
+            self.loader = false
+        }
     }
 };
 </script>

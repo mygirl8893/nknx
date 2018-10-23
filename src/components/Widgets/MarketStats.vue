@@ -69,11 +69,12 @@ export default {
        this.getMarketStats()
     },
     mounted: function() {
-        
+        this.interval = setInterval(this.getMarketStats, 30000);
     },
     methods: {
         getMarketStats(){
             const self = this
+            self.loader = true
             axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
                 .then(response => {
                     self.nknPrice = response.data.data.quotes.USD.price.toFixed(3)

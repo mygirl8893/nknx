@@ -125,7 +125,7 @@ export default {
         this.getWalletsBalance();
     },
     mounted: function() {
-        
+        this.interval = setInterval(this.getWalletsBalance, 30000);
     },
     methods: {
     addWallet(){

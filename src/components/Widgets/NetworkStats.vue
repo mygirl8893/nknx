@@ -68,7 +68,7 @@ export default {
         this.getNetworkState()
     },
     mounted: function() {
-        
+        this.interval = setInterval(this.getNetworkState, 30000);
     },
     methods: {
     getNetworkState(){

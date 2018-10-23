@@ -42,11 +42,12 @@ export default {
         this.getUserNodes();
     },
     mounted: function() {
-        
+        this.interval = setInterval(this.getUserNodes, 30000);
     },
     methods: {
         getUserNodes() {
             const self = this;
+            self.loader = true;
             axios.get('nodes', {
             })
             .then((response) => {

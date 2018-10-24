@@ -173,5 +173,6 @@ export default {
   viewDetails: 'View Details',
   network: 'Network',
   countriesTotal: "Countries involved",
-  nodeProviders: "Node Providers"
+  nodeProviders: "Node Providers",
+  ipCopiedSuccessful: "IP address copied successful"
 }

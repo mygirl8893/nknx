@@ -129,7 +129,11 @@
                             </template>
                             <template slot="items" slot-scope="props">
                                 <td>{{props.index+1}}</td>
-                                <td>{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td
+                                v-clipboard:copy="props.item.addr"
+                                v-clipboard:success="onCopy1"
+                                class='cursor-pointer'
+                                >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
                                 <td>{{props.item.syncState}}</td>
                                 <td>{{props.item.latestBlockHeight}}</td>
                                 <td>{{props.item.txnCnt}}</td>
@@ -270,6 +274,9 @@ export default {
     }
     },
     methods:{
+        onCopy1(){
+            this.$store.dispatch("setSnackbar", this.$t('message.ipCopiedSuccessful'));
+        },
         addNode(){
             const self = this;
             self.isCopy = false

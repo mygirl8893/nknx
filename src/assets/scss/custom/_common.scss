@@ -242,6 +242,12 @@ address {
    -ms-flex-align: start;
    align-items: flex-start;
 }
+.cursor-pointer{
+  cursor: pointer;
+  &:hover{
+    color: #ff9800;
+  }
+}
 
 .media-body {
    -ms-flex: 1;

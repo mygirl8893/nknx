@@ -138,7 +138,7 @@
                                                     </tr>
                                             </template>
                                             <template slot="items" slot-scope="props">
-                                                <tr :key="output.id" v-for="output in props.item.outputs">
+                                                <tr :key="output.id" v-for="output in props.item.outputs" v-if="output.address!==props.item.sender">
                                                     <td>
                                                         <span v-if="$route.params.address == props.item.sender">-</span>
                                                         <span v-if="$route.params.address == output.address">+</span>

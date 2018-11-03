@@ -174,5 +174,8 @@ export default {
   network: 'Network',
   countriesTotal: "Countries involved",
   nodeProviders: "Node Providers",
-  ipCopiedSuccessful: "IP address copied successful"
+  ipCopiedSuccessful: "IP address copied successful",
+  nodeSuccessfullyAdded: "Node successfully added",
+  nodesSuccessfullyAdded: "Nodes successfully added"
+
 }

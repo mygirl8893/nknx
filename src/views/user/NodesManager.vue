@@ -292,6 +292,7 @@ export default {
                 'ip': self.addIp, 'label': self.addLabel
                     })
                     .then((response) => {
+                    	this.$store.dispatch("setSnackbar", this.$t('message.nodeSuccessfullyAdded'));
                         this.getUserNodes()
                     })
                     .catch((error) =>{
@@ -321,6 +322,7 @@ export default {
                         'ip': ipArray[i], 'label': self.addMultiLabel
                     })
                     .then((response) => {
+                    	this.$store.dispatch("setSnackbar", this.$t('message.nodesSuccessfullyAdded'));
                         this.getUserNodes()
                     })
                     .catch((error) =>{

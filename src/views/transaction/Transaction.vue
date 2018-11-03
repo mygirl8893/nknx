@@ -57,7 +57,7 @@
                                         {{ $t('message.miningAddress') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{transaction.outputs[0].address}} 
+                                        <router-link :to="{ path: '/address/'+transaction.outputs[0].address}">{{ transaction.outputs[0].address}}</router-link> 
                                     </v-flex>
                                 </v-layout>
                                 <v-layout v-if="transaction.txType == 0" row wrap>

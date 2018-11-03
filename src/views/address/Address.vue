@@ -145,8 +145,8 @@
                                                         {{ output.value }} NKN
                                                     </td>
                                                     <td><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
-                                                    <td v-if="$route.params.address == props.item.sender">{{$t('message.thisWallet')}}</td><td v-else>{{ props.item.sender }}</td>
-                                                    <td v-if="$route.params.address == output.address">{{$t('message.thisWallet')}}</td><td v-else>{{ output.address }}</td>
+                                                    <td v-if="$route.params.address == props.item.sender">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+props.item.sender }">{{ props.item.sender }}</router-link></td>
+                                                    <td v-if="$route.params.address == output.address">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+output.address }">{{ output.address }}</router-link></td>
                                                     <td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
                                                     <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
                                                 </tr>
@@ -194,7 +194,6 @@ export default {
     //Call to NKN-API https://github.com/CrackDavid/nkn-api
     axios.get("https://nknx.org/api/addresses/"+this.$route.params.address).then(function(response){
         self.address = response.data;
-        console.log(self.address);
         self.loader=false;
     }).catch(function(error) {
         self.loader=false;

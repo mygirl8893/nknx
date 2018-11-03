@@ -84,7 +84,7 @@ export default {
         miningCalc(){
             const self = this
             const secDay = 86400
-            let dailyMined = (secDay / self.blocktime) * 10
+            let dailyMined = (secDay / self.blocktime) * 15
             let totalNodeCost = self.nodeCost * self.workingTime * self.userNodes
             let totalBandwidthCost = self.bandWidthCost * self.workingTime * self.userNodes
             let dailyNodeCost = self.nodeCost / 30 * self.userNodes

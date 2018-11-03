@@ -57,7 +57,7 @@ export default {
       	axios.get('walletAddresses/'+id+'/miningOutput').then(function(responseUSD){
         responseUSD.data.forEach(function(entry) {
             blocks.push(entry.date);
-            nkn.push(entry.count*10)
+            nkn.push(entry.count*15)
         });
             //Last 2 weeks
             self.chartdata.days = blocks.slice(0,14)

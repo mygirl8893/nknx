@@ -175,5 +175,9 @@ export default {
   countriesTotal: "Countries involved",
   nodeProviders: "Node Providers",
   ipCopiedSuccessful: "IP address copied successful",
-  nodeSuccessfullyAdded: "Node successfully added"
+  nodeSuccessfullyAdded: "Node successfully added",
+  address:"Address",
+  firstTransaction:"First transaction",
+  latestTransaction:"Latest transaction",
+  thisWallet:"This wallet",
 }

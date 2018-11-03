@@ -18,6 +18,7 @@ const TransactionBrowser = () => import('Views/browser/Transactions');
 const BlockHeight = () => import('Views/block/Height');
 const BlockHash = () => import('Views/block/Hash');
 const Transaction = () => import('Views/transaction/Transaction');
+const Address = () => import('Views/address/Address');
 const Profile = () => import('Views/user/Profile');
 const NodesManager = () => import('Views/user/NodesManager');
 const WalletTracker = () => import('Views/user/WalletTracker');
@@ -153,6 +154,14 @@ export default new Router({
 					meta: {
 					title: 'message.transaction',
 					breadcrumb: 'Home / Transactions / Transaction'
+					}
+				},
+				{
+					component: Address,
+					path: '/address/:address',
+					meta: {
+					title: 'message.address',
+					breadcrumb: 'Home / Addresses / Address'
 					}
 				},
 				{

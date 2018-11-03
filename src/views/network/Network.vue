@@ -35,6 +35,40 @@
 						</v-flex>
 					</v-layout>
 				</app-card>
+				<app-card
+					customClasses="mb-30"
+					colClasses="xl12 lg12 md12 sm12 xs12"
+				>
+					<v-layout row wrap>
+						<v-flex xs12>
+							<NetworkBlocks-chart></NetworkBlocks-chart>
+						</v-flex>
+					</v-layout>
+				</app-card>
+				<app-card
+					customClasses="mb-30"
+					colClasses="xl12 lg12 md12 sm12 xs12"
+				>
+					<v-layout row wrap>
+						<v-flex xs12>
+							<NetworkTransactions-chart></NetworkTransactions-chart>
+						</v-flex>
+					</v-layout>
+
+				</app-card>
+				<app-card
+					customClasses="mb-30"
+					colClasses="xl12 lg12 md12 sm12 xs12"
+				>
+				<v-layout row wrap>
+						<v-flex xs12>
+							<NetworkTransfers-chart></NetworkTransfers-chart>
+						</v-flex>
+					</v-layout>
+
+				</app-card>
+
+
 			</v-layout>
 		</v-container>
 	
@@ -46,12 +80,18 @@ import axios from "axios";
 import MapWidget from "Components/Widgets/Map";
 import NetworkCountriesChart from "Components/Widgets/NetworkCountriesChart";
 import NetworkProvidersChart from "Components/Widgets/NetworkProvidersChart";
+import NetworkBlocksChart from "Components/Widgets/NetworkBlocksChart";
+import NetworkTransactionsChart from "Components/Widgets/NetworkTransactionsChart";
+import NetworkTransfersChart from "Components/Widgets/NetworkTransfersChart";
 
 export default {
    components: {
 	MapWidget,
 	NetworkCountriesChart,
-	NetworkProvidersChart
+	NetworkProvidersChart,
+	NetworkBlocksChart,
+	NetworkTransactionsChart,
+	NetworkTransfersChart
   },
   data() {
     return {

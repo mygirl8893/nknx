@@ -180,4 +180,7 @@ export default {
   firstTransaction:"First transaction",
   latestTransaction:"Latest transaction",
   thisWallet:"This wallet",
+  networkBlockStats: "Average blocks per day",
+  networkTxStats: "Average transactions per day",
+  networkTransfersStats: "Average transfers per day"
 }

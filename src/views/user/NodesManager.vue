@@ -322,12 +322,11 @@ export default {
                         'ip': ipArray[i], 'label': self.addMultiLabel
                     })
                     .then((response) => {
-                    	this.$store.dispatch("setSnackbar", this.$t('message.nodesSuccessfullyAdded'));
                         this.getUserNodes()
                     })
                     .catch((error) =>{
                         self.isMultiCopy = true;
-                        self.isMultiError = error.response.data.msg
+                        self.isMultiError = ipArray[i] + " " + error.response.data.msg
 
                     })
                 }

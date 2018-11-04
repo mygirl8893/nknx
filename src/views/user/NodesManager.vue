@@ -134,10 +134,13 @@
                                 v-clipboard:success="onCopy1"
                                 class='cursor-pointer'
                                 >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
-                                <td>{{props.item.syncState}}</td>
-                                <td>{{props.item.latestBlockHeight}}</td>
-                                <td>{{props.item.txnCnt}}</td>
-                                <td>{{props.item.softwareVersion}}</td>
+                                <td v-if='props.item.online != 0'>{{props.item.syncState}}</td>
+                                <td v-if='props.item.online === 0'>Error <v-badge color="red">
+                                <span slot="badge">!</span>
+                                </v-badge></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.txnCnt}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
                                 <td style="text-align:center"><v-btn
                                 color="red"
                                 dark

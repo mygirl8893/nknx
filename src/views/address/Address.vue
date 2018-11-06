@@ -110,6 +110,15 @@
                                     </v-flex>
 
                                 </v-layout>
+                                <v-layout row wrap justify-center style="margin-bottom: 10px;">
+                                                <v-btn v-on:click.native="getPrevBlockPageTransactions" :disabled="!prev_pageTransactions" small fab color="primary">
+                                                    <v-icon>zmdi-chevron-left</v-icon>
+                                                </v-btn>
+                                                <span style="padding: 15px;">{{current_pageTransactions}}</span>
+                                                <v-btn v-on:click.native="getNextBlockPageTransactions" :disabled="!next_pageTransactions" small fab color="primary">
+                                                    <v-icon>zmdi-chevron-right</v-icon>
+                                                </v-btn>
+                                </v-layout>
 
                             </div>
                             </v-expansion-panel-content>
@@ -155,6 +164,15 @@
                                     </v-flex>
 
                                 </v-layout>
+                                <v-layout row wrap justify-center style="margin-bottom: 10px;">
+                                                <v-btn v-on:click.native="getPrevBlockPageTransfers" :disabled="!prev_pageTransfers" small fab color="primary">
+                                                    <v-icon>zmdi-chevron-left</v-icon>
+                                                </v-btn>
+                                                <span style="padding: 15px;">{{current_pageTransfers}}</span>
+                                                <v-btn v-on:click.native="getNextBlockPageTransfers" :disabled="!next_pageTransfers" small fab color="primary">
+                                                    <v-icon>zmdi-chevron-right</v-icon>
+                                                </v-btn>
+                                </v-layout>
 
 
                             </v-expansion-panel-content>
@@ -175,17 +193,23 @@ import axios from "axios"
 export default {
   data() {
     return {
-      openGeneral:0,
-      openTransactions:null,
-      openTransfers:null,
-      loader:true,
-      transactionLoader:true,
-      transferLoader:true,
-      latestTransfers:[],
-      latestTransactions:[],
-      address: null,
-      error:false,
-      walletbalance:0
+        next_pageTransactions:null,
+        prev_pageTransactions:null,
+        current_pageTransactions:1,
+        next_pageTransfers:null,
+        prev_pageTransfers:null,
+        current_pageTransfers:1,
+        openGeneral:0,
+        openTransactions:null,
+        openTransfers:null,
+        loader:true,
+        transactionLoader:true,
+        transferLoader:true,
+        latestTransfers:[],
+        latestTransactions:[],
+        address: null,
+        error:false,
+        walletbalance:0
     };
   },
   mounted() {
@@ -215,20 +239,74 @@ export default {
         });
     });
 
-    self.transactionLoader= true;
+    self.transferLoader= true;
     //Call to NKN-API https://github.com/CrackDavid/nkn-api
-    axios.get('https://nknx.org/api/transactions/?latest=5&txType=16&withoutpayload=true&address='+this.$route.params.address).then(function(response){
-        self.latestTransfers = response.data;
+    axios.get('https://nknx.org/api/transactions/?txType=16&per_page=10&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
+        self.next_pageTransfers = response.data.next_page_url;
+        self.prev_pageTransfers = response.data.prev_page_url;
+        self.current_pageTransfers = response.data.current_page;
+        self.latestTransfers = response.data.data;
         self.transferLoader= false
     });
-
-    self.transferLoader= true;
-    axios.get('https://nknx.org/api/transactions/?latest=5&withoutpayload=true&txType=0,16,66&address='+this.$route.params.address).then(function(response){
-        self.latestTransactions = response.data;
+    self.transactionLoader= true;
+    
+    axios.get('https://nknx.org/api/transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutoutputs=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
+        self.next_pageTransactions = response.data.next_page_url;
+        self.prev_pageTransactions = response.data.prev_page_url;
+        self.current_pageTransactions = response.data.current_page;
+        self.latestTransactions = response.data.data;
         self.transactionLoader= false
     });
   },
   methods: {
+        getNextBlockPageTransactions() {
+			const self = this;
+			self.transactionLoader= true;
+            //Call to NKN-API https://github.com/CrackDavid/nkn-api
+            axios.get(this.next_pageTransactions+'&per_page=10').then(function(response){
+                        self.next_pageTransactions = response.data.next_page_url;
+                        self.prev_pageTransactions = response.data.prev_page_url;
+                        self.current_pageTransactions = response.data.current_page;
+                        self.latestTransactions = response.data.data;
+                        self.transactionLoader= false
+            });
+		},
+		getPrevBlockPageTransactions() {
+			const self = this;
+			this.transactionLoader = true;
+            //Call to NKN-API https://github.com/CrackDavid/nkn-api
+            axios.get(this.prev_pageTransactions+'&per_page=10').then(function(response){
+                        self.next_pageTransactions = response.data.next_page_url;
+                        self.prev_pageTransactions = response.data.prev_page_url;
+                        self.current_pageTransactions = response.data.current_page;
+                        self.latestTransactions = response.data.data;
+                        self.transactionLoader= false
+            });
+        },
+        getNextBlockPageTransfers() {
+			const self = this;
+			self.transferLoader= true;
+            //Call to NKN-API https://github.com/CrackDavid/nkn-api
+            axios.get(this.next_pageTransfers).then(function(response){
+                        self.next_pageTransfers = response.data.next_page_url;
+                        self.prev_pageTransfers = response.data.prev_page_url;
+                        self.current_pageTransfers = response.data.current_page;
+                        self.latestTransfers = response.data.data;
+                        self.transferLoader= false
+            });
+		},
+		getPrevBlockPageTransfers() {
+			const self = this;
+			this.transferLoader = true;
+            //Call to NKN-API https://github.com/CrackDavid/nkn-api
+            axios.get(this.prev_pageTransfers).then(function(response){
+                        self.next_pageTransfers = response.data.next_page_url;
+                        self.prev_pageTransfers = response.data.prev_page_url;
+                        self.current_pageTransfers = response.data.current_page;
+                        self.latestTransfers = response.data.data;
+                        self.transferLoader= false
+            });
+        }
   }
 };
 </script>

@@ -52,7 +52,7 @@ export default {
         return {
             interval: null,
             loader: true,
-            blocktime: 12,
+            blocktime: 20,
             nodeCost: 0,
             workingTime: 1,
             userNodes: 1,

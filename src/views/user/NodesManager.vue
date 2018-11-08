@@ -46,7 +46,6 @@
                                 <v-text-field
                                     :label="$t('message.ip')" 
                                     v-model="addIp"
-                                    :rules="ipRules" 
                                     required
                                     class='w-100'
                                 ></v-text-field>
@@ -197,12 +196,6 @@ export default {
             addLabel: '',
             addMultiLabel: '',
             addMultiIp: '',
-            ipRules: [
-            v => !!v || "IP Address of node is required!",
-            v =>
-            /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(v) ||
-            "IP address must be valid"
-            ],
             multiIpRules: [v => !!v || "IP Addresses of nodes are required!"],
             userNodesData: [],
         	timer: "",

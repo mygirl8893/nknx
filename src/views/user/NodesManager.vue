@@ -133,10 +133,9 @@
                                 v-clipboard:success="onCopy1"
                                 class='cursor-pointer'
                                 >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
-                                <td v-if='props.item.online != 0'>{{props.item.syncState}}</td>
-                                <td v-if='props.item.online === 0'>Error <v-badge color="red">
+                                <td >{{props.item.syncState}}<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
-                                </v-badge></td>
+                                </v-badge></span> </td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.txnCnt}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
@@ -365,6 +364,11 @@ export default {
                     })
                     .then((response) => {
                         self.userNodesData = response.data
+                        for(let node in self.userNodesData){
+                            if(self.userNodesData[node].online === 0 ){
+                                self.userNodesData[node].syncState = 'Error'
+                            }
+                        }
                         this.getNodesDataCounter()
                     })
 

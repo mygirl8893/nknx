@@ -25,7 +25,7 @@ export default {
 		self.loader = false;
 		let avgBlocks = []
 		let avgBlocksCount = 0
-		axios.get('https://nknx.org/api/statistics/daily/blocks').then(function(blocks){
+		axios.get('statistics/daily/blocks').then(function(blocks){
         blocks.data.forEach(function(entry) {
              avgBlocks.push(entry.count)
         });

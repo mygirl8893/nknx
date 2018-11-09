@@ -50,7 +50,7 @@ import { mapGetters } from 'vuex'
 				const self = this;
 				self.loader= true;
 				//Call to NKN-API https://github.com/CrackDavid/nkn-api
-				axios.get('https://nknx.org/api/transactions/?latest=5&txType=16&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$store.getters.walletfile.address).then(function(response){
+				axios.get('transactions/?latest=5&txType=16&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$store.getters.walletfile.address).then(function(response){
                     self.latestTransfers = response.data;
 					self.loader= false
 				});

@@ -76,7 +76,7 @@ export default {
     getLatestAddresses() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/addresses').then(function(response){
+      axios.get('addresses').then(function(response){
 				self.latestAddresses = response.data.data;
 			  self.next_page = response.data.next_page_url;
 				self.prev_page = response.data.prev_page_url;

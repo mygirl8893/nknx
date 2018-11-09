@@ -182,5 +182,9 @@ export default {
   thisWallet:"This wallet",
   networkBlockStats: "Average blocks per day",
   networkTxStats: "Average transactions per day",
-  networkTransfersStats: "Average transfers per day"
+  networkTransfersStats: "Average transfers per day",
+  followingNodesNotReachable:"The following nodes are not reachable: ",
+  followingNodesDuplicate:"The following nodes are already in the database: ",
+  NodeNotReachable: "The node is not reachable.",
+  NodeDuplicate: "The node is already in the database."
 }

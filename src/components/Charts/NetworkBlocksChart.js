@@ -55,7 +55,7 @@ export default {
             days : [],
             blocks :[]
         }
-      	axios.get('https://nknx.org/api/statistics/daily/blocks').then(function(blocks){
+      	axios.get('statistics/daily/blocks').then(function(blocks){
         blocks.data.forEach(function(entry) {
              chartdata.days.push(entry.date);
              chartdata.blocks.push(entry.count)

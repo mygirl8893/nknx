@@ -216,7 +216,7 @@ export default {
     self = this;
     this.error = false;
     //Call to NKN-API https://github.com/CrackDavid/nkn-api
-    axios.get("https://nknx.org/api/addresses/"+this.$route.params.address).then(function(response){
+    axios.get("addresses/"+this.$route.params.address).then(function(response){
         self.address = response.data;
         self.loader=false;
     }).catch(function(error) {
@@ -241,7 +241,7 @@ export default {
 
     self.transferLoader= true;
     //Call to NKN-API https://github.com/CrackDavid/nkn-api
-    axios.get('https://nknx.org/api/transactions/?txType=16&per_page=10&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
+    axios.get('transactions/?txType=16&per_page=10&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
         self.next_pageTransfers = response.data.next_page_url;
         self.prev_pageTransfers = response.data.prev_page_url;
         self.current_pageTransfers = response.data.current_page;
@@ -250,7 +250,7 @@ export default {
     });
     self.transactionLoader= true;
     
-    axios.get('https://nknx.org/api/transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutoutputs=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
+    axios.get('transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutoutputs=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
         self.next_pageTransactions = response.data.next_page_url;
         self.prev_pageTransactions = response.data.prev_page_url;
         self.current_pageTransactions = response.data.current_page;

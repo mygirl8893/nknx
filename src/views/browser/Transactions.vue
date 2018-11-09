@@ -113,7 +113,7 @@ export default {
     getLatestTransactions() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/transactions/?withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true&txType=0,16,66').then(function(response){
+      axios.get('transactions/?withoutpayload=true&withoutinputs=true&withoutattributes=true&withoutoutputs=true&txType=0,16,66').then(function(response){
 				self.latestTransactions = response.data.data;
 			  self.next_page = response.data.next_page_url;
 				self.prev_page = response.data.prev_page_url;

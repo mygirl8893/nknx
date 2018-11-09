@@ -55,7 +55,7 @@ export default {
             days : [],
             transfers :[]
         }
-      	axios.get('https://nknx.org/api/statistics/daily/transfers').then(function(transfers){
+      	axios.get('statistics/daily/transfers').then(function(transfers){
         transfers.data.forEach(function(entry) {
              chartdata.days.push(entry.date);
              chartdata.transfers.push(entry.count)

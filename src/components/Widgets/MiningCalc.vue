@@ -105,7 +105,7 @@ export default {
                 self.nknPrice = 'error';
             })
 
-            axios.get('https://nknx.org/api/crawledNodes', {})
+            axios.get('crawledNodes', {})
             .then((response) => {
                 self.crawlCounter = response.data.length
                 self.totalNodes = self.crawlCounter

@@ -282,50 +282,57 @@ export default {
                 }
             }
             if(self.isCopy != true){
-                const nknx = 'https://nknx.org/api/nodes'
-                axios.post(nknx, {
+                axios.post('nodes', {
                 'ip': self.addIp, 'label': self.addLabel
                     })
                     .then((response) => {
-                    	this.$store.dispatch("setSnackbar", this.$t('message.nodeSuccessfullyAdded'));
-                        this.getUserNodes()
-                    })
-                    .catch((error) =>{
-                        self.isCopy = true;
-                        self.isError = error.response.data.msg
+                        if(response.data.data.failed.length){
+                            self.isCopy = true;
+                            self.isError = this.$t('message.NodeNotReachable');
+                        }
+                        else if(response.data.data.duplicate.length){
+                            self.isCopy = true;
+                            self.isError = this.$t('message.NodeDuplicate');
+                        }
+                        else{
+                            this.$store.dispatch("setSnackbar", this.$t('message.nodeSuccessfullyAdded'));
+                            self.addIp = "";
+                            this.getUserNodes();
+                        }
 
                     })
+
             }
         },
         addMultiNode(){
             const self = this;
             self.isMultiCopy = false
             let ipArray = self.addMultiIp.trim().split(',')
-            for(let i in self.userNodesData){
-                for (let x in ipArray){
-                    if(self.userNodesData[i].addr === ipArray[x]){
-                    self.isMultiCopy = true
-                    self.isMultiError = 'One or more nodes are already tracked'
-                    }
+
+            axios.post('nodes', {
+                'ip': self.addMultiIp, 'label': self.addMultiLabel
+            })
+            .then((response) => {
+                if(response.data.data.failed.length || response.data.data.duplicate.length){
+                    this.$store.dispatch("setSnackbar", this.$t('message.partialNodesAdded'));
+                }
+                else{
+                    this.$store.dispatch("setSnackbar", this.$t('message.nodesSuccessfullyAdded'));
+                    self.addMultiIp = "";
                 }
                 
-            }
-            if(self.isMultiCopy != true){
-                const nknx = 'https://nknx.org/api/nodes'
-                for(let i in ipArray){
-                    axios.post(nknx, {
-                        'ip': ipArray[i], 'label': self.addMultiLabel
-                    })
-                    .then((response) => {
-                        this.getUserNodes()
-                    })
-                    .catch((error) =>{
-                        self.isMultiCopy = true;
-                        self.isMultiError = ipArray[i] + " " + error.response.data.msg
-
-                    })
+                if(response.data.data.failed.length){
+                    self.isMultiCopy = true;
+                    self.isMultiError= this.$t('message.followingNodesNotReachable') + " " + response.data.data.failed.join(", ") + "\n";
+                    self.addMultiIp = "";
                 }
-            }
+                if(response.data.data.duplicate.length){
+                    self.isMultiCopy = true;
+                    self.isMultiError= this.$t('message.followingNodesDuplicate') + " " + response.data.data.duplicate.join(", ");
+                    self.addMultiIp = "";
+                }
+                this.getUserNodes()
+            })
         },
         removeNode(node) {
             const self = this;

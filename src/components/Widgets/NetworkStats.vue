@@ -129,7 +129,7 @@ export default {
                 });
 
 
-            axios.get('https://nknx.org/api/crawledNodes', {})
+            axios.get('crawledNodes', {})
             .then((response) => {
                 self.crawlCounter = response.data.length
             })  

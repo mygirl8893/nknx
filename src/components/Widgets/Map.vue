@@ -34,7 +34,7 @@ export default {
       $(".jvectormap-tip").hide()
       const self = this;
       self.loader = true
-      axios.get('https://nknx.org/api/crawledNodes', {})
+      axios.get('crawledNodes', {})
       .then((response) => {
           self.crawlCounter = response.data.length
       })  

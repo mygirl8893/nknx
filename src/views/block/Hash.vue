@@ -159,7 +159,7 @@ export default {
       self = this;
       this.error = false;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get("https://nknx.org/api/blocks/"+this.$route.params.hash).then(function(response){
+      axios.get("blocks/"+this.$route.params.hash).then(function(response){
           self.block = response.data[0];
           self.loader=false;
       }).catch(function(error) {
@@ -173,7 +173,7 @@ export default {
       this.error = false;
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get("https://nknx.org/api/blocks/"+this.$route.params.hash).then(function(response){
+      axios.get("blocks/"+this.$route.params.hash).then(function(response){
           self.block = response.data[0];
           self.loader=false;
       });

@@ -26,7 +26,7 @@ export default {
   },
    mounted() {
     const self = this;
-        axios.get('https://nknx.org/api/outputs/?by_miner=true').then(function(addresses){
+        axios.get('outputs/?by_miner=true').then(function(addresses){
             // get only top 50 miners
             let counter = 50;
             for (let i=0; i < counter; i++){  

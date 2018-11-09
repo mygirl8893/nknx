@@ -34,7 +34,7 @@ export default {
         getMiners(){
             const self = this;
             self.loader = true
-            axios.get('https://nknx.org/api/outputs/?by_miner=true').then(function(addresses){
+            axios.get('outputs/?by_miner=true').then(function(addresses){
                 self.totalMiners = addresses.data.length
             });
             self.loader = false

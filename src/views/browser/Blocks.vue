@@ -93,7 +93,7 @@ export default {
     getLatestBlocks() {
       const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get('https://nknx.org/api/blocks/').then(function(response){
+      axios.get('blocks/').then(function(response){
 				self.next_page = response.data.next_page_url;
 				self.prev_page = response.data.prev_page_url;
 				self.current_page = response.data.current_page;

@@ -25,7 +25,7 @@ export default {
 		self.loader = false;
 		let avgTx = []
 		let avgTxCount = 0
-		axios.get('https://nknx.org/api/statistics/daily/transactions').then(function(tx){
+		axios.get('statistics/daily/transactions').then(function(tx){
         tx.data.forEach(function(entry) {
              avgTx.push(entry.count)
         });

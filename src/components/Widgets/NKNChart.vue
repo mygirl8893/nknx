@@ -1,7 +1,7 @@
 <template>
    <div class="mt-4 visitor-area-chart">
 		<div class="d-custom-flex justify-space-between px-4 mb-4 label-wrap">
-			<h4>Market</h4>
+			<h3>Market</h3>
 			<div class="d-custom-flex w-50 w-xs-full">
 				<div class="w-20 d-md-half-block w-xs-full">
 					<h4 class="green--text mb-0">${{nknCap}}M</h4>

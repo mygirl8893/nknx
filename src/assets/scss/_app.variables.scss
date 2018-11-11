@@ -21,7 +21,8 @@ $base-light:                #FAFAFA !default;
 $gray-dark: 					      #464D69 !default;
 $gray:                      #727891 !default;
 $gray-light: 					      #A5A7B2 !default;
-$gray-lighter: 					    #DDE6F3 !default;          
+$gray-lighter: 					    #DDE6F3 !default;
+$blue-dark:							#1D2733 !default;          
 
 //App Theme Color
 $theme-colors: () !default;
@@ -82,8 +83,8 @@ $card-shadow:                   none;
 $card-hover-shadow:             none;
 
 // Card Title
-$card-title-color: 				      $gray-dark;
-$card-title-font-size: 			    1rem; //22px;
+$card-title-color: 				      $blue-dark;
+$card-title-font-size: 			    1.25rem; //20px;
 $card-title-transform: 			    capitalize;
 $card-title-weight: 			      500;
 $card-title-spacing:            1rem 1.25rem;//16px 20px
@@ -155,7 +156,7 @@ $sidebar-nav-text-size:        14px;
 $sidebar-nav-active-color:     #1b232d;
 $sidebar-nav-active-bg:        $primary;
 $sidebar-nav-spacing:          10px;
-$sidebar-nav-font-weight:      400;
+$sidebar-nav-font-weight:      500;
 //$sidebar-box-shadow:           0 0 10px 0 rgba(0,0,0,0.5);
 $sidebar-box-shadow:           none;
 $sidebar-subnav-font-size:     $sidebar-nav-text-size;

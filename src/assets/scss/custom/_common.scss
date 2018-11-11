@@ -36,7 +36,7 @@ body {
    -webkit-overflow-scrolling: touch;
    .application {
       font-family: $font-family-base !important;
-      background-color: $body-bg;
+      background-color: $body-bg !important;
       font-family: $font-family-base;
       font-weight: $font-weight-normal;
       color: $body-color;
@@ -474,20 +474,14 @@ hr {
 
 .app-default-layout,
 .app-mini-layout {
+    height: 100%;
    .v-content__wrap {
       overflow: auto;
-      height: calc(100vh - 64px);
+      height: calc(100vh);
    }
 }
 
-/*============ Horizontal App Layout ===========*/
 
-.app-horizontal-layout {
-   .v-content__wrap {
-      overflow: auto;
-      height: calc(100vh - 114px);
-   }
-}
 
 /*============ Footer ===========*/
 

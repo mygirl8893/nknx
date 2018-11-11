@@ -14,7 +14,7 @@ $blue:                      #2E62FF !default;
 $purple:                    #2B314A !default;
 $light:             			  #FFFFFF !default;
 $dark:              			  #000000 !default;
-$base:                      #f7f7f7 !default;
+$base:                      #e9eef5 !default;
 $base-light:                #FAFAFA !default;
 
 // App Text Scale
@@ -40,7 +40,7 @@ $theme-colors: map-merge((
 // Settings for the `<body>` element.
 $body-bg:                       $base;
 $body-color:                    $gray-dark;
-$font-family-base:              'Heebo', sans-serif;
+$font-family-base:              'Ubuntu', sans-serif;
 $border-color:                  #EBEDF2;
 
 // Setting for the Typograpgy elements.
@@ -72,12 +72,13 @@ $light-gray:                    linear-gradient(180deg, #09203F 0%, #537895 100%
 
 
 // App Custom Card
-$card-bg: 						          #FFF;
-$card-border-radius: 			      0px;
-$card-border: 					        1px solid #EBECEF;
+$card-bg: 						          #e4e7ed;
+$card-border-radius: 			      5px;
+$card-border: 					        1px solid #dddde1;
 $card-spacing: 					        1.25rem 1.25rem;//20px 20px
 $card-margin-bottom: 			      0rem; //0px
-$card-shadow:                   0 1px 15px 1px rgba(69,65,78,0.08);
+//$card-shadow:                   0 1px 15px 1px rgba(69,65,78,0.08);
+$card-shadow:                   none;
 $card-hover-shadow:             none;
 
 // Card Title
@@ -147,22 +148,24 @@ $input-border-color:           #D7DCE4;
 
 // Sidebar Variable
 
-$sidebar-bg:                   #2E3344;
+$sidebar-bg:                   #1b232d;
 $sidebar-width:                250px;
-$sidebar-nav-color:            #1D2433;
+$sidebar-nav-color:            #777777;
 $sidebar-nav-text-size:        14px;
-$sidebar-nav-active-color:     $light;
+$sidebar-nav-active-color:     #1b232d;
 $sidebar-nav-active-bg:        $primary;
 $sidebar-nav-spacing:          10px;
 $sidebar-nav-font-weight:      400;
-$sidebar-box-shadow:           0 0 10px 0 rgba(0,0,0,0.5);
+//$sidebar-box-shadow:           0 0 10px 0 rgba(0,0,0,0.5);
+$sidebar-box-shadow:           none;
 $sidebar-subnav-font-size:     $sidebar-nav-text-size;
 $sidebar-subnav-font-color:    $sidebar-nav-color;
 $sidebar-icon-color:           $primary;
 
 //Heder Variable
 
-$header-box-shadow:             0 4px 15px 0 rgba(0,0,0,0.09);
+//$header-box-shadow:             0 4px 15px 0 rgba(0,0,0,0.09);
+$header-box-shadow:             none;
 
 // Back To Top Variable
 $back-to-top-bg:               $primary;

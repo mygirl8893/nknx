@@ -1,6 +1,6 @@
 <!-- Side Structure -->
 <template>
-  	<div class="sidebar sidebar-overlay-primary" style="height:100%">
+  	<div class="sidebar" style="height:100%">
     	<vue-perfect-scrollbar class="scroll-area" :settings="settings" style="height:100%">
         <v-toolbar flat class="transparent scroll-area navigation">
           <v-list>
@@ -20,7 +20,6 @@
 								>
 									<v-list-tile-content>
 										<v-list-tile-title>
-											<i class="mr-2 zmdi" :class="item.action"></i>
 											<span>{{ $t(item.title) }}</span>
 										</v-list-tile-title>
 									</v-list-tile-content>

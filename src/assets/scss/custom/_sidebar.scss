@@ -1,0 +1,135 @@
+/*=========== Sidebar Scss ============*/
+
+.v-navigation-drawer--is-mobile {
+    .sidebar-profile {
+       margin-top: 0 !important;
+    }
+ }
+ 
+ .v-navigation-drawer {
+    overflow-y: auto;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    background-position: 100% center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.4s linear 0s;
+    padding: 0;
+    box-shadow: $sidebar-box-shadow;
+    .navigation {
+       .v-list {
+          .sidebar-profile {
+             margin-bottom: 0.9375rem; //15px;
+          }
+          .v-list__tile--link {
+             margin-left: 15px;
+             font-weight: $sidebar-nav-font-weight;
+             font-size: $sidebar-subnav-font-size;
+          }
+          .sidebar-title {
+             span {
+                font-size: 12px;
+                margin-bottom: 0.625rem; //10px;
+                display: block;
+             }
+          }
+          >div>div>.v-list__tile--link {
+             background:none !important;
+             margin-bottom: 0.5rem;
+             padding:0;
+             >.v-list__tile__action {
+                padding: 0 1.3rem;
+             }
+          }
+          .v-list__tile--link {
+             width: 210px;
+             .v-list__tile__action {
+                min-width: 30px;
+                i {
+                   font-size: $sidebar-subnav-font-size;
+                }
+             }
+             &.v-list__tile{
+                &:before {
+                    content: '';
+                    margin-right: 30px;
+                }
+             }             
+             &.v-list__tile--active, &.v-list__tile:hover {
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    -moz-border-radius: 7.5px;
+                    -webkit-border-radius: 7.5px;
+                    border-radius: 7.5px;
+                    background: #d3a752; /* Old browsers */
+                    background: -moz-linear-gradient(top, #d3a752 0%, #fb5b40 100%); /* FF3.6-15 */
+                    background: -webkit-linear-gradient(top, #d3a752 0%,#fb5b40 100%); /* Chrome10-25,Safari5.1-6 */
+                    background: linear-gradient(to bottom, #d3a752 0%,#fb5b40 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3a752', endColorstr='#fb5b40',GradientType=0 ); /* IE6-9 */
+                    margin-right: 25px;
+                }
+                .v-list__tile__title {
+                    span{
+                        color:$sidebar-nav-active-color;
+                    }
+                   
+                   
+                }
+             }
+          }
+          .v-list__group--active {
+             &::after,
+             &::before {
+                background: none;
+             }
+          }
+       }
+    }
+ }
+ 
+ .scroll-area {
+    position: relative;
+    height: 100%;
+ }
+ 
+ .sidebar {
+    height: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
+    * {
+       color: $sidebar-nav-color;
+    }
+    .site-logo {
+       padding: 3rem 0;
+    }
+    &::before,
+    &::after {
+       display: block;
+       content: "";
+       position: absolute;
+       width: 100%;
+       top: 0;
+       left: 0;
+       bottom: 0;
+       z-index: -9;
+    }
+    &::before {
+       opacity: .9;
+    }
+ }
+
+ 
+ 
+ 
+ /*======= Hide Sidebar Background Image =======*/
+ 
+ .background-none {
+    background-image: none !important;
+ }
+ 
+
+ 

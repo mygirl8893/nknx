@@ -1,21 +1,12 @@
 <!-- App Main Structure -->
 <template>
-	<div class="app-horizontal-layout">
+	<div class="app-default-layout">
 		<template v-if="loading">
 			<rotate-square2></rotate-square2>
 		</template>
 		<template v-else>
 			<!-- App Header -->
-			<app-header :horizontal="true"></app-header>
-			<app-horizontal-menus></app-horizontal-menus>
-			<v-navigation-drawer
-				absolute
-				temporary
-				v-model="horizontalLayoutSidebar"
-				:width="250"
-			>
-        <app-sidebar></app-sidebar>
-			</v-navigation-drawer>
+			<app-header></app-header>
 			<!-- App Main Content -->
 			<v-content>
         	<v-alert
@@ -42,7 +33,6 @@
 
 <script>
 import Header from "Components/Header/Header.vue";
-import AppHorizontalMenus from "Components/AppHorizontalMenus/AppHorizontalMenus";
 import PageTitleBar from "Components/PageTitleBar/PageTitleBar";
 import { mapGetters } from "vuex";
 import Footer from "Components/Footer/Footer.vue";
@@ -59,7 +49,6 @@ export default {
   components: {
     appHeader: Header,
     appFooter: Footer,
-    appHorizontalMenus: AppHorizontalMenus,
     PageTitleBar,
     appSidebar: Sidebar,
     Snackbar
@@ -100,10 +89,4 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.app-horizontal-layout {
-  height: 100vh;
-}
-</style>
 

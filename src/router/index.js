@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HorizontalLayout from 'Container/HorizontalLayout'
+import MainContainer from 'Container/MainContainer'
 
 
 
@@ -37,7 +37,7 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			component: HorizontalLayout,
+			component: MainContainer,
 			redirect: '/dashboard',
 			children: [
 				{

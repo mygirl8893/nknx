@@ -1,6 +1,7 @@
 /*=================== Header ===================*/
 
 .nknx-toolbar.v-toolbar {
+   background-color:$base;
    box-shadow: $header-box-shadow;
    .v-toolbar__content {
       justify-content: space-between;
@@ -33,6 +34,7 @@
    display: flex;
    align-items: center;
    padding: 0 0.625rem; //0 10px;
+   justify-content: center;
 }
 
 /*=========== Quick link ============*/

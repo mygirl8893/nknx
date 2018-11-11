@@ -2,35 +2,24 @@
 <template>
 	<div>
 		<v-navigation-drawer
-			v-if="!horizontal"
 			app
 			fixed
 			v-model="drawer"
-			:mini-variant="collapseSidebar"
-			mini-variant-width="70"
 			:width="250"
-			class="nknx-sidebar"
-			:style="{backgroundImage: 'url(' + selectedSidebarBgImage.url + ')'}"
-			:class="{'background-none': !backgroundImage}"
+			class="nknx-sidebar background-none"
 			:right="rtlLayout"
 		>
 			<!-- App Sidebar -->
-
+			<app-sidebar></app-sidebar>
 		</v-navigation-drawer>
 		<v-toolbar 
 			class="nknx-toolbar"
 			app
-		
 			fixed
 		>	
 			<div class="d-custom-flex align-items-center navbar-left">
-				<div v-if="!horizontal">
+				<div>
 					<v-toolbar-side-icon icon large @click.stop="drawer = !drawer" class="v-step-0"></v-toolbar-side-icon>
-				</div>
-				<div class="site-logo-wrap d-custom-flex ml-0 align-items-center" v-else>
-					<router-link to="/dashboard" class="primary site-logo-img">
-						<img src="/static/img/site-logo.png" alt="site logo" width="100" height="30">
-					</router-link>
 				</div>
 				<v-form style="flex: auto;" @submit.prevent="search">
 					<v-text-field  flat solo prepend-icon="search" v-model="searchString" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
@@ -56,14 +45,9 @@ import LanguageProvider from "./LanguageProvider";
 import MobileSearchForm from "./MobileSearchForm";
 import { mapGetters } from "vuex";
 import Notifications from "./Notifications";
+import Sidebar from "../Sidebar/Sidebar.vue";
 
 export default {
-  props: {
-    horizontal: {
-      default: false,
-      type: Boolean
-    }
-  },
   data() {
     return {
 			searchString:"",
@@ -76,11 +60,6 @@ export default {
   computed: {
     ...mapGetters([
       "rtlLayout",
-      "backgroundImage",
-      "backgroundImage",
-      "selectedSidebarBgImage",
-			"darkMode",
-			"collapseSidebar",
 			"activeHeaderFilter"
     ])
   },
@@ -98,7 +77,8 @@ export default {
     LanguageProvider,
 		MobileSearchForm,
 		User,
-		Notifications
+		Notifications,
+		appSidebar: Sidebar,
   }
 };
 </script>

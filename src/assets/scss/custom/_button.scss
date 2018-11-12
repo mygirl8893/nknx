@@ -69,7 +69,16 @@
     font-weight: $btn-font-weight;
 	}
 }
-
+.v-btn.v-btn--router{
+  background-color: transparent !important;
+  border: 1px solid $primary !important;
+  box-shadow: none !important;
+  border-radius: 5px !important;
+  color: $blue-dark !important;
+  padding: 15px 25px !important;
+  text-transform: none !important;
+  font-size: $btn-font-size !important;
+}
 div.upload-btn{
   padding-left:0 !important;
 }

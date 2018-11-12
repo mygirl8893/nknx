@@ -63,7 +63,6 @@ export default {
 						self.chartdata.priceETH.push(entry.open);
 					});
 					self.loading=false;
-					console.log("HALLÖO!!!!");
 				});
 			});
 		} catch (e) {

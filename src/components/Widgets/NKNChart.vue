@@ -1,33 +1,33 @@
 <template>
    <div class="mt-4 visitor-area-chart">
-		<div class="d-custom-flex justify-space-between px-4 mb-4 label-wrap">
+		<div class="d-custom-flex justify-space-between px-4 mb-40 label-wrap">
 			<h3>Market</h3>
 			<div class="d-custom-flex w-50 w-xs-full">
 				<div class="w-20 d-md-half-block w-xs-full">
-					<h4 class="green--text mb-0">${{nknCap}}M</h4>
-					<p class="fs-12 grey--text mb-0">{{$t('message.marketcap')}}</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.marketcap')}}</p>
+					<h4 class="blue-dark--text mb-0">${{nknCap}}M</h4>
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
-					<h4 class="green--text mb-0">${{nknVolume}}K</h4>
-					<p class="fs-12 grey--text mb-0">{{$t('message.dailyVolume')}}</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.dailyVolume')}}</p>
+					<h4 class="blue-dark--text mb-0">${{nknVolume}}K</h4>
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
-					<h4 class="green--text mb-0">#{{nknRank}}</h4>
-					<p class="fs-12 grey--text mb-0">{{$t('message.marketRank')}}</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.marketRank')}}</p>
+					<h4 class="blue-dark--text mb-0">#{{nknRank}}</h4>
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
-					<h4 class="green--text mb-0">{{nkn24}}%</h4>
-					<p class="fs-12 grey--text mb-0">{{$t('message.change24')}}h</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.change24')}}h</p>
+					<h4 class="green-main--text mb-0">{{nkn24}}%</h4>
 				</div>
 			</div>
 			<div class="d-custom-flex w-20 w-xs-full">
 				<div class="w-50 d-md-full w-xs-full">
-					<h4 class="secondary--text mb-0">ETH {{nknETH}}</h4>
-					<p class="fs-12 grey--text mb-0">NKN/ETH</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">NKN/ETH</p>
+					<h4 class="blue-gradient--text mb-0">ETH {{nknETH}}</h4>
 				</div>
 				<div class="w-50 d-md-full w-xs-full">
-					<h4 class="primary--text mb-0">$ {{nknUSD}}</h4>
-					<p class="fs-12 grey--text mb-0">NKN/USD</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">NKN/USD</p>
+					<h4 class="orange-gradient--text mb-0">$ {{nknUSD}}</h4>
 				</div>
 			</div>
 		</div>

@@ -14,6 +14,12 @@ export default {
          },
          options: {
             elements: { point: { radius:0,hitRadius: 5, hoverRadius: 5  } },
+            tooltips: {
+            backgroundColor: '#FFF',
+            titleFontSize: 12,
+            titleFontColor: '#1D2733',
+            bodyFontColor: '#1D2733'
+        },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -34,7 +40,7 @@ export default {
                 id: 'ETH',
                 type: 'linear',
                 position: 'right',
-               ticks: {
+                ticks: {
                    //beginAtZero: true,
                    display: true
                 },
@@ -68,7 +74,7 @@ export default {
                 
                   },
                   gridLines: {
-                     display: true,
+                     display: false,
                      drawBorder: true
                   }
                }]
@@ -113,17 +119,21 @@ export default {
                         backgroundColor: "transparent",
                         borderColor: ChartConfig.color.primary,
                         fill: false,
-                        borderWidth: 2 // and not lineWidth
+                        pointHoverRadius: 5,
+                        pointBackgroundColor: "#FFF",
+                        borderWidth: 3 // and not lineWidth
                     },
                     {
                         label: 'ETH',
                         yAxisID: 'ETH',
                         data: self.chartdata.priceETH,
                         lineTension: 0.1,
-                        backgroundColor: "transparent",
+                        backgroundColor: 'transparent',
                         borderColor: ChartConfig.color.secondary,
                         fill: false,
-                        borderWidth: 2 // and not lineWidth
+                        pointHoverRadius: 5,
+                        pointBackgroundColor: "#FFF",
+                        borderWidth: 3 // and not lineWidth
                         },
                 ]
             }, self.options);

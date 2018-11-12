@@ -155,8 +155,24 @@
 .--blue {
     border-top: 3px solid $primary;
 }
-.green--text{
-	color: #06b67b!important
+.blue-gradient--text{
+	background: $blue-gradient;
+	  -webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}
+.orange-gradient--text{
+	background: $orange-gradient;
+	  -webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}
+.green-main--text{
+	color: $green;
+}
+.gray-dark--text{
+	color: $gray-dark;
+}
+.blue-dark--text{
+	color: $blue-dark;
 }
 .no-box-shadow{
 	box-shadow: none !important;

@@ -1,7 +1,15 @@
 <template>
 	<div>
-		<v-container fluid px-0 py-0 class="mb-30">
-			<NKN-chart></NKN-chart>
+		<v-container fluid pt-0 grid-list-xl>
+			<v-layout row wrap>
+				<app-card
+						colClasses="xl12 lg12 md12 sm12 xs12"
+						customClasses="mb-30"
+						:fullScreen="true"
+					>
+				<NKN-chart></NKN-chart>
+				</app-card>
+			</v-layout>
 		</v-container>
 		<v-container fluid pt-0 grid-list-xl>
 			<v-layout row wrap>

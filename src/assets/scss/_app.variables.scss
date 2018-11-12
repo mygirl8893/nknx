@@ -18,11 +18,14 @@ $base:                      #e9eef5 !default;
 $base-light:                #FAFAFA !default;
 
 // App Text Scale
-$gray-dark: 					      #464D69 !default;
-$gray:                      #727891 !default;
-$gray-light: 					      #A5A7B2 !default;
+$gray-dark: 					#828282 !default;
+$gray:                      		#727891 !default;
+$gray-light: 					#A5A7B2 !default;
 $gray-lighter: 					    #DDE6F3 !default;
-$blue-dark:							#1D2733 !default;          
+$blue-dark:							#1D2733 !default;
+$green:								#28B725 !default;   
+$blue-gradient:						-webkit-linear-gradient(#B8ED62 -35%, #0073E7 65%);	
+$orange-gradient:					-webkit-linear-gradient(#B8ED62 -35%, #FB5C3E 65%);						       
 
 //App Theme Color
 $theme-colors: () !default;
@@ -36,6 +39,7 @@ $theme-colors: map-merge((
   "light":      $light,
   "dark":       $dark,
   "blue":       $blue,
+  "green": 		$green
 ), $theme-colors);
 
 // Settings for the `<body>` element.

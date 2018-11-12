@@ -2,7 +2,7 @@
    <div class="mt-4 visitor-area-chart">
 		<div class="d-custom-flex justify-space-between px-4 mb-40 label-wrap">
 			<h3>Market</h3>
-			<div class="d-custom-flex w-50 w-xs-full">
+			<div class="d-custom-flex w-50 w-xs-full" style='border-right: 2px solid #E1E1E5'>
 				<div class="w-20 d-md-half-block w-xs-full">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.marketcap')}}</p>
 					<h4 class="blue-dark--text mb-0">${{nknCap}}M</h4>

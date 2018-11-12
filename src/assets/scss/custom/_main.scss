@@ -33,13 +33,17 @@
 	}
 	.app-card-content {
 		padding: $card-spacing;
+		h5{
+			margin-bottom: 1.25rem;
+			color: $gray-dark;
+		}
 	}
 	.app-full-content {
 		padding: 0;
 	}
 	.app-footer {
+		text-align: right;
 		padding: $card-footer-spacing;
-		border-top: $card-border;
 		.v-btn{
 			margin:0;
 		}

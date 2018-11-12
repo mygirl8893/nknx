@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<app-section-loader :status="loader"></app-section-loader>
-		<h2>{{$t('message.totalNodesCounter')}} {{crawlCounter}}</h2>
+		<h5>{{$t('message.totalNodesCounter')}} {{crawlCounter}}</h5>
 		<div id="world-map" style="width: 100%; height: 500px"></div>
 	</div>
 </template>

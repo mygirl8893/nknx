@@ -14,24 +14,23 @@
 		<v-container fluid pt-0 grid-list-xl>
 			<v-layout row wrap>
 				<app-card
-						:heading="$t('message.map')"
-						colClasses="xl7 lg7 md7 sm12 xs12"
-						customClasses="mb-30"
-						:fullScreen="true"
-						:footer="true"
-					
-					>
-					<map-widget></map-widget>
-					<v-btn slot="footer" :to="{path: '/network'}" color="primary" small>{{$t('message.viewDetails')}}</v-btn>
-				</app-card>
-				<app-card
 						:heading="$t('message.yourWallet')"
-						colClasses="xl5 lg5 md5 sm12 xs12"
+						colClasses="xl6 lg6 md6 sm12 xs12"
 						customClasses="mb-30"
 						:fullScreen="true"
 					
 					>
 					<wallet-widget></wallet-widget>
+				</app-card>
+				<app-card
+						:heading="$t('message.map')"
+						colClasses="xl6 lg6 md6 sm12 xs12"
+						customClasses="mb-30"
+						:fullScreen="true"
+						:footer="true"
+					>
+					<map-widget></map-widget>
+					<v-btn slot="footer" :to="{path: '/network'}" color="primary" small>{{$t('message.viewDetails')}}</v-btn>
 				</app-card>
 			</v-layout>
 

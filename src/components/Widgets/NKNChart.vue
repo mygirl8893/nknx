@@ -32,7 +32,10 @@
 			</div>
 		</div>
 		<div class="px-4 pos-relative">
-			<NKNChart :height="220"></NKNChart>
+			<NKNChart 
+				v-if="!loading"
+				:height="220"       
+				:chartdata="chartdata"/>
 		</div>
 	</div>
 </template>
@@ -41,8 +44,31 @@
 import NKNChart from "Components/Charts/NKNChart";
 import axios from "axios";
 export default {
-  components: {
-    NKNChart
+  	components: {
+    	NKNChart
+	},
+	mounted () {
+		this.getMarketPrice();
+		this.interval = setInterval(this.getMarketPrice, 10000);
+		var self=this;
+		try {
+			axios.get('https://min-api.cryptocompare.com/data/histoday?fsym=NKN&tsym=USD&limit=7').then(function(responseUSD){
+				responseUSD.data.Data.forEach(function(entry) {
+					self.chartdata.days.push(self.$moment.unix(entry.time));
+					self.chartdata.priceUSD.push(entry.open);
+				});
+
+				axios.get('https://min-api.cryptocompare.com/data/histoday?fsym=NKN&tsym=ETH&limit=7').then(function(responseETH){
+					responseETH.data.Data.forEach(function(entry) {
+						self.chartdata.priceETH.push(entry.open);
+					});
+					self.loading=false;
+					console.log("HALLÖO!!!!");
+				});
+			});
+		} catch (e) {
+			console.error(e)
+		}
 	},
 	methods:{
 		getMarketPrice(){
@@ -77,15 +103,15 @@ export default {
 	destroyed () {
 		clearInterval(this.interval);
 	},
-	mounted: function(){
-
-		this.getMarketPrice();
-		this.interval = setInterval(this.getMarketPrice, 10000);
-
-	},
 
 	data(){
 		return {
+			loading: true,
+			chartdata:{
+				days : [],
+				priceUSD :[],
+				priceETH :[]
+			},
 			interval:null,
 			nknUSD: 0,
 			nknETH: 0,

@@ -481,7 +481,7 @@ hr {
     height: 100%;
    .v-content__wrap {
       overflow: auto;
-      height: calc(100vh);
+      min-height: 100vh;
    }
 }
 

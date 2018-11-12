@@ -21,10 +21,11 @@
 				<div>
 					<v-toolbar-side-icon icon large @click.stop="drawer = !drawer" class="v-step-0"></v-toolbar-side-icon>
 				</div>
-				<v-form style="flex: auto;" @submit.prevent="search">
+				<v-form style="flex: auto;" @submit.prevent="search" class='search-form'>
 					<v-text-field  flat solo prepend-icon="search" v-model="searchString" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
 				 </v-form>
 			</div>
+
 			<div class="navbar-right">
 				<notifications v-if="$auth.check()"></notifications>
 				<v-btn v-if="!$auth.check()" color="primary" tag="link" :to="'/login'">{{ $t('message.login') }}</v-btn>

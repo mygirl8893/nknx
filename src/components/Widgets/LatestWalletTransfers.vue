@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-layout row wrap>
-            <v-flex xs12 v-if="!$store.getters.walletfile">
+            <v-flex xs12 v-if="!$store.getters.selectedAddress">
                 {{$t('message.transfersNoWallet')}}
             </v-flex>
             <v-flex xs12 v-else>
@@ -24,13 +24,13 @@
                         <template slot="items" slot-scope="props">
                             <tr :key="output.id" v-for="output in props.item.outputs" v-if="output.address!==props.item.sender">
                                 <td>
-                                    <span v-if="$store.getters.walletfile.address == props.item.sender">-</span>
-                                    <span v-if="$store.getters.walletfile.address == output.address">+</span>
+                                    <span v-if="$store.getters.selectedAddress == props.item.sender">-</span>
+                                    <span v-if="$store.getters.selectedAddress == output.address">+</span>
                                     {{ output.value }} NKN
                                 </td>
                                 <td><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
-                                <td v-if="$store.getters.walletfile.address == props.item.sender">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+props.item.sender }">{{ props.item.sender }}</router-link></td>
-                                <td v-if="$store.getters.walletfile.address == output.address">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+output.address }">{{ output.address }}</router-link></td>
+                                <td v-if="$store.getters.selectedAddress == props.item.sender">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+props.item.sender }">{{ props.item.sender }}</router-link></td>
+                                <td v-if="$store.getters.selectedAddress == output.address">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+output.address }">{{ output.address }}</router-link></td>
                                 <td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
                                 <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
                             </tr>
@@ -46,11 +46,11 @@ import { mapGetters } from 'vuex'
   export default {
 	methods: {
 		getLatestTransfers() {
-			if(this.$store.getters.walletfile){
+			if(this.$store.getters.selectedAddress){
 				const self = this;
 				self.loader= true;
 				//Call to NKN-API https://github.com/CrackDavid/nkn-api
-				axios.get('transactions/?latest=5&txType=16&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$store.getters.walletfile.address).then(function(response){
+				axios.get('transactions/?latest=5&txType=16&withoutpayload=true&withoutattributes=true&withoutinputs=true&address='+this.$store.getters.selectedAddress).then(function(response){
                     self.latestTransfers = response.data;
 					self.loader= false
 				});
@@ -66,11 +66,11 @@ import { mapGetters } from 'vuex'
     },
     computed: {
         ...mapGetters({
-        walletfile: 'walletfile'
+        selectedAddress: 'selectedAddress'
         })
     },
     watch: {
-        walletfile: function () {
+        selectedAddress: function () {
             this.getLatestTransfers();
             if(!this.interval){
                 this.interval = setInterval(this.getLatestTransfers, 60000);

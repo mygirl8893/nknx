@@ -6,9 +6,9 @@ import VuexPersist from 'vuex-persist';
 
 import settings from './modules/settings';
 import sidebar from './modules/sidebar';
-import walletfile from './modules/walletfile';
-import walletstore from './modules/walletstore';
+import addresses from './modules/addresses';
 import snackbar from './modules/snackbar';
+import selectedAddress from './modules/selectedAddress';
 
 
 Vue.use(Vuex);
@@ -17,7 +17,7 @@ const vuexLocalStorage = new VuexPersist({
     key: 'vuex', // The key to store the state on in the storage provider.
     storage: window.localStorage, // or window.sessionStorage or localForage
     reducer: state => ({
-        walletstore: state.walletstore,
+        addresses: state.addresses,
         settings: {
             selectedLocale: state.settings.selectedLocale
         }
@@ -29,8 +29,8 @@ export const store = new Vuex.Store({
     modules: {
         settings,
         sidebar,
-        walletfile,
-        walletstore,
-        snackbar
+        addresses,
+        snackbar,
+        selectedAddress
     }
 })

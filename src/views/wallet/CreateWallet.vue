@@ -105,8 +105,8 @@
 					this.walletFile = this.wallet.toJSON();
 					this.loading = false;
 					this.step = 1;
-					this.$store.dispatch("setWalletfile", this.wallet);
-					this.$store.dispatch("addToWalletStore", {address: this.wallet.address, pk:this.wallet.getPrivateKey()});
+					this.$store.dispatch("addToAddressesStore", this.wallet.address);
+					this.$store.dispatch("setSelectedAddress", this.wallet.address);
 				}
 			},
 			getPK(){

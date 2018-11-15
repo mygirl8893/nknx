@@ -14,15 +14,6 @@
 			</v-layout>
 			<v-layout row wrap>
 				<app-card
-					:heading="$t('message.transfer')"
-					customClasses="mb-30"
-					colClasses="xl12 lg12 md12 sm12 xs12"
-				>
-					<wallet-transfer></wallet-transfer>
-				</app-card>
-			</v-layout>
-			<v-layout row wrap>
-				<app-card
 					:heading="$t('message.transactions')"
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
@@ -57,7 +48,6 @@ import WalletWidget from "Components/Widgets/WalletWidget";
 import LatestWalletTransactions from "Components/Widgets/LatestWalletTransactions";
 import LatestWalletTransfers from "Components/Widgets/LatestWalletTransfers";
 import WalletDetails from "Components/Widgets/WalletDetails";
-import WalletTransfer from "Components/Widgets/WalletTransfer";
 import axios from "axios";
   export default {
 	components: {
@@ -65,7 +55,6 @@ import axios from "axios";
 		LatestWalletTransactions,
 		LatestWalletTransfers,
 		WalletDetails,
-		WalletTransfer
 	},
 	methods: {
 		

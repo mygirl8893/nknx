@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-layout row wrap>
-            <v-flex xs12 v-if="!$store.getters.walletfile">
+            <v-flex xs12 v-if="!$store.getters.selectedAddress">
                 {{$t('message.transactionsNoWallet')}}
             </v-flex>
             <v-flex xs12 v-else>
@@ -53,12 +53,12 @@ import { mapGetters } from 'vuex'
   export default {
 	methods: {
 		getLatestTransactions() {
-			if(this.$store.getters.walletfile){
+			if(this.$store.getters.selectedAddress){
 				const self = this;
                 self.loader= true;
                 
 				//Call to NKN-API https://github.com/CrackDavid/nkn-api
-				axios.get('transactions/?latest=5&withoutpayload=true&txType=0,16,66&withoutoutputs=true&withoutattributes=true&withoutinputs=true&address='+this.$store.getters.walletfile.address).then(function(response){
+				axios.get('transactions/?latest=5&withoutpayload=true&txType=0,16,66&withoutoutputs=true&withoutattributes=true&withoutinputs=true&address='+this.$store.getters.selectedAddress).then(function(response){
 					self.latestTransactions = response.data;
 					self.loader= false
 				});
@@ -67,7 +67,7 @@ import { mapGetters } from 'vuex'
     },
     computed: {
         ...mapGetters({
-        walletfile: 'walletfile'
+        selectedAddress: 'selectedAddress'
         })
     },
     destroyed () {
@@ -78,7 +78,7 @@ import { mapGetters } from 'vuex'
 		this.interval = setInterval(this.getLatestTransactions, 60000);
     },
     watch: {
-        walletfile: function () {
+        selectedAddress: function () {
             this.getLatestTransactions();
             if(!this.interval){
                 this.interval = setInterval(this.getLatestTransactions, 60000);

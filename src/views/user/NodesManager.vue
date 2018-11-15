@@ -133,7 +133,9 @@
                                 v-clipboard:success="onCopy1"
                                 class='cursor-pointer'
                                 >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
-                                <td >{{props.item.syncState}}<span v-if='props.item.online != 1'><v-badge color="red">
+                                <td >{{props.item.syncState}}
+								<v-btn v-if='props.item.online != 0' @click='checkPorts(props.item.addr)' small color="primary">{{ $t('message.ports') }}</v-btn>
+								<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                 </v-badge></span> </td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
@@ -151,7 +153,7 @@
                             </template>
                         </v-data-table>
                     </div>
-                    <v-dialog v-model="dialog" max-width="500px">
+                    <v-dialog v-model="removeDialog" max-width="500px">
                         <v-card>
                           <v-card-title>
                             <span class="headline">{{ $t('message.warning') }}</span>
@@ -165,6 +167,39 @@
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-1" flat @click="close">{{ $t('message.cancel') }}</v-btn>
                             <v-btn color="blue darken-1" flat @click="removeAllConfirm">{{ $t('message.removeAllNodes') }}</v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+					<v-dialog v-model="portsDialog" max-width="500px">
+                        <v-card>
+                          <v-card-title>
+                            <span class="headline">{{currentIp}}</span>
+                          </v-card-title>
+
+                          <v-card-text>
+							<v-data-table
+							    :items="nodePorts"
+							    item-key="port"
+							    hide-actions 
+							  >
+							    <template slot="headers" slot-scope="props">
+							      <tr>
+									<th><b>{{ $t('message.port') }}</b></th>
+									<th><b>{{ $t('message.status') }}</b></th>
+							      </tr>
+							    </template>
+							    <template slot="items" slot-scope="props">
+							      <tr>
+							        <td>{{ props.item.port}}</td>
+							        <td>{{ props.item.status}}</td>
+							      </tr>
+							    </template>
+							  </v-data-table>
+                          </v-card-text>
+
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" flat @click="close">{{ $t('message.close') }}</v-btn>
                           </v-card-actions>
                         </v-card>
                       </v-dialog>
@@ -186,8 +221,11 @@ export default {
 			interval: null,
             loader: true,
             valid: false,
-            dialog: false,
+            removeDialog: false,
+            portsDialog: false,
             multiValid: false,
+            nodePorts: [],
+            currentIp: null,
             isCopy: false,
             isMultiCopy: false,
             tabs: null,
@@ -350,7 +388,21 @@ export default {
         },
         removeAllNodes(){
             const self = this;
-            self.dialog = true
+            self.removeDialog = true
+        },
+		checkPorts(ip){
+            const self = this;
+            self.portsDialog = true
+            self.currentIp = ip
+            self.nodePorts = []
+            axios.get('checkPort?address='+ip, {
+                    })
+                    .then((response) => {
+						for (var port in response.data){
+						    self.nodePorts.push({"port":port, "status": response.data[port]})
+						}
+                    })
+
         },
         removeAllConfirm(){
             const self = this;
@@ -363,7 +415,8 @@ export default {
         },
         close(){
             const self = this;
-            self.dialog = false
+            self.removeDialog = false
+            self.portsDialog = false
         },
         getUserNodes() {
             const self = this;

@@ -186,5 +186,8 @@ export default {
   followingNodesNotReachable:"The following nodes are not reachable: ",
   followingNodesDuplicate:"The following nodes are already in the database: ",
   NodeNotReachable: "The node is not reachable.",
-  NodeDuplicate: "The node is already in the database."
+  NodeDuplicate: "The node is already in the database.",
+  ports: "Ports",
+  port: "Port",
+  close: "Close"
 }

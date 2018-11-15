@@ -12,7 +12,7 @@
 					</v-flex>
 				</v-layout>
 				<v-layout row wrap>
-					<v-flex xs12 v-if="!items ">
+					<v-flex xs12 v-if="!items.length ">
 						{{$t('message.yourWalletNoWallet')}}
 					</v-flex>
 					<v-flex xs12 v-if="selectedWalletAddress">
@@ -51,6 +51,7 @@
 <script>
 import axios from "axios"
 import WalletCard from "../WalletCard/WalletCard";
+import { mapGetters } from 'vuex'
 export default {
 	components: {
 		WalletCard
@@ -61,14 +62,11 @@ export default {
 		}
 	},
 	computed: {
-		items: function(){
-			if(this.$store.getters.addresses.length){
-				return this.$store.getters.addresses
-			}
-			else{
-				return [];
-			}
-		}
+
+        ...mapGetters({
+			selectedWalletAddress: 'selectedAddress',
+			items: 'addresses'
+        })
 	},
 	methods:{
 		removeWalletAddress(){
@@ -79,7 +77,6 @@ export default {
 	},
 	data(){
 		return {
-			selectedWalletAddress:null,
 			balance:0,
 			newbalance:0,
 		}

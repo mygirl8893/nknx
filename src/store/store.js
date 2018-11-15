@@ -18,6 +18,7 @@ const vuexLocalStorage = new VuexPersist({
     storage: window.localStorage, // or window.sessionStorage or localForage
     reducer: state => ({
         addresses: state.addresses,
+        selectedAddress: state.selectedAddress,
         settings: {
             selectedLocale: state.settings.selectedLocale
         }

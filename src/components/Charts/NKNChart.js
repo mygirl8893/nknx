@@ -42,7 +42,7 @@ var gradientLinePlugin = {
             var gradient = ctx.createLinearGradient(0, minValueYPixel, 0, maxValueYPixel);
 
             gradient.addColorStop(0.85, 'rgba(0,115,231, 1.0)');
-            gradient.addColorStop(1, 'rgba(184,237,100, 1.0)');
+            gradient.addColorStop(1, '#42b7bd');
             // Assign the gradient to the dataset's border color.
             dataset.borderColor = gradient;
         }
@@ -79,7 +79,7 @@ var gradientLinePlugin = {
             var gradient1 = ctx1.createLinearGradient(0, minValue1YPixel, 0, maxValue1YPixel);
 
             gradient1.addColorStop(0.85, 'rgba(251,92,62, 1.0)');
-            gradient1.addColorStop(1, 'rgba(184,237,100, 1.0)');
+            gradient1.addColorStop(1, '#e1a661');
             // Assign the gradient to the dataset's border color.
             dataset1.borderColor = gradient1;
 

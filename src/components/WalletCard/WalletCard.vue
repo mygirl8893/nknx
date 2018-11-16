@@ -5,7 +5,7 @@
             <span class="active">{{$t('message.activeWallet')}}</span>
             <span><router-link :to="{ path: '/address/'+address}">{{ address }}</router-link></span>
             <div class="balance">
-                <i class="zmdi zmdi-eye"></i><span class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span></div>
+                <i class="zmdi" v-bind:class='activeClass' @click='showBalance'></i><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span></div>
         </v-flex>
     </div>
 </template>
@@ -19,10 +19,12 @@ export default {
     },
     data() {
       return {
+          activeClass: "zmdi-eye",
           balance:0,
           balanceUSD:0,
           newbalance:0,
-          nknPrice:0
+          nknPrice:0,
+          isHidden: false
       }
 
     },
@@ -44,15 +46,26 @@ export default {
 					"id": 1
 				}).then(function(response){
 					self.newbalance = 0;
-					response.data.result.forEach(function(unspendoutput) {
-						self.newbalance = self.newbalance + Number(unspendoutput.Value);
-					});
+                    if(response.data.result != null){
+                        response.data.result.forEach(function(unspendoutput) {
+                            self.newbalance = self.newbalance + Number(unspendoutput.Value);
+                        });
+                    }
                     self.balance = self.newbalance;
                     self.balanceUSD = (self.balance*self.nknPrice/5).toFixed(0)
 				});
 
 			}
-		}
+		},
+        showBalance(){
+            const self = this;
+            self.isHidden = !self.isHidden
+            if(self.isHidden === true){
+                self.activeClass = 'zmdi-eye-off'
+            } else{
+                self.activeClass = 'zmdi-eye'
+            }
+        }
 
     },
     mounted() {

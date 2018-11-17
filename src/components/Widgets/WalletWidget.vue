@@ -3,7 +3,7 @@
                 <v-layout row wrap style="margin-top:35px;">
 					<v-flex v-if="items.length" xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-select
-							v-model="selectedWalletAddress"
+							:value="selectedWalletAddress"
 							:items="items"
 							item-text="address"
 							item-value="address"
@@ -72,7 +72,7 @@ export default {
 		removeWalletAddress(){
 			//remove from store
 			this.$store.dispatch("removeFromAddressesStore", this.selectedWalletAddress);
-			this.selectedWalletAddress=null;
+			this.$store.dispatch("removeSelectedAddress");
 		}
 	},
 	data(){

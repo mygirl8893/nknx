@@ -1,6 +1,6 @@
 <template>
     <div class="wallet-card">
-        <div class="close-wallet" v-on:click="deleteCallback"><i class="zmdi zmdi-close"></i></div>
+        <div class="close-wallet" @click="deleteCallback(address)"><i class="zmdi zmdi-close"></i></div>
         <v-flex xs12>
             <span class="active">{{$t('message.activeWallet')}}</span>
             <span><router-link :to="{ path: '/address/'+address}">{{ address }}</router-link></span>
@@ -15,7 +15,7 @@ import axios from "axios";
 export default {
     props: {
         address: String,
-        deleteCallback:null
+        deleteCallback: { type: Function }
     },
     data() {
       return {

@@ -55,7 +55,7 @@ export const languages = [
     locale: "pt"
    },
    {
-    name: "český",
+    name: "česky",
     icon: "cs",
     locale: "cs"
    },

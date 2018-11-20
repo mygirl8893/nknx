@@ -1,26 +1,19 @@
 <template>
     <div class='assets-wrapper'>
         <app-section-loader :status="loader"></app-section-loader>
-        <v-card v-for="(wallet, index) in walletsCopy" v-bind:key="index" class='assets d-md-full' style="width:47%">
-            <div class="assets-item">
-                <div class="assets-preview">
-                    <div class="assets-preview__text">{{wallet.preview}}</div>
-                </div>
-                <div class="assets-label">{{wallet.label}}</div>
-                <div class="assets-balance">
-                    <div class="assets-balance__wallet">{{wallet.address}}</div>
-                    <div class="assets-balance__label">{{$t('message.balance')}}</div>
-                    <div class="assets-balance__item">{{wallet.balance}} NKN</div>
-                    <div class="assets-balance__item">≈${{wallet.balanceUsd}}</div>
-                </div>
-            </div>
-        </v-card>
+        <div v-for="(wallet, index) in walletsCopy" v-bind:key="index" class='assets d-md-full' style="width:47%">
+            <wallet-card :address="wallet.address"></wallet-card>
+        </div>
     </div>
 </template>
 <script>
 import axios from "axios";
+import WalletCard from "Components/WalletCard/WalletCard";
 
 export default {
+    components: {
+        WalletCard
+    },
     data() {
         return {
             interval: null,

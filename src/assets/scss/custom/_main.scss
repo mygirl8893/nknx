@@ -178,12 +178,10 @@
 //Wallet Tracker
 .assets{
 	overflow: hidden !important;
-	padding: 36px 16px;
-    padding-left: 85px;
+	padding: 16px 16px;
     position: relative;
 	width: 23%;
     margin: 9px;
-    background-color: #fafafa;
     &-wrapper{
     display: flex;
     flex-flow: row wrap;

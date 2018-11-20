@@ -4,14 +4,14 @@
 	<h4>{{$t('message.miningStats')}}</h4>
 	<v-select
           v-model="select"
-          :hint="`${select.address}`"
+          :hint="`$t('message.wallet')`"
           :items="wallets"
           item-text="label"
           item-value="label"
-          label="Select"
+          label="Wallet"
           persistent-hint
           return-object
-          single-line
+          outline
           @change='getId(select.id)'
           
         ></v-select>

@@ -8,6 +8,7 @@
 							item-text="address"
 							item-value="address"
 							:label="$t('message.storedWallets')"
+							outline
 						></v-select>
 					</v-flex>
 				</v-layout>

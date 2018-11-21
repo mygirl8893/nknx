@@ -28,7 +28,7 @@ var gradientLinePlugin = {
         //console.log("USD");
         //console.log("minValue: " + minValue);
         //console.log("maxValue: " + maxValue);
-
+        if(yAxis){
         var minValueYPixel = yAxis.getPixelForValue(minValue);
         var maxValueYPixel = yAxis.getPixelForValue(maxValue);
 
@@ -60,9 +60,13 @@ var gradientLinePlugin = {
           if (maxValue1 < dataset1.data[i])
             maxValue1 = dataset1.data[i];
         }
+        }
         // Calculate Y pixels for min and max values.
-        var yAxis1 = chartInstance.scales.ETH;
 
+        var yAxis1 = chartInstance.scales.ETH;
+        if(yAxis1){
+          
+        
         //console.log("ETH");
         //console.log("minValue: " + minValue1);
         //console.log("maxValue: " + maxValue1);
@@ -83,6 +87,7 @@ var gradientLinePlugin = {
             // Assign the gradient to the dataset's border color.
             dataset1.borderColor = gradient1;
 
+        }
         }
 
       }

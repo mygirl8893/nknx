@@ -47,6 +47,14 @@
 							type="password" 
 							required
 						></v-text-field>
+						<v-text-field 
+							:error-messages='passwordMatchError()'
+							:label="$t('message.repeatPassword')" 
+							v-model="repeatPassword" 
+							type="password" 
+							:rules="passwordRepeatRules" 
+							required
+						></v-text-field>
 						<v-btn :disabled="!valid" large @click="submit" block color="primary" class="mb-3">{{$t('message.signUp')}}</v-btn>
 					<!--	<p>{{$t('message.bySigningUpYouAgreeTo')}}</p>
 						<router-link to="">{{$t('message.termsOfService')}}</router-link>-->
@@ -81,11 +89,16 @@ export default {
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid"
       ],
-			password: "",
+		password: "",
+		repeatPassword: "",
+		passwordRepeatRules: [v => !!v || "Password is required"],
       passwordRules: [v => !!v || "Password is required"],
     };
   },
   methods: {
+	passwordMatchError () { 
+		return (this.password === this.repeatPassword) ? '' : 'Passwords must match'
+	},
     submit() {
 			var self = this;
       if (this.valid) {

@@ -59,14 +59,15 @@
 }
 
 .app-card-action{
-	background-color:$base-light !important;
+	background-color:  $light;
 	overflow: hidden;
+	border-radius: 5px;
 	.v-list__tile{
+		font-weight: 500;
 		height:40px;
 		font-size: 0.875rem;
 		margin:0.3125rem;
 		background-color: $light;
-		box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.02);
 		span{
 			transition:all 0.4s ease-in-out;
 		}

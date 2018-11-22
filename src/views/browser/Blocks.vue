@@ -5,7 +5,7 @@
 		<v-container grid-list-xl pt-0>
 			<v-layout row wrap>
 				<app-card
-					customClasses="mb-30"
+					customClasses="mb-30 full-width"
 					colClasses="xl12 lg12 md12 sm12 xs12"
 				>
 					<v-layout row wrap>

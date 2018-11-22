@@ -9,6 +9,11 @@
 	position: relative;
 	height:100%;
 	overflow: hidden;
+	&.full-width{
+		.app-card-content{
+			padding: 0px;
+		}
+	}
 	.app-card-title {
 		position: relative;
 		padding: $card-title-spacing;

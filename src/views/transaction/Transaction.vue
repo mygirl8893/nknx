@@ -130,7 +130,7 @@ export default {
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("https://nknx.org/api/transactions/"+this.$route.params.hash+'?withoutpayload=true').then(function(response){
-          self.transaction = response.data[0];
+          self.transaction = response.data;
           self.loader=false;
       });
   },
@@ -145,7 +145,7 @@ export default {
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("https://nknx.org/api/transactions/"+this.$route.params.hash+'?withoutpayload=true').then(function(response){
-          self.transaction = response.data[0];
+          self.transaction = response.data;
           self.loader=false;
       });
     }
@@ -155,7 +155,7 @@ export default {
         this.payloadloader=true;
         self = this;
         axios.get("https://nknx.org/api/payloads/"+this.transaction.id).then(function(response){
-          self.payload = response.data[0];
+          self.payload = response.data;
           self.payloadloader=false;
         });
       }

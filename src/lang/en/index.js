@@ -189,5 +189,6 @@ export default {
   NodeDuplicate: "The node is already in the database.",
   ports: "Ports",
   port: "Port",
-  close: "Close"
+  close: "Close",
+  moreActions: "More actions"
 }

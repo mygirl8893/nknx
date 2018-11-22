@@ -2,31 +2,41 @@
   	<div class="app-card-title" v-if="heading">
 		<h3>{{heading}}</h3>
 		<template v-if="!withTabs">
-			<div class="app-contextual-link" v-if="fullScreen || reloadable || closeable">
-				<v-menu
-					transition="scale-transition"
-					origin="right top"
-					bottom
-					left
-				>
-					<v-btn class="ma-0" icon slot="activator">
-						<v-icon>more_vert</v-icon>
-					</v-btn>
-					<v-list class="app-card-action">
-						<v-list-tile @click="$emit('onCollapse')" v-if="fullScreen">
-							<i class="zmdi zmdi-fullscreen primary--text mr-2 fs-14"></i>
-							<span>{{$t("message.fullScreen")}}</span>
-						</v-list-tile>
-						<v-list-tile @click="$emit('onReload')" v-if="reloadable">
-							<i class="zmdi zmdi-refresh success--text mr-2 fs-14"></i>
-							<span>{{$t("message.reload")}}</span>
-						</v-list-tile>
-						<v-list-tile @click="$emit('onClose')" v-if="closeable">
-							<i class="zmdi zmdi-close mr-2 error--text fs-14"></i>
-							<span>{{$t("message.close")}}</span>
-						</v-list-tile>
-					</v-list>
-				</v-menu>
+			<div class="app-contextual-link" v-if="fullScreen || reloadable || closeable || walletLinks">
+				<v-tooltip bottom>
+					<v-menu
+						transition="scale-transition"
+						origin="right top"
+						bottom
+						left
+						slot="activator"
+					>
+						<v-btn class="ma-0" icon slot="activator">
+							<v-icon>more_vert</v-icon>
+						</v-btn>
+						<v-list class="app-card-action">
+							<v-list-tile @click="$emit('onCollapse')" v-if="fullScreen">
+								<i class="zmdi zmdi-fullscreen primary--text mr-2 fs-14"></i>
+								<span>{{$t("message.fullScreen")}}</span>
+							</v-list-tile>
+							<v-list-tile @click="$emit('onReload')" v-if="reloadable">
+								<i class="zmdi zmdi-refresh success--text mr-2 fs-14"></i>
+								<span>{{$t("message.reload")}}</span>
+							</v-list-tile>
+							<v-list-tile @click="$emit('onClose')" v-if="closeable">
+								<i class="zmdi zmdi-close mr-2 error--text fs-14"></i>
+								<span>{{$t("message.close")}}</span>
+							</v-list-tile>
+							<v-list-tile :to="{path: '/wallet/open'}" v-if="walletLinks">
+								<span>{{$t('message.openWallet')}}</span>
+							</v-list-tile>
+							<v-list-tile :to="{path: '/wallet/create'}" v-if="walletLinks">
+								<span>{{$t('message.newWallet')}}</span>
+							</v-list-tile>
+						</v-list>
+					</v-menu>
+					<span>{{$t('message.moreActions')}}</span>
+				</v-tooltip>
 			</div>
 		</template>
 		<template v-else>
@@ -55,7 +65,8 @@ export default {
     "onCollapse",
     "onReload",
     "onClose",
-    "onChangeTabCallback"
+		"onChangeTabCallback",
+		"walletLinks"
   ],
   data() {
     return {

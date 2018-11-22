@@ -20,12 +20,12 @@
 						<wallet-card :address="selectedWalletAddress" :deleteCallback="removeWalletAddress"></wallet-card>
 					</v-flex>
 				</v-layout>
-				<v-layout>
+				<!--<v-layout>
 					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-layout row wrap justify-end style="margin-top: 5px;">
 							<v-btn :to="{path: '/wallet/create'}" raised color="primary">{{$t('message.newWallet')}}</v-btn>
 							<v-btn :to="{path: '/wallet/open'}" raised color="primary">{{$t('message.openWallet')}}</v-btn>
-							<!--<v-menu offset-y>
+							<v-menu offset-y>
 								<v-btn
 									slot="activator"
 									color="primary"
@@ -43,10 +43,10 @@
 										<v-list-tile-title>{{$t('message.changePassword')}}</v-list-tile-title>
 									</v-list-tile>
 								</v-list>
-							</v-menu>-->
+							</v-menu>
 						</v-layout>
 					</v-flex>
-				</v-layout>
+				</v-layout>-->
     </div>
 </template>
 <script>

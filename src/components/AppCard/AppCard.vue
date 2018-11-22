@@ -7,6 +7,7 @@
           :closeable="closeable"
           :reloadable="reloadable"
           :fullScreen="fullScreen"
+          :walletLinks="walletLinks"
 			 :withTabs="withTabs"
 			 :tabs="tabs"
 			 @onChangeTabCallback="onChangeTab"
@@ -46,7 +47,8 @@ export default {
     "footer",
     "withTabs",
     "tabs",
-    "onChangeTabCallback"
+    "onChangeTabCallback",
+    "walletLinks"
   ],
   data() {
     return {

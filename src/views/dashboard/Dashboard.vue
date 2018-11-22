@@ -17,7 +17,7 @@
 						:heading="$t('message.yourWallet')"
 						colClasses="xl6 lg6 md6 sm12 xs12"
 						customClasses="mb-30"
-						:fullScreen="true"
+						:walletLinks="true"
 					
 					>
 					<wallet-widget></wallet-widget>

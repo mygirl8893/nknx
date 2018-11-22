@@ -1,6 +1,7 @@
 /*========== Table Css =========*/
 
 table.v-table {
+   background-color: $base !important;
    table-layout: fixed;
    thead,
    tbody,
@@ -11,7 +12,8 @@ table.v-table {
          th {
             vertical-align: middle;
             font-size: 14px;
-            color: $body-color;
+            color: $blue-dark;
+            font-weight: 500;
             height: 3.75rem;
             overflow: hidden;
             white-space: nowrap;
@@ -24,13 +26,21 @@ table.v-table {
    }
    thead {
       tr {
-         background-color: $base-light;
+         color: $gray-dark;
+         font-weight: 500;
+         background-color: $card-bg;
       }
    }
    tbody {
-      tr:nth-child(even) {
-         background-color: $base-light;
+      tr{
+         &:hover{
+            background-color: #fff !important;
+         }
       }
+      tr:nth-child(even) {
+         background-color: $card-bg;
+      }
+
    }
 }
 

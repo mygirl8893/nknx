@@ -40,27 +40,19 @@
 						<v-layout row wrap>
 				<!-- Latest Blocks -->
 				<app-card
-					:heading="$t('message.latestBlocks')"
-					colClasses="xl6 lg6 md6 sm12 xs12"
+					colClasses="xl12 lg12 md12 sm12 xs12"
 					customClasses="mb-0"
 					:fullScreen="true"
 					:fullBlock="true"
 					:footer="true"
 				>
-					<latest-blocks></latest-blocks>
-					<v-btn slot="footer" :to="{path: '/browse/blocks'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
-				</app-card>
-				<!-- Latest Transactions -->
-				<app-card
-					:heading="$t('message.latestTransactions')"
-					colClasses="xl6 lg6 md6 sm12 xs12"
-					customClasses="mb-0"
-					:fullScreen="true"
-					:fullBlock="true"
-					:footer="true"
-				>
-					<latest-transactions></latest-transactions>
-					<v-btn slot="footer" :to="{path: '/browse/txs'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<div class="app-card-title title-tab">
+					<h3 v-bind:class="{active:isActive==='Blocks'}" @click='isActive="Blocks"'>{{$t('message.latestBlocks')}}</h3>
+					<h3 v-bind:class="{active:isActive==='Transactions'}" @click='isActive="Transactions"'>{{$t('message.latestTransactions')}}</h3></div>
+					<latest-blocks v-if='isActive === "Blocks"'></latest-blocks>
+					<latest-transactions v-if='isActive === "Transactions"'></latest-transactions>
+					<v-btn slot="footer"  v-if='isActive === "Blocks"' :to="{path: '/browse/blocks'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer"  v-if='isActive === "Transactions"' :to="{path: '/browse/transactions'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 			</v-layout>
 
@@ -87,7 +79,7 @@ export default {
   },
   data() {
     return {
-      
+      isActive: "Blocks"
     };
   }
 };

@@ -378,7 +378,22 @@ hr {
   }
 }
 
-
+.title-tab{
+  justify-content: flex-start !important;
+  h3{
+    color: $inactive !important;
+    margin-right: 30px !important;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    &:hover{
+      color: $blue-dark !important;
+    }
+    &.active{
+      color: $blue-dark !important;
+      text-decoration: underline !important;
+    }
+  }
+}
 /*======== Card Masonry =======*/
 
 .card-columns .card {

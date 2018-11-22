@@ -26,13 +26,14 @@ export default {
   },
    mounted() {
     const self = this;
-        axios.get('outputs/?by_miner=true').then(function(addresses){
+        axios.get('statistics/miners?latest=50').then(function(addresses){
             // get only top 50 miners
-            let counter = 50;
-            for (let i=0; i < counter; i++){  
-                self.chartdata.address.push(addresses.data[i].address);
-                self.chartdata.value.push(addresses.data[i].total*10);
-            }
+
+            addresses.data.forEach(function(address) {
+                self.chartdata.address.push(address.address);
+                self.chartdata.value.push(address.total*10);
+            })
+
             let colorsCount = self.chartdata.value.length;
             let colors = [];
 

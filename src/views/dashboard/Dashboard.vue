@@ -52,7 +52,7 @@
 					<latest-blocks v-if='isActive === "Blocks"'></latest-blocks>
 					<latest-transactions v-if='isActive === "Transactions"'></latest-transactions>
 					<v-btn slot="footer"  v-if='isActive === "Blocks"' :to="{path: '/browse/blocks'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
-					<v-btn slot="footer"  v-if='isActive === "Transactions"' :to="{path: '/browse/transactions'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer"  v-if='isActive === "Transactions"' :to="{path: '/browse/txs'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 			</v-layout>
 

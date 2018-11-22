@@ -71,13 +71,17 @@
 }
 .v-btn.v-btn--router{
   background-color: transparent !important;
-  border: 1px solid $primary !important;
+  border: 1px solid $primary-light !important;
   box-shadow: none !important;
   border-radius: 5px !important;
   color: $blue-dark !important;
-  padding: 15px 25px !important;
+  padding: 15px 30px !important;
   text-transform: none !important;
   font-size: $btn-font-size !important;
+  &:hover{
+    border-color: $gray-lighter !important;
+    background-color: $gray-lighter !important;
+  }
 }
 div.upload-btn{
   padding-left:0 !important;

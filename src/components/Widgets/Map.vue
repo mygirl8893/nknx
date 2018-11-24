@@ -38,7 +38,7 @@ export default {
           self.mapObj.remove();
           self.createMap();
       });
-    }, 10000);
+    }, 60000);
   },
   methods: {
     updateNodeList(){

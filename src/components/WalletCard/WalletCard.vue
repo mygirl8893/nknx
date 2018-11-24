@@ -31,13 +31,13 @@ export default {
     },
     computed: {
             IconClose: function () {
-                return feather.toSvg('x')
+                return feather.icons['x'].toSvg()
             },
             IconEye: function () {
                 if(this.activeClass === 'eye'){
-                    return feather.toSvg('eye')
+                    return feather.icons['eye'].toSvg()
                 } else{
-                    return feather.toSvg('eye-off')
+                    return feather.icons['eye-off'].toSvg()
                 }
                 
             }

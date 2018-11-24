@@ -11,6 +11,13 @@
    .v-input__prepend-outer {
       margin: 0 !important;
       padding: 0.5rem 0.75rem;
+      &:before{
+         content: '';
+         display: inline-block;
+         background-image: url('/static/ui-icons/search.svg');
+         height: 24px;
+         width: 24px;
+      }
    }
    .v-input__control {
       min-height: auto !important;
@@ -19,6 +26,12 @@
          padding:0;
       }
    }
+   .v-input__icon{
+      display: none;
+   }
+}
+.search-form{
+   padding: 10px;
 }
 
 // Mobile Search 

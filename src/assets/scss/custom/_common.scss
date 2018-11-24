@@ -324,9 +324,23 @@ hr {
     border-radius:5px;
     padding:20px;
     padding-bottom:0px;
+    .v-input__append-inner{
+      display: none;
+    }
     &__selection{
       color: $blue-dark;
       font-weight: 500;
+      &:after{
+        content: '';
+        display: inline-block;
+        background-image: url('/static/ui-icons/chevron-down.svg');
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        right: 0px;
+        top: 22px;
+        transition: all 0.5s ease 0s;
+      }
     }
     .v-messages{
       display: none;
@@ -358,6 +372,11 @@ hr {
       }
     }
 }
+.v-input--is-focused{
+  .v-select__selection:after{
+    transform: rotate(-180deg)
+  }
+}
 .v-menu__content{
   .v-select-list{
     border: 1px solid #b5b5b5;
@@ -387,6 +406,7 @@ hr {
 }
 .title-tab{
   justify-content: flex-start !important;
+  padding-top: 1.40rem !important;
   h3{
     color: $inactive !important;
     margin-right: 30px !important;

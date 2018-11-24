@@ -13,6 +13,7 @@
     "babel-polyfill": "^6.26.0",
     "chart.js": "^2.7.2",
     "echarts": "^4.1.0",
+    "feather-icons": "^4.9.0",
     "jquery": "^3.3.1",
     "json-bigint": "^0.3.0",
     "jvectormap": "^2.0.4",

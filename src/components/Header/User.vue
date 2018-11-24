@@ -1,8 +1,6 @@
 <template>
    <v-menu offset-y origin="right top" left content-class="language-dropdown" transition="slide-y-transition" nudge-top="-10" class="user-block-wrap">
-		<v-btn icon large slot="activator">
-			<img src="/static/img/avatar_dummy.jpg" alt="avatar" height="40" width="40" class="img-responsive rounded-circle" />
-		</v-btn>
+		<v-btn icon large slot="activator" v-html="iconSvg"></v-btn>
 		<div class="dropdown-content">
          <div class="dropdown-top white--text primary">
             <span class="white--text fs-14 fw-bold d-block">{{$auth.user().name}}</span>
@@ -28,6 +26,7 @@
 </template>
 <script>
    import { mapMutations } from 'vuex'
+   import feather from 'feather-icons'
 
    export default{
       data() {
@@ -52,6 +51,11 @@
             this.$store.dispatch("setSnackbar", this.$t('message.successfullyLoggedOut'));
             this.$auth.logout();
          },
-      }
+      },
+      computed: {
+			iconSvg: function () {
+				return feather.toSvg('user')
+			}
+		},
    }
 </script>

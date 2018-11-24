@@ -1,8 +1,6 @@
 <template>
 	<v-menu offset-y left origin="right top" z-index="99" content-class="notification-dropdown" transition="slide-y-transition" nudge-top="-10">
-		<v-btn class="notification-icon ma-0"  icon large slot="activator">
-			<i class="zmdi grey--text zmdi-notifications-active  zmdi-hc-fw font-lg"></i> <!--maybe class wobble animated infinite -->
-		</v-btn>
+		<v-btn class="notification-icon ma-0"  icon large slot="activator" v-html="iconSvg"></v-btn>
 		<div class="dropdown-content">
 			<div class="dropdown-top d-custom-flex justify-space-between primary">
 				<span class="white--text fw-bold">Notifications</span>
@@ -19,6 +17,7 @@
 </template>
 
 <script>
+	import feather from 'feather-icons'
 	export default {
 		data() {
 			return {
@@ -40,6 +39,11 @@
 					}
 				]
 			};
-		}
+		},
+		computed: {
+			iconSvg: function () {
+				return feather.toSvg('bell')
+			}
+		},
 	};
 </script>

@@ -1,17 +1,18 @@
 <template>
     <div class="wallet-card">
-        <div class="close-wallet" @click="deleteCallback(address)"><i class="zmdi zmdi-close"></i></div>
+        <div class="close-wallet" @click="deleteCallback(address)" v-html="IconClose"></div>
         <v-flex xs12>
             <span class="active">{{$t('message.activeWallet')}}</span>
             <span><router-link :to="{ path: '/address/'+address}">{{ address }}</router-link></span>
             <div class="balance">
-                <i class="zmdi" v-bind:class='activeClass' @click='showBalance'></i><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span></div>
+                <span v-html="IconEye" @click='showBalance' class="eye-toggle"></span><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span></div>
         </v-flex>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import feather from 'feather-icons'
 export default {
     props: {
         address: String,
@@ -19,15 +20,28 @@ export default {
     },
     data() {
       return {
-          activeClass: "zmdi-eye",
           balance:0,
           balanceUSD:0,
           newbalance:0,
           nknPrice:0,
-          isHidden: false
+          isHidden: false,
+          activeClass: "eye"
       }
 
     },
+    computed: {
+            IconClose: function () {
+                return feather.toSvg('x')
+            },
+            IconEye: function () {
+                if(this.activeClass === 'eye'){
+                    return feather.toSvg('eye')
+                } else{
+                    return feather.toSvg('eye-off')
+                }
+                
+            }
+        },
     methods: {
         getBalance(){
 			if(this.address){
@@ -60,10 +74,10 @@ export default {
         showBalance(){
             const self = this;
             self.isHidden = !self.isHidden
-            if(self.isHidden === true){
-                self.activeClass = 'zmdi-eye-off'
+            if(self.isHidden === false){
+                self.activeClass = 'eye'
             } else{
-                self.activeClass = 'zmdi-eye'
+                self.activeClass = 'eye-off'
             }
         }
 

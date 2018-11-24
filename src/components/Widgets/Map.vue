@@ -24,6 +24,7 @@ export default {
   },
   destroyed() {
         clearInterval(this.interval);
+        this.mapObj.remove();
   },
   created: function(){
     var self = this;
@@ -126,7 +127,7 @@ export default {
           animate: true,
           lat: center.lat,
           lng: center.lng,
-          scale: 1.01
+          scale: 1
       }
 
       self.mapObj.setFocus(config)

@@ -54,7 +54,7 @@
       },
       computed: {
 			iconSvg: function () {
-				return feather.toSvg('user')
+            return feather.icons['user'].toSvg()
 			}
 		},
    }

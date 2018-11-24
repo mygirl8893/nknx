@@ -42,7 +42,7 @@
 		},
 		computed: {
 			iconSvg: function () {
-				return feather.toSvg('bell')
+				return feather.icons['bell'].toSvg()
 			}
 		},
 	};

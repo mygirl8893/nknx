@@ -28,7 +28,7 @@
 
 			<div class="navbar-right">
 				<notifications v-if="$auth.check()"></notifications>
-				<v-btn v-if="!$auth.check()" color="gradient-primary" tag="link" :to="'/login'">{{ $t('message.login') }}</v-btn>
+				<v-btn v-if="!$auth.check()" color="primary" tag="link" :to="'/login'">{{ $t('message.login') }}</v-btn>
 				<user v-if="$auth.check()"></user>
 				<language-provider></language-provider>
 			</div>

@@ -195,5 +195,5 @@ export default {
   chooseConfirmationMethod:"To ensure that nobody else accesses your wallet you have to verify the ownership of your wallet. NKNx will NOT store any wallet data or your private key at any time.",
   verify:"verify",
   walletAddressConfirmed:"Wallet address confirmed successfully!",
-  sendFunds:"Send funds"
+  sendFunds:"Send Funds"
 }

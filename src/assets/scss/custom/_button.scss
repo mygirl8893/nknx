@@ -74,6 +74,30 @@
   border-radius:50px;
   text-transform: none !important;
   box-shadow: none !important;
+  &.gradient-primary{
+    background: $btn-gradient-primary !important;
+    background-color: transparent;
+    z-index: 0;
+    .v-btn__content{
+      z-index: 2;
+    }
+    &:after{
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      background:  $primary-light !important;
+      transition: opacity 0.3s ease-out;
+      z-index: 1;
+      opacity: 0;
+    }
+    &:hover:after{
+      opacity: 1;
+    }
+  }
 }
 .v-btn--small{
   height:43px;

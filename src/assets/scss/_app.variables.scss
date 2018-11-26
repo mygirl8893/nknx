@@ -4,7 +4,7 @@ $html-font-size:              16px;
 
 //App Background Scale
 $primary: 						      #0073E7 !default;
-$primary-light:             #CAD7E9 !default;
+$primary-light:             #3491EF !default;
 $secondary:         			  #c93420 !default;
 $success: 						      #28B725 !default;
 $info: 							        #00D0BD !default;
@@ -70,7 +70,7 @@ $h5-font-size:                  1rem !default;         // 16px
 $h6-font-size:                  0.875rem !default;     // 14px
 
 // Gradient Theme Color
-$light-primary:                 linear-gradient(90deg, #4b98ed 70%, #89cb8c 100%); // Primary
+$light-primary:                 linear-gradient(270deg, #B8ED62 -125%, #0073E7 120%); // Primary
 $light-secondary:               linear-gradient(90deg, #fb3637 70%, #cba34c 100%); // Secondary
 $light-pink:                   	linear-gradient(180deg, #B91372 0%, #33080D 100%); // Pink
 $light-success:                 linear-gradient(180deg, #00D0BD 0%, #007ADF 100%); // success

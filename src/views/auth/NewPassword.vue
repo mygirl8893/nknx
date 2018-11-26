@@ -29,7 +29,7 @@
 						></v-text-field>
 
 						<div>
-							<v-btn :disabled="!valid" large @click="resetPassword" block color="primary">{{$t('message.resetPassword')}}</v-btn>
+							<v-btn :disabled="!valid" large @click="resetPassword" block color="gradient-primary">{{$t('message.resetPassword')}}</v-btn>
 						</div>
 					</v-form>
 

@@ -26,13 +26,13 @@
 							required
 						></v-text-field>
 						<v-checkbox 
-							color="primary" 
+							color="gradient-primary" 
 							:label="$t('message.rememberMe')" 
 							v-model="checkbox"
 						></v-checkbox>
 						<router-link class="mb-1" to="/forgot-password">{{$t('message.forgotPassword')}}</router-link>
 						<div>
-							<v-btn :disabled="!valid"  large @click="login" block color="primary">{{$t('message.login')}}</v-btn>
+							<v-btn :disabled="!valid"  large @click="login" block color="gradient-primary">{{$t('message.login')}}</v-btn>
 							<v-btn large :to="{path: '/register'}" block color="warning">{{$t('message.createAccount')}}</v-btn>
 						</div>
 					</v-form>

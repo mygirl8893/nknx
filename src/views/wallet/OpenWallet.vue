@@ -16,8 +16,8 @@
 					<v-layout row wrap>
 						<v-flex xs3>
 							<v-radio-group v-model="radioButton">
-								<v-radio color="primary" :label="$t('message.openWalletfromFile')" value="file"></v-radio>
-								<v-radio color="primary" :label="$t('message.openWalletfromPK')" value="pk"></v-radio>
+								<v-radio color="gradient-primary" :label="$t('message.openWalletfromFile')" value="file"></v-radio>
+								<v-radio color="gradient-primary" :label="$t('message.openWalletfromPK')" value="pk"></v-radio>
 							</v-radio-group>
 							
 						</v-flex>
@@ -52,7 +52,7 @@
 						</v-flex>
 
 					</v-layout>
-					<v-btn :loading="loading" :disabled="!s1valid" v-on:click="loadWallet()" slot="footer" color="primary" small>{{$t('message.continue')}}</v-btn>
+					<v-btn :loading="loading" :disabled="!s1valid" v-on:click="loadWallet()" slot="footer" color="gradient-primary" small>{{$t('message.continue')}}</v-btn>
 				</app-card>
 			</v-layout>
 

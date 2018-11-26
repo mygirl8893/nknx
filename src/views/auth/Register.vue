@@ -55,7 +55,7 @@
 							:rules="passwordRepeatRules" 
 							required
 						></v-text-field>
-						<v-btn :disabled="!valid" large @click="submit" block color="primary" class="mb-3">{{$t('message.signUp')}}</v-btn>
+						<v-btn :disabled="!valid" large @click="submit" block color="gradient-primary" class="mb-3">{{$t('message.signUp')}}</v-btn>
 					<!--	<p>{{$t('message.bySigningUpYouAgreeTo')}}</p>
 						<router-link to="">{{$t('message.termsOfService')}}</router-link>-->
 					</v-form>

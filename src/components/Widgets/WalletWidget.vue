@@ -24,12 +24,12 @@
 				<!--<v-layout>
 					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-layout row wrap justify-end style="margin-top: 5px;">
-							<v-btn :to="{path: '/wallet/create'}" raised color="primary">{{$t('message.newWallet')}}</v-btn>
-							<v-btn :to="{path: '/wallet/open'}" raised color="primary">{{$t('message.openWallet')}}</v-btn>
+							<v-btn :to="{path: '/wallet/create'}" raised color="gradient-primary">{{$t('message.newWallet')}}</v-btn>
+							<v-btn :to="{path: '/wallet/open'}" raised color="gradient-primary">{{$t('message.openWallet')}}</v-btn>
 							<v-menu offset-y>
 								<v-btn
 									slot="activator"
-									color="primary"
+									color="gradient-primary"
 									dark
 								>
 									{{$t('message.menu')}}

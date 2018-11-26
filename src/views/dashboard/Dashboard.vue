@@ -30,7 +30,7 @@
 						:footer="true"
 					>
 					<map-widget></map-widget>
-					<v-btn slot="footer" :to="{path: '/network'}" color="primary" small>{{$t('message.viewDetails')}}</v-btn>
+					<v-btn slot="footer" :to="{path: '/network'}" color="gradient-primary" small>{{$t('message.viewDetails')}}</v-btn>
 				</app-card>
 			</v-layout>
 
@@ -51,8 +51,8 @@
 					<h3 v-bind:class="{active:isActive==='Transactions'}" @click='isActive="Transactions"'>{{$t('message.latestTransactions')}}</h3></div>
 					<latest-blocks v-if='isActive === "Blocks"'></latest-blocks>
 					<latest-transactions v-if='isActive === "Transactions"'></latest-transactions>
-					<v-btn slot="footer"  v-if='isActive === "Blocks"' :to="{path: '/browse/blocks'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
-					<v-btn slot="footer"  v-if='isActive === "Transactions"' :to="{path: '/browse/txs'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer"  v-if='isActive === "Blocks"' :to="{path: '/browse/blocks'}" color="gradient-primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer"  v-if='isActive === "Transactions"' :to="{path: '/browse/txs'}" color="gradient-primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 			</v-layout>
 

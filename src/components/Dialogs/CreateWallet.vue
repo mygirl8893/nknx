@@ -30,7 +30,7 @@
                             </v-form>
                         </v-flex>
                     </v-layout>
-                    <v-btn :disabled="!valid || loading" :loading="loading" v-on:click="createWallet()" slot="footer" color="primary" small>{{$t('message.create')}}</v-btn>
+                    <v-btn :disabled="!valid || loading" :loading="loading" v-on:click="createWallet()" slot="footer" color="gradient-primary" small>{{$t('message.create')}}</v-btn>
                 </template>
                 <template
                     v-if="step==1"
@@ -43,7 +43,7 @@
                         </v-flex>
                     </v-layout>
                     <v-layout row wrap>
-                                <v-btn color="primary" download="wallet.dat" :href="downloadUrl" v-on:click="s1valid = true">
+                                <v-btn color="gradient-primary" download="wallet.dat" :href="downloadUrl" v-on:click="s1valid = true">
                                     {{$t('message.downloadWallet')}}
                                 </v-btn>
                     </v-layout>
@@ -52,7 +52,7 @@
                                 <div v-html="$t('message.newWalletAdvice')"></div>
                         </v-flex>
                     </v-layout>
-                    <v-btn :disabled="!s1valid" :loading="loading" v-on:click="getPK()" slot="footer" color="primary" small>{{$t('message.continue')}}</v-btn>
+                    <v-btn :disabled="!s1valid" :loading="loading" v-on:click="getPK()" slot="footer" color="gradient-primary" small>{{$t('message.continue')}}</v-btn>
                 </template>
                 <template
                     v-if="step==2"
@@ -79,7 +79,7 @@
                                 <div v-html="$t('message.newPkAdvice')"></div>
                         </v-flex>
                     </v-layout>
-                    <v-btn v-on:click="walletCreated()" :disabled="!s2valid" slot="footer" color="primary" small>{{$t('message.done')}}</v-btn>
+                    <v-btn v-on:click="walletCreated()" :disabled="!s2valid" slot="footer" color="gradient-primary" small>{{$t('message.done')}}</v-btn>
                 </template>
             </v-card-text>
 		</v-container>

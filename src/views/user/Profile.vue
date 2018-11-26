@@ -17,7 +17,7 @@
 					:footer="true"
 				>
 					<user-nodes></user-nodes>
-					<v-btn slot="footer" :to="{path: '/nodes-manager'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<v-btn slot="footer" :to="{path: '/nodes-manager'}" color="gradient-primary" small>{{$t('message.viewAll')}}</v-btn>
 				</app-card>
 				<!-- Calc -->
 				<app-card
@@ -46,7 +46,7 @@
 					:footer="true"
 				>
 				<wallet-tracker></wallet-tracker>
-				<v-btn slot="footer" :to="{path: '/wallet-tracker'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+				<v-btn slot="footer" :to="{path: '/wallet-tracker'}" color="gradient-primary" small>{{$t('message.viewAll')}}</v-btn>
 			</app-card>
 			<!-- Top 50 Miners -->
 			<app-card

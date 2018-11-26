@@ -20,7 +20,7 @@
                             type="number"
                             v-model.number="amount"
                         ></v-text-field>   
-                        <v-btn @click.native.stop="dialog = true" :disabled="!to || !amount" color="primary">{{$t('message.send')}}</v-btn> 
+                        <v-btn @click.native.stop="dialog = true" :disabled="!to || !amount" color="gradient-primary">{{$t('message.send')}}</v-btn> 
                         <v-dialog v-model="dialog" max-width="500">
                             <v-card>
                                 <v-card-title class="headline">{{$t('message.confirmTransfer')}}</v-card-title>
@@ -42,7 +42,7 @@
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
                                     <v-btn color="error" flat="flat" @click.native="dialog = false">{{$t('message.cancel')}}</v-btn>
-                                    <v-btn color="primary" :disabled="!password" flat="flat" @click.native="transferAmount">{{$t('message.send')}}</v-btn>
+                                    <v-btn color="gradient-primary" :disabled="!password" flat="flat" @click.native="transferAmount">{{$t('message.send')}}</v-btn>
                                 </v-card-actions>
                             </v-card>
 					    </v-dialog>

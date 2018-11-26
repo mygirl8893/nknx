@@ -1,12 +1,27 @@
 <template>
     <div class="wallet-card">
         <div class="close-wallet" @click="deleteCallback(address)" v-html="IconClose"></div>
-        <v-flex xs12>
-            <span class="active">{{$t('message.activeWallet')}}</span>
-            <span><router-link :to="{ path: '/address/'+address}">{{ address }}</router-link></span>
-            <div class="balance">
-                <span v-html="IconEye" @click='showBalance' class="eye-toggle"></span><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span></div>
-        </v-flex>
+        <v-container grid-list-xl pt-0>
+            <v-flex xs12>
+                <span class="active">{{$t('message.activeWallet')}}</span>
+            </v-flex>
+            <v-flex xs12>
+                <span><router-link :to="{ path: '/address/'+address}">{{ address }}</router-link></span>
+            </v-flex>
+            <v-flex xs12>
+                <div class="balance">
+                    <span v-html="IconEye" @click='showBalance' class="eye-toggle"></span><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span>
+                </div>
+            </v-flex>
+        </v-container>
+        <v-container grid-list-xl pt-0>
+            <v-flex xs12>
+                <v-layout justify-end>
+                    <v-btn color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
+                </v-layout>  
+            </v-flex>
+        </v-container>
+
     </div>
 </template>
 

@@ -134,7 +134,7 @@
                                 class='cursor-pointer'
                                 >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
                                 <td >{{props.item.syncState}}
-								<v-btn v-if='props.item.online != 0' @click='checkPorts(props.item.addr)' small color="primary">{{ $t('message.ports') }}</v-btn>
+								<v-btn v-if='props.item.online != 0' @click='checkPorts(props.item.addr)' small color="gradient-primary">{{ $t('message.ports') }}</v-btn>
 								<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                 </v-badge></span> </td>

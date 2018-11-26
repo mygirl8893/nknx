@@ -17,7 +17,7 @@
 							:rules="emailRules" 
 							required
 						></v-text-field>						
-						<v-btn :disabled="!valid" color="primary" block @click="resetPassword">{{$t('message.sendMail')}}</v-btn>
+						<v-btn :disabled="!valid" color="gradient-primary" block @click="resetPassword">{{$t('message.sendMail')}}</v-btn>
 					</v-form>
 					<div>
 						<router-link to="/login">{{$t('message.backToSignIn')}}</router-link>

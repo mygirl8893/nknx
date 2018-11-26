@@ -70,7 +70,8 @@ $h5-font-size:                  1rem !default;         // 16px
 $h6-font-size:                  0.875rem !default;     // 14px
 
 // Gradient Theme Color
-$light-primary:                 linear-gradient(180deg, #5D92F4 0%, #09203F 100%); // Primary
+$light-primary:                 linear-gradient(90deg, #4b98ed 70%, #89cb8c 100%); // Primary
+$light-secondary:               linear-gradient(90deg, #fb3637 70%, #cba34c 100%); // Secondary
 $light-pink:                   	linear-gradient(180deg, #B91372 0%, #33080D 100%); // Pink
 $light-success:                 linear-gradient(180deg, #00D0BD 0%, #007ADF 100%); // success
 $light-purple:                  linear-gradient(0deg, #F53844 0%, #42378F 100%);// purple

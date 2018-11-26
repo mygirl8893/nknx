@@ -27,7 +27,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout row wrap> 
-                        <v-btn color="primary" style="margin-bottom:35px;" download="wallet.dat" :href="downloadUrl">
+                        <v-btn color="gradient-primary" style="margin-bottom:35px;" download="wallet.dat" :href="downloadUrl">
                             {{$t('message.downloadWallet')}}
                         </v-btn>
                 </v-layout>

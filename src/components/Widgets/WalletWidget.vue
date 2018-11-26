@@ -3,6 +3,7 @@
                 <v-layout row wrap style="margin-top:35px;">
 					<v-flex v-if="items.length" xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-select
+							v-on:change="setSelectedWalletAddress"
 							:value="selectedWalletAddress"
 							:items="items"
 							item-text="address"
@@ -71,6 +72,9 @@ export default {
         })
 	},
 	methods:{
+		setSelectedWalletAddress(val){
+			this.$store.dispatch("setSelectedAddress", val);
+		},
 		removeWalletAddress(){
 			//remove from store
 			this.$store.dispatch("removeFromAddressesStore", this.selectedWalletAddress);

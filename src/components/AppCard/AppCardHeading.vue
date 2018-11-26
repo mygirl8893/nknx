@@ -27,17 +27,22 @@
 								<i class="zmdi zmdi-close mr-2 error--text fs-14"></i>
 								<span>{{$t("message.close")}}</span>
 							</v-list-tile>
-							<v-list-tile @click.native.stop="walletDialog = true" v-if="walletLinks">
+							<v-list-tile @click.native.stop="addWalletDialog = true" v-if="walletLinks">
 								<span>{{$t('message.openWallet')}}</span>
 							</v-list-tile>
-							<v-list-tile :to="{path: '/wallet/create'}" v-if="walletLinks">
+							<v-list-tile @click.native.stop="createWalletDialog = true" v-if="walletLinks">
 								<span>{{$t('message.newWallet')}}</span>
 							</v-list-tile>
 						</v-list>
 					</v-menu>
-					<v-dialog v-model="walletDialog" max-width="800">
+					<v-dialog v-model="addWalletDialog" max-width="800">
 						<v-card>
 							<verify-address :walletLoaded="walletLoaded"></verify-address>
+						</v-card>
+					</v-dialog>
+					<v-dialog v-model="createWalletDialog" max-width="800">
+						<v-card>
+							<create-wallet :walletCreated="walletCreated"></create-wallet>
 						</v-card>
 					</v-dialog>
 					<span>{{$t('message.moreActions')}}</span>
@@ -60,6 +65,7 @@
 
 <script>
 import VerifyAddress from "Components/Dialogs/VerifyAddress";
+import CreateWallet from "Components/Dialogs/CreateWallet";
 export default {
   props: [
     "heading",
@@ -75,17 +81,22 @@ export default {
 		"walletLinks"
 	],
 	components: {
-		VerifyAddress
+		VerifyAddress,
+		CreateWallet
 	},
   data() {
     return {
-			walletDialog:false,
+			addWalletDialog:false,
+			createWalletDialog:false,
       activeTab: 0
     };
   },
   methods: {
 		walletLoaded(){
-			this.walletDialog=false;
+			this.addWalletDialog=false;
+		},
+		walletCreated(){
+			this.createWalletDialog=false;
 		},
     onChangeTab(value) {
       this.activeTab = value;

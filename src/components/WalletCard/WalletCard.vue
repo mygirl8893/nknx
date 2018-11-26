@@ -29,6 +29,11 @@ export default {
       }
 
     },
+    watch:{
+		address: function () {
+			this.getBalance()
+		}
+	},
     computed: {
             IconClose: function () {
                 return feather.icons['x'].toSvg()

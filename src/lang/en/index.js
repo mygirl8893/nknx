@@ -41,8 +41,8 @@ export default {
   createWallet: "Create wallet",
   createWalletAdvice: "<p>This password encrypts your private key. This does not act as a seed to generate your keys.</p><p><b>You will need this password and your private key to unlock your wallet.</b></p>",
   openWalletAdvice: "<p>How would you like to access your wallet?</p>",
-  openWalletfromFile:"From wallet file",
-  openWalletfromPK:"From private key",
+  openWalletfromFile:"Verify by wallet file",
+  openWalletfromPK:"Verify by private key",
   selectWalletFile: "Select wallet file",
   pasteOrTypePK:"Paste or type private key",
   saveYourWalletFile:"Save your wallet file:",
@@ -190,5 +190,9 @@ export default {
   ports: "Ports",
   port: "Port",
   close: "Close",
-  moreActions: "More actions"
+  moreActions: "More actions",
+  confirmWalletAddress: "Verify your wallet address",
+  chooseConfirmationMethod:"To ensure that nobody else accesses your wallet you have to verify the ownership of your wallet. NKNx will NOT store any wallet data or your private key at any time.",
+  verify:"verify",
+  walletAddressConfirmed:"Wallet address confirmed successfully!"
 }

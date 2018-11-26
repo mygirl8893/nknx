@@ -27,7 +27,7 @@
 								<i class="zmdi zmdi-close mr-2 error--text fs-14"></i>
 								<span>{{$t("message.close")}}</span>
 							</v-list-tile>
-							<v-list-tile :to="{path: '/wallet/open'}" v-if="walletLinks">
+							<v-list-tile @click.native.stop="walletDialog = true" v-if="walletLinks">
 								<span>{{$t('message.openWallet')}}</span>
 							</v-list-tile>
 							<v-list-tile :to="{path: '/wallet/create'}" v-if="walletLinks">
@@ -35,6 +35,11 @@
 							</v-list-tile>
 						</v-list>
 					</v-menu>
+					<v-dialog v-model="walletDialog" max-width="800">
+						<v-card>
+							<verify-address :walletLoaded="walletLoaded"></verify-address>
+						</v-card>
+					</v-dialog>
 					<span>{{$t('message.moreActions')}}</span>
 				</v-tooltip>
 			</div>
@@ -54,6 +59,7 @@
 </template>
 
 <script>
+import VerifyAddress from "Components/Dialogs/VerifyAddress";
 export default {
   props: [
     "heading",
@@ -67,13 +73,20 @@ export default {
     "onClose",
 		"onChangeTabCallback",
 		"walletLinks"
-  ],
+	],
+	components: {
+		VerifyAddress
+	},
   data() {
     return {
+			walletDialog:false,
       activeTab: 0
     };
   },
   methods: {
+		walletLoaded(){
+			this.walletDialog=false;
+		},
     onChangeTab(value) {
       this.activeTab = value;
       this.$emit("onChangeTabCallback", value);

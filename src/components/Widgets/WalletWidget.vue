@@ -53,6 +53,7 @@
 import axios from "axios"
 import WalletCard from "../WalletCard/WalletCard";
 import { mapGetters } from 'vuex'
+
 export default {
 	components: {
 		WalletCard

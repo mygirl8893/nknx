@@ -113,15 +113,15 @@ export default {
 		const self = this;
 	    let blocks = []
 	    let nkn = []
-      	axios.get('walletAddresses/'+id+'/miningOutput').then(function(responseUSD){
+      	axios.get('walletAddresses/'+id+'/miningOutput?latest=14').then(function(responseUSD){
         responseUSD.data.forEach(function(entry) {
             blocks.push(entry.date);
             nkn.push(entry.count*15)
         });
             //Last 2 weeks
-            self.chartdata.days = blocks.slice(0,14)
+            self.chartdata.days = blocks
             self.chartdata.days.reverse()
-            self.chartdata.nkn = nkn.slice(0,14)
+            self.chartdata.nkn = nkn
             self.chartdata.nkn.reverse()
             self.renderChart({
                 labels: self.chartdata.days,

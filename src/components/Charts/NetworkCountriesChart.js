@@ -2,6 +2,7 @@
 import { HorizontalBar } from 'vue-chartjs'
 import { ChartConfig } from "Constants/chart-config";
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
    extends: HorizontalBar,
@@ -57,7 +58,7 @@ export default {
     clearInterval(this.interval);
   },
    mounted() {
-    this.interval = setInterval(this.getCountriesData, 60000);
+    this.interval = setInterval(this.getCountriesData, Timeouts.medium);
    }
    
 }

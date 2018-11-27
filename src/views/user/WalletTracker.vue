@@ -57,6 +57,7 @@ import axios from "axios";
 import MarketStats from "Components/Widgets/MarketStats";
 import WalletChart from "Components/Widgets/WalletChart";
 import WalletCard from "Components/WalletCard/WalletCard";
+import { Timeouts } from "Constants/timeouts";
 
 
 export default {
@@ -92,7 +93,7 @@ export default {
         this.getWalletsBalance();
     },
     mounted: function() {
-        this.interval = setInterval(this.getWalletsBalance, 30000);
+        this.interval = setInterval(this.getWalletsBalance, Timeouts.short);
     },
     methods: {
     addWallet(){

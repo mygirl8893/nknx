@@ -1,6 +1,6 @@
 // Line Chart Widget
 import { Line } from 'vue-chartjs'
-import { ChartConfig } from "Constants/chart-config";
+import { Timeouts } from "Constants/timeouts";
 import axios from "axios";
 
 var gradientLinePlugin = {
@@ -145,7 +145,7 @@ export default {
     clearInterval(this.interval);
   },
    mounted() {
-    this.interval = setInterval(this.getChart, 36000000);
+    this.interval = setInterval(this.getChart, Timeouts.long);
    },
    created(){
     this.getChart()

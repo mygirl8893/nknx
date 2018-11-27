@@ -211,6 +211,7 @@
 <script>
 import axios from "axios";
 import NetworkStats from "Components/Widgets/NetworkStats";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
     components: {
@@ -279,7 +280,7 @@ export default {
     	this.getUserNodes();
     },
     mounted: function(){
-        this.interval = setInterval(this.getUserNodes, 30000);
+        this.interval = setInterval(this.getUserNodes, Timeouts.short);
     },
     destroyed() {
         clearInterval(this.interval);

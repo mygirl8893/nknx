@@ -9,6 +9,7 @@
 <script>
 import axios from "axios";
 import MinersChart from "Components/Charts/MinersChart";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
     components: {
@@ -28,7 +29,7 @@ export default {
         this.getMiners()
     },
     mounted: function() {
-        this.interval = setInterval(this.getMiners, 30000);
+        this.interval = setInterval(this.getMiners, Timeouts.short);
     },
     methods: {
         getMiners(){

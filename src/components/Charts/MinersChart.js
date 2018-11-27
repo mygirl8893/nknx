@@ -1,6 +1,5 @@
 // Pie Chart Widget
 import { Pie } from 'vue-chartjs'
-import { ChartConfig } from "Constants/chart-config";
 import axios from "axios";
 
 export default {

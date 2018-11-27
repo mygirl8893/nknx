@@ -2,6 +2,7 @@
 import { Doughnut } from 'vue-chartjs'
 import { ChartConfig } from "Constants/chart-config";
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
    extends: Doughnut,
@@ -66,7 +67,7 @@ export default {
     clearInterval(this.interval);
   },
    mounted() {
-    this.interval = setInterval(this.getProvidersData, 60000);
+    this.interval = setInterval(this.getProvidersData, Timeouts.medium);
    }
    
 }

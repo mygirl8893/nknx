@@ -7,6 +7,7 @@
 </template>
 <script>
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 import NetworkCountriesChart from "Components/Charts/NetworkCountriesChart";
 
 export default {
@@ -27,7 +28,7 @@ export default {
         this.getCountries()
     },
     mounted: function() {
-        this.interval = setInterval(this.getCountries, 60000);
+        this.interval = setInterval(this.getCountries, Timeouts.medium);
     },
     methods: {
         getCountries(){

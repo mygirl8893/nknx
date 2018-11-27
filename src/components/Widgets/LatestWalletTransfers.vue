@@ -43,6 +43,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from 'vuex'
+import { Timeouts } from "Constants/timeouts";
   export default {
 	methods: {
 		getLatestTransfers() {
@@ -62,7 +63,7 @@ import { mapGetters } from 'vuex'
 	},
 	mounted: function(){
 		this.getLatestTransfers();
-		this.interval = setInterval(this.getLatestTransfers, 60000);
+		this.interval = setInterval(this.getLatestTransfers, Timeouts.short);
     },
     computed: {
         ...mapGetters({
@@ -73,7 +74,7 @@ import { mapGetters } from 'vuex'
         selectedAddress: function () {
             this.getLatestTransfers();
             if(!this.interval){
-                this.interval = setInterval(this.getLatestTransfers, 60000);
+                this.interval = setInterval(this.getLatestTransfers, Timeouts.short);
             }
         }
     },

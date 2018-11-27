@@ -25,6 +25,7 @@
 
 <script>
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
   data() {
@@ -39,7 +40,7 @@ export default {
 	},
 	mounted: function(){
 		this.getLatestBlocks();
-		this.interval = setInterval(this.getLatestBlocks, 10000);
+		this.interval = setInterval(this.getLatestBlocks, Timeouts.short/2);
 	},
   methods: {
     getLatestBlocks() {

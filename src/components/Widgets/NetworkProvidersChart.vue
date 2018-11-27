@@ -8,6 +8,7 @@
 <script>
 import axios from "axios";
 import NetworkProvidersChart from "Components/Charts/NetworkProvidersChart";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
     components: {
@@ -27,7 +28,7 @@ export default {
         this.getProviders()
     },
     mounted: function() {
-        this.interval = setInterval(this.getProviders, 60000);
+        this.interval = setInterval(this.getProviders, Timeouts.medium);
     },
     methods: {
         getProviders(){

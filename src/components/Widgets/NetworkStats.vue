@@ -48,6 +48,7 @@
 </template>
 <script>
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
     data() {
@@ -68,7 +69,7 @@ export default {
         this.getNetworkState()
     },
     mounted: function() {
-        this.interval = setInterval(this.getNetworkState, 30000);
+        this.interval = setInterval(this.getNetworkState, Timeouts.short);
     },
     methods: {
     getNetworkState(){

@@ -45,6 +45,7 @@
 <script>
 import axios from "axios";
 import feather from 'feather-icons'
+import { Timeouts } from "Constants/timeouts";
 export default {
     props: {
         address: String,
@@ -122,7 +123,7 @@ export default {
     },
     mounted() {
         this.getBalance();
-        this.interval = setInterval(this.getBalance, 10000);
+        this.interval = setInterval(this.getBalance, Timeouts.short);
     },
    
 }

@@ -43,13 +43,14 @@
 <script>
 import NKNChart from "Components/Charts/NKNChart";
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 export default {
   	components: {
     	NKNChart
 	},
 	mounted () {
 		this.getMarketPrice();
-		this.interval = setInterval(this.getMarketPrice, 10000);
+		this.interval = setInterval(this.getMarketPrice, Timeouts.short);
 		var self=this;
 		try {
 			axios.get('https://min-api.cryptocompare.com/data/histoday?fsym=NKN&tsym=USD&limit=7').then(function(responseUSD){

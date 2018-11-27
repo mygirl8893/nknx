@@ -10,6 +10,7 @@
 import $ from "jquery";
 import { ChartConfig } from "Constants/chart-config";
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
   data(){
@@ -39,7 +40,7 @@ export default {
           self.mapObj.remove();
           self.createMap();
       });
-    }, 60000);
+    }, Timeouts.medium);
   },
   methods: {
     updateNodeList(){

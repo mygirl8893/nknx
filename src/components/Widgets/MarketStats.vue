@@ -48,6 +48,7 @@
 </template>
 <script>
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
     data() {
@@ -69,7 +70,7 @@ export default {
        this.getMarketStats()
     },
     mounted: function() {
-        this.interval = setInterval(this.getMarketStats, 30000);
+        this.interval = setInterval(this.getMarketStats, Timeouts.short);
     },
     methods: {
         getMarketStats(){

@@ -50,6 +50,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from 'vuex'
+import { Timeouts } from "Constants/timeouts";
   export default {
 	methods: {
 		getLatestTransactions() {
@@ -75,13 +76,13 @@ import { mapGetters } from 'vuex'
 	},
 	mounted: function(){
 		this.getLatestTransactions();
-		this.interval = setInterval(this.getLatestTransactions, 60000);
+		this.interval = setInterval(this.getLatestTransactions, Timeouts.short);
     },
     watch: {
         selectedAddress: function () {
             this.getLatestTransactions();
             if(!this.interval){
-                this.interval = setInterval(this.getLatestTransactions, 60000);
+                this.interval = setInterval(this.getLatestTransactions, Timeouts.short);
             }
         }
     },

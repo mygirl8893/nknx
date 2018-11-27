@@ -44,6 +44,7 @@
 
 <script>
 import axios from "axios";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
   data() {
@@ -58,7 +59,7 @@ export default {
 	},
 	mounted: function(){
 		this.getLatestTransactions();
-		this.interval = setInterval(this.getLatestTransactions, 10000);
+		this.interval = setInterval(this.getLatestTransactions, Timeouts.short/2);
 	},
   methods: {
     getLatestTransactions() {

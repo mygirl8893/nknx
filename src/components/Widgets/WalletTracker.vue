@@ -9,6 +9,7 @@
 <script>
 import axios from "axios";
 import WalletCard from "Components/WalletCard/WalletCard";
+import { Timeouts } from "Constants/timeouts";
 
 export default {
     components: {
@@ -30,7 +31,7 @@ export default {
         this.getWalletsBalance();
     },
     mounted: function() {
-        this.interval = setInterval(this.getWalletsBalance, 30000);
+        this.interval = setInterval(this.getWalletsBalance, Timeouts.short);
     },
     methods: {
         getWalletsBalance(){

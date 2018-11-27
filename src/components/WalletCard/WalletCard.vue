@@ -1,6 +1,6 @@
 <template>
     <div class="wallet-card">
-        <div class="close-wallet" @click="deleteCallback(address)" v-html="IconClose"></div>
+        <div class="close-wallet" @click="removeDialog=true" v-html="IconClose"></div>
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
                 <span class="active">{{$t('message.activeWallet')}}</span>
@@ -17,10 +17,27 @@
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
                 <v-layout justify-end>
-                    <v-btn color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
+                    <v-btn :disabled="!balance" color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
                 </v-layout>  
             </v-flex>
         </v-container>
+        <v-dialog v-model="removeDialog" max-width="500px">
+            <v-card>
+            <v-card-title>
+                <span class="headline">{{ $t('message.warning') }}</span>
+            </v-card-title>
+
+            <v-card-text>
+                {{ $t('message.removeWalletWarning') }}
+            </v-card-text>
+
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" flat @click="removeDialog=false">{{ $t('message.cancel') }}</v-btn>
+                <v-btn color="blue darken-1" flat @click="deleteCallback(address)">{{ $t('message.removeWallet') }}</v-btn>
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
 
     </div>
 </template>
@@ -35,6 +52,7 @@ export default {
     },
     data() {
       return {
+          removeDialog:false,
           balance:0,
           balanceUSD:0,
           newbalance:0,

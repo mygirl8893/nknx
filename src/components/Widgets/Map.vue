@@ -46,14 +46,11 @@ export default {
       return new Promise((resolve, reject) => {
         const self = this;
         self.loader = true
-        axios.get('crawledNodes', {})
-        .then((response) => {
-            self.crawlCounter = response.data.length
-        })  
 
         axios.get('crawledNodes?withLocation=true').then(function(nodeList){
           self.nodes= []
           self.countryNodeList={};
+          self.crawlCounter = nodeList.data.length
           nodeList.data.forEach(function(node) {
             let regionMarker = ''
             if(node.city != null){
@@ -97,14 +94,14 @@ export default {
         },
         regionStyle: {
           initial: {
-            fill: '#DEEBF7'
+            fill: '#4FA0F4'
           }
         },
-        backgroundColor: ChartConfig.color.white,
+        backgroundColor: ChartConfig.color.background,
         markers: self.nodes,
         series: {
           regions: [{
-              scale: ['#c4d9ec', '#08519C'],
+              scale: ['#366EA7', '#224467'],
               attribute: 'fill',
               values: self.countryNodeList
           }]

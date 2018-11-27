@@ -5,12 +5,13 @@ export const ChartConfig = {
    color: {
       'primary': '#24397d',
       'secondary' : '#c93420',
-      'warning': '#FFB70F',
+      'warning': '#ff621b',
       'danger': '#FF3739',
       'success': '#00D014',
       'info': '#00D0BD',
       'white': '#fff',
-      'lightGrey': '#E8ECEE'
+      'lightGrey': '#E8ECEE',
+      'background': "#e4e7ed"
    },
    lineChartAxesColor: '#E9ECEF',
    legendFontColor: '#AAAEB3', // only works on react chart js 2

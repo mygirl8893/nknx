@@ -103,3 +103,7 @@ div.upload-btn{
 label.upload-btn{
   margin-left: 0px;
 }
+
+.theme--light.v-btn.v-btn--disabled:not(.v-btn--icon):not(.v-btn--flat) {
+  background: rgba(0,0,0,0.12) !important;
+}

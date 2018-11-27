@@ -25,6 +25,7 @@ $gray:                      		#727891 !default;
 $gray-light: 					#A5A7B2 !default;
 $gray-lighter: 					    #E1E1E5 !default;
 $blue-dark:							#1D2733 !default;
+$blue-light:            #3491EF !default;
 $green:								#28B725 !default;   
 $blue-gradient:						-webkit-linear-gradient(#B8ED62 -35%, #0073E7 65%);	
 $orange-gradient:					-webkit-linear-gradient(#B8ED62 -35%, #FB5C3E 65%);						       
@@ -70,7 +71,7 @@ $h5-font-size:                  1rem !default;         // 16px
 $h6-font-size:                  0.875rem !default;     // 14px
 
 // Gradient Theme Color
-$light-primary:                 linear-gradient(90deg, #4b98ed 70%, #89cb8c 100%); // Primary
+$light-primary:                 linear-gradient(270deg, #B8ED62 -125%, #0073E7 120%); // Primary
 $light-secondary:               linear-gradient(90deg, #fb3637 70%, #cba34c 100%); // Secondary
 $light-pink:                   	linear-gradient(180deg, #B91372 0%, #33080D 100%); // Pink
 $light-success:                 linear-gradient(180deg, #00D0BD 0%, #007ADF 100%); // success

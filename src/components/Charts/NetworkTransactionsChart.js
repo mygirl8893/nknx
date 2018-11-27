@@ -145,7 +145,7 @@ export default {
     clearInterval(this.interval);
   },
    mounted() {
-    this.interval = setInterval(this.getChart, 60000);
+    this.interval = setInterval(this.getChart, 36000000);
    },
    created(){
     this.getChart()

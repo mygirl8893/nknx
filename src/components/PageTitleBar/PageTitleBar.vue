@@ -6,7 +6,12 @@
 				<div class="spacer"></div>
 				<v-icon slot="divider">chevron_right</v-icon>
 				<v-breadcrumbs-item>
-					{{pageBreadcrumb}}
+					<template v-for="(breadcrumb, index) in pageBreadcrumb">
+							{{$t(breadcrumb)}}
+							<template v-if="index < pageBreadcrumb.length-1">
+								/
+							</template>
+					</template>
 				</v-breadcrumbs-item>
 			</v-breadcrumbs>
 		</app-card>

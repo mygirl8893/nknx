@@ -45,7 +45,7 @@ export default new Router({
 					path: '/login',
 					meta: {
 					   title: 'message.login',
-					   breadcrumb: 'login',
+					   breadcrumb: ['message.login'],
 					   auth: false
 					}
 				},
@@ -54,7 +54,7 @@ export default new Router({
 					path: '/register',
 					meta: {
 					   title: 'message.register',
-					   breadcrumb: 'register',
+					   breadcrumb: ['message.register'],
 					   auth: false
 					}
 				},
@@ -63,7 +63,7 @@ export default new Router({
 					path: '/forgot-password',
 					meta: {
 					   title: 'message.forgotPassword',
-					   breadcrumb: 'Forgot password',
+					   breadcrumb: ['message.forgotPassword'],
 					   auth: false
 					}
 				},
@@ -72,7 +72,7 @@ export default new Router({
 					path: '/newpassword/:token',
 					meta: {
 					   title: 'message.newPassword',
-					   breadcrumb: 'New Password',
+					   breadcrumb: ['message.newPassword'],
 					   auth: false
 					}
 				},
@@ -81,7 +81,7 @@ export default new Router({
 					path: '/dashboard',
 					meta: {
 						title: 'message.dashboard',
-						breadcrumb: 'Dashboard',
+						breadcrumb: ['message.dashboard'],
 					}
 				},
 				{
@@ -89,7 +89,7 @@ export default new Router({
 					path: '/wallet',
 					meta: {
 						title: 'message.wallet',
-						breadcrumb: 'Wallet',
+						breadcrumb: ['message.wallet'],
 					}
 				},
 				{
@@ -97,7 +97,7 @@ export default new Router({
 					path: '/wallet/create',
 					meta: {
 						title: 'message.createWallet',
-						breadcrumb: 'Wallet / Create',
+						breadcrumb: ['message.wallet','message.createWallet'],
 					}
 				},
 				{
@@ -105,7 +105,7 @@ export default new Router({
 					path: '/wallet/open',
 					meta: {
 						title: 'message.openWallet',
-						breadcrumb: 'Wallet / Open',
+						breadcrumb: ['message.wallet','message.openWallet'],
 					}
 				},
 				{
@@ -113,7 +113,7 @@ export default new Router({
 					path: '/browse/addresses',
 					meta: {
 						title: 'message.addresses',
-						breadcrumb: 'Addresses',
+						breadcrumb: ['message.addresses'],
 					}
 				},
 				{
@@ -121,7 +121,7 @@ export default new Router({
 					path: '/browse/blocks',
 					meta: {
 						title: 'message.blocks',
-						breadcrumb: 'Blocks',
+						breadcrumb: ['message.blocks'],
 					}
 				},
 				{
@@ -129,7 +129,7 @@ export default new Router({
 					path: '/browse/txs',
 					meta: {
 						title: 'message.transactions',
-						breadcrumb: 'Transactions',
+						breadcrumb: ['message.transactions'],
 					}
 				},
 				{
@@ -137,7 +137,7 @@ export default new Router({
 					path: '/block/height/:height',
 					meta: {
 						title: 'message.block',
-						breadcrumb: 'Home / Blocks / Block',
+						breadcrumb: ['message.blocks','message.block'],
 					}
 				},
 				{
@@ -145,58 +145,58 @@ export default new Router({
 					path: '/block/hash/:hash',
 					meta: {
 						title: 'message.block',
-						breadcrumb: 'Home / Blocks / Block',
+						breadcrumb: ['message.blocks','message.block'],
 					}
 				},
 				{
 					component: Transaction,
 					path: '/transaction/:hash',
 					meta: {
-					title: 'message.transaction',
-					breadcrumb: 'Home / Transactions / Transaction'
+						title: 'message.transaction',
+						breadcrumb: ['message.transactions','message.transaction'],
 					}
 				},
 				{
 					component: Address,
 					path: '/address/:address',
 					meta: {
-					title: 'message.address',
-					breadcrumb: 'Home / Addresses / Address'
+						title: 'message.address',
+						breadcrumb: ['message.addresses','message.address'],
 					}
 				},
 				{
 					component: Network,
 					path: '/network',
 					meta: {
-					title: 'message.network',
-					breadcrumb: 'Home / Network '
+						title: 'message.network',
+						breadcrumb: ['message.network'],
 					}
 				},
 				{
 					component: Profile,
 					path: '/profile',
 					meta: {
-					title: 'message.profile',
-					breadcrumb: 'Home / Profile ',
-					auth: true
+						title: 'message.profile',
+						breadcrumb: ['message.profile'],
+						auth: true
 					}
 				},
 				{
 					component: NodesManager,
 					path: '/nodes-manager',
 					meta: {
-					auth: true,
-					title: 'message.nodesManager',
-					breadcrumb: 'Home / Profile / Nodes Manager'
+						auth: true,
+						title: 'message.nodesManager',
+						breadcrumb: ['message.nodesManager']
 					}
 				},
 				{
 					component: WalletTracker,
 					path: '/wallet-tracker',
 					meta: {
-					auth: true,
-					title: 'message.walletTracker',
-					breadcrumb: 'Home / Profile / Wallet Tracker'
+						auth: true,
+						title: 'message.walletTracker',
+						breadcrumb: ['message.walletTracker']
 					}
 				}
 			]

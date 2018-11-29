@@ -123,6 +123,19 @@
 		}
   },
 	methods:{
+		resetModal(){
+				this.wallet=null;
+				this.password="";
+				this.filevalid =false;
+				this.pkvalid= false;
+				this.s1valid=false;
+				this.loading=false;
+				this.walletFile={name:""};
+				this.radioButton= "";
+				this.pk="";
+				this.show1= false;
+				this.e1 = 0;
+		},
 		fileChangedCallback($file){
 			this.walletFile = $file;
 			this.filevalid = true;
@@ -138,6 +151,7 @@
 				this.wallet = nknWallet.restoreWalletByPrivateKey(this.pk, this.password);
 				this.$store.dispatch("addToAddressesStore", this.wallet.address);
 				this.$store.dispatch("setSelectedAddress", this.wallet.address);
+				this.resetModal();
 				this.$router.push({ path: '/wallet' })
 			}
 			else if(this.radioButton == "file"){
@@ -148,6 +162,7 @@
 						self.wallet = nknWallet.loadJsonWallet((read.result), self.password);
 						self.$store.dispatch("addToAddressesStore", self.wallet.address);
 						self.$store.dispatch("setSelectedAddress", self.wallet.address);
+						this.resetModal();
 						self.$router.push({ path: '/wallet'})
 				}
 			
@@ -156,6 +171,7 @@
 	},
    data () {
       return {
+		  		e1:0,
 				wallet:null,
 				password:"",
 				filevalid :false,
@@ -167,8 +183,8 @@
 				pk:"",
 				show1: false,
 				rules: {
-          required: value => !!value || 'Required.',
-        }
+          			required: value => !!value || 'Required.',
+        		}
       
       }
     }

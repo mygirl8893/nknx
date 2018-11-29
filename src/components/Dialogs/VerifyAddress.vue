@@ -3,8 +3,6 @@
 		<v-card-title class="headline">{{$t('message.confirmWalletAddress')}}</v-card-title>
 		<v-container grid-list-xl pt-0>
             <v-card-text>
-
-
 					<v-layout row wrap>
 						<v-flex xs12>
 							<div v-html="$t('message.chooseConfirmationMethod')"></div>
@@ -123,6 +121,19 @@
 		}
   },
 	methods:{
+		resetModal(){
+				this.wallet=null;
+				this.password="";
+				this.filevalid =false;
+				this.pkvalid= false;
+				this.s1valid=false;
+				this.loading=false;
+				this.walletFile={name:""};
+				this.radioButton= "";
+				this.pk="";
+				this.show1= false;
+				this.walletLoaded();
+		},
 		fileChangedCallback($file){
 			this.walletFile = $file;
 			this.filevalid = true;
@@ -139,7 +150,7 @@
 				this.$store.dispatch("addToAddressesStore", this.wallet.address);
                 this.$store.dispatch("setSelectedAddress", this.wallet.address);
                 this.$store.dispatch("setSnackbar", this.$t('message.walletAddressConfirmed'));
-				this.walletLoaded();
+				this.resetModal();
 			}
 			else if(this.radioButton == "file"){
 				var self = this;
@@ -150,7 +161,7 @@
 						self.$store.dispatch("addToAddressesStore", self.wallet.address);
                         self.$store.dispatch("setSelectedAddress", self.wallet.address);
                         self.$store.dispatch("setSnackbar", self.$t('message.walletAddressConfirmed'));
-						self.walletLoaded();
+						self.resetModal();
 				}
 			
 			}
@@ -169,9 +180,8 @@
 				pk:"",
 				show1: false,
 				rules: {
-          required: value => !!value || 'Required.',
-        }
-      
+          			required: value => !!value || 'Required.',
+        		}
       }
     }
   }

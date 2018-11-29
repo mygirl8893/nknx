@@ -196,6 +196,19 @@ export default {
   verify:"verify",
   walletAddressConfirmed:"Wallet address confirmed successfully!",
   sendFunds:"Send Funds",
+  sendFundsFrom:"Send funds from",
   removeWalletWarning:"You're about to remove your wallet from NKNx.",
-  removeWallet:"Remove wallet"
+  removeWallet:"Remove wallet",
+  sendFundsStep1: "Transaction details",
+  sendFundsStep2: "Wallet verification",
+  sendFundsStep3: "Transaction result",
+  createWalletStep1: "Choose a password",
+  createWalletStep2: "Download walletfile",
+  createWalletStep3: "Save your private key",
+  searchAddress:"Search for an address",
+  addressBook:"Address book",
+  useAddress:"Use this address"
+
+
+
 }

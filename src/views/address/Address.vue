@@ -78,6 +78,7 @@
                                                         <tr>
                                                             <th>{{ $t('message.txType') }}</th>
                                                             <th style="width:50%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+                                                            <th>{{ $t('message.amount') }}</th>
                                                             <th>{{ $t('message.height') }}</th>
                                                             <th>{{ $t('message.created') }}</th>
                                                         </tr>
@@ -102,6 +103,7 @@
 
                                                 </td>
                                                 <td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
+                                                <td>{{ props.item.outputs[0].value }} NKN</td>
                                                 <td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
                                                 <td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
                                                 </tr>
@@ -250,7 +252,7 @@ export default {
     });
     self.transactionLoader= true;
     
-    axios.get('transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutoutputs=true&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
+    axios.get('transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutattributes=true&withoutinputs=true&address='+this.$route.params.address).then(function(response){
         self.next_pageTransactions = response.data.next_page_url;
         self.prev_pageTransactions = response.data.prev_page_url;
         self.current_pageTransactions = response.data.current_page;

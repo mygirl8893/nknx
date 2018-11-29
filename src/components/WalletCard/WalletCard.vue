@@ -17,7 +17,7 @@
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
                 <v-layout justify-end>
-                    <v-btn :disabled="!balance" color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
+                    <v-btn :disabled="!balance" @click="transferFundsDialog=true" color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
                 </v-layout>  
             </v-flex>
         </v-container>
@@ -38,6 +38,9 @@
             </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-dialog v-model="transferFundsDialog" max-width="800px">
+            <transfer-funds :senderAddress="address" :transferModalClosed="transferModalClosed"></transfer-funds>
+        </v-dialog>
 
     </div>
 </template>
@@ -46,13 +49,18 @@
 import axios from "axios";
 import feather from 'feather-icons'
 import { Timeouts } from "Constants/timeouts";
+import transferFunds from "Components/Dialogs/TransferFunds";
 export default {
+    components:{
+        transferFunds
+    },
     props: {
         address: String,
         deleteCallback: { type: Function }
     },
     data() {
       return {
+          transferFundsDialog:false,
           removeDialog:false,
           balance:0,
           balanceUSD:0,
@@ -82,6 +90,10 @@ export default {
             }
         },
     methods: {
+        transferModalClosed(){
+            this.getBalance();
+            this.transferFundsDialog =false;
+        },
         getBalance(){
 			if(this.address){
                 var self = this;

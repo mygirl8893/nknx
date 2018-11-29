@@ -42,7 +42,7 @@
 					</v-dialog>
 					<v-dialog v-model="createWalletDialog" max-width="800">
 						<v-card>
-							<create-wallet :walletCreated="walletCreated"></create-wallet>
+							<create-wallet :createWalletModalClosed="createWalletModalClosed"></create-wallet>
 						</v-card>
 					</v-dialog>
 					<span>{{$t('message.moreActions')}}</span>
@@ -95,7 +95,7 @@ export default {
 		walletLoaded(){
 			this.addWalletDialog=false;
 		},
-		walletCreated(){
+		createWalletModalClosed(){
 			this.createWalletDialog=false;
 		},
     onChangeTab(value) {

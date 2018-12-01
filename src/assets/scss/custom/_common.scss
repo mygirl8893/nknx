@@ -404,6 +404,10 @@ hr {
   font-weight: 500;
   z-index: 2 !important;
 }
+.v-stepper__header{
+  box-shadow: none;
+  border-bottom: 1px solid $gray-lighter;
+}
 .title-tab{
   justify-content: flex-start !important;
   padding-top: 1.40rem !important;

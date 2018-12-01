@@ -1,7 +1,7 @@
 <template>
     <div class="table-responsive">
         <app-section-loader :status="loader"></app-section-loader>
-        <v-card-title><h2>{{$t('message.minersTotal')}}: {{totalMiners}}</h2></v-card-title>
+        <v-card-title><h3>{{$t('message.minersTotal')}}: {{totalMiners}}</h3></v-card-title>
         <MinersChart style='height:300px'></MinersChart>
         <v-card-title><i>{{$t('message.topMinersDecr')}}</i></v-card-title>
     </div>

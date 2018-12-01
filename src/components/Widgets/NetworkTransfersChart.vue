@@ -1,7 +1,7 @@
 <template>
    <div class="mt-4 visitor-area-chart">
    	<div class="w-100 px-4 mb-4">
-	<h2>{{$t('message.networkTransfersStats')}}: {{avgTransfers}}</h2>
+	<h3>{{$t('message.networkTransfersStats')}}: {{avgTransfers}}</h3>
    	</div>
 		
 		<div class="px-4 pos-relative">

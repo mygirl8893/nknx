@@ -1,7 +1,7 @@
 <template>
     <div class="table-responsive">
         <app-section-loader :status="loader"></app-section-loader>
-        <v-card-title><h2>{{$t('message.countriesTotal')}}: {{totalCountries}}</h2></v-card-title>
+        <v-card-title><h3>{{$t('message.countriesTotal')}}: {{totalCountries}}</h3></v-card-title>
         <NetworkCountriesChart ref="NetworkCountriesChart"></NetworkCountriesChart>
     </div>
 </template>

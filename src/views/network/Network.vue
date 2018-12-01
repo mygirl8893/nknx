@@ -8,6 +8,7 @@
 				<app-card
 					customClasses="mb-30"
 					colClasses="xl12 lg12 md12 sm12 xs12"
+					:heading="$t('message.map')"
 				>
 					<v-layout row wrap>
 						<v-flex xs12>

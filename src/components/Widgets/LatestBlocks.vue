@@ -14,10 +14,10 @@
 				</tr>
 			</template>
 			<template slot="items" slot-scope="props">
-				<td><router-link :to="{ path: '/block/height/'+props.item.height}">{{ props.item.height }}</router-link></td>
+				<td><router-link :to="{ path: '/block/height/'+props.item.header.height}">{{ props.item.header.height }}</router-link></td>
 				<td>{{ props.item.transaction_count}}</td>
-				<td class="hidden-sm-and-down">{{ props.item.signer }}</td>
-        <td>{{ $moment(props.item.timestamp).fromNow() }}</td>
+				<td class="hidden-sm-and-down">{{ props.item.header.signer }}</td>
+        <td>{{ $moment(props.item.header.timestamp).fromNow() }}</td>
 			</template>
 		</v-data-table>
 	</div>

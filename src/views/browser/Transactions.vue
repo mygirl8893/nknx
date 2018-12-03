@@ -43,8 +43,8 @@
 
 										</td>
 										<td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
-										<td><router-link :to="{ path: '/block/height/'+props.item.block.height }">{{ props.item.block.height }}</router-link></td>
-										<td>{{ $moment(props.item.block.timestamp).fromNow() }}</td>
+										<td><router-link :to="{ path: '/block/height/'+props.item.block.header.height }">{{ props.item.block.header.height }}</router-link></td>
+										<td>{{ $moment(props.item.block.header.timestamp).fromNow() }}</td>
 										</tr>
 											</template>
 

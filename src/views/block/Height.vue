@@ -27,7 +27,7 @@
                                         {{ $t('message.height') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{block.header.height}} 
+                                        {{block.height}} 
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
@@ -35,7 +35,7 @@
                                         {{ $t('message.timestamp') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{$moment(block.header.timestamp).format('MMMM Do YYYY, h:mm:ss a')}}
+                                        {{$moment(block.timestamp).format('MMMM Do YYYY, h:mm:ss a')}}
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
@@ -43,7 +43,7 @@
                                         {{ $t('message.signer') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{block.header.signer}} 
+                                        {{block.signer}} 
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
@@ -59,7 +59,7 @@
                                         {{ $t('message.prevBlockHash') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        <router-link :to="{ path: '/block/hash/'+block.header.prevBlockHash}">{{ block.header.prevBlockHash }}</router-link>
+                                        <router-link :to="{ path: '/block/hash/'+block.prevBlockHash}">{{ block.prevBlockHash }}</router-link>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
@@ -67,7 +67,7 @@
                                         {{ $t('message.nextBlockHash') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        <router-link :to="{ path: '/block/hash/'+block.header.nextBlockHash}">{{ block.header.nextBlockHash }}</router-link>
+                                        <router-link :to="{ path: '/block/hash/'+block.nextBlockHash}">{{ block.nextBlockHash }}</router-link>
                                     </v-flex>
                                 </v-layout>
                                 </div>
@@ -114,8 +114,8 @@
 
                                         </td>
                                         <td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
-                                        <td>{{ block.header.height }}</td>
-                                        <td>{{ $moment(block.header.timestamp).fromNow() }}</td>
+                                        <td>{{ block.height }}</td>
+                                        <td>{{ $moment(block.timestamp).fromNow() }}</td>
                                         </tr>
                                             </template>
                                         </v-data-table>

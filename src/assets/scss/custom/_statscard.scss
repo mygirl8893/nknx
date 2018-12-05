@@ -1,0 +1,36 @@
+.stats-wrapper{
+	display: flex;
+}
+.stats-block{
+    margin: 10px 0px;
+}
+.stats-card{
+	background-color: #fff;
+	margin-right: 30px;
+	display: flex;
+	flex: none !important;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	&__data{
+		padding: 25px;
+		&-title{
+			text-transform: uppercase;
+			margin-bottom: 40px;
+			font-weight: 500;
+			color: $gray-light;
+			font-size: 1em;
+		}
+		&-value{
+			font-size: 2.5em;
+			color: $primary;
+		}
+	}
+	&__chart{
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		display: flex;
+		align-items: center;
+		padding: 25px;
+		background-color: $primary;
+	}
+}

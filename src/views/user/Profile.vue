@@ -32,7 +32,7 @@
 			</v-layout>
 
 			<!-- Market Stats -->
-			<div class="card-stats">
+			<div class="stats-block">
 				<market-stats></market-stats>
 			</div>
 			<v-layout row wrap>

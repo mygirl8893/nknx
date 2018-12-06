@@ -235,7 +235,6 @@ export default {
         },
 		"id": 1
 	}).then(function(response){
-        
         response.data.result.forEach(function(unspendoutput) {
             self.walletbalance = self.walletbalance + Number(unspendoutput.Value);
         });

@@ -5,27 +5,98 @@
             <div class="card-stats">
                 <network-stats></network-stats>
             </div>
-					<v-layout style='flex-flow: row wrap;'>
-                        <v-flex lg2 md6>
-                            <v-card>
-                                <v-card-title primary-title>
-                                    <div>
-                                        <h4>{{$t('message.nodesFilter')}}</h4>
-										<v-radio-group :mandatory="false" v-model="currentOrder">
-											<v-radio  
-												v-for="order in orderOptions"
-												:key="order.value"
-												:label="order.label"
-												:value="order.value"
-												color="green"></v-radio>
-										</v-radio-group>
-                                    </div>
-                                </v-card-title>
-                            </v-card>
-                        </v-flex>
-                        <v-flex lg4 md-12>
-                            <v-card>
-                            <v-card-title >
+            <v-layout style='flex-flow: row wrap;'>
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">  
+                <div class="tab-toggler">
+                    <div class="tab-toggler__item" 
+                    v-for="order in orderOptions" 
+                    :value="order.value"
+                    :class="getClass(order.value)"
+                    @click='toggleFilter(order.value)'
+                    >
+                        <div class="tab-toggler__item--text">{{order.value}}</div>
+                        <div class="tab-toggler__item--counter">{{order.count}}</div>
+                    </div>
+                </div>
+                <v-btn color="primary" large @click='addNodeModal'><span v-html="addNodeIcon" class="icon"></span>{{$t('message.addNode')}}</v-btn>
+                </div>
+            </v-layout>
+            <v-layout row wrap>
+				<app-card 
+                :heading="$t('message.myNodes')" 
+                colClasses="xl12 lg12 md12 sm12 xs12" 
+                customClasses="mb-0" 
+                :fullScreen="true" 
+                :fullBlock="true" 
+                :footer="true"
+                v-if="userNodesData.length>0"
+                >
+                	<div class="table-responsive">
+                        <app-section-loader :status="loader"></app-section-loader>
+                        <v-data-table :items="sortedArray" hide-actions item-key='props.item.index'>
+                            <template slot='headers' slot-scope='props'>
+                                <tr>
+                                    <th style="width:5%;">#</th>
+                                    <th>{{ $t('message.node') }}</th>
+                                    <th>{{ $t('message.status') }}</th>
+                                    <th>{{ $t('message.latestBlock') }}</th>
+                                    <th>{{ $t('message.tx') }}</th>
+                                    <th>{{ $t('message.version') }}</th>
+                                    <th style="text-align:center"><v-btn outline @click='removeAllNodes' color="red">{{ $t('message.removeAllNodes') }}</v-btn></th>
+                                </tr>
+                            </template>
+                            <template slot="items" slot-scope="props">
+                                <td>{{props.index+1}}</td>
+                                <td
+                                v-clipboard:copy="props.item.addr"
+                                v-clipboard:success="onCopy1"
+                                class='cursor-pointer'
+                                >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td >{{props.item.syncState}}
+								<v-btn v-if='props.item.online != 0' @click='checkPorts(props.item.addr)' small color="gradient-primary">{{ $t('message.ports') }}</v-btn>
+								<span v-if='props.item.online != 1'><v-badge color="red">
+                                <span slot="badge">!</span>
+                                </v-badge></span> </td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.txnCnt}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
+                                <td style="text-align:center"><v-btn
+                                color="red"
+                                dark
+                                small
+                                fab
+                                @click='removeNode(props.item.addr)'
+                                >
+                                <v-icon>delete_outline</v-icon>
+                                </v-btn></td>
+                            </template>
+                        </v-data-table>
+                    </div>
+                    <v-dialog v-model="removeDialog" max-width="500px">
+                        <v-card>
+                          <v-card-title>
+                            <span class="headline">{{ $t('message.warning') }}</span>
+                          </v-card-title>
+
+                          <v-card-text>
+                            {{ $t('message.removeNodesWarning') }}
+                          </v-card-text>
+
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" flat @click="close">{{ $t('message.cancel') }}</v-btn>
+                            <v-btn color="blue darken-1" flat @click="removeAllConfirm">{{ $t('message.removeAllNodes') }}</v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    <v-dialog v-model="addNodeDialog" max-width="500px">
+                        <v-card>
+                          <v-card-title>
+                            <span class="headline">{{ $t('message.addNodes') }}</span>
+                          </v-card-title>
+
+                          <v-card-text>
+                        <v-card-title >
                                 <v-tabs
                                     slot="extension"
                                     v-model="tabs"
@@ -99,74 +170,11 @@
                                 </v-tabs-items>
      
                             </v-card-title>
-                            </v-card>
-                        </v-flex>
-                    </v-layout>
-            <v-layout row wrap>
-				<app-card 
-                :heading="$t('message.myNodes')" 
-                colClasses="xl12 lg12 md12 sm12 xs12" 
-                customClasses="mb-0" 
-                :fullScreen="true" 
-                :fullBlock="true" 
-                :footer="true"
-                v-if="userNodesData.length>0"
-                >
-                	<div class="table-responsive">
-                        <app-section-loader :status="loader"></app-section-loader>
-                        <v-data-table :items="sortedArray" hide-actions item-key='props.item.index'>
-                            <template slot='headers' slot-scope='props'>
-                                <tr>
-                                    <th style="width:5%;">#</th>
-                                    <th>{{ $t('message.node') }}</th>
-                                    <th>{{ $t('message.status') }}</th>
-                                    <th>{{ $t('message.latestBlock') }}</th>
-                                    <th>{{ $t('message.tx') }}</th>
-                                    <th>{{ $t('message.version') }}</th>
-                                    <th style="text-align:center"><v-btn outline @click='removeAllNodes' color="red">{{ $t('message.removeAllNodes') }}</v-btn></th>
-                                </tr>
-                            </template>
-                            <template slot="items" slot-scope="props">
-                                <td>{{props.index+1}}</td>
-                                <td
-                                v-clipboard:copy="props.item.addr"
-                                v-clipboard:success="onCopy1"
-                                class='cursor-pointer'
-                                >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
-                                <td >{{props.item.syncState}}
-								<v-btn v-if='props.item.online != 0' @click='checkPorts(props.item.addr)' small color="gradient-primary">{{ $t('message.ports') }}</v-btn>
-								<span v-if='props.item.online != 1'><v-badge color="red">
-                                <span slot="badge">!</span>
-                                </v-badge></span> </td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.txnCnt}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
-                                <td style="text-align:center"><v-btn
-                                color="red"
-                                dark
-                                small
-                                fab
-                                @click='removeNode(props.item.addr)'
-                                >
-                                <v-icon>delete_outline</v-icon>
-                                </v-btn></td>
-                            </template>
-                        </v-data-table>
-                    </div>
-                    <v-dialog v-model="removeDialog" max-width="500px">
-                        <v-card>
-                          <v-card-title>
-                            <span class="headline">{{ $t('message.warning') }}</span>
-                          </v-card-title>
-
-                          <v-card-text>
-                            {{ $t('message.removeNodesWarning') }}
                           </v-card-text>
 
                           <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-1" flat @click="close">{{ $t('message.cancel') }}</v-btn>
-                            <v-btn color="blue darken-1" flat @click="removeAllConfirm">{{ $t('message.removeAllNodes') }}</v-btn>
                           </v-card-actions>
                         </v-card>
                       </v-dialog>
@@ -212,6 +220,7 @@
 import axios from "axios";
 import NetworkStats from "Components/Widgets/NetworkStats";
 import { Timeouts } from "Constants/timeouts";
+import feather from 'feather-icons';
 
 export default {
     components: {
@@ -224,6 +233,7 @@ export default {
             valid: false,
             removeDialog: false,
             portsDialog: false,
+            addNodeDialog: false,
             multiValid: false,
             nodePorts: [],
             currentIp: null,
@@ -286,6 +296,9 @@ export default {
         clearInterval(this.interval);
     },
     computed: {
+        addNodeIcon: function () {
+            return feather.icons['plus'].toSvg()
+        },
     	sortedArray: function() {
 		let customNodes = []
         if (this.currentOrder === 'Default') {
@@ -308,6 +321,17 @@ export default {
     }
     },
     methods:{
+        toggleFilter(itemValue){
+            const self = this;
+            self.currentOrder = itemValue;
+        },
+        getClass(itemValue){
+            console.log(itemValue)
+            const self = this;
+            if(itemValue === self.currentOrder){
+                return 'active'
+            }
+        },
         onCopy1(){
             this.$store.dispatch("setSnackbar", this.$t('message.ipCopiedSuccessful'));
         },
@@ -387,6 +411,10 @@ export default {
                 this.getUserNodes()
             })
         },
+        addNodeModal(){
+            const self = this;
+            self.addNodeDialog = true
+        },
         removeAllNodes(){
             const self = this;
             self.removeDialog = true
@@ -418,6 +446,7 @@ export default {
             const self = this;
             self.removeDialog = false
             self.portsDialog = false
+            self.addNodeDialog = false
         },
         getUserNodes() {
             const self = this;

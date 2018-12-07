@@ -2,7 +2,7 @@
     <div>
         <page-title-bar></page-title-bar>
         <v-container fluid pt-0 grid-list-xl>
-            <div class="card-stats">
+            <div class="network-block">
                 <network-stats></network-stats>
             </div>
             <v-layout style='flex-flow: row wrap;'>
@@ -326,7 +326,6 @@ export default {
             self.currentOrder = itemValue;
         },
         getClass(itemValue){
-            console.log(itemValue)
             const self = this;
             if(itemValue === self.currentOrder){
                 return 'active'

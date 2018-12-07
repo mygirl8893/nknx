@@ -1,54 +1,34 @@
 <template>
     <div>
         <app-section-loader :status="loader"></app-section-loader>
-        <v-flex d-flex sm12 xs12 style='flex-flow: row wrap'>
-            <div class='flex w-20 d-md-half-block w-600-full card-wrapper --red'>
-                <v-card-title>
-                    <v-layout column>
-                        <div class="card__title">{{$t('message.totalNodes')}}</div>
-                        <div class="card__content">{{crawlCounter}}</div>
-                    </v-layout>
-                </v-card-title>
+        <div class='network-card'>
+            <div class="network-card__item">
+                <div class="network-card__item-title">{{$t('message.totalNodes')}}</div>
+                <div class="network-card__item-value"><span v-html="nodeIcon" class="icon"></span>{{crawlCounter}}</div>
             </div>
-            <div class='flex w-20 d-md-half-block w-600-full card-wrapper --green'>
-                <v-card-title>
-                    <v-layout column>
-                        <div class="card__title">{{$t('message.networkStatus')}}</div>
-                        <div class="card__content">{{seedStatus}}</div>
-                    </v-layout>
-                </v-card-title>
-                
+            <div class="network-card__item">
+                <div class="network-card__item-title">{{$t('message.networkStatus')}}</div>
+                <div class="network-card__item-value"><span v-html="statusIcon" class="icon"></span>{{seedStatus}}</div>
             </div>
-            <div class='flex w-20 d-md-half-block w-600-full card-wrapper --blue'>
-                <v-card-title>
-                    <v-layout column>
-                        <div class="card__title">{{$t('message.networkVersion')}}</div>
-                        <div class="card__content">{{seedVersion}}</div>
-                    </v-layout>
-                </v-card-title>
+            <div class="network-card__item">
+                <div class="network-card__item-title">{{$t('message.networkVersion')}}</div>
+                <div class="network-card__item-value"><span v-html="versionIcon" class="icon"></span>{{seedVersion}}</div>
             </div>
-            <div class='flex w-20 d-md-half-block w-600-full card-wrapper --green'>
-                <v-card-title>
-                    <v-layout column>
-                        <div class="card__title">{{$t('message.networkCurrentBlock')}}</div>
-                        <div class="card__content">{{seedLatestBlock}}</div>
-                    </v-layout>
-                </v-card-title>
+            <div class="network-card__item">
+                <div class="network-card__item-title">{{$t('message.networkCurrentBlock')}}</div>
+                <div class="network-card__item-value"><span v-html="blockIcon" class="icon"></span>{{seedLatestBlock}}</div>
             </div>
-            <div class='flex w-20 d-md-full w-600-full card-wrapper --red'>
-                <v-card-title>
-                    <v-layout column>
-                        <div class="card__title">{{$t('message.networkMempool')}}</div>
-                        <div class="card__content">{{seedMempool}}</div>
-                    </v-layout>
-                </v-card-title>
+            <div class="network-card__item">
+                <div class="network-card__item-title">{{$t('message.networkMempool')}}</div>
+                <div class="network-card__item-value"><span v-html="mempoolIcon" class="icon"></span>{{seedMempool}}</div>
             </div>
-        </v-flex>
+        </div>
     </div>
 </template>
 <script>
 import axios from "axios";
 import { Timeouts } from "Constants/timeouts";
+import feather from 'feather-icons';
 
 export default {
     data() {
@@ -70,6 +50,23 @@ export default {
     },
     mounted: function() {
         this.interval = setInterval(this.getNetworkState, Timeouts.short);
+    },
+    computed: {
+        statusIcon: function () {
+            return feather.icons['activity'].toSvg()
+        },
+        nodeIcon: function () {
+            return feather.icons['droplet'].toSvg()
+        },
+        versionIcon: function () {
+            return feather.icons['git-branch'].toSvg()
+        },
+        blockIcon: function () {
+            return feather.icons['box'].toSvg()
+        },
+        mempoolIcon: function () {
+            return feather.icons['layers'].toSvg()
+        }
     },
     methods: {
     getNetworkState(){

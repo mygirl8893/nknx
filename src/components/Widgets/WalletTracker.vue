@@ -51,8 +51,8 @@ export default {
                 }
                 self.wallets = response.data
 
-                if(self.wallets.length >=4){
-                    self.walletsCopy = self.wallets.slice(0, 4)
+                if(self.wallets.length >=2){
+                    self.walletsCopy = self.wallets.slice(0, 2)
                 } else{
                     self.walletsCopy = self.wallets
                 }

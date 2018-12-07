@@ -2,9 +2,6 @@
     <div>
     <page-title-bar></page-title-bar>
         <v-container fluid pt-0 grid-list-xl>
-            <div class="card-stats">
-                <market-stats></market-stats>
-            </div>
             <div class="d-custom-flex w-100 mb-4">
                 <v-flex xl3 md12>
                     <v-card style='height:100%'>

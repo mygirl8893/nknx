@@ -3,7 +3,7 @@
 	<page-title-bar></page-title-bar>
 		<v-container fluid pt-0 grid-list-xl>
 			<!-- Network Stats -->
-			<div class="card-stats">
+			<div class="network-block">
 				<network-stats></network-stats>
 			</div>
 			<v-layout row wrap>
@@ -30,17 +30,11 @@
 					<mining-calc></mining-calc>
 				</app-card>
 			</v-layout>
-
-			<!-- Market Stats -->
-			<div class="stats-block">
-				<market-stats></market-stats>
-			</div>
 			<v-layout row wrap>
 			<!-- User Wallets -->
 			<app-card
 					:heading="$t('message.walletTracker')"
 					colClasses="xl8 lg8 md12 sm12 xs12"
-					customClasses="height-auto"
 					:fullScreen="true"
 					:fullBlock="true"
 					:footer="true"

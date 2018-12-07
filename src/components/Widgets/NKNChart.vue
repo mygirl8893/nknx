@@ -17,7 +17,7 @@
 				</div>
 				<div class="w-20 d-md-half-block w-xs-full">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.change24')}}h</p>
-					<h4 class="green-main--text mb-0">{{nkn24}}%</h4>
+					<h4 class="mb-0" v-bind:class="priceClass">{{nkn24}}%</h4>
 				</div>
 			</div>
 			<div class="d-custom-flex w-20 w-xs-full">
@@ -89,6 +89,12 @@ export default {
                     self.nknVolume = ((response.data.data.quotes.USD.volume_24h) / 1000).toFixed(2)
                     self.nkn24 = response.data.data.quotes.USD.percent_change_24h
                     self.nknWeekly = response.data.data.quotes.USD.percent_change_7d
+
+                    if(self.nkn24 < 0){
+                    	self.priceClass = 'red-main--text'
+                    }else{
+                    	self.priceClass = 'green-main--text'
+                    }
                 })
                 .catch(function(error){
                 	self.nknRank = 'error';
@@ -119,7 +125,8 @@ export default {
 			nknCap: 0,
 			nknVolume: 0,
 			nkn24: 0,
-			nknWeekly: 0
+			nknWeekly: 0,
+			priceClass: "green-main--text"
 		}
 	}
 };

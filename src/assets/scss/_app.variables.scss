@@ -18,6 +18,7 @@ $dark:              			  #000000 !default;
 $base:                      #ECF0F6 !default;
 $base-light:                #FAFAFA !default;
 $inactive:                  #BDBDBD !default;
+$card-light:                #e4e7ed !default;
 
 // App Text Scale
 $gray-dark: 					#828282 !default;
@@ -42,7 +43,8 @@ $theme-colors: map-merge((
   "light":      $light,
   "dark":       $dark,
   "blue":       $blue,
-  "green": 		$green
+  "green": 		  $green,
+  "card-light": $card-light,
 ), $theme-colors);
 
 // Settings for the `<body>` element.

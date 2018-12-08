@@ -73,7 +73,7 @@
                         </v-data-table>
                     </div>
                     <v-dialog v-model="removeDialog" max-width="500px">
-                        <v-card>
+                        <v-card class='card-light'>
                           <v-card-title>
                             <span class="headline">{{ $t('message.warning') }}</span>
                           </v-card-title>
@@ -90,7 +90,7 @@
                         </v-card>
                       </v-dialog>
                     <v-dialog v-model="addNodeDialog" max-width="500px">
-                        <v-card>
+                        <v-card class='card-light'>
                           <v-card-title>
                             <span class="headline">{{ $t('message.addNodes') }}</span>
                           </v-card-title>
@@ -179,7 +179,7 @@
                         </v-card>
                       </v-dialog>
 					<v-dialog v-model="portsDialog" max-width="500px">
-                        <v-card>
+                        <v-card class='card-light'>
                           <v-card-title>
                             <span class="headline">{{currentIp}}</span>
                           </v-card-title>

@@ -4,7 +4,7 @@
         <v-container fluid pt-0 grid-list-xl>
             <div class="d-custom-flex w-100 mb-4">
                 <v-flex xl3 md12>
-                    <v-card style='height:100%'>
+                    <v-card class='card-light' style='height:100%'>
                     <v-card-title primary-title style='height:100%'>
                     <h4>{{$t('message.newWallet')}}</h4>
                     <v-form v-model="valid" class="mb-4 w-100">

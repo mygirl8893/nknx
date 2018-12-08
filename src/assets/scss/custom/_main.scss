@@ -57,7 +57,9 @@
 		box-shadow: $card-hover-shadow;
 	}
 }
-
+.card-light{
+	background-color: $card-bg !important;
+}
 .app-card-action{
 	background-color:  $light;
 	overflow: hidden;

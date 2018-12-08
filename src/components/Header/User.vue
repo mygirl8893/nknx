@@ -2,7 +2,7 @@
    <v-menu offset-y origin="right top" left content-class="language-dropdown" transition="slide-y-transition" nudge-top="-10" class="user-block-wrap">
 		<v-btn icon large slot="activator" v-html="iconSvg"></v-btn>
 		<div class="dropdown-content">
-         <div class="dropdown-top white--text primary">
+         <div class="dropdown-top white--text">
             <span class="white--text fs-14 fw-bold d-block">{{$auth.user().name}}</span>
             <span class="d-block fs-12 fw-light">{{$auth.user().email}}</span>
          </div>

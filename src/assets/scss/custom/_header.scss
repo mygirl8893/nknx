@@ -58,10 +58,12 @@
 .notification-dropdown,
 .language-dropdown {
    background-color: $base-light;
+   border-radius: 5px;
    .dropdown-content {
       width: 321px;
       .dropdown-top {
          padding: 1rem 1.25rem;
+         background: $light-primary;
       }
       .dropdown-list {
          background: transparent !important;

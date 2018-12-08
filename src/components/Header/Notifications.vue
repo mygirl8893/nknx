@@ -2,7 +2,7 @@
 	<v-menu offset-y left origin="right top" z-index="99" content-class="notification-dropdown" transition="slide-y-transition" nudge-top="-10">
 		<v-btn class="notification-icon ma-0"  icon large slot="activator" v-html="iconSvg"></v-btn>
 		<div class="dropdown-content">
-			<div class="dropdown-top d-custom-flex justify-space-between primary">
+			<div class="dropdown-top d-custom-flex justify-space-between">
 				<span class="white--text fw-bold">Notifications</span>
 				<span class="v-badge warning">4 NEW</span>
 			</div>

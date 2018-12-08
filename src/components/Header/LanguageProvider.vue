@@ -4,7 +4,7 @@
 			<img class="img-responsive" style="width:24px" :src="`/static/flag-icons/${selectedLocale.icon}.svg`">
 		</v-btn>
 		<div class="dropdown-content">
-			<div class="dropdown-top d-custom-flex justify-space-between primary">
+			<div class="dropdown-top d-custom-flex justify-space-between">
 				<span class="white--text fw-bold">{{$t('message.language')}}</span>
 			<!--	<span class="v-badge warning">2 NEW</span> -->
 			</div>

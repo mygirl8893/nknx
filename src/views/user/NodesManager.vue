@@ -261,7 +261,7 @@ export default {
             multiIpRules: [v => !!v || "IP Addresses of nodes are required!"],
             userNodesData: [],
         	timer: "",
-        	currentOrder: "Default",
+        	currentOrder: "All",
             isError: '',
             isMultiError: '',
         	userNodesDataCounter: {
@@ -273,7 +273,7 @@ export default {
             },
         	orderOptions: [
         	{
-        		value: "Default",
+        		value: "All",
         		label: "",
         		count: 0
         	},
@@ -321,7 +321,7 @@ export default {
         },
     	sortedArray: function() {
 		let customNodes = []
-        if (this.currentOrder === 'Default') {
+        if (this.currentOrder === 'All') {
             function compare(a, b) {
                 if (a.SyncState < b.SyncState)
                     return -1;
@@ -507,7 +507,7 @@ export default {
             }
             for(let y in self.orderOptions){
             	switch (self.orderOptions[y].value) {
-            		case 'Default':
+            		case 'All':
                         self.orderOptions[y].count = self.userNodesData.length
                         self.orderOptions[y].label = "All (" + self.orderOptions[y].count+")"
                         break;

@@ -165,6 +165,7 @@ export default {
   singleNode: "Single Node",
   multipleNodes: "Multiple Nodes",
   removeAllNodes: "Remove all nodes",
+  removeNode: "Remove Node",
   warning: "Warning!",
   removeNodesWarning: "You are going to remove all nodes from the tracker, are you sure?",
   cancel: "Cancel",
@@ -188,6 +189,7 @@ export default {
   NodeNotReachable: "The node is not reachable.",
   NodeDuplicate: "The node is already in the database.",
   ports: "Ports",
+  checkPorts: "Check Ports",
   port: "Port",
   close: "Close",
   moreActions: "More actions",
@@ -207,8 +209,6 @@ export default {
   createWalletStep3: "Save your private key",
   searchAddress:"Search for an address",
   addressBook:"Address book",
-  useAddress:"Use this address"
-
-
-
+  useAddress:"Use this address",
+  actions: "Actions"
 }

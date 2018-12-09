@@ -18,7 +18,8 @@
                         <div class="tab-toggler__item--counter">{{order.count}}</div>
                     </div>
                 </div>
-                <v-btn color="primary" large @click='addNodeModal'><span v-html="addNodeIcon" class="icon"></span>{{$t('message.addNode')}}</v-btn>
+                <div><v-btn color="primary" large @click='addNodeModal'><span v-html="addNodeIcon" class="icon"></span>{{$t('message.addNode')}}</v-btn>
+                <v-btn v-if='userNodesData.length>0' large @click='removeAllNodes' color="primary"><span v-html="removeNodeIcon" class="icon"></span>{{ $t('message.removeAllNodes') }}</v-btn></div>
                 </div>
             </v-layout>
             <v-layout row wrap>
@@ -26,7 +27,6 @@
                 :heading="$t('message.myNodes')" 
                 colClasses="xl12 lg12 md12 sm12 xs12" 
                 customClasses="mb-0" 
-                :fullScreen="true" 
                 :fullBlock="true" 
                 :footer="true"
                 v-if="userNodesData.length>0"
@@ -42,7 +42,7 @@
                                     <th>{{ $t('message.latestBlock') }}</th>
                                     <th>{{ $t('message.tx') }}</th>
                                     <th>{{ $t('message.version') }}</th>
-                                    <th style="text-align:center"><v-btn outline @click='removeAllNodes' color="red">{{ $t('message.removeAllNodes') }}</v-btn></th>
+                                    <th style="text-align:center">{{ $t('message.actions') }}</th>
                                 </tr>
                             </template>
                             <template slot="items" slot-scope="props">
@@ -53,22 +53,36 @@
                                 class='cursor-pointer'
                                 >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
                                 <td >{{props.item.syncState}}
-								<v-btn v-if='props.item.online != 0' @click='checkPorts(props.item.addr)' small color="gradient-primary">{{ $t('message.ports') }}</v-btn>
 								<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                 </v-badge></span> </td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.txnCnt}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
-                                <td style="text-align:center"><v-btn
-                                color="red"
-                                dark
-                                small
-                                fab
-                                @click='removeNode(props.item.addr)'
-                                >
-                                <v-icon>delete_outline</v-icon>
-                                </v-btn></td>
+                                <td style="text-align:center">
+                                <v-menu bottom left>
+                                    <v-btn
+                                      slot="activator"
+                                      dark
+                                      icon
+                                    >
+                                      <v-icon color='primary' style='font-size:30px;'>more_horiz</v-icon>
+                                    </v-btn>
+
+                                    <v-list>
+                                      <v-list-tile
+                                        @click='removeNode(props.item.addr)'
+                                      >
+                                        <v-list-tile-title><span v-html="removeNodeIcon" class="icon"></span>{{ $t('message.removeNode') }}</v-list-tile-title>
+                                      </v-list-tile>
+                                      <v-list-tile
+                                        @click='checkPorts(props.item.addr)'
+                                      >
+                                        <v-list-tile-title><span v-html="checkPortsIcon" class="icon"></span>{{ $t('message.checkPorts') }}</v-list-tile-title>
+                                      </v-list-tile>
+                                    </v-list>
+                                  </v-menu>
+                            </td>
                             </template>
                         </v-data-table>
                     </div>
@@ -298,6 +312,12 @@ export default {
     computed: {
         addNodeIcon: function () {
             return feather.icons['plus'].toSvg()
+        },
+        removeNodeIcon: function () {
+            return feather.icons['trash-2'].toSvg()
+        },
+        checkPortsIcon: function () {
+            return feather.icons['cpu'].toSvg()
         },
     	sortedArray: function() {
 		let customNodes = []

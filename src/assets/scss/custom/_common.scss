@@ -378,6 +378,17 @@ hr {
   }
 }
 .v-menu__content{
+  border-radius: 5px;
+  .icon{
+    color: $primary;
+    margin-right: 10px;
+    svg{
+      height: 18px;
+      width: 18px;
+      position: relative;
+      top: 4px;
+    }
+  }
   .v-select-list{
     border: 1px solid #b5b5b5;
     border-radius: 5px;

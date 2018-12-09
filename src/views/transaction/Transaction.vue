@@ -41,7 +41,7 @@
                                         {{ $t('message.timestamp') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{$moment(transaction.block.header.timestamp).format('MMMM Do YYYY, h:mm:ss a')}}
+                                        {{$moment(transaction.block.timestamp).format('MMMM Do YYYY, h:mm:ss a')}}
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
@@ -49,7 +49,7 @@
                                         {{ $t('message.block') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        <router-link :to="{ path: '/block/height/'+transaction.block.header.height}">{{ transaction.block.header.height }}</router-link> 
+                                        <router-link :to="{ path: '/block/height/'+transaction.block.height}">{{ transaction.block.height }}</router-link> 
                                     </v-flex>
                                 </v-layout>
                                 <v-layout v-if="transaction.txType == 0" row wrap>

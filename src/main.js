@@ -83,7 +83,7 @@ Vue.use(VueAxios, axios);
 
 moment.tz.setDefault('Atlantic/Reykjavik')
 moment.locale(store.getters.selectedLocale.locale)
-axios.defaults.baseURL = 'https://nknx.org/api';
+axios.defaults.baseURL = 'https://api.nknx.org/';
 
 axios.defaults.transformResponse =  [function (data) {
 	return JSONBigInt.parse(data);

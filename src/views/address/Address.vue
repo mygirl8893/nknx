@@ -62,14 +62,14 @@
                         <v-expansion-panel class="mb-4" v-model="openTransactions">
                             <v-expansion-panel-content>
                             <div slot="header">{{$t('message.transactions')}}</div>
-                            <div style="padding:15px;" v-if="address">
+                            <div style="padding:0px;" v-if="address">
         
                                 <div v-if="transactionLoader" style="position:relative;padding:25px;">
                                     <app-section-loader :status="transactionLoader"></app-section-loader>
                                 </div>
 
                                 <v-layout v-if="latestTransactions && !transactionLoader" row wrap>
-                                    <v-flex xs12 style="padding: 1rem 1.25rem;font-weight:bold;">
+                                    <v-flex xs12 style="padding: 12px;font-weight:bold;">
                                        <v-data-table
                                             :items="latestTransactions"
                                             hide-actions
@@ -116,7 +116,7 @@
                                                 <v-btn v-on:click.native="getPrevBlockPageTransactions" :disabled="!prev_pageTransactions" small fab color="primary">
                                                     <v-icon>zmdi-chevron-left</v-icon>
                                                 </v-btn>
-                                                <span style="padding: 15px;">{{current_pageTransactions}}</span>
+                                                <span style="padding: 12px;">{{current_pageTransactions}}</span>
                                                 <v-btn v-on:click.native="getNextBlockPageTransactions" :disabled="!next_pageTransactions" small fab color="primary">
                                                     <v-icon>zmdi-chevron-right</v-icon>
                                                 </v-btn>
@@ -133,7 +133,7 @@
                                 </div>
 
                                 <v-layout v-if="latestTransfers && !transferLoader" row wrap>
-                                    <v-flex xs12 style="padding: 1rem 1.25rem;font-weight:bold;">
+                                    <v-flex xs12 style="padding: 12px;font-weight:bold;">
                                        <v-data-table
                                             :items="latestTransfers"
                                             hide-actions

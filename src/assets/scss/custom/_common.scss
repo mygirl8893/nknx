@@ -303,8 +303,15 @@ hr {
    border-radius: 0px;
 }
 
+.v-expansion-panel{
+   border-top-right-radius: 5px;
+   border-top-left-radius: 5px;
+   overflow: hidden;
+   margin-top:25px;
+}
+
 .v-expansion-panel__header{
-    background-color: $primary;
+    background: $light-primary;
     height: 64px;
     font-size: 20px;
     font-weight: 500;
@@ -313,6 +320,7 @@ hr {
     overflow: hidden;
     text-overflow: ellipsis;
     color:white;
+
     .v-expansion-panel__header__icon>.v-icon{
         color:white !important;
     }

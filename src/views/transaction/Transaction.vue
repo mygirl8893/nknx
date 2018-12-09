@@ -71,7 +71,7 @@
                                 </div>
                             </v-expansion-panel-content>
                         </v-expansion-panel>
-                          <v-expansion-panel v-if="!loader" class="mb-4" v-model="payloadOpened">
+                          <v-expansion-panel v-if="!loader && transaction.txType !== 0" class="mb-4" v-model="payloadOpened">
                             <v-expansion-panel-content>
              
                             <div slot="header">{{$t('message.payload')}}</div>

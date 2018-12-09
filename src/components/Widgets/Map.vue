@@ -2,7 +2,7 @@
 	<div>
 		<app-section-loader :status="loader"></app-section-loader>
 		<h5>{{$t('message.totalNodesCounter')}} {{crawlCounter}}</h5>
-		<div id="world-map" style="width: 100%; height: 500px"></div>
+		<div id="world-map" style="width: 100%; height: 445px"></div>
 	</div>
 </template>
 

@@ -66,7 +66,7 @@
                                       dark
                                       icon
                                     >
-                                      <v-icon color='primary' style='font-size:30px;'>more_horiz</v-icon>
+                                      <v-icon color='primary' style='font-size:30px;'>more_vert</v-icon>
                                     </v-btn>
 
                                     <v-list>

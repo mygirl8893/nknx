@@ -1,7 +1,7 @@
 <template>
     <div>
-                <v-layout row wrap style="margin-top:35px;">
-					<v-flex v-if="items.length" xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
+                <v-layout  v-if="items.length" row wrap style="margin-top:30px;">
+					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-select
 							v-on:change="setSelectedWalletAddress"
 							:value="selectedWalletAddress"
@@ -20,6 +20,11 @@
 					<v-flex xs12 v-if="selectedWalletAddress">
 						<wallet-card :address="selectedWalletAddress" :deleteCallback="removeWalletAddress"></wallet-card>
 					</v-flex>
+					<div style='margin: 10px 0px;'>
+					<v-btn color="primary" large  @click.native.stop="createWalletDialog = true" ><span v-html="addWalletIcon" class="icon"></span>{{$t('message.newWallet')}}</v-btn>
+					<v-btn color="primary" large  @click.native.stop="addWalletDialog = true" ><span v-html="openWalletIcon" class="icon"></span>{{$t('message.openWallet')}}</v-btn>
+					</div>
+
 				</v-layout>
 				<!--<v-layout>
 					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
@@ -48,16 +53,31 @@
 						</v-layout>
 					</v-flex>
 				</v-layout>-->
+		<v-dialog v-model="addWalletDialog" max-width="800">
+			<v-card>
+				<verify-address :walletLoaded="walletLoaded"></verify-address>
+			</v-card>
+		</v-dialog>
+		<v-dialog v-model="createWalletDialog" max-width="800">
+			<v-card>
+				<create-wallet :createWalletModalClosed="createWalletModalClosed"></create-wallet>
+			</v-card>
+		</v-dialog>
     </div>
 </template>
 <script>
 import axios from "axios"
 import WalletCard from "../WalletCard/WalletCard";
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import VerifyAddress from "Components/Dialogs/VerifyAddress";
+import CreateWallet from "Components/Dialogs/CreateWallet";
+import feather from 'feather-icons';
 
 export default {
 	components: {
-		WalletCard
+		WalletCard,
+		VerifyAddress,
+		CreateWallet
 	},
 	watch:{
 		selectedWalletAddress: function () {
@@ -65,7 +85,12 @@ export default {
 		}
 	},
 	computed: {
-
+			openWalletIcon: function () {
+				return feather.icons['upload'].toSvg()
+           },
+			addWalletIcon: function () {
+				return feather.icons['plus'].toSvg()
+           },
         ...mapGetters({
 			selectedWalletAddress: 'selectedAddress',
 			items: 'addresses'
@@ -79,12 +104,20 @@ export default {
 			//remove from store
 			this.$store.dispatch("removeFromAddressesStore", this.selectedWalletAddress);
 			this.$store.dispatch("removeSelectedAddress");
+		},
+		walletLoaded(){
+			this.addWalletDialog=false;
+		},
+		createWalletModalClosed(){
+			this.createWalletDialog=false;
 		}
 	},
 	data(){
 		return {
 			balance:0,
 			newbalance:0,
+			addWalletDialog:false,
+			createWalletDialog:false,
 		}
 	}
 }

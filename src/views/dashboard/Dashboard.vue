@@ -17,10 +17,10 @@
 						:heading="$t('message.yourWallet')"
 						colClasses="xl6 lg6 md6 sm12 xs12"
 						customClasses="mb-30"
-						:walletLinks="true"
-					
+						:footer="true"
 					>
 					<wallet-widget></wallet-widget>
+					<v-btn slot="footer" :to="{path: '/wallet'}" color="primary" small>{{$t('message.viewDetails')}}</v-btn>
 				</app-card>
 				<app-card
 						:heading="$t('message.map')"

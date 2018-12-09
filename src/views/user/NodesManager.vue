@@ -18,7 +18,7 @@
                         <div class="tab-toggler__item--counter">{{order.count}}</div>
                     </div>
                 </div>
-                <div><v-btn color="primary" large @click='addNodeModal'><span v-html="addNodeIcon" class="icon"></span>{{$t('message.addNode')}}</v-btn>
+                <div style='margin: 0px 12px;'><v-btn color="primary" large @click='addNodeModal'><span v-html="addNodeIcon" class="icon"></span>{{$t('message.addNode')}}</v-btn>
                 <v-btn v-if='userNodesData.length>0' large @click='removeAllNodes' color="primary"><span v-html="removeNodeIcon" class="icon"></span>{{ $t('message.removeAllNodes') }}</v-btn></div>
                 </div>
             </v-layout>

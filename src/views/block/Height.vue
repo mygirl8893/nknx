@@ -76,11 +76,11 @@
                         <v-expansion-panel class="mb-4" v-model="openTransactions">
                             <v-expansion-panel-content>
                             <div slot="header">{{$t('message.transactions')}}</div>
-                            <div style="padding:15px;" v-if="block">
+                            <div style="padding:12px;" v-if="block">
         
                                 <app-section-loader :status="loader"></app-section-loader>
                                 <v-layout row wrap>
-                                    <v-flex xs12 style="padding: 1rem 1.25rem;font-weight:bold;">
+                                    <v-flex xs12 style="padding: 0px;font-weight:bold;">
                                        <v-data-table
                                             :items="block.transactions"
                                             item-key="hash"

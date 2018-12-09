@@ -2,57 +2,44 @@
 	<div>
 	<page-title-bar></page-title-bar>
 		<v-container fluid pt-0 grid-list-xl>
-			<!-- Network Stats -->
-			<div class="network-block">
-				<network-stats></network-stats>
-			</div>
 			<v-layout row wrap>
 				<!-- User Nodes -->
+				<div class="xl3 lg6 md6 sm12 xs12 flex">
+					<div>
+						<user-detail></user-detail>
+					</div>
+				</div>
+
 				<app-card
-					:heading="$t('message.myNodes')"
-					colClasses="xl6 lg6 md6 sm12 xs12"
+					:heading="$t('message.userDetails')"
+					colClasses="xl4 lg6 md6 sm12 xs12"
 					customClasses="mb-0"
 					:fullScreen="true"
 					:fullBlock="true"
 					:footer="true"
 				>
-					<user-nodes></user-nodes>
-					<v-btn slot="footer" :to="{path: '/nodes-manager'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
+					<user-data></user-data>
+
 				</app-card>
 				<!-- Calc -->
 				<app-card
 					:heading="$t('message.miningCalculator')"
-					colClasses="xl6 lg6 md6 sm12 xs12"
+					colClasses="xl5 lg6 md6 sm12 xs12"
 					customClasses="mb-0"
 					:fullScreen="true"
 					:fullBlock="true"
 				>
 					<mining-calc></mining-calc>
 				</app-card>
-			</v-layout>
-			<v-layout row wrap>
-			<!-- User Wallets -->
-			<app-card
-					:heading="$t('message.walletTracker')"
-					colClasses="xl8 lg8 md12 sm12 xs12"
-					:fullScreen="true"
-					:fullBlock="true"
-					:footer="true"
-				>
-				<wallet-tracker></wallet-tracker>
-				<v-btn slot="footer" :to="{path: '/wallet-tracker'}" color="primary" small>{{$t('message.viewAll')}}</v-btn>
-			</app-card>
-			<!-- Top 50 Miners -->
-			<app-card
+				<app-card
 					:heading="$t('message.miners')"
-					colClasses="xl4 lg4 md12 sm12 xs12"
+					colClasses="xl6 lg6 md12 sm12 xs12"
 					customClasses="mt-10"
 					:fullScreen="true"
 					:fullBlock="true"
 				>
-				<miners-chart></miners-chart>
-			</app-card>
-
+					<miners-chart></miners-chart>
+				</app-card>
 			</v-layout>
 		</v-container>
 	</div>
@@ -66,6 +53,8 @@ import MarketStats from "Components/Widgets/MarketStats";
 import NetworkStats from "Components/Widgets/NetworkStats";
 import WalletTracker from "Components/Widgets/WalletTracker";
 import MinersChart from "Components/Widgets/MinersChart";
+import UserDetail from "Components/Widgets/UserDetail";
+import UserData from "Components/Widgets/UserData";
 
 export default {
   components: {
@@ -74,7 +63,9 @@ export default {
 	MarketStats,
 	NetworkStats,
 	WalletTracker,
-	MinersChart
+	MinersChart,
+	UserDetail,
+	UserData
   },
   data() {
     return {

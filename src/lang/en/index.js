@@ -210,5 +210,14 @@ export default {
   searchAddress:"Search for an address",
   addressBook:"Address book",
   useAddress:"Use this address",
-  actions: "Actions"
+  actions: "Actions",
+  node: "Node",
+  nodes: "Nodes",
+  wallets: "Wallets",
+  user: "User",
+  userDetails:"User details",
+  saveChanges:"Save changes",
+  userChangedSuccessful: "Userdata changed successful",
+  userChangedError: "Error changing user data",
+  userChangedSuccessfulLogout:"Userdata changed successful. You were logged out because you changed your password."
 }

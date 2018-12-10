@@ -73,8 +73,8 @@ var gradientLinePlugin = {
             // Create the gradient.
             var gradient1 = ctx.createLinearGradient(0, minValue1YPixel, 0, maxValue1YPixel);
 
-            gradient1.addColorStop(0.85, 'rgba(251,92,62, 1.0)');
-            gradient1.addColorStop(1, '#e1a661');
+            gradient1.addColorStop(0.85, '#279a32');
+            gradient1.addColorStop(1, '#0cc51e');
             // Assign the gradient to the dataset's border color.
             dataset1.borderColor = gradient1;
 
@@ -184,7 +184,7 @@ export default {
                         yAxisID: 'Blocks',
                         data: self.chartdata.blocks,
                         lineTension: 0.5,
-                        borderColor: ChartConfig.color.primary,
+                        borderColor: "rgba(0,115,231, 1.0)",
                         fill: false,
                         borderWidth: 3 // and not lineWidth
                     },
@@ -193,7 +193,7 @@ export default {
                         yAxisID: 'Blocks',
                         data: self.chartdata.producerBlocks,
                         lineTension: 0.5,
-                        borderColor: ChartConfig.color.secondary,
+                        borderColor: "#279a32",
                         fill: false,
                         borderWidth: 3 // and not lineWidth
                     },
@@ -202,7 +202,7 @@ export default {
                         yAxisID: 'Blocks',
                         data: self.chartdata.minersBlocks,
                         lineTension: 0.5,
-                        borderColor: ChartConfig.color.success,
+                        borderColor: "rgba(251,92,62, 1.0)",
                         fill: false,
                         borderWidth: 3 // and not lineWidth
                     },

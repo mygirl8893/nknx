@@ -89,8 +89,8 @@ export default {
         hoverColor: false,
         markerStyle: {
           initial: {
-            fill: ChartConfig.color.warning,
-            stroke: ChartConfig.color.warning
+            fill: ChartConfig.color.success,
+            stroke: ChartConfig.color.success
           }
         },
         regionStyle: {

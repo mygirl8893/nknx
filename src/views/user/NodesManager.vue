@@ -6,7 +6,7 @@
                 <network-stats></network-stats>
             </div>
             <v-layout style='flex-flow: row wrap;'>
-                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">  
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-flow: row wrap">  
                 <div class="tab-toggler">
                     <div class="tab-toggler__item" 
                     v-for="order in orderOptions" 

@@ -225,5 +225,5 @@ export default {
   networth: "Net Worth",
   holdersRank: "Holders Rank",
   networkControl: "Network Control",
-  blocksMined: "Blocks Mined"
+  blocksMined: "Daily Blocks Mined"
 }

@@ -40,3 +40,24 @@
 		}
 	}
 }
+ @media (max-width: 1900px) and (min-width: 1520px) {
+ 	.network-card__item-value{
+ 		font-size: 1.35em;
+	}
+ }
+
+ @media (max-width: 1520px) and (min-width: 767px) {
+ 	.network-card__item{
+ 		width: 49%;
+ 		margin-bottom: 20px;
+ 		text-align: center;
+	}
+  }
+  @media (max-width: 767px) and (min-width: 320px) {
+ 	.network-card__item{
+ 		width: 100%;
+ 		margin-right: 0px;
+ 		margin-bottom: 20px;
+ 		text-align: center;
+	}
+  }

@@ -219,5 +219,11 @@ export default {
   saveChanges:"Save changes",
   userChangedSuccessful: "Userdata changed successful",
   userChangedError: "Error changing user data",
-  userChangedSuccessfulLogout:"Userdata changed successful. You were logged out because you changed your password."
+  userChangedSuccessfulLogout:"Userdata changed successful. You were logged out because you changed your password.",
+  myWallets: "My Wallets",
+  myNodes: "My Nodes",
+  networth: "Net Worth",
+  holdersRank: "Holders Rank",
+  networkControl: "Network Control",
+  blocksMined: "Blocks Mined"
 }

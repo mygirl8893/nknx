@@ -113,11 +113,17 @@ export default {
 		const self = this;
 	    let blocks = []
 	    let nkn = []
-      	axios.get('walletAddresses/'+id+'/miningOutput?latest=14').then(function(responseUSD){
-        responseUSD.data.forEach(function(entry) {
-            blocks.push(entry.date);
-            nkn.push(entry.count*15)
-        });
+      	axios.get('walletAddresses/'+id+'/miningOutputDaily').then(function(responseUSD){
+          if(responseUSD.data.length > 0){
+            responseUSD.data.forEach(function(entry) {
+                blocks.push(entry.date);
+                nkn.push(entry.count*15)
+            });
+          } else{
+            blocks.push('2018-09-01')
+            nkn.push(0)
+          }
+
             //Last 2 weeks
             self.chartdata.days = blocks
             self.chartdata.days.reverse()
@@ -147,7 +153,7 @@ export default {
     }
 },
    mounted() {
-
+    this.getChart(this.currentId)
    },
    
 }

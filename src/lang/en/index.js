@@ -225,5 +225,7 @@ export default {
   networth: "Net Worth",
   holdersRank: "Holders Rank",
   networkControl: "Network Control",
-  blocksMined: "Daily Blocks Mined"
+  blocksMined: "Daily Blocks Mined",
+  walletAddressError: "There was an error storing your wallet address.",
+  walletAddressAdded: "Wallet address added!"
 }

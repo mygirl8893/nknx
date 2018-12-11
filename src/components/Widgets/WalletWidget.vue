@@ -55,7 +55,7 @@
 				</v-layout>-->
 		<v-dialog v-model="addWalletDialog" max-width="800">
 			<v-card>
-				<verify-address :walletLoaded="walletLoaded"></verify-address>
+				<open-wallet :openWalletModalClosed="openWalletModalClosed" :walletLoaded="walletLoaded"></open-wallet>
 			</v-card>
 		</v-dialog>
 		<v-dialog v-model="createWalletDialog" max-width="800">
@@ -69,14 +69,14 @@
 import axios from "axios"
 import WalletCard from "../WalletCard/WalletCard";
 import { mapGetters } from 'vuex';
-import VerifyAddress from "Components/Dialogs/VerifyAddress";
+import OpenWallet from "Components/Dialogs/OpenWallet";
 import CreateWallet from "Components/Dialogs/CreateWallet";
 import feather from 'feather-icons';
 
 export default {
 	components: {
 		WalletCard,
-		VerifyAddress,
+		OpenWallet,
 		CreateWallet
 	},
 	watch:{
@@ -110,6 +110,9 @@ export default {
 		},
 		createWalletModalClosed(){
 			this.createWalletDialog=false;
+		},
+		openWalletModalClosed(){
+			this.addWalletDialog=false;
 		}
 	},
 	data(){

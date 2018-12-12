@@ -248,5 +248,9 @@ export default {
   setNameFailed:"Something went wrong :(",
   publicWalletAddress: "Public wallet address",
   none: "none",
-  createOne:"Create one here!"
+  createOne:"Create one here!",
+  client: "Client",
+  sentData: "sent data",
+  relayData: "relay data",
+  recievedData: "recieved data"
 }

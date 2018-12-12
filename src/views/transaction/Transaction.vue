@@ -68,6 +68,13 @@
                                         {{transaction.outputs[0].value}} NKN
                                     </v-flex>
                                 </v-layout>
+                                <v-layout row wrap>
+                                    <v-flex xl12 lg12 md12 sm12 xs12 b-50 style="padding: 1rem 1.25rem;">
+                                        <div v-for='item in nodeTracer'>
+                                          <div style="margin-bottom:10px;"><span v-html='tracerIcon(item.icon)' style="height:24px; width:24px; position:relative; top:8px;margin-right:10px;"></span> <b>{{item.user}}</b> {{item.node_pk}} <b>{{item.action}}</b></div>
+                                        </div>
+                                    </v-flex>
+                                </v-layout>
                                 </div>
                             </v-expansion-panel-content>
                         </v-expansion-panel>
@@ -113,7 +120,7 @@
 </template>
 <script>
 import axios from "axios"
-
+import feather from 'feather-icons';
 
 export default {
   data() {
@@ -123,15 +130,38 @@ export default {
       payloadloader:true,
       loader:true,
       transaction: null, 
-      payload:null
+      payload:null,
+      nodeTracer: null
     };
   },
   mounted() {
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get("transactions/"+this.$route.params.hash+'?withoutpayload=true').then(function(response){
+      axios.get("transactions/"+this.$route.params.hash+'?&withoutattributes=true&withoutinputs=true').then(function(response){
           self.transaction = response.data;
-          self.loader=false;
+          let nodeTracer = response.data.node_tracing
+          for(let i = 0; i < nodeTracer.length; i++){
+            //first node
+            if(i === 0){
+              nodeTracer[i].user = self.$t('message.client')
+              nodeTracer[i].action = self.$t('message.sentData')
+              nodeTracer[i].icon = "layersIcon"
+            } 
+            //last node
+            else if (i === nodeTracer.length - 1){
+              nodeTracer[i].user = self.$t('message.client')
+              nodeTracer[i].action = self.$t('message.recievedData')
+              nodeTracer[i].icon = "layersIcon"
+            } 
+            //other nodes
+            else{
+              nodeTracer[i].user = self.$t('message.node')
+              nodeTracer[i].action = self.$t('message.relayData')
+              nodeTracer[i].icon = "arrowIcon"
+            }
+          }
+          self.nodeTracer = nodeTracer
+          self.loader = false;
       });
   },
   watch:{
@@ -144,12 +174,12 @@ export default {
       this.loader=true;
       self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
-      axios.get("transactions/"+this.$route.params.hash+'?withoutpayload=true').then(function(response){
+      axios.get("transactions/"+this.$route.params.hash+'?&withoutattributes=true&withoutinputs=true').then(function(response){
           self.transaction = response.data;
           self.loader=false;
       });
     }
-  }, 
+  },
   methods: {
       getPayload(){
         this.payloadloader=true;
@@ -158,6 +188,14 @@ export default {
           self.payload = response.data;
           self.payloadloader=false;
         });
+      },
+      tracerIcon: function (item) {
+          if(item === 'arrowIcon'){
+             return feather.icons['arrow-down'].toSvg()
+          }
+          else{
+             return feather.icons['layers'].toSvg()
+          }
       }
   }
 };

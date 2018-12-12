@@ -1,7 +1,7 @@
 // Sidebar Routers
 export const menus = {
 	'general': [
-		{ action: 'zmdi-money',title: 'message.wallet', path: '/wallet' },
+		{ action: 'zmdi-money',title: 'message.dashboard', path: '/dashboard' },
 		{ action: 'zmdi-label',title: 'message.network', path: '/network'},
 		{ action: 'zmdi-view-dashboard',title: 'message.blocks', path: '/browse/blocks'},
 		{ action: 'zmdi-mail-send',title: 'message.transactions', path: '/browse/txs'},

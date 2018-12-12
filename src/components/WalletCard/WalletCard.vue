@@ -3,10 +3,16 @@
         <div class="close-wallet" @click="removeDialog=true" v-html="IconClose"></div>
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
-                <span class="active">{{$t('message.activeWallet')}}</span>
+                <span class="active">{{$t('message.publicWalletAddress')}}: 
+                    <template v-if="publicWalletName">{{publicWalletName}}</template>
+                    <template v-else>{{$t('message.none')}} <a href="#" @click="setWalletNameDialog=true">{{$t('message.createOne')}}</a></template>
+                </span>
             </v-flex>
             <v-flex xs12>
-                <span><router-link :to="{ path: '/address/'+address}">{{ address }}</router-link></span>
+                <router-link style="display:flex;" :to="{ path: '/address/'+address}">
+                    {{ address }} 
+                    <span style="display:flex;" class="icon" v-html="IconSearch"></span>
+                </router-link>
             </v-flex>
             <v-flex xs12>
                 <div class="balance">
@@ -41,6 +47,9 @@
         <v-dialog v-model="transferFundsDialog" max-width="800px">
             <transfer-funds :senderAddress="address" :transferModalClosed="transferModalClosed"></transfer-funds>
         </v-dialog>
+        <v-dialog v-model="setWalletNameDialog" max-width="800px">
+            <set-wallet-name :senderAddress="address" :setWalletNameDialogClosed="setWalletNameDialogClosed"></set-wallet-name>
+        </v-dialog>
 
     </div>
 </template>
@@ -50,9 +59,11 @@ import axios from "axios";
 import feather from 'feather-icons'
 import { Timeouts } from "Constants/timeouts";
 import transferFunds from "Components/Dialogs/TransferFunds";
+import setWalletName from "Components/Dialogs/setWalletName";
 export default {
     components:{
-        transferFunds
+        transferFunds,
+        setWalletName
     },
     props: {
         address: String,
@@ -60,6 +71,7 @@ export default {
     },
     data() {
       return {
+          setWalletNameDialog:false,
           transferFundsDialog:false,
           removeDialog:false,
           balance:0,
@@ -67,7 +79,8 @@ export default {
           newbalance:0,
           nknPrice:0,
           isHidden: false,
-          activeClass: "eye"
+          activeClass: "eye",
+          publicWalletName:null
       }
 
     },
@@ -77,6 +90,9 @@ export default {
 		}
 	},
     computed: {
+            IconSearch: function () {
+                return feather.icons['arrow-right'].toSvg()
+            },
             IconClose: function () {
                 return feather.icons['x'].toSvg()
             },
@@ -94,6 +110,10 @@ export default {
             this.getBalance();
             this.transferFundsDialog =false;
         },
+        setWalletNameDialogClosed(){
+            
+            this.setWalletNameDialog =false;
+        },
         getBalance(){
 			if(this.address){
                 var self = this;
@@ -101,6 +121,9 @@ export default {
                 .then(response => {
                     self.nknPrice = response.data.data.quotes.USD.price
                 })
+                axios.get('walletNames/'+this.address).then(function(addressBookItem){
+				    self.publicWalletName=addressBookItem.data.name;
+			    });
 				axios.post('https://nknx.org:30003',{
 					"jsonrpc": "2.0",
 					"method":  "getunspendoutput",

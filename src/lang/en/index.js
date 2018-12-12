@@ -232,5 +232,21 @@ export default {
   wrongSenderAddress: "Your wallet doesn't match the sender's address",
   transferSuccessful:"Transfer successful!",
   transferFailed:"Transfer failed :(",
-  yourTransferIdIs: "Your transfer ID is:"
+  yourTransferIdIs: "Your transfer ID is:",
+  dashboard:"Dashboard",
+  setWalletName: "Set a public name",
+  setWalletNameFor: "Set a public name for",
+  setWalletNameAdvice: "The NKN name service allows you to set a public name for your wallet. It will allow your frinds to find your address without giving it to them. After some minutes your name will appear in the public NKN address book.",
+  walletName:"Wallet name",
+  setWalletNameStep1: "Choose wallet name",
+  setWalletNameStep2: "Wallet verification",
+  setWalletNameStep3: "Results",
+  confirmSetName:"Confirm your new wallet name",
+  setNameInformation: "Your wallet was verified successful. Please confirm your new wallet name.",
+  walletName:"New wallet name",
+  setNameSuccessful:"Your wallet name was set successful. It will be added to the NKN addressbook within the next minutes.",
+  setNameFailed:"Something went wrong :(",
+  publicWalletAddress: "Public wallet address",
+  none: "none",
+  createOne:"Create one here!"
 }

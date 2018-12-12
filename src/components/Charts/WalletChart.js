@@ -113,7 +113,8 @@ export default {
 		const self = this;
 	    let blocks = []
 	    let nkn = []
-      	axios.get('walletAddresses/'+id+'/miningOutputDaily').then(function(responseUSD){
+      	axios.get('walletAddresses/'+id+'/miningOutputDaily?latest=14').then(function(responseUSD){
+          console.log(responseUSD)
           if(responseUSD.data.length > 0){
             responseUSD.data.forEach(function(entry) {
                 blocks.push(entry.date);
@@ -147,11 +148,6 @@ export default {
         });
    	}
   },
-   watch: { 
-  	currentId: function(newVal, oldVal) { 
-      this.getChart(this.currentId)
-    }
-},
    mounted() {
     this.getChart(this.currentId)
    },

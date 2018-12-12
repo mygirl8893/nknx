@@ -27,38 +27,17 @@
             </div>
         </div>
             <v-layout row wrap>
-                <v-flex xs4>
-                <v-select
-                v-if='wallets.length>0'
-              v-model="select"
-              :hint="`$t('message.wallet')`"
-              :items="wallets"
-              item-text="address"
-              item-value="address"
-              label="Wallet"
-              persistent-hint
-              return-object
-              outline
-              @change='getId(select.id)'
-              style='width:100%'
-            ></v-select>
-                </v-flex>
-                <div style="display: flex;
-    align-items: center;
-    position: relative;
-    right: 0px;
-    justify-content: flex-end;
-    width: 66%;">
-                    <v-btn color="primary" large @click='addWalletModal'><span v-html="addWalletIcon" class="icon"></span>{{$t('message.addWallet')}}</v-btn>   
-                </div>    
+                <v-flex xs12 sm12 md6 lg5 xl5>
+                     <v-btn color="primary" large @click='addWalletModal'><span v-html="addWalletIcon" class="icon"></span>{{$t('message.addWallet')}}</v-btn>  
+                </v-flex> 
             </v-layout>
-            <v-layout row wrap v-if="wallets.length>0">
-                <v-flex xs4>
-                    <wallet-card :address="select.address" :deleteCallback="removeWallet"></wallet-card>
+            <v-layout row wrap v-for='wallet in wallets'>
+                <v-flex xs12 sm12 md6 lg5 xl5>
+                    <wallet-card :address="wallet.address" :deleteCallback="removeWallet"></wallet-card>
                 </v-flex>
-                <v-flex xs8>
+                <v-flex  xs12 sm12 md12 lg7 xl7 mb-4>
                     <h2>{{$t('message.miningStats')}}</h2>
-                    <WalletChart :currentId='currentId' :height="100" style='height:100%'></WalletChart>
+                    <WalletChart :currentId='wallet.id' :height="100" style='height:100%'></WalletChart>
                 </v-flex>
             </v-layout>
 
@@ -197,10 +176,6 @@ export default {
         const self = this;
         self.addWalletDialog = false
     },
-    getId(id){
-        const self = this;
-        self.currentId = id
-    },
     addWallet(){
         const self = this;
         axios.post('walletAddresses/', {
@@ -238,13 +213,13 @@ export default {
         const self = this;
         self.networth = 0
         axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
-        .then(response => {
-            self.nknPrice = response.data.data.quotes.USD.price
-        })
+        .then(price => {
+            self.nknPrice = price.data.data.quotes.USD.price
 
         axios.get('walletAddresses/', {
             })
             .then((response) => {
+                console.log(response)
                 for(let i in response.data){
                     response.data[i].balanceUsd = Number((response.data[i].balance*self.nknPrice/5).toFixed(0))
                     self.networth += response.data[i].balanceUsd
@@ -274,6 +249,9 @@ export default {
                     }
                 })
             })
+        })
+
+
             .catch((error) =>{
             })
             self.loader = false;

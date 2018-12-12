@@ -16,11 +16,12 @@
 			class="nknx-toolbar"
 			app
 			fixed
-		>	
+		>
 			<div class="d-custom-flex align-items-center navbar-left">
 				<div>
 					<v-toolbar-side-icon icon large @click.stop="drawer = !drawer" class="v-step-0"></v-toolbar-side-icon>
 				</div>
+				<mobile-search-form></mobile-search-form>
 				<v-form style="flex: auto;" @submit.prevent="search" class='search-form'>
 					<v-text-field  flat solo prepend-icon="search" v-model="searchString" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
 				 </v-form>
@@ -32,9 +33,6 @@
 				<language-provider></language-provider>
 			</div>
 		</v-toolbar>
-		<mobile-search-form></mobile-search-form>
-
-
 	</div>
 </template>
 

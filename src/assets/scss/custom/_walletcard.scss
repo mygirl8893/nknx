@@ -58,3 +58,14 @@
         }
     }
 }
+
+@media (max-width: 400px) and (min-width: 320px) {
+    .wallet-card{
+        padding: 10px;
+    }
+    .wallet-card a {
+        color: #1D2733;
+        font-weight: 500;
+        font-size: 11px;
+    }
+}

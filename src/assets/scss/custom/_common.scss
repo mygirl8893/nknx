@@ -516,10 +516,7 @@ hr {
    .v-tabs__item{
       font-size:0.75rem !important;
    }
-}
-
-@media (max-width: 320px) {
-   .w-xs-full {
+  .w-xs-full {
       max-width: 100% !important;
       flex-basis: 100% !important;
       margin-bottom: 10px;

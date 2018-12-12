@@ -31,7 +31,7 @@
                      <v-btn color="primary" large @click='addWalletModal'><span v-html="addWalletIcon" class="icon"></span>{{$t('message.addWallet')}}</v-btn>  
                 </v-flex> 
             </v-layout>
-            <v-layout row wrap v-for='wallet in wallets'>
+            <v-layout row wrap v-for='wallet in wallets' :key='wallet.id'>
                 <v-flex xs12 sm12 md6 lg5 xl5>
                     <wallet-card :address="wallet.address" :deleteCallback="removeWallet"></wallet-card>
                 </v-flex>
@@ -219,7 +219,6 @@ export default {
         axios.get('walletAddresses/', {
             })
             .then((response) => {
-                console.log(response)
                 for(let i in response.data){
                     response.data[i].balanceUsd = Number((response.data[i].balance*self.nknPrice/5).toFixed(0))
                     self.networth += response.data[i].balanceUsd
@@ -250,8 +249,6 @@ export default {
                 })
             })
         })
-
-
             .catch((error) =>{
             })
             self.loader = false;

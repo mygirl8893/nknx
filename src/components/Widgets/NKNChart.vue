@@ -2,20 +2,20 @@
    <div class="mt-4 visitor-area-chart">
 		<div class="d-custom-flex justify-space-between px-4 mb-40 label-wrap">
 			<h3>Market</h3>
-			<div class="d-custom-flex w-50 w-xs-full" style='border-right: 2px solid #E1E1E5'>
-				<div class="w-20 d-md-half-block w-xs-full">
+			<div class="d-custom-flex w-50 w-xs-full" style='border-right: 2px solid #E1E1E5; margin-bottom: 30px'>
+				<div class="w-20 d-md-half-block">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.marketcap')}}</p>
 					<h4 class="blue-dark--text mb-0">${{nknCap}}M</h4>
 				</div>
-				<div class="w-20 d-md-half-block w-xs-full">
+				<div class="w-20 d-md-half-block">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.dailyVolume')}}</p>
 					<h4 class="blue-dark--text mb-0">${{nknVolume}}K</h4>
 				</div>
-				<div class="w-20 d-md-half-block w-xs-full">
+				<div class="w-20 d-md-half-block">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.marketRank')}}</p>
 					<h4 class="blue-dark--text mb-0">#{{nknRank}}</h4>
 				</div>
-				<div class="w-20 d-md-half-block w-xs-full">
+				<div class="w-20 d-md-half-block">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.change24')}}h</p>
 					<h4 class="mb-0" v-bind:class="priceClass">{{nkn24}}%</h4>
 				</div>

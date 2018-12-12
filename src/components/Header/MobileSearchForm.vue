@@ -1,7 +1,7 @@
 <template>
-  <div class="mobile-search d-none">
+  <div class="mobile-search d-none" style='height: 44px; width: 44px;'>
     <v-btn v-on:click.native="open=true" flat small icon class="mobile-search-btn my-1 mx-3">
-      <v-icon class="grey--text font-md">search</v-icon>
+      <span class="font-md" v-html="searchIcon"></span>
     </v-btn>
     <div class="search-form-wrap" v-bind:class="{ 'search-slide' : open }">
       <v-btn v-on:click.native="open=false" fab dark small class="close-btn">
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import feather from 'feather-icons';
 
 export default {
   data() {
@@ -33,6 +34,11 @@ export default {
       open:false,
       searchString: ""
     };
+  },
+  computed: {
+    searchIcon: function () {
+        return feather.icons['search'].toSvg()
+    },
   },
   methods: {
     onClickSearch() {

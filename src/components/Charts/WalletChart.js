@@ -114,7 +114,6 @@ export default {
 	    let blocks = []
 	    let nkn = []
       	axios.get('walletAddresses/'+id+'/miningOutputDaily?latest=14').then(function(responseUSD){
-          console.log(responseUSD)
           if(responseUSD.data.length > 0){
             responseUSD.data.forEach(function(entry) {
                 blocks.push(entry.date);

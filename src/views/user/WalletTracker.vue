@@ -214,9 +214,9 @@ export default {
     getWalletsBalance(){
         const self = this;
         self.networth = 0
-        axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
+        axios.get('https://min-api.cryptocompare.com/data/price?fsym=NKN&tsyms=USD')
         .then(price => {
-            self.nknPrice = price.data.data.quotes.USD.price
+            self.nknPrice = price.data.USD
 
         axios.get('walletAddresses/', {
             })

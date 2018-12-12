@@ -1,7 +1,7 @@
 <template>
             <v-card class='card-light'>
           <v-card-title>
-            <span class="headline">{{ $t('message.newWallet') }}</span>
+            <span class="headline">{{ $t('message.openWallet') }}</span>
           </v-card-title>
 
           <v-card-text>

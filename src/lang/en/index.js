@@ -227,5 +227,10 @@ export default {
   networkControl: "Network Control",
   blocksMined: "Daily Blocks Mined",
   walletAddressError: "There was an error storing your wallet address.",
-  walletAddressAdded: "Wallet address added!"
+  walletAddressAdded: "Wallet address added!",
+  errorLoadingWallet: "Error loading wallet",
+  wrongSenderAddress: "Your wallet doesn't match the sender's address",
+  transferSuccessful:"Transfer successful!",
+  transferFailed:"Transfer failed :(",
+  yourTransferIdIs: "Your transfer ID is:"
 }

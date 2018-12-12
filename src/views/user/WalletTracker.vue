@@ -27,9 +27,11 @@
             </div>
         </div>
             <v-layout row wrap>
-                <v-flex xs12 sm12 md6 lg5 xl5>
-                     <v-btn color="primary" large @click='addWalletModal'><span v-html="addWalletIcon" class="icon"></span>{{$t('message.addWallet')}}</v-btn>  
-                </v-flex> 
+                <v-flex xs12>
+                    <v-layout justify-end>
+                        <v-btn color="primary" large @click='addWalletModal'><span v-html="addWalletIcon" class="icon"></span>{{$t('message.addWallet')}}</v-btn>  
+                    </v-layout>  
+                </v-flex>
             </v-layout>
             <v-layout row wrap v-for='wallet in wallets' :key='wallet.id'>
                 <v-flex xs12 sm12 md6 lg5 xl5>

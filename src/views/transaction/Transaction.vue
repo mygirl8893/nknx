@@ -70,7 +70,7 @@
                                 </v-layout>
                                 <v-layout row wrap>
                                     <v-flex xl12 lg12 md12 sm12 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        <div v-for='item in nodeTracer'>
+                                        <div v-for='item in nodeTracer' :key="item.node_pk">
                                           <div style="margin-bottom:10px;"><span v-html='tracerIcon(item.icon)' style="height:24px; width:24px; position:relative; top:8px;margin-right:10px;"></span> <b>{{item.user}}</b> {{item.node_pk}} <b>{{item.action}}</b></div>
                                         </div>
                                     </v-flex>

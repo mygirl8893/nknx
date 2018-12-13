@@ -252,5 +252,15 @@ export default {
   client: "Client",
   sentData: "sent data",
   relayData: "relay data",
-  recievedData: "recieved data"
+  recievedData: "recieved data",
+  deleteWalletNameStep1: "Wallet verification",
+  deleteWalletNameStep2: "Results",
+  deleteWalletNameFor: "Delete name for",
+  deleteWalletNameAdvice: "This will remove your public NKN wallet name. This is a protected function so you will have to verify your wallet.",
+  deleteNameSuccessful:"Your global NKN wallet name was deleted successfully. It can take up to 1 minute until your name is unregistered.",
+  deleteNameFailed: "There was an error deleting your wallet - please let us know!",
+  confirmDeleteName: "Confirm wallet name deletion",
+  deleteNameInformation: "Warning! You're going to remove your global wallet name. That means that everyone else can claim it after this action.",
+  deleteWalletName:"Delete wallet name",
+  dontLikeIt:"Unregister"
 }

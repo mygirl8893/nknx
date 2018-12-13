@@ -4,7 +4,7 @@
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
                 <span class="active">{{$t('message.publicWalletAddress')}}: 
-                    <template v-if="publicWalletName">{{publicWalletName}}</template>
+                    <template v-if="publicWalletName">{{publicWalletName}} <a href="#" @click="deleteWalletNameDialog=true">{{$t('message.dontLikeIt')}}</a></template>
                     <template v-else>{{$t('message.none')}} <a href="#" @click="setWalletNameDialog=true">{{$t('message.createOne')}}</a></template>
                 </span>
             </v-flex>
@@ -50,6 +50,9 @@
         <v-dialog v-model="setWalletNameDialog" max-width="800px">
             <set-wallet-name :senderAddress="address" :setWalletNameDialogClosed="setWalletNameDialogClosed"></set-wallet-name>
         </v-dialog>
+        <v-dialog v-model="deleteWalletNameDialog" max-width="800px">
+            <delete-wallet-name :senderAddress="address" :deleteWalletNameDialogClosed="deleteWalletNameDialogClosed"></delete-wallet-name>
+        </v-dialog>
 
     </div>
 </template>
@@ -59,11 +62,13 @@ import axios from "axios";
 import feather from 'feather-icons'
 import { Timeouts } from "Constants/timeouts";
 import transferFunds from "Components/Dialogs/TransferFunds";
-import setWalletName from "Components/Dialogs/setWalletName";
+import SetWalletName from "Components/Dialogs/SetWalletName";
+import DeleteWalletName from "Components/Dialogs/DeleteWalletName";
 export default {
     components:{
         transferFunds,
-        setWalletName
+        SetWalletName,
+        DeleteWalletName
     },
     props: {
         address: String,
@@ -72,6 +77,7 @@ export default {
     data() {
       return {
           setWalletNameDialog:false,
+          deleteWalletNameDialog:false,
           transferFundsDialog:false,
           removeDialog:false,
           balance:0,
@@ -113,6 +119,9 @@ export default {
         setWalletNameDialogClosed(){
             
             this.setWalletNameDialog =false;
+        },
+        deleteWalletNameDialogClosed(){
+            this.deleteWalletNameDialog =false;
         },
         getBalance(){
 			if(this.address){

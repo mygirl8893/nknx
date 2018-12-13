@@ -132,7 +132,7 @@ export default {
     
                   },
                   gridLines: {
-                     display: true,
+                     display: false,
                      drawBorder: true
                   }
                }]
@@ -152,17 +152,16 @@ export default {
             producerBlocks: [],
             minersBlocks: []
         }
+      	axios.get('statistics/daily/blocks').then(function(blocks){
+        blocks.data.forEach(function(entry) {
+             chartdata.days.push(entry.date);
+             chartdata.blocks.push(entry.count)
+        });
         //Producer blocks
         let producer = '022d52b07dff29ae6ee22295da2dc315fef1e2337de7ab6e51539d379aa35b9503';
         axios.get('statistics/daily/blocks?pubkey='+producer).then(function(producerBlocks){
         producerBlocks.data.forEach(function(entry) {
              chartdata.producerBlocks.push(entry.count)
-        });
-        })
-      	axios.get('statistics/daily/blocks').then(function(blocks){
-        blocks.data.forEach(function(entry) {
-             chartdata.days.push(entry.date);
-             chartdata.blocks.push(entry.count)
         });
         //Last 2 weeks
         chartdata.days = chartdata.days.slice(0,14)
@@ -193,7 +192,7 @@ export default {
                         yAxisID: 'Blocks',
                         data: self.chartdata.producerBlocks,
                         lineTension: 0.5,
-                        borderColor: "#279a32",
+                        borderColor: "#0cc51e",
                         fill: false,
                         borderWidth: 3 // and not lineWidth
                     },
@@ -209,6 +208,7 @@ export default {
                 ]
             }, self.options);
         });
+        })
    	}
   },
   destroyed(){

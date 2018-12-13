@@ -94,7 +94,7 @@ export default {
     
                   },
                   gridLines: {
-                     display: true,
+                     display: false,
                      drawBorder: true
                   }
                }]

@@ -23,12 +23,12 @@
         </v-container>
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
-                <v-layout justify-end>
-                    <v-chip v-if="label !=null" label outline color="orange">{{label}}</v-chip>
+                <v-layout justify-end align-center>
                     <v-btn :disabled="!balance" @click="transferFundsDialog=true" color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
                 </v-layout>  
             </v-flex>
         </v-container>
+        <div class="wallet-card__label" v-if="label !=null"><span class="wallet-card__label--text">{{label}}</span></div>
         <v-dialog v-model="removeDialog" max-width="500px">
             <v-card>
             <v-card-title>

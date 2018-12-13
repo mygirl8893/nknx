@@ -35,7 +35,7 @@
             </v-layout>
             <v-layout row wrap v-for='wallet in wallets' :key='wallet.id'>
                 <v-flex xs12 sm12 md6 lg5 xl5>
-                    <wallet-card :address="wallet.address" :deleteCallback="removeWallet"></wallet-card>
+                    <wallet-card :address="wallet.address" :label='wallet.label' :deleteCallback="removeWallet"></wallet-card>
                 </v-flex>
                 <v-flex  xs12 sm12 md12 lg7 xl7 mb-4>
                     <h2>{{$t('message.miningStats')}}</h2>

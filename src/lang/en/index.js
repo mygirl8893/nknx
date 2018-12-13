@@ -155,7 +155,7 @@ export default {
   label: "Node label",
   addNode: "Add Node",
   nknWalletAddress: "NKN wallet address",
-  walletLabel: "Wallet label",
+  walletLabel: "Wallet label (optional)",
   addWallet: "Add Wallet",
   nodeExistError: "This node is already tracked",
   trackNewNodes: "Track New Nodes",

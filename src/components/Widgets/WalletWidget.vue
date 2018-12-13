@@ -3,8 +3,8 @@
                 <v-layout  v-if="items.length" row wrap style="margin-top:30px;">
 					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
 						<v-select
-							v-on:change="setSelectedWalletAddress"
-							:value="selectedWalletAddress"
+							v-on:change="setSelectedWallet"
+							:value="selectedWallet"
 							:items="items"
 							item-text="address"
 							item-value="address"
@@ -17,42 +17,14 @@
 					<v-flex xs12 v-if="!items.length ">
 						{{$t('message.yourWalletNoWallet')}}
 					</v-flex>
-					<v-flex xs12 v-if="selectedWalletAddress">
-						<wallet-card :address="selectedWalletAddress" :deleteCallback="removeWalletAddress"></wallet-card>
+					<v-flex xs12 v-if="selectedWallet">
+						<wallet-card :label="selectedWallet.label" :address="selectedWallet.address" :deleteCallback="removeWallet"></wallet-card>
 					</v-flex>
 					<div style='margin: 10px 0px;'>
 					<v-btn color="primary" large  @click.native.stop="createWalletDialog = true" ><span v-html="addWalletIcon" class="icon"></span>{{$t('message.newWallet')}}</v-btn>
 					<v-btn color="primary" large  @click.native.stop="addWalletDialog = true" ><span v-html="openWalletIcon" class="icon"></span>{{$t('message.openWallet')}}</v-btn>
 					</div>
-
 				</v-layout>
-				<!--<v-layout>
-					<v-flex xl12 lg12 md12 sm12 xs12 style="padding-top:0px">
-						<v-layout row wrap justify-end style="margin-top: 5px;">
-							<v-btn :to="{path: '/wallet/create'}" raised color="gradient-primary">{{$t('message.newWallet')}}</v-btn>
-							<v-btn :to="{path: '/wallet/open'}" raised color="gradient-primary">{{$t('message.openWallet')}}</v-btn>
-							<v-menu offset-y>
-								<v-btn
-									slot="activator"
-									color="gradient-primary"
-									dark
-								>
-									{{$t('message.menu')}}
-								</v-btn>
-								<v-list>
-									
-										<v-list-tile @click="">
-											<v-list-tile-title>{{$t('message.changeName')}}</v-list-tile-title>
-										</v-list-tile>
-								
-									<v-list-tile @click="">
-										<v-list-tile-title>{{$t('message.changePassword')}}</v-list-tile-title>
-									</v-list-tile>
-								</v-list>
-							</v-menu>
-						</v-layout>
-					</v-flex>
-				</v-layout>-->
 		<v-dialog v-model="addWalletDialog" max-width="800">
 			<v-card>
 				<open-wallet :openWalletModalClosed="openWalletModalClosed" :walletLoaded="walletLoaded"></open-wallet>
@@ -80,8 +52,8 @@ export default {
 		CreateWallet
 	},
 	watch:{
-		selectedWalletAddress: function () {
-			this.$store.dispatch("setSelectedAddress", this.selectedWalletAddress);
+		selectedWallet: function () {
+			this.$store.dispatch("setSelectedWallet", this.selectedWallet);
 		}
 	},
 	computed: {
@@ -92,18 +64,22 @@ export default {
 				return feather.icons['plus'].toSvg()
            },
         ...mapGetters({
-			selectedWalletAddress: 'selectedAddress',
-			items: 'addresses'
+			selectedWallet: 'selectedWallet',
+			items: 'wallets'
         })
 	},
 	methods:{
-		setSelectedWalletAddress(val){
-			this.$store.dispatch("setSelectedAddress", val);
+		setSelectedWallet(val){
+			this.items.forEach(element => {
+				if(element.address==val){
+					this.$store.dispatch("setSelectedWallet", element);
+				}
+			});
 		},
-		removeWalletAddress(){
+		removeWallet(){
 			//remove from store
-			this.$store.dispatch("removeFromAddressesStore", this.selectedWalletAddress);
-			this.$store.dispatch("removeSelectedAddress");
+			this.$store.dispatch("removeFromWalletsStore", this.selectedWallet);
+			this.$store.dispatch("removeSelectedWallet");
 		},
 		walletLoaded(){
 			this.addWalletDialog=false;

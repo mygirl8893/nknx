@@ -12,6 +12,10 @@
                     required
                     :rules='addressRules'
                 ></v-text-field>
+                <v-text-field 
+                    :label="$t('message.walletLabel')" 
+                    v-model="label"
+                ></v-text-field>
             </v-form>
           </v-card-text>
 
@@ -36,6 +40,7 @@
             resetModal(){
                     this.valid = false;
                     this.addAddress= "";
+                    this.label = "";
                     this.openWalletModalClosed();
             },
 			addWallet(){
@@ -53,8 +58,8 @@
                         self.$store.dispatch("setSnackbar", self.$t('message.walletAddressError'));
                     }
                     else{
-                        self.$store.dispatch("addToAddressesStore", self.addAddress);
-                        self.$store.dispatch("setSelectedAddress", self.addAddress);
+                        self.$store.dispatch("addToWalletsStore", {"address": self.addAddress,"label":self.label});
+                        self.$store.dispatch("setSelectedWallet", {"address": self.addAddress,"label":self.label});
                         self.$store.dispatch("setSnackbar", self.$t('message.walletAddressAdded'));
                         self.resetModal();
                     }
@@ -64,6 +69,7 @@
 		},
 		data () {
 			return {
+                label:"",
                 valid:false,
                 addAddress: "",
                 addressRules: [

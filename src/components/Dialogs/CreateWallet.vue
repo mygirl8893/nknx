@@ -33,6 +33,11 @@
                                                 required
                                                 @click:append="show1 = !show1"
                                             ></v-text-field>
+											<v-text-field
+                                                v-model="label"
+												:label="$t('message.walletLabel')"
+                                                name="input-10-1"
+                                            ></v-text-field>
                                         </v-form>
                                     </v-flex>
                                 </v-layout>
@@ -116,7 +121,8 @@
 		},
 		methods: {
             resetModal(){
-                    this.snackbar= false;
+					this.snackbar= false;
+					this.label= "";
                     this.pk="";
                     this.s1valid=false;
                     this.s2valid=false;
@@ -138,8 +144,8 @@
 					this.walletFile = this.wallet.toJSON();
 					this.loading = false;
 					this.step = 1;
-					this.$store.dispatch("addToAddressesStore", this.wallet.address);
-					this.$store.dispatch("setSelectedAddress", this.wallet.address);
+					this.$store.dispatch("addToWalletsStore", {"address": this.wallet.address,"label":this.label});
+					this.$store.dispatch("setSelectedWallet", {"address": this.wallet.address,"label":this.label});
 				}
 			},
 			getPK(){
@@ -163,6 +169,7 @@
 			return {
                 e1: 1,
 				snackbar: false,
+				label: "",
 				pk:"",
                 s1valid:false,
                 s2valid:false,

@@ -8,6 +8,7 @@
                     <template v-else>{{$t('message.none')}} <a href="#" @click="setWalletNameDialog=true">{{$t('message.createOne')}}</a></template>
                 </span>
             </v-flex>
+            
             <v-flex xs12>
                 <router-link style="display:flex;" :to="{ path: '/address/'+address}">
                     {{ address }} 
@@ -23,6 +24,7 @@
         <v-container grid-list-xl pt-0>
             <v-flex xs12>
                 <v-layout justify-end>
+                    <v-chip v-if="label !=null" label outline color="orange">{{label}}</v-chip>
                     <v-btn :disabled="!balance" @click="transferFundsDialog=true" color="gradient-primary" small>{{$t('message.sendFunds')}}</v-btn>
                 </v-layout>  
             </v-flex>
@@ -72,6 +74,7 @@ export default {
     },
     props: {
         address: String,
+        label: String,
         deleteCallback: { type: Function }
     },
     data() {

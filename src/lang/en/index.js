@@ -10,7 +10,7 @@ export default {
   blocks: "Blocks",
   transactions: "Transactions",
   addresses: "Addresses",
-  search: "Search by block hash or block index",
+  search: "Search by Block / Hash / Address",
   latestBlocks: "Latest Blocks",
   latestTransactions: "Latest Transactions",
   hash: "Hash",

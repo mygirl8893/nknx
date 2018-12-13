@@ -23,7 +23,7 @@
 				</div>
 				<mobile-search-form></mobile-search-form>
 				<v-form style="flex: auto;" @submit.prevent="search" class='search-form'>
-					<v-text-field  flat solo prepend-icon="search" v-model="searchString" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
+					<v-text-field  flat solo prepend-icon="search" v-model.trim="searchString" :placeholder="$t('message.search')" class="search-bar "></v-text-field>
 				 </v-form>
 			</div>
 
@@ -62,7 +62,10 @@ export default {
   },
   methods: {
 		search(){
-			if(isNaN(parseFloat(this.searchString))){
+			if (this.searchString[0] == "N" && this.searchString.length === 34){
+				this.$router.push({ path: '/address/'+this.searchString})
+			} 
+			else if(this.searchString.length > 34){
 				this.$router.push({ path: '/block/hash/'+this.searchString})
 			}
 			else{

@@ -11,7 +11,7 @@
         <v-form>
           <v-text-field 
             dark
-            v-model="searchString"
+            v-model.trim="searchString"
             prepend-icon="search"
             :placeholder="$t('message.search')"
             autocomplete="true"
@@ -42,12 +42,15 @@ export default {
   },
   methods: {
     onClickSearch() {
-      if(isNaN(parseFloat(this.searchString))){
-				this.$router.push({ path: '/block/hash/'+this.searchString})
-			}
-			else{
-				this.$router.push({ path: '/block/height/'+this.searchString})
-			}
+      if (this.searchString[0] == "N" && this.searchString.length === 34){
+        this.$router.push({ path: '/address/'+this.searchString})
+      } 
+      else if(this.searchString.length > 34){
+        this.$router.push({ path: '/block/hash/'+this.searchString})
+      }
+      else{
+        this.$router.push({ path: '/block/height/'+this.searchString})
+      }
     }
   }
 };

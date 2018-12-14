@@ -17,15 +17,15 @@
 						<v-list class="app-card-action">
 							<v-list-tile @click="$emit('onCollapse')" v-if="fullScreen">
 								<i class="zmdi zmdi-fullscreen primary--text mr-2 fs-14"></i>
-								<span>{{$t("message.fullScreen")}}</span>
+								<span>{{$t('message.fullScreen')}}</span>
 							</v-list-tile>
 							<v-list-tile @click="$emit('onReload')" v-if="reloadable">
 								<i class="zmdi zmdi-refresh success--text mr-2 fs-14"></i>
-								<span>{{$t("message.reload")}}</span>
+								<span>{{$t('message.reload')}}</span>
 							</v-list-tile>
 							<v-list-tile @click="$emit('onClose')" v-if="closeable">
 								<i class="zmdi zmdi-close mr-2 error--text fs-14"></i>
-								<span>{{$t("message.close")}}</span>
+								<span>{{$t('message.close')}}</span>
 							</v-list-tile>
 						</v-list>
 					</v-menu>

@@ -3,11 +3,11 @@
 		<v-card-title class="headline">{{$t('message.sendFundsFrom')}}&nbsp;<span style="font-size:0.8em">{{senderAddress}}</span></v-card-title>
 		<v-stepper v-model="e1">
 			<v-stepper-header>
-				<v-stepper-step step="1" :complete="e1 > 1">{{$t("message.sendFundsStep1")}}</v-stepper-step>
+				<v-stepper-step step="1" :complete="e1 > 1">{{$t('message.sendFundsStep1')}}</v-stepper-step>
 				<v-divider></v-divider>
-				<v-stepper-step step="2" :complete="e1 > 2">{{$t("message.sendFundsStep2")}}</v-stepper-step>
+				<v-stepper-step step="2" :complete="e1 > 2">{{$t('message.sendFundsStep2')}}</v-stepper-step>
 				<v-divider></v-divider>
-				<v-stepper-step step="3">{{$t("message.sendFundsStep3")}}</v-stepper-step>
+				<v-stepper-step step="3">{{$t('message.sendFundsStep3')}}</v-stepper-step>
 			</v-stepper-header>
 			<v-stepper-items>
 				<v-stepper-content step="1">

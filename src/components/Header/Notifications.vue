@@ -22,19 +22,19 @@
 		data() {
 			return {
 				notifications: [{
-						title: "message.testMessage1",
+						title: 'message.testMessage1',
 						icon: "zmdi-storage primary--text"
 					},
 					{
-						title: "message.testMessage2",
+						title: 'message.testMessage2',
 						icon: "zmdi-memory warning--text"
 					},
 					{
-						title: "message.testMessage3",
+						title: 'message.testMessage3',
 						icon: "zmdi-email error--text"
 					},
 					{
-						title: "message.testMessage4",
+						title: 'message.testMessage4',
 						icon: "zmdi-edit success--text"
 					}
 				]

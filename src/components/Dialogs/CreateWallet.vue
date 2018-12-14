@@ -109,6 +109,7 @@
 
 <script>
   import nknWallet from "nkn-wallet";
+  import axios from "axios";
 
   export default {
         props: {
@@ -144,8 +145,24 @@
 					this.walletFile = this.wallet.toJSON();
 					this.loading = false;
 					this.step = 1;
-					this.$store.dispatch("addToWalletsStore", {"address": this.wallet.address,"label":this.label});
-					this.$store.dispatch("setSelectedWallet", {"address": this.wallet.address,"label":this.label});
+
+					if(this.$auth.check()){
+						var self = this;
+						axios.post('walletAddresses/', {
+							'address':self.wallet.address, 'label':self.label
+						})
+						.then((response) => {
+							self.$store.dispatch("addToWalletsStore", {"address": self.wallet.address,"label":self.label});
+							self.$store.dispatch("setSelectedWallet", {"address": self.wallet.address,"label":self.label});
+						})
+						.catch((error) =>{
+							self.$store.dispatch("setSnackbar", self.$t('message.addressExistsError'));   
+						}) 
+					}
+					else{
+						this.$store.dispatch("addToWalletsStore", {"address": this.wallet.address,"label":this.label});
+						this.$store.dispatch("setSelectedWallet", {"address": this.wallet.address,"label":this.label});
+					}
 				}
 			},
 			getPK(){

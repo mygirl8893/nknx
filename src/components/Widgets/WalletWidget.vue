@@ -77,9 +77,21 @@ export default {
 			});
 		},
 		removeWallet(){
-			//remove from store
-			this.$store.dispatch("removeFromWalletsStore", this.selectedWallet);
-			this.$store.dispatch("removeSelectedWallet");
+			var self = this;
+			if(this.$auth.check()){
+				//get address from api
+				axios.get('walletAddresses/'+this.selectedWallet.address).then(function(response){
+					axios.delete('walletAddresses/'+response.data.id)
+					.then((response) => {
+						self.$store.dispatch("removeFromWalletsStore", self.selectedWallet);
+						self.$store.dispatch("removeSelectedWallet");
+					})
+				})
+			}
+			else{
+				this.$store.dispatch("removeFromWalletsStore", this.selectedWallet);
+				this.$store.dispatch("removeSelectedWallet");
+			}
 		},
 		walletLoaded(){
 			this.addWalletDialog=false;

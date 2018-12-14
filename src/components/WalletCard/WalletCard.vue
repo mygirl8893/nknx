@@ -28,7 +28,7 @@
                 </v-layout>  
             </v-flex>
         </v-container>
-        <div class="wallet-card__label" v-if="label !=null"><span class="wallet-card__label--text">{{label}}</span></div>
+        <div class="wallet-card__label" v-if="label"><span class="wallet-card__label--text">{{label}}</span></div>
         <v-dialog v-model="removeDialog" max-width="500px">
             <v-card>
             <v-card-title>

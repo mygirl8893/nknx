@@ -262,5 +262,6 @@ export default {
   confirmDeleteName: "Confirm wallet name deletion",
   deleteNameInformation: "Warning! You're going to remove your global wallet name. That means that everyone else can claim it after this action.",
   deleteWalletName:"Delete wallet name",
-  dontLikeIt:"Unregister"
+  dontLikeIt:"Unregister",
+  addressExistsError:"Wallet address is already in the database"
 }

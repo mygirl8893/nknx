@@ -43,9 +43,8 @@
 </template>
 
 <script>
-
-
-
+import axios from "axios";
+import { mapGetters } from 'vuex';
 
 export default {
     data(){
@@ -65,8 +64,58 @@ export default {
         password: null,
         error: false
       }
-    },
+		},
+		computed:{
+			...mapGetters({
+					wallets: 'wallets'
+        })
+		},
     methods: {
+			syncLocalStorage(){
+				this.addToDatabase = [];
+				this.addToLocalStorage = [];
+				var self = this;
+				
+				axios.get('walletAddresses/').then(function(response){
+					var databaseWallets = response.data;
+					// in database but not in localstorage
+					databaseWallets.forEach(function(databaseWallet){
+						let found = false;
+						self.wallets.forEach(function(localWallet){
+							if(localWallet.address == databaseWallet.address){
+								found=true;
+							}
+						});
+						if(!found){
+							// add localstorageItem
+							self.addToLocalStorage.push({"address": databaseWallet.address,"label":databaseWallet.label});
+						}
+					});
+
+					//in localStorage but not in database
+					self.wallets.forEach(function(localWallet){
+
+							let found = false;
+							databaseWallets.forEach(function(databaseWallet){
+								if(localWallet.address == databaseWallet.address){
+									found=true;
+								}
+							});
+							if(!found){
+								//create database entry
+								self.addToDatabase.push({'address':localWallet.address, 'label':localWallet.label});
+							}
+					});
+
+					self.addToDatabase.forEach(wallet => {
+								axios.post('walletAddresses/', wallet)
+					});
+					self.addToLocalStorage.forEach(wallet => {
+								self.$store.dispatch("addToWalletsStore", wallet);
+					});
+					self.$store.dispatch("setSelectedWallet",self.wallets[0]);
+				});
+			},
       login(){
         var app = this
         this.$auth.login({
@@ -75,6 +124,7 @@ export default {
               password: app.password
             }, 
             success: function () {
+							this.syncLocalStorage();
 							this.$store.dispatch("setSnackbar", this.$t('message.successfullyLoggedIn'));
 						},
             error: function () {},

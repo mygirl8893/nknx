@@ -58,10 +58,26 @@
                         self.$store.dispatch("setSnackbar", self.$t('message.walletAddressError'));
                     }
                     else{
-                        self.$store.dispatch("addToWalletsStore", {"address": self.addAddress,"label":self.label});
-                        self.$store.dispatch("setSelectedWallet", {"address": self.addAddress,"label":self.label});
-                        self.$store.dispatch("setSnackbar", self.$t('message.walletAddressAdded'));
-                        self.resetModal();
+                        if(self.$auth.check()){
+                            axios.post('walletAddresses/', {
+                                'address':self.addAddress, 'label':self.label
+                            })
+                            .then((response) => {
+                                self.$store.dispatch("addToWalletsStore", {"address": self.addAddress,"label":self.label});
+                                self.$store.dispatch("setSelectedWallet", {"address": self.addAddress,"label":self.label});
+                                self.$store.dispatch("setSnackbar", self.$t('message.walletAddressAdded'));
+                                self.resetModal();
+                            })
+                            .catch((error) =>{
+                                self.$store.dispatch("setSnackbar", self.$t('message.addressExistsError'));   
+                            }) 
+                        }
+                        else{
+                            self.$store.dispatch("addToWalletsStore", {"address": self.addAddress,"label":self.label});
+                            self.$store.dispatch("setSelectedWallet", {"address": self.addAddress,"label":self.label});
+                            self.$store.dispatch("setSnackbar", self.$t('message.walletAddressAdded'));
+                            self.resetModal();
+                        }
                     }
 				})
 

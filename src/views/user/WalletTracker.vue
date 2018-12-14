@@ -92,6 +92,7 @@ import WalletChart from "Components/Charts/WalletChart";
 import WalletCard from "Components/WalletCard/WalletCard";
 import { Timeouts } from "Constants/timeouts";
 import feather from 'feather-icons';
+import { mapGetters } from 'vuex';
 
 
 export default {
@@ -141,6 +142,9 @@ export default {
         this.interval = setInterval(this.getUserNodes, Timeouts.short);
     },
     computed: {
+        ...mapGetters({
+			selectedWallet: 'selectedWallet'
+        }),
         walletIcon: function () {
             return feather.icons['credit-card'].toSvg()
         },
@@ -184,7 +188,10 @@ export default {
             'address':self.addAddress, 'label':self.addLabel
                 })
         .then((response) => {
-            this.getWalletsBalance()
+            self.$store.dispatch("addToWalletsStore", {"address": self.addAddress,"label":self.addLabel});
+            self.$store.dispatch("setSelectedWallet", {"address": self.addAddress,"label":self.addLabel});
+            self.$store.dispatch("setSnackbar", self.$t('message.walletAddressAdded'));
+            self.getWalletsBalance()
         })
         .catch((error) =>{
            self.isMultiCopy = true
@@ -204,6 +211,10 @@ export default {
             axios.delete('walletAddresses/'+id, {
                     })
             .then((response) => {
+                self.$store.dispatch("removeFromWalletsStore", wallet);
+                if(wallet.address == self.selectedWallet.address){
+                    self.$store.dispatch("removeSelectedWallet");
+                }
                 this.getWalletsBalance()
             })
         }

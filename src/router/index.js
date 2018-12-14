@@ -9,9 +9,6 @@ const Login = () => import('Views/auth/Login');
 const Register = () => import('Views/auth/Register');
 const ForgotPassword = () => import('Views/auth/ForgotPassword')
 const NewPassword = () => import('Views/auth/NewPassword')
-const Wallet = () => import('Views/wallet/Wallet');
-const CreateWallet = () => import('Views/wallet/CreateWallet');
-const OpenWallet = () => import('Views/wallet/OpenWallet');
 const AddressBrowser = () => import('Views/browser/Addresses');
 const BlockBrowser = () => import('Views/browser/Blocks');
 const TransactionBrowser = () => import('Views/browser/Transactions');
@@ -82,30 +79,6 @@ export default new Router({
 					meta: {
 						title: 'message.dashboard',
 						breadcrumb: ['message.dashboard'],
-					}
-				},
-				{
-					component: Wallet,
-					path: '/wallet',
-					meta: {
-						title: 'message.wallet',
-						breadcrumb: ['message.wallet'],
-					}
-				},
-				{
-					component: CreateWallet,
-					path: '/wallet/create',
-					meta: {
-						title: 'message.createWallet',
-						breadcrumb: ['message.wallet','message.createWallet'],
-					}
-				},
-				{
-					component: OpenWallet,
-					path: '/wallet/open',
-					meta: {
-						title: 'message.openWallet',
-						breadcrumb: ['message.wallet','message.openWallet'],
 					}
 				},
 				{

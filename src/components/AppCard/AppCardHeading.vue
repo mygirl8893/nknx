@@ -2,7 +2,7 @@
   	<div class="app-card-title" v-if="heading">
 		<h3>{{heading}}</h3>
 		<template v-if="!withTabs">
-			<div class="app-contextual-link" v-if="fullScreen || reloadable || closeable || walletLinks">
+			<div class="app-contextual-link" v-if="fullScreen || reloadable || closeable">
 				<v-tooltip bottom>
 					<v-menu
 						transition="scale-transition"
@@ -27,24 +27,8 @@
 								<i class="zmdi zmdi-close mr-2 error--text fs-14"></i>
 								<span>{{$t("message.close")}}</span>
 							</v-list-tile>
-							<v-list-tile @click.native.stop="addWalletDialog = true" v-if="walletLinks">
-								<span>{{$t('message.openWallet')}}</span>
-							</v-list-tile>
-							<v-list-tile @click.native.stop="createWalletDialog = true" v-if="walletLinks">
-								<span>{{$t('message.newWallet')}}</span>
-							</v-list-tile>
 						</v-list>
 					</v-menu>
-					<v-dialog v-model="addWalletDialog" max-width="800">
-						<v-card>
-							<verify-address :walletLoaded="walletLoaded"></verify-address>
-						</v-card>
-					</v-dialog>
-					<v-dialog v-model="createWalletDialog" max-width="800">
-						<v-card>
-							<create-wallet :createWalletModalClosed="createWalletModalClosed"></create-wallet>
-						</v-card>
-					</v-dialog>
 					<span>{{$t('message.moreActions')}}</span>
 				</v-tooltip>
 			</div>
@@ -64,7 +48,6 @@
 </template>
 
 <script>
-import VerifyAddress from "Components/Dialogs/VerifyAddress";
 import CreateWallet from "Components/Dialogs/CreateWallet";
 export default {
   props: [
@@ -78,26 +61,16 @@ export default {
     "onReload",
     "onClose",
 		"onChangeTabCallback",
-		"walletLinks"
 	],
 	components: {
-		VerifyAddress,
 		CreateWallet
 	},
   data() {
     return {
-			addWalletDialog:false,
-			createWalletDialog:false,
       activeTab: 0
     };
   },
   methods: {
-		walletLoaded(){
-			this.addWalletDialog=false;
-		},
-		createWalletModalClosed(){
-			this.createWalletDialog=false;
-		},
     onChangeTab(value) {
       this.activeTab = value;
       this.$emit("onChangeTabCallback", value);

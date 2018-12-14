@@ -191,7 +191,8 @@ export default {
             self.$store.dispatch("addToWalletsStore", {"address": self.addAddress,"label":self.addLabel});
             self.$store.dispatch("setSelectedWallet", {"address": self.addAddress,"label":self.addLabel});
             self.$store.dispatch("setSnackbar", self.$t('message.walletAddressAdded'));
-            self.getWalletsBalance()
+            self.getWalletsBalance();
+            self.addWalletDialog = false;
         })
         .catch((error) =>{
            self.isMultiCopy = true

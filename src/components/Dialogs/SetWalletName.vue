@@ -18,6 +18,7 @@
 									<v-flex xs12>
 										<v-layout row wrap>
 											<v-flex xs12>
+												<span>{{$t('message.setWalletNameAdvice')}}</span>
 												<v-form v-model="s1valid" class="mb-4 w-100">
 													<v-text-field
 														:label="$t('message.walletName')"

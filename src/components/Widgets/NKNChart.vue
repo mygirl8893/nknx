@@ -16,7 +16,7 @@
 					<h4 class="blue-dark--text mb-0">#{{nknRank}}</h4>
 				</div>
 				<div class="w-20 d-md-half-block">
-					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.change24')}}h</p>
+					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.change24')}}</p>
 					<h4 class="mb-0" v-bind:class="priceClass">{{nkn24}}%</h4>
 				</div>
 			</div>

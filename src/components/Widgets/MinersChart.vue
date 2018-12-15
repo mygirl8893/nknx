@@ -29,7 +29,7 @@ export default {
         this.getMiners()
     },
     mounted: function() {
-        this.interval = setInterval(this.getMiners, Timeouts.short);
+        this.interval = setInterval(this.getMiners, Timeouts.medium);
     },
     methods: {
         getMiners(){

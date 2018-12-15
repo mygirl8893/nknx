@@ -136,10 +136,10 @@
 							slot-scope="{ item, tile }"
 						>
 							<v-list-tile-avatar
-							color="indigo"
+							color="primary"
 							class="headline font-weight-light white--text"
 							>
-							{{ item.name.charAt(0) }}
+							<span style='text-transform: uppercase;'>{{ item.name.charAt(0) }}</span>
 							</v-list-tile-avatar>
 							<v-list-tile-content>
 							<v-list-tile-title v-text="item.name"></v-list-tile-title>

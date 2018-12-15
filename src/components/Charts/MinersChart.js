@@ -27,7 +27,6 @@ export default {
     const self = this;
         axios.get('statistics/miners?latest=50').then(function(addresses){
             // get only top 50 miners
-
             addresses.data.forEach(function(address) {
                 self.chartdata.address.push(address.address);
                 self.chartdata.value.push(address.total*10);
@@ -59,6 +58,6 @@ export default {
             }, self.options);
         });
 
-   },
+   }
    
 }

@@ -1,9 +1,10 @@
 import en from './en';
 import de from './de';
+import ja from './ja';
+import ru from './ru';
 import ko from './ko';
 import nl from './nl';
 import tr from './tr';
-import ru from './ru';
 import zh from './zh';
 import fi from './fi';
 import es from './es';
@@ -19,6 +20,12 @@ export default {
     de: {
         message: de
     },
+    ja: {
+        message: ja
+    },
+    ru: {
+        message: ru
+    },
     ko: {
         message: ko
     },
@@ -27,9 +34,6 @@ export default {
     },
     tr: {
         message: tr
-    },
-    ru: {
-        message: ru
     },
     zh: {
         message: zh
@@ -49,6 +53,4 @@ export default {
     cs: {
         message: cs
     },
-
-  
 }

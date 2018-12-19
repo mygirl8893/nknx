@@ -10,6 +10,16 @@ export const languages = [
       locale: "de"
    },
    {
+    name: "Русский",
+    icon: "ru",
+    locale: "ru"
+   },
+   {
+    name: "日本語",
+    icon: "ja",
+    locale: "ja"
+   },
+   {
     name: "한글",
     icon: "ko",
     locale: "ko"
@@ -23,11 +33,6 @@ export const languages = [
     name: "Türkce",
     icon: "tr",
     locale: "tr"
-   },
-   {
-    name: "Русский",
-    icon: "ru",
-    locale: "ru"
    },
    {
     name: "简体中文",

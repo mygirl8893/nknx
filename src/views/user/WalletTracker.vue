@@ -220,9 +220,6 @@ export default {
             })
         }
     },
-    getDailyBlocks(){
-
-    },
     getWalletsBalance(){
         const self = this;
         self.networth = 0
@@ -239,9 +236,11 @@ export default {
                     response.data[i].preview = response.data[i].label.charAt(0)
                 }
                 self.wallets = response.data
-                self.select = response.data[0]
-                self.currentId = self.select.id
-
+                
+                if(self.wallets.length>0){
+                    self.select = response.data[0]
+                    self.currentId = self.select.id
+                }
                 let userTotalBlocks = 0
                 let miningPercent = 0
                 self.miningPercent = 0

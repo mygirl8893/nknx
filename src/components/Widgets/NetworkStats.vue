@@ -71,7 +71,7 @@ export default {
     methods: {
     getNetworkState(){
             const self = this
-            axios.post('http://testnet-node-0001.nkn.org:30003/', {
+            axios.post('https://nknx.org:30003/', {
                     "jsonrpc": "2.0",
                     "method": "getrawmempool",
                     "params": {},
@@ -85,7 +85,7 @@ export default {
 
                 });
 
-            axios.post('http://testnet-node-0001.nkn.org:30003/', {
+            axios.post('https://nknx.org:30003/', {
                     "jsonrpc": "2.0",
                     "method": "getnodestate",
                     "params": {},
@@ -98,7 +98,7 @@ export default {
 
                 });
 
-            axios.post('http://testnet-node-0001.nkn.org:30003/', {
+            axios.post('https://nknx.org:30003/', {
                     "jsonrpc": "2.0",
                     "method": "getversion",
                     "params": {},
@@ -112,7 +112,7 @@ export default {
 
                 });
 
-            axios.post('http://testnet-node-0001.nkn.org:30003/', {
+            axios.post('https://nknx.org:30003/', {
                     "jsonrpc": "2.0",
                     "method": "getlatestblockheight",
                     "params": {},

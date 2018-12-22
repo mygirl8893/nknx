@@ -233,7 +233,6 @@ export default {
                 for(let i in response.data){
                     response.data[i].balanceUsd = Number((response.data[i].balance*self.nknPrice/5).toFixed(0))
                     self.networth += response.data[i].balanceUsd
-                    response.data[i].preview = response.data[i].label.charAt(0)
                 }
                 self.wallets = response.data
                 

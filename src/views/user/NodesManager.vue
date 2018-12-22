@@ -56,7 +56,7 @@
                                 <span slot="badge">!</span>
                                 </v-badge></span> </td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.txnCnt}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.rxTxnCnt}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
                                 <td style="text-align:center">
                                 <v-menu bottom left>

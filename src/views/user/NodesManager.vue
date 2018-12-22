@@ -29,7 +29,6 @@
                 customClasses="mb-0" 
                 :fullBlock="true" 
                 :footer="true"
-                v-if="userNodesData.length>0"
                 >
                 	<div class="table-responsive">
                         <app-section-loader :status="loader"></app-section-loader>

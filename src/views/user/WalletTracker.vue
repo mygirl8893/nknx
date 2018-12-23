@@ -247,11 +247,13 @@ export default {
                 axios.get('statistics/daily/blocks')
                 .then(blocks => {
                     self.dailyBlocks = blocks.data[0].count
+                    let currentNetworkDay = blocks.data[0].date
 
                     //getting sum of blocks mined by all user wallets today
                     for(let i =0; i< self.wallets.length; i++){
                         axios.get('walletAddresses/'+self.wallets[i].id+'/miningOutputDaily').then(function(addr){
-                            if(addr.data.length > 0){
+                            let latestMinerDay = addr.data[0].date
+                            if(addr.data.length > 0 && latestMinerDay === currentNetworkDay){
                                 userTotalBlocks += addr.data[0].count
                                 miningPercent = (userTotalBlocks/self.dailyBlocks*100)
                                 self.miningPercent = miningPercent.toFixed(2)

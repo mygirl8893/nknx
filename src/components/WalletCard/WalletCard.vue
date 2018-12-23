@@ -128,14 +128,16 @@ export default {
         },
         getBalance(){
 			if(this.address){
-                var self = this;
-                axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
-                .then(response => {
-                    self.nknPrice = response.data.data.quotes.USD.price
-                })
+                const self = this;
+
                 axios.get('walletNames/'+this.address).then(function(addressBookItem){
-				    self.publicWalletName=addressBookItem.data.name;
-			    });
+                    self.publicWalletName=addressBookItem.data.name;
+                });
+
+                axios.get('https://min-api.cryptocompare.com/data/price?fsym=NKN&tsyms=USD')
+                .then(price => {
+                    self.nknPrice = price.data.USD
+                
 				axios.post('https://nknx.org:30003',{
 					"jsonrpc": "2.0",
 					"method":  "getunspendoutput",
@@ -153,8 +155,8 @@ export default {
                     }
                     self.balance = self.newbalance;
                     self.balanceUSD = (self.balance*self.nknPrice/5).toFixed(0)
-				});
-
+				})
+                });
 			}
 		},
         showBalance(){

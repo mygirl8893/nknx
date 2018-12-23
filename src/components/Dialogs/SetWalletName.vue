@@ -287,8 +287,8 @@
 				show1: false,
 				rules: [
 					v => !!v || "required",
-					v => v.length >= 7 || "Length has to be between 8-12 characters",
-					v => v.length <= 13 || "Length has to be between 8-12 characters",
+					v => v.length >= 8 || "Length has to be between 8-12 characters",
+					v => v.length <= 12 || "Length has to be between 8-12 characters",
 					v =>
 					/^[A-Za-z]+$/.test(v) ||
 					"Only letters allowed"

@@ -1,5 +1,11 @@
 <template>
 	<div>
+		<v-alert
+		:value="error"
+		type="error"
+		>
+				<span>Error logging you in. Did you mistype your password or email?</span>
+		</v-alert>
 
 			<div class="session-table-cell">
 				<div class="session-content">
@@ -49,6 +55,7 @@ import { mapGetters } from 'vuex';
 export default {
     data(){
       return {
+		error:false,
 		checkbox: false,
       	valid: false,
      
@@ -127,7 +134,9 @@ export default {
 							this.syncLocalStorage();
 							this.$store.dispatch("setSnackbar", this.$t('message.successfullyLoggedIn'));
 						},
-            error: function () {},
+            error: function () {
+				this.error = true;
+			},
             rememberMe: this.checkbox,
             redirect: '/profile',
             fetchUser: true,

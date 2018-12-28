@@ -356,40 +356,55 @@ export default {
         addNode(){
             const self = this;
             self.isCopy = false
+            //Check if node is already tracked
             for(let i in self.userNodesData){
                 if(self.userNodesData[i].addr === self.addIp){
                     self.isCopy = true
-                    self.isError = 'This node is already tracked'
+                    self.isError = this.$t('message.nodeIsTracked');
                 }
             }
-            if(self.isCopy != true){
-                axios.post('nodes', {
-                'ip': self.addIp, 'label': self.addLabel
-                    })
-                    .then((response) => {
-                        if(response.data.data.failed.length){
-                            self.isCopy = true;
-                            self.isError = this.$t('message.NodeNotReachable');
-                        }
-                        else if(response.data.data.duplicate.length){
-                            self.isCopy = true;
-                            self.isError = this.$t('message.NodeDuplicate');
-                        }
-                        else{
-                            this.$store.dispatch("setSnackbar", this.$t('message.nodeSuccessfullyAdded'));
-                            self.addIp = "";
-                            this.getUserNodes();
-                        }
+            //Check if ports are open
+            axios.get('checkPort?address='+self.addIp, {})
+            .then((ports) => {
+                let portsStatus = true;
+                for (let port in ports.data){
+                    if(ports.data[port] === 'closed'){
+                        self.isCopy = true;
+                        self.isError = this.$t('message.portsClosed');
+                    }
+                    portsStatus = false;
+                }
+                if(self.isCopy != true && portsStatus != true){
+                    axios.post('nodes', {
+                    'ip': self.addIp, 'label': self.addLabel
+                        })
+                        .then((response) => {
+                            //Check if node is reachable
+                            if(response.data.data.failed.length){
+                                self.isCopy = true;
+                                self.isError = this.$t('message.NodeNotReachable');
+                            }
+                            //Check if node is already in DB
+                            else if(response.data.data.duplicate.length){
+                                self.isCopy = true;
+                                self.isError = this.$t('message.NodeDuplicate');
+                            }
+                            //Everything is ok and we add this node
+                            else{
+                                this.$store.dispatch("setSnackbar", this.$t('message.nodeSuccessfullyAdded'));
+                                self.addIp = "";
+                                this.getUserNodes();
+                            }
 
-                    })
+                        })
 
-            }
+                }    
+            })
         },
         addMultiNode(){
             const self = this;
             self.isMultiCopy = false
             let ipArray = self.addMultiIp.trim().split(',')
-
             axios.post('nodes', {
                 'ip': self.addMultiIp, 'label': self.addMultiLabel
             })

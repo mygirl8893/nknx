@@ -36,8 +36,8 @@
             ></v-text-field>
         </v-flex>
         <v-container fluid pt-0 grid-list-xl>
-            <div>{{$t('message.testnetPerDay')}}: <b>{{testTokensDaily}} NKN</b></div>
-            <div>{{$t('message.testnetTotal')}} {{workingTime}} {{$t('message.months')}}: <b>{{totalTestTokens}} NKN</b></div>
+            <div>{{$t('message.testnetPerDay')}}: <b>{{testTokensDaily}} tNKN</b></div>
+            <div>{{$t('message.testnetTotal')}} {{workingTime}} {{$t('message.months')}}: <b>{{totalTestTokens}} tNKN</b></div>
             <div>{{$t('message.mainnetTotal')}} {{workingTime}} {{$t('message.months')}}: <b>{{totalMainTokens}} NKN</b></div>
             <div>{{$t('message.usdDaily')}}: <b>${{usdProfitPerDay}}</b></div>
             <div>{{$t('message.usdMonthly')}} {{workingTime}} {{$t('message.months')}}: <b>${{usdProfit}}</b></div>

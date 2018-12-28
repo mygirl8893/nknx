@@ -17,7 +17,7 @@
             </v-flex>
             <v-flex xs12>
                 <div class="balance">
-                    <span v-html="IconEye" @click='showBalance' class="eye-toggle"></span><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} NKN ≈ {{balanceUSD}} USD</span>
+                    <span v-html="IconEye" @click='showBalance' class="eye-toggle"></span><span v-if='isHidden != true' class="blue-gradient--text mb-0">{{balance}} tNKN ≈ {{balanceUSD}} USD</span>
                 </div>
             </v-flex>
         </v-container>

@@ -28,7 +28,7 @@
                                         {{ $t('message.balance') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{walletbalance}} NKN
+                                        {{walletbalance}} tNKN
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
@@ -103,7 +103,7 @@
 
                                                 </td>
                                                 <td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
-                                                <td>{{ props.item.outputs[0].value }} NKN</td>
+                                                <td>{{ props.item.outputs[0].value }} tNKN</td>
                                                 <td><router-link :to="{ path: '/block/height/'+props.item.block.height }">{{ props.item.block.height }}</router-link></td>
                                                 <td>{{ $moment(props.item.block.timestamp).fromNow() }}</td>
                                                 </tr>
@@ -153,7 +153,7 @@
                                                     <td>
                                                         <span v-if="$route.params.address == props.item.sender">-</span>
                                                         <span v-if="$route.params.address == output.address">+</span>
-                                                        {{ output.value }} NKN
+                                                        {{ output.value }} tNKN
                                                     </td>
                                                     <td><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
                                                     <td v-if="$route.params.address == props.item.sender">{{$t('message.yourWallet')}}</td><td v-else><router-link :to="{ path: '/address/'+props.item.sender }">{{ props.item.sender }}</router-link></td>

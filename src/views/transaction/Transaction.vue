@@ -65,7 +65,7 @@
                                         {{ $t('message.miningReward') }}
                                     </v-flex>
                                     <v-flex xl8 lg8 md8 sm8 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        {{transaction.outputs[0].value}} NKN
+                                        {{transaction.outputs[0].value}} tNKN
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>

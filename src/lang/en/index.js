@@ -232,5 +232,6 @@ export default {
   addressExistsError:"Wallet address is already in the database",
   portsClosed: "Ports of your node are closed",
   nodeIsTracked: "This node is already tracked",
-  nodesSuccessfullyAdded: "Your nodes successfully added"
+  nodesSuccessfullyAdded: "Your nodes successfully added",
+  basedIn: "based in"
 }

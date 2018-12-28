@@ -71,7 +71,8 @@
                                 <v-layout row wrap>
                                     <v-flex xl12 lg12 md12 sm12 xs12 b-50 style="padding: 1rem 1.25rem;">
                                         <div v-for='item in nodeTracer' :key="item.node_pk">
-                                          <div style="margin-bottom:10px;"><span v-html='tracerIcon(item.icon)' style="height:24px; width:24px; position:relative; top:8px;margin-right:10px;"></span> <b>{{item.user}}</b> {{item.node_pk}} <b>{{item.action}}</b></div>
+                                          <div style="margin-bottom:10px;"><span v-html='tracerIcon(item.icon)' style="height:24px; width:24px; position:relative; top:8px;margin-right:10px;"></span> <b>{{item.user}}</b> {{item.node_pk}} <b>{{item.action}}</b> <span style="margin-left: 8px; font-weight:300; color: #0073e7"><span v-if='item.city!=null'>{{$t('message.basedIn')}} {{item.city}}, <span style='font-weight: 500;'>{{item.country_name}}</span><span style='position:relative'><country-flag style='position: absolute; top: -22px; left: 10px;' :country='item.country_code2' size='normal'/></span>
+                                          </span></span></div>
                                         </div>
                                     </v-flex>
                                 </v-layout>
@@ -121,8 +122,12 @@
 <script>
 import axios from "axios"
 import feather from 'feather-icons';
+import CountryFlag from 'vue-country-flag'
 
 export default {
+  components: {
+      CountryFlag
+  },
   data() {
     return {
       generalOpened:0,
@@ -157,7 +162,9 @@ export default {
             else{
               nodeTracer[i].user = self.$t('message.node')
               nodeTracer[i].action = self.$t('message.relayData')
-              nodeTracer[i].icon = "arrowIcon"
+              if(nodeTracer[i].country_code2 != null){
+                nodeTracer[i].country_code2 = nodeTracer[i].country_code2.toLowerCase()
+              }
             }
           }
           self.nodeTracer = nodeTracer

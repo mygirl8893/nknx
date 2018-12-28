@@ -168,7 +168,7 @@
                                 dismissible
                                 class='w-100'
                                 >
-                                {{isMultiError}}
+                                <span v-html="isMultiError"></span>
                                 </v-alert>
                                 <v-text-field 
                                     :label="$t('message.multiLabel')" 
@@ -404,6 +404,7 @@ export default {
         addMultiNode(){
             const self = this;
             self.isMultiCopy = false
+            self.isMultiError = "";
 
             //get nodes by ip
             const ipRegExp = /((?=.*[^\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/igm;
@@ -431,12 +432,12 @@ export default {
             .then((response) => {
                 if(response.data.data.failed.length){
                     self.isMultiCopy = true;
-                    self.isMultiError= this.$t('message.followingNodesNotReachable') + " " + response.data.data.failed.join(", ") + "\n";
+                    self.isMultiError= self.isMultiError+this.$t('message.followingNodesNotReachable') + " " + response.data.data.failed.join(", ") + "<br/>";
                     self.addMultiIp = "";
                 }
-                else if(response.data.data.duplicate.length){
+                if(response.data.data.duplicate.length){
                     self.isMultiCopy = true;
-                    self.isMultiError= this.$t('message.followingNodesDuplicate') + " " + response.data.data.duplicate.join(", ");
+                    self.isMultiError= self.isMultiError+this.$t('message.followingNodesDuplicate') + " " + response.data.data.duplicate.join(", ") + "<br/>";
                     self.addMultiIp = "";
                 }
                 else{

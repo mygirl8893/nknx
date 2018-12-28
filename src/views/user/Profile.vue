@@ -31,7 +31,7 @@
 				>
 					<mining-calc></mining-calc>
 				</app-card>
-				<app-card
+			<!--	<app-card
 					:heading="$t('message.miners')"
 					colClasses="xl6 lg6 md12 sm12 xs12"
 					customClasses="mt-10"
@@ -39,7 +39,7 @@
 					:fullBlock="true"
 				>
 					<miners-chart></miners-chart>
-				</app-card>
+				</app-card> -->
 			</v-layout>
 		</v-container>
 	</div>

@@ -133,7 +133,7 @@ export default {
                 labels: self.chartdata.days,
                 datasets: [
                     {
-                        label: 'NKN',
+                        label: 'tNKN',
                         yAxisID: 'NKN',
                         data: self.chartdata.nkn,
                         lineTension: 0.5,

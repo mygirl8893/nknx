@@ -229,5 +229,7 @@ export default {
   deleteNameInformation: "Warning! You're going to remove your global wallet name. That means that everyone else can claim it after this action.",
   deleteWalletName:"Delete wallet name",
   dontLikeIt:"Unregister",
-  addressExistsError:"Wallet address is already in the database"
+  addressExistsError:"Wallet address is already in the database",
+  portsClosed: "Ports of your node are closed",
+  nodeIsTracked: "This node is already tracked"
 }

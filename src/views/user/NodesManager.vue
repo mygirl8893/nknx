@@ -404,27 +404,43 @@ export default {
         addMultiNode(){
             const self = this;
             self.isMultiCopy = false
-            let ipArray = self.addMultiIp.trim().split(',')
+
+            //get nodes by ip
+            const ipRegExp = /((?=.*[^\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/igm;
+            let ipArray = []
+            ipArray = self.addMultiIp.match(ipRegExp)
+
+            //get nodes by urls
+            const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)/igm;
+            let urlArray = []
+            urlArray = self.addMultiIp.match(urlRegExp)
+
+            //ips + urls
+            if(ipArray != null && urlArray != null){
+                ipArray = ipArray.concat(urlArray)
+                self.addMultiIp = ipArray.join()
+            } else if(ipArray != null && urlArray === null){
+                self.addMultiIp = ipArray.join()
+            } else{
+                self.addMultiIp = urlArray.join()
+            }
+            
             axios.post('nodes', {
                 'ip': self.addMultiIp, 'label': self.addMultiLabel
             })
             .then((response) => {
-                if(response.data.data.failed.length || response.data.data.duplicate.length){
-                    this.$store.dispatch("setSnackbar", this.$t('message.partialNodesAdded'));
-                }
-                else{
-                    this.$store.dispatch("setSnackbar", this.$t('message.nodesSuccessfullyAdded'));
-                    self.addMultiIp = "";
-                }
-                
                 if(response.data.data.failed.length){
                     self.isMultiCopy = true;
                     self.isMultiError= this.$t('message.followingNodesNotReachable') + " " + response.data.data.failed.join(", ") + "\n";
                     self.addMultiIp = "";
                 }
-                if(response.data.data.duplicate.length){
+                else if(response.data.data.duplicate.length){
                     self.isMultiCopy = true;
                     self.isMultiError= this.$t('message.followingNodesDuplicate') + " " + response.data.data.duplicate.join(", ");
+                    self.addMultiIp = "";
+                }
+                else{
+                    this.$store.dispatch("setSnackbar", this.$t('message.nodesSuccessfullyAdded'));
                     self.addMultiIp = "";
                 }
                 this.getUserNodes()

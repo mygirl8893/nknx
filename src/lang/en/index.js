@@ -131,7 +131,7 @@ export default {
   walletLabel: "Wallet label (optional)",
   addWallet: "Add Wallet",
   addNodes: "Add Nodes",
-  multiIp: "IP Addresses of your nodes separated by commas",
+  multiIp: "Enter each node from a new line.",
   multiLabel: "Label for your nodes",
   singleNode: "Single Node",
   multipleNodes: "Multiple Nodes",
@@ -231,5 +231,6 @@ export default {
   dontLikeIt:"Unregister",
   addressExistsError:"Wallet address is already in the database",
   portsClosed: "Ports of your node are closed",
-  nodeIsTracked: "This node is already tracked"
+  nodeIsTracked: "This node is already tracked",
+  nodesSuccessfullyAdded: "Your nodes successfully added"
 }

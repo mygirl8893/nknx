@@ -233,5 +233,11 @@ export default {
   portsClosed: "Ports of your node are closed",
   nodeIsTracked: "This node is already tracked",
   nodesSuccessfullyAdded: "Your nodes successfully added",
-  basedIn: "based in"
+  basedIn: "based in",
+  isOffline: "has gone offline",
+  isIn: "is in",
+  state: "state",
+  versionOutdated: "version is out of date",
+  networkState: "Current network state is",
+  latestBlockNotSync: "latest block is not synchronized with the network"
 }

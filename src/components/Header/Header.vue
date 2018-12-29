@@ -29,6 +29,7 @@
 
 			<div class="navbar-right">
 				<v-btn v-if="!$auth.check()" color="primary" tag="link" :to="'/login'">{{ $t('message.login') }}</v-btn>
+				<notifications v-if="$auth.check()"></notifications>
 				<user v-if="$auth.check()"></user>
 				<language-provider></language-provider>
 			</div>
@@ -40,6 +41,7 @@
 import User from "./User";
 import LanguageProvider from "./LanguageProvider";
 import MobileSearchForm from "./MobileSearchForm";
+import Notifications from "./Notifications";
 import { mapGetters } from "vuex";
 import Sidebar from "../Sidebar/Sidebar.vue";
 
@@ -76,6 +78,7 @@ export default {
     LanguageProvider,
 		MobileSearchForm,
 		User,
+		Notifications,
 		appSidebar: Sidebar,
   }
 };

@@ -1,0 +1,48 @@
+.notification-icon.active:after{
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 7.5px;
+    background: #d3a752;
+    background: linear-gradient(to bottom, #d3a752 0%, #fb5b40 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3a752', endColorstr='#fb5b40',GradientType=0 );
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.notifications{
+	position: fixed !important;
+	z-index: 17 !important;
+    top: 84px !important;
+	.dropdown-content{
+		width: 400px;
+		max-height: 400px;
+	}
+	.v-list__tile{
+		min-height: 80px;
+	}
+	&-item{
+		&__text{
+			font-size: 16px !important;
+		}
+		&__date{
+			color: $gray-light;
+		}
+		&__icon{
+			position: relative;
+    		margin-right: 10px;
+    		top: 6px;
+			
+			.feather-alert-octagon{
+				color: $warning;
+			}
+			.feather-info{
+				color: $primary;
+			}
+    		.feather-alert-triangle{
+    			color: #f44336;
+    		}
+		}
+	}
+}

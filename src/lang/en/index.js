@@ -240,5 +240,7 @@ export default {
   versionOutdated: "version is out of date",
   networkState: "Current network state is",
   latestBlockNotSync: "latest block is not synchronized with the network",
-  forLongerThan1Hour:"For longer than 1 hour"
+  forLongerThan1Hour:"For longer than 1 hour",
+  networkLatestBlock: "Network latest block was created for longer than 1 hour",
+  nodesWarning: "Your nodes may not work correctly"
 }

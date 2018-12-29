@@ -9,7 +9,7 @@
     	<template slot="headers" slot-scope="props">
 				<tr>
           <th>{{ $t('message.txType') }}</th>
-          <th style="width:40%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+          <th style="width:40%;">{{ $t('message.hash') }}</th>
           <th>{{ $t('message.height') }}</th>
           <th>{{ $t('message.created') }}</th>
 				</tr>
@@ -33,7 +33,7 @@
             </span>
 
           </td>
-          <td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
+          <td><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
           <td><router-link :to="{ path: '/block/height/'+props.item.block.height }">{{ props.item.block.height }}</router-link></td>
           <td>{{ $moment(props.item.block.timestamp).fromNow() }}</td>
         </tr>

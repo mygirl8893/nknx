@@ -77,7 +77,7 @@
                                             <template slot="headers" slot-scope="props">
                                                         <tr>
                                                             <th>{{ $t('message.txType') }}</th>
-                                                            <th style="width:50%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+                                                            <th style="width:50%;">{{ $t('message.hash') }}</th>
                                                             <th>{{ $t('message.amount') }}</th>
                                                             <th>{{ $t('message.height') }}</th>
                                                             <th>{{ $t('message.created') }}</th>
@@ -102,7 +102,7 @@
                                                     </span>
 
                                                 </td>
-                                                <td class="hidden-sm-and-down"><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
+                                                <td><router-link :to="{ path: '/transaction/'+props.item.hash}">{{ props.item.hash }}</router-link></td>
                                                 <td>{{ props.item.outputs[0].value }} tNKN</td>
                                                 <td><router-link :to="{ path: '/block/height/'+props.item.block.height }">{{ props.item.block.height }}</router-link></td>
                                                 <td>{{ $moment(props.item.block.timestamp).fromNow() }}</td>
@@ -141,7 +141,7 @@
                                             <template slot="headers" slot-scope="props">
                                                     <tr>
                                                         <th>{{ $t('message.amount') }}</th>
-                                                        <th style="width:30%;" class="hidden-sm-and-down">{{ $t('message.hash') }}</th>
+                                                        <th style="width:30%;">{{ $t('message.hash') }}</th>
                                                         <th style="width:20%;">{{ $t('message.from') }}</th>
                                                         <th style="width:20%;">{{ $t('message.to') }}</th>
                                                         <th>{{ $t('message.height') }}</th>

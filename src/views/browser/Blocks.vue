@@ -19,14 +19,14 @@
 											<tr>
 												<th>{{ $t('message.height') }}</th>
 												<th>{{ $t('message.transactions') }}</th>
-												<th style="width:50%;" class="hidden-sm-and-down">{{ $t('message.signer') }}</th>
+												<th style="width:50%;">{{ $t('message.signer') }}</th>
 												<th>{{ $t('message.created') }}</th>
 											</tr>
 										</template>
 										<template slot="items" slot-scope="props">
 											<td><router-link :to="{ path: '/block/height/'+props.item.height}">{{ props.item.height }}</router-link></td>
 											<td>{{ props.item.transaction_count }}</td>
-											<td class="hidden-sm-and-down">{{ props.item.signer }}</td>
+											<td>{{ props.item.signer }}</td>
 											<td>{{ $moment(props.item.timestamp).fromNow() }}</td>
 										</template>
 									</v-data-table>

@@ -10,6 +10,7 @@
                 <div class="tab-toggler">
                     <div class="tab-toggler__item" 
                     v-for="order in orderOptions" 
+                    v-bind:key="order.value"
                     :value="order.value"
                     :class="getClass(order.value)"
                     @click='toggleFilter(order.value)'
@@ -35,13 +36,14 @@
                         <v-data-table :items="sortedArray" hide-actions item-key='props.item.index'>
                             <template slot='headers' slot-scope='props'>
                                 <tr>
-                                    <th style="width:5%;">#</th>
+                                    <th style="width:40px;">#</th>
                                     <th>{{ $t('message.node') }}</th>
                                     <th>{{ $t('message.status') }}</th>
                                     <th>{{ $t('message.latestBlock') }}</th>
                                     <th>{{ $t('message.tx') }}</th>
                                     <th>{{ $t('message.version') }}</th>
-                                    <th style="text-align:center">{{ $t('message.actions') }}</th>
+                                    <th>{{ $t('message.label') }}</th>
+                                    <th style="text-align:center;width:75px;">{{ $t('message.actions') }}</th>
                                 </tr>
                             </template>
                             <template slot="items" slot-scope="props">
@@ -50,7 +52,7 @@
                                 v-clipboard:copy="props.item.addr"
                                 v-clipboard:success="onCopy1"
                                 class='cursor-pointer'
-                                >{{props.item.addr}} <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                >{{props.item.addr}} <span style="color: #0073e7" v-if='props.item.alias'>({{props.item.alias}})</span></td>
                                 <td >{{props.item.syncState}}
 								<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
@@ -58,7 +60,8 @@
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.rxTxnCnt}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
-                                <td style="text-align:center">
+                                <td><v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td style="text-align:center;">
                                 <v-menu bottom left>
                                     <v-btn
                                       slot="activator"
@@ -149,6 +152,7 @@
                                     class='w-100'
                                 ></v-text-field>
                                 <div>
+                   
                                     <v-btn :disabled="!valid"  large @click="addNode" block color="warning">{{$t('message.addNode')}}</v-btn>
                                 </div>
                                   </v-tab-item>

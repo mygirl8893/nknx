@@ -239,5 +239,6 @@ export default {
   state: "state",
   versionOutdated: "version is out of date",
   networkState: "Current network state is",
-  latestBlockNotSync: "latest block is not synchronized with the network"
+  latestBlockNotSync: "latest block is not synchronized with the network",
+  forLongerThan1Hour:"For longer than 1 hour"
 }

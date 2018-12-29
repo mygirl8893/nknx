@@ -12,6 +12,7 @@
 						<span class='notifications-item__icon' v-html="notificationIcon(notification.icon)"></span>
 						<span class='notifications-item__text' v-if='notification.type === "stateError"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.isOffline')}}</span>
 						<span class='notifications-item__text' v-if='notification.type === "stateWarning"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.isIn')}} {{notification.state}} {{$t('message.state')}}</span>
+						<span class='notifications-item__text' v-if='notification.type === "stateUnchangedWarning"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.isIn')}} {{notification.state}} {{$t('message.state')}} {{$t('message.forLongerThan1Hour')}}</span>
 						<span class='notifications-item__text' v-if='notification.type === "versionWarning"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.versionOutdated')}}</span>
 						<span class='notifications-item__text' v-if='notification.type === "networkStateWarning"'>{{$t('message.networkState')}} <strong>{{notification.state}}</strong></span>
 						<span class='notifications-item__text' v-if='notification.type === "nodeLatestBlockWarning"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.latestBlockNotSync')}}</span>
@@ -27,6 +28,7 @@
 	import feather from 'feather-icons';
 	import axios from "axios";
 	import { Timeouts } from "Constants/timeouts";
+	import moment from 'moment';
 	export default {
 		data() {
 			return {
@@ -94,9 +96,24 @@
 		                    			node: nodes[i].addr,
 		                    			state: "Offline"
 		                    		})
-		                    	}
+								}
+								console.log(moment(nodes[i].updated_at).isAfter(moment().subtract(1, 'hours')));
+
+
 		                    	//SyncStarted and SyncFinished warning
-		                    	if(nodes[i].syncState === "SyncFinished" || nodes[i].syncState === "SyncStarted"){//TODO Here should be now()-1hour
+		                    	if(nodes[i].syncState === "SyncStarted" && moment(nodes[i].updated_at).isAfter(moment().subtract(1, 'hours'))){
+		                    		errorId++
+		                    		self.notifications.push({
+		                    			id: errorId,
+		                    			icon: "alert-octagon",
+		                    			type: "stateUnchangedWarning",
+		                    			timestamp: nodes[i].updated_at,
+		                    			node: nodes[i].addr,
+		                    			state: nodes[i].syncState
+		                    		})
+		                    	}
+								//SyncStarted and SyncFinished warning
+		                    	if(nodes[i].syncState === "SyncFinished"){
 		                    		errorId++
 		                    		self.notifications.push({
 		                    			id: errorId,
@@ -120,7 +137,7 @@
 		                    	}
 
 		                    	//TODO Check node and network latest block
-		                    	if(nodes[i].height != latestNetworkBlock){
+		                    	if(nodes[i].height != latestNetworkBlock && moment(nodes[i].updated_at).isAfter(moment().subtract(1, 'hours'))){
 		                    		errorId++
 		                    		self.notifications.push({
 		                    			id: errorId,

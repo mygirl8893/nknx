@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import screenfull from "screenfull";
 import User from "./User";
 import LanguageProvider from "./LanguageProvider";
 import MobileSearchForm from "./MobileSearchForm";

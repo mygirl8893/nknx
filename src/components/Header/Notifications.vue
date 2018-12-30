@@ -17,6 +17,7 @@
                         <span class='notifications-item__text' v-if='notification.type === "networkStateWarning"'>{{$t('message.networkState')}} <strong>{{notification.state}}</strong></span>
                         <span class='notifications-item__text' v-if='notification.type === "nodeLatestBlockWarning"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.latestBlockNotSync')}}</span>
                         <span class='notifications-item__text' v-if='notification.type === "networkLatestBlockWarning"'>{{$t('message.networkLatestBlock')}}</span>
+                        <span class='notifications-item__text' v-if='notification.type === "forkError"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.nodeIsForked')}}</span>
                         <div class="notifications-item__date">{{$moment(notification.timestamp).format('MMMM Do YYYY, h:mm:ss a')}}</div>
                     </div>
                 </v-list-tile>
@@ -137,12 +138,26 @@ export default {
                                             }
 
                                             //Check node and network latest block
-                                            if (nodes[i].height != latestNetworkBlock && moment(nodes[i].updated_at).isAfter(moment().subtract(1, 'hours'))) {
+                                            if (nodes[i].online === 1 && nodes[i].height != latestNetworkBlock && !moment(nodes[i].updated_at).isAfter(moment().subtract(1, 'hours'))) {
+
                                                 errorId++
                                                 self.notifications.push({
                                                     id: errorId,
                                                     icon: "alert-octagon",
                                                     type: "nodeLatestBlockWarning",
+                                                    timestamp: nodes[i].updated_at,
+                                                    node: nodes[i].addr
+                                                })
+                                            }
+
+                                            //Check if node forked error
+                                            if (nodes[i].online === 1 && nodes[i].syncState === "SyncFinished" && nodes[i].height > latestNetworkBlock) {
+
+                                                errorId++
+                                                self.notifications.push({
+                                                    id: errorId,
+                                                    icon: "alert-triangle",
+                                                    type: "forkError",
                                                     timestamp: nodes[i].updated_at,
                                                     node: nodes[i].addr
                                                 })
@@ -162,7 +177,7 @@ export default {
                                         }
 
                                         //latestNetworkBlockTime > 1hour warning
-                                        if (moment(latestNetworkBlockTime).isAfter(moment().subtract(1, 'hours'))) {
+                                        if (!moment(latestNetworkBlockTime).isAfter(moment().subtract(1, 'hours'))) {
                                             errorId++
                                             self.notifications.push({
                                                 id: errorId,

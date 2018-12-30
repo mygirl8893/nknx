@@ -242,5 +242,6 @@ export default {
   latestBlockNotSync: "latest block is not synchronized with the network",
   forLongerThan1Hour:"For longer than 1 hour",
   networkLatestBlock: "Network latest block was created for longer than 1 hour",
-  nodesWarning: "Your nodes may not work correctly"
+  nodesWarning: "Your nodes may not work correctly",
+  nodeIsForked: "is forked and should be resynced"
 }

@@ -8,6 +8,7 @@
             </div>
             <v-list class="dropdown-list">
                 <v-list-tile v-for="notification in notifications" :key="notification.id">
+                	<router-link :to="{ path: '/nodes-manager'}">
                     <div class="notifications-item">
                         <span class='notifications-item__icon' v-html="notificationIcon(notification.icon)"></span>
                         <span class='notifications-item__text' v-if='notification.type === "stateError"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.isOffline')}}</span>
@@ -20,6 +21,7 @@
                         <span class='notifications-item__text' v-if='notification.type === "forkError"'>{{$t('message.node')}} <strong>{{notification.node}}</strong> {{$t('message.nodeIsForked')}}</span>
                         <div class="notifications-item__date">{{$moment(notification.timestamp).format('MMMM Do YYYY, h:mm:ss a')}}</div>
                     </div>
+                    </router-link> 
                 </v-list-tile>
             </v-list>
         </div>

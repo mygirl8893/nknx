@@ -40,6 +40,15 @@
 				>
 					<miners-chart></miners-chart>
 				</app-card> -->
+				<app-card
+					:heading="$t('message.notificationCenter')"
+					colClasses="xl4 lg6 md6 sm12 xs12"
+					customClasses="mb-0"
+					:fullScreen="true"
+					:fullBlock="true"
+				>
+					<user-notifications></user-notifications>
+				</app-card>
 			</v-layout>
 		</v-container>
 	</div>
@@ -55,6 +64,7 @@ import WalletTracker from "Components/Widgets/WalletTracker";
 import MinersChart from "Components/Widgets/MinersChart";
 import UserDetail from "Components/Widgets/UserDetail";
 import UserData from "Components/Widgets/UserData";
+import UserNotifications from "Components/Widgets/UserNotifications";
 
 export default {
   components: {
@@ -65,7 +75,8 @@ export default {
 	WalletTracker,
 	MinersChart,
 	UserDetail,
-	UserData
+	UserData,
+	UserNotifications
   },
   data() {
     return {

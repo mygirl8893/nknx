@@ -243,5 +243,10 @@ export default {
   forLongerThan1Hour:"For longer than 1 hour",
   networkLatestBlock: "Network latest block was created for longer than 1 hour",
   nodesWarning: "Your nodes may not work correctly",
-  nodeIsForked: "is forked and should be resynced"
+  nodeIsForked: "is forked and should be resynced",
+  notificationCenter: "Notification Center",
+  nodeOfflineNotify: "Receive an eMail if one of my nodes go offline",
+  nodeOutdatedNotify: "Receive an eMail if one of my nodes is outdated",
+  nodeStuckedNotify: "Receive an eMail if one of my nodes is stucked",
+  weeklyMiningOutputNotify: "Receive a weekly eMail with my mining stats"
 }

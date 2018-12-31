@@ -49,9 +49,13 @@
               axios.get('/auth/user/notifications').then(function(response){
                   self.notifications = response.data
                 })
+
             },
             updateNotifications: function() {
               const self = this;
+              for (let i in self.notifications){
+                self.notifications[i] = Number(self.notifications[i])
+              }
               axios.put('/auth/user/notifications', this.notifications).then(function(response){
                 self.getUserNotifications()
               })

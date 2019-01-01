@@ -25,6 +25,11 @@ export const languages = [
     locale: "zh"
   },
   {
+    name: "한글",
+    icon: "ko",
+    locale: "ko"
+  },
+  {
     name: "Suomi",
     icon: "fi",
     locale: "fi"

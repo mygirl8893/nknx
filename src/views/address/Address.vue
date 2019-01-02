@@ -264,7 +264,7 @@ export default {
 			const self = this;
 			self.transactionLoader= true;
             //Call to NKN-API https://github.com/CrackDavid/nkn-api
-            axios.get(this.next_pageTransactions+'&per_page=10').then(function(response){
+            axios.get(this.next_pageTransactions+'&per_page=10&address='+this.$route.params.address).then(function(response){
                         self.next_pageTransactions = response.data.next_page_url;
                         self.prev_pageTransactions = response.data.prev_page_url;
                         self.current_pageTransactions = response.data.current_page;
@@ -276,7 +276,7 @@ export default {
 			const self = this;
 			this.transactionLoader = true;
             //Call to NKN-API https://github.com/CrackDavid/nkn-api
-            axios.get(this.prev_pageTransactions+'&per_page=10').then(function(response){
+            axios.get(this.prev_pageTransactions+'&per_page=10&address='+this.$route.params.address).then(function(response){
                         self.next_pageTransactions = response.data.next_page_url;
                         self.prev_pageTransactions = response.data.prev_page_url;
                         self.current_pageTransactions = response.data.current_page;
@@ -288,7 +288,7 @@ export default {
 			const self = this;
 			self.transferLoader= true;
             //Call to NKN-API https://github.com/CrackDavid/nkn-api
-            axios.get(this.next_pageTransfers).then(function(response){
+            axios.get(this.next_pageTransfers+'&txType=16&per_page=10&address='+this.$route.params.address).then(function(response){
                         self.next_pageTransfers = response.data.next_page_url;
                         self.prev_pageTransfers = response.data.prev_page_url;
                         self.current_pageTransfers = response.data.current_page;
@@ -300,7 +300,7 @@ export default {
 			const self = this;
 			this.transferLoader = true;
             //Call to NKN-API https://github.com/CrackDavid/nkn-api
-            axios.get(this.prev_pageTransfers).then(function(response){
+            axios.get(this.prev_pageTransfers+'&txType=16&per_page=10&address='+this.$route.params.address).then(function(response){
                         self.next_pageTransfers = response.data.next_page_url;
                         self.prev_pageTransfers = response.data.prev_page_url;
                         self.current_pageTransfers = response.data.current_page;

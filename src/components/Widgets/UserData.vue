@@ -62,7 +62,6 @@
                 }
             },
             email: function(newVal, oldVal) { 
-                console.log(newVal);
                 if(newVal !== this.$auth.user().email){
                     this.enabled = true;
                 }

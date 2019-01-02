@@ -96,7 +96,7 @@ export default {
   passwordRestored: "Uusi salasana asetettu. Voit nyt kirjautua tilillesi uudella salasanallasi.",
   tx: "Tapahtuma",
   nodesManager: "Solmujen hallinta",
-  marketcap: "Markkinaosuus",
+  marketcap: "Markkina-arvo",
   dailyVolume: "Päivävaihto",
   marketRank: "CMC-sijoitus",
   change24: "Muutos/24h",

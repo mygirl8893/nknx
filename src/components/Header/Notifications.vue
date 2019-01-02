@@ -69,7 +69,6 @@ export default {
                     "id": 1
                 })
                 .then((version) => {
-                    let networkVersion = version.data.result
 
                     axios.post('https://nknx.org:30003/', {
                             "jsonrpc": "2.0",
@@ -89,6 +88,7 @@ export default {
                                         nodes = nodes.data
                                         let errorId = 0
                                         for (let i = 0; i < nodes.length; i++) {
+
                                             //State error
                                             if (nodes[i].online === 0) {
                                                 errorId++
@@ -127,8 +127,13 @@ export default {
                                                     state: nodes[i].syncState
                                                 })
                                             }
+
                                             //Version out of date warning
-                                            if (nodes[i].softwareVersion != networkVersion) {
+                                            let networkVersionArray = version.data.result.split('-')[0]
+                                            networkVersionArray = networkVersionArray.match( /[1-9]/ig ).join('')
+                                            let nodeVersionArray = nodes[i].softwareVersion.split('-')[0]
+                                            nodeVersionArray = nodeVersionArray.match( /[1-9]/ig ).join('')
+                                            if (networkVersionArray > nodeVersionArray) {
                                                 errorId++
                                                 self.notifications.push({
                                                     id: errorId,

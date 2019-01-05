@@ -42,9 +42,14 @@
 	</div>
 	</div>
 </template>
+<style>
+html, body{
+	overflow-x: auto !important;
+	overflow-y: auto !important;
+}
+</style>
 <script>
 import QrcodeVue from 'qrcode.vue';
-
 export default {
 	components: {
 		QrcodeVue

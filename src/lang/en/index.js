@@ -174,6 +174,7 @@ export default {
   createWalletStep1: "Choose a password",
   createWalletStep2: "Download walletfile",
   createWalletStep3: "Save your private key",
+  createWalletStep4: "Print your paper wallet",
   searchAddress:"Search for an address",
   addressBook:"Address book",
   useAddress:"Use this address",
@@ -249,9 +250,11 @@ export default {
   nodeOutdatedNotify: "Receive an eMail if one of my nodes is outdated",
   nodeStuckedNotify: "Receive an eMail if one of my nodes is stucked",
   weeklyMiningOutputNotify: "Receive a weekly eMail with my mining stats",
-  printPaperWallet: "Print paper wallet",
+  printPaperWallet: "Create paper wallet",
   myNknWallet: "My NKN Wallet",
   yourAddress: "Your Address",
   yourPrivateKey: "Your Private Key",
-  yourWalletPassword: "Your Wallet Password"
+  yourWalletPassword: "Your Wallet Password",
+  printYourPaperWallet: "Create and print your paper wallet",
+  newPaperWalletAdvice:"<p>You should create an NKN Paper Wallet, before you start buying or mining NKN. An NKN Paper Wallet is just like an ordinary wallet which is printed on paper. It might sound weird at first, however, it is the safest method to store your NKN. The fact that, your NKN can be stored at your house, at the bank in a locker box or in a cookie box buried behind your house, is an important advantage of the Paper Wallets, if compared to an Online Wallet. The Paper Wallet is not part of the Internet. No hacker can gain access to your precious NKN. Unless, he would find your cookie box behind your house. <br><br> <i>A disadvantage of the Paper Wallet is the fact that, the availability of the NKN is belayed as the NKN has to be transferred back to the Online Wallet before it can be used.</i></p>"
 }

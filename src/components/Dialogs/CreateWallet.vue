@@ -7,7 +7,9 @@
 				<v-divider></v-divider>
 				<v-stepper-step step="2" :complete="e1 > 2">{{$t('message.createWalletStep2')}}</v-stepper-step>
 				<v-divider></v-divider>
-				<v-stepper-step step="3">{{$t('message.createWalletStep3')}}</v-stepper-step>
+				<v-stepper-step step="3" :complete="e1 > 3">{{$t('message.createWalletStep3')}}</v-stepper-step>
+				<v-divider></v-divider>
+				<v-stepper-step step="4">{{$t('message.createWalletStep4')}}</v-stepper-step>
 			</v-stepper-header>
 			<v-stepper-items>
 				<v-stepper-content step="1">
@@ -61,11 +63,6 @@
 	                                <v-btn color="primary" large v-on:click="s1valid = true" download="wallet.dat" :href="downloadUrl"><span v-html="downloadIcon" class="icon"></span>
 	                                	{{$t('message.downloadWallet')}}
 	                            	</v-btn>
-	                            	<router-link :to="{ name: 'PaperWallet', params: {pk: pk, addr: addr, pwd: password}}">
-	                            	<v-btn color="primary" large><span v-html="printIcon" class="icon"></span>
-	                                	{{$t('message.printPaperWallet')}}
-	                            	</v-btn>
-	                            	</router-link> 
                                 </v-layout>
                                 <v-layout row wrap>
                                     <v-flex xs12>
@@ -102,7 +99,33 @@
                                     </v-flex>
                                 </v-layout>
 								<v-layout row wrap justify-end>
-										<v-btn color="primary" v-on:click="resetModal()" :disabled="!s2valid">{{ $t('message.done') }}</v-btn>
+										<v-btn :loading="loading" v-on:click="e1 = 4" color="primary">{{ $t('message.continue') }}</v-btn>
+								</v-layout>
+							</v-flex>
+						</v-layout>
+				</v-stepper-content>
+				<v-stepper-content step="4">
+						<v-layout row wrap>
+                        	<v-flex xs12>
+								<v-layout row wrap>
+                                    <v-flex xs12>
+                                        <div v-html="$t('message.printYourPaperWallet')"></div>
+                                    </v-flex>
+                                </v-layout>
+								<v-layout row wrap>
+	                            	<router-link :to="{ name: 'PaperWallet', params: {pk: pk, addr: addr, pwd: password}}">
+	                            	<v-btn color="primary" large><span v-html="printIcon" class="icon"></span>
+	                                	{{$t('message.printPaperWallet')}}
+	                            	</v-btn>
+									</router-link> 
+                                </v-layout>
+                                <v-layout row wrap>
+                                    <v-flex xs12>
+                                            <div v-html="$t('message.newPaperWalletAdvice')"></div>
+                                    </v-flex>
+                                </v-layout>
+								<v-layout row wrap justify-end>
+										<v-btn color="primary" v-on:click="resetModal()">{{ $t('message.done') }}</v-btn>
 								</v-layout>
 							</v-flex>
 						</v-layout>
@@ -172,7 +195,6 @@
 					}
 				}
 				this.addr = this.wallet.address
-				this.pk= this.wallet.getPrivateKey();
 			},
 			getPK(){
 				this.pk= this.wallet.getPrivateKey();

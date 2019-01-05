@@ -99,7 +99,7 @@
                                     </v-flex>
                                 </v-layout>
 								<v-layout row wrap justify-end>
-										<v-btn :loading="loading" v-on:click="e1 = 4" color="primary">{{ $t('message.continue') }}</v-btn>
+										<v-btn :disabled="!s2valid" v-on:click="e1 = 4" color="primary">{{ $t('message.continue') }}</v-btn>
 								</v-layout>
 							</v-flex>
 						</v-layout>

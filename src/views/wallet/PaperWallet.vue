@@ -42,11 +42,6 @@
 	</div>
 	</div>
 </template>
-<style>
-#inspire{
-	display: none !important;
-}
-</style>
 <script>
 import QrcodeVue from 'qrcode.vue';
 
@@ -63,7 +58,9 @@ export default {
 	mounted: function(){
 		let body = document.getElementsByTagName('body')
 		body = body[0]
-		body.appendChild(document.getElementById('paper-wallet'));
+		let wallet = document.getElementById('paper-wallet')
+		body.innerHTML = "";
+		body.appendChild(wallet);
 	}
 };
 </script>

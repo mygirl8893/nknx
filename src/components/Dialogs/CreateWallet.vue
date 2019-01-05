@@ -61,9 +61,11 @@
 	                                <v-btn color="primary" large v-on:click="s1valid = true" download="wallet.dat" :href="downloadUrl"><span v-html="downloadIcon" class="icon"></span>
 	                                	{{$t('message.downloadWallet')}}
 	                            	</v-btn>
-	                            	<v-btn color="primary" large :to="{ name: 'PaperWallet', params: {pk: pk, addr: addr, pwd: password}}"><span v-html="printIcon" class="icon"></span>
+	                            	<router-link :to="{ name: 'PaperWallet', params: {pk: pk, addr: addr, pwd: password}}">
+	                            	<v-btn color="primary" large><span v-html="printIcon" class="icon"></span>
 	                                	{{$t('message.printPaperWallet')}}
 	                            	</v-btn>
+	                            	</router-link> 
                                 </v-layout>
                                 <v-layout row wrap>
                                     <v-flex xs12>

@@ -20,12 +20,6 @@
         color = "primary"
         @change="updateNotifications"
         ></v-switch>
-        <v-switch
-        :label="$t('message.weeklyMiningOutputNotify')"
-        v-model="notifications.weeklyMiningOutput"
-        color = "primary"
-        @change="updateNotifications"
-        ></v-switch>
       </v-flex>
     </div>
 </template>

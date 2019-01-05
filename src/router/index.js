@@ -20,7 +20,7 @@ const Profile = () => import('Views/user/Profile');
 const NodesManager = () => import('Views/user/NodesManager');
 const WalletTracker = () => import('Views/user/WalletTracker');
 const Network = () => import('Views/network/Network');
-
+const PaperWallet = () => import('Views/wallet/PaperWallet');
 
 
 
@@ -144,6 +144,17 @@ export default new Router({
 						title: 'message.network',
 						breadcrumb: ['message.network'],
 					}
+				},
+				{
+					component: PaperWallet,
+					name: 'PaperWallet',
+					path: '/paper-wallet/',
+					meta: {
+						title: 'message.printPaperWallet',
+						breadcrumb: ['message.printPaperWallet']
+						
+					},
+					props: true
 				},
 				{
 					component: Profile,

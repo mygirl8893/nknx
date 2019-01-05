@@ -31,7 +31,7 @@ export default {
   selectWalletFile: "Select wallet file",
   pasteOrTypePK:"Paste or type private key",
   saveYourWalletFile:"Save your wallet file:",
-  downloadWallet:"Download wallet",
+  downloadWallet:"Download wallet file",
   saveYourPK:"Save your private key:",
   newWalletAdvice:"<p><b>Do not loose it!</b> It can only be recovered if you know your private key and your password.</p><p><b>Do not share it!</b> Your funds will be stolen if you use this file on a malicious phishing site.</p><p><b>Make a backup!</b> Secure it like the millions of dollars it may one day be worth.</p>",
   newPkAdvice:"<p><b>Do not loose it!</b> It can not be recovered.</p><p><b>Do not share it!</b> Your funds will be stolen if you use this file on a malicious phishing site.</p><p><b>Make a backup!</b> Secure it like the millions of dollars it may one day be worth.</p>",
@@ -248,5 +248,10 @@ export default {
   nodeOfflineNotify: "Receive an eMail if one of my nodes go offline",
   nodeOutdatedNotify: "Receive an eMail if one of my nodes is outdated",
   nodeStuckedNotify: "Receive an eMail if one of my nodes is stucked",
-  weeklyMiningOutputNotify: "Receive a weekly eMail with my mining stats"
+  weeklyMiningOutputNotify: "Receive a weekly eMail with my mining stats",
+  printPaperWallet: "Print paper wallet",
+  myNknWallet: "My NKN Wallet",
+  yourAddress: "Your Address",
+  yourPrivateKey: "Your Private Key",
+  yourWalletPassword: "Your Wallet Password"
 }

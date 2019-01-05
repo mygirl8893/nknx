@@ -58,9 +58,12 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                            <v-btn color="gradient-primary" download="wallet.dat" :href="downloadUrl" v-on:click="s1valid = true">
-                                                {{$t('message.downloadWallet')}}
-                                            </v-btn>
+	                                <v-btn color="primary" large v-on:click="s1valid = true" download="wallet.dat" :href="downloadUrl"><span v-html="downloadIcon" class="icon"></span>
+	                                	{{$t('message.downloadWallet')}}
+	                            	</v-btn>
+	                            	<v-btn color="primary" large :to="{ name: 'PaperWallet', params: {pk: pk, addr: addr, pwd: password}}"><span v-html="printIcon" class="icon"></span>
+	                                	{{$t('message.printPaperWallet')}}
+	                            	</v-btn>
                                 </v-layout>
                                 <v-layout row wrap>
                                     <v-flex xs12>
@@ -110,6 +113,7 @@
 <script>
   import nknWallet from "nkn-wallet";
   import axios from "axios";
+  import feather from 'feather-icons';
 
   export default {
         props: {
@@ -125,6 +129,7 @@
 					this.snackbar= false;
 					this.label= "";
                     this.pk="";
+                    this.addr = "";
                     this.s1valid=false;
                     this.s2valid=false;
                     this.wallet=null;
@@ -164,6 +169,8 @@
 						this.$store.dispatch("setSelectedWallet", {"address": this.wallet.address,"label":this.label});
 					}
 				}
+				this.addr = this.wallet.address
+				this.pk= this.wallet.getPrivateKey();
 			},
 			getPK(){
 				this.pk= this.wallet.getPrivateKey();
@@ -180,7 +187,13 @@
                 if(this.walletFile){
                     return this.walletFile.length > 0 ? "data:text/plain;charset=utf-8," + encodeURIComponent(this.walletFile) : 'javascript:void(0);';
                 }
-			}
+			},
+			downloadIcon: function () {
+				return feather.icons['download'].toSvg()
+           	},
+           	printIcon: function () {
+				return feather.icons['printer'].toSvg()
+           	}
    		},
 		data () {
 			return {
@@ -188,6 +201,7 @@
 				snackbar: false,
 				label: "",
 				pk:"",
+				addr: "",
                 s1valid:false,
                 s2valid:false,
 				wallet:null,

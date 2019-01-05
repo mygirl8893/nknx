@@ -1,0 +1,46 @@
+.paper-wallet{
+    display: flex;
+    background-color: #fff;
+    border: 1px solid $blue-dark;
+    border-radius: 5px;
+    width: 1000px;
+    font-family: Ubuntu,sans-serif!important;
+    &__title{
+        padding: 15px;
+        background-color: $primary;
+        color: #fff;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        text-align: center;
+        span{
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+    }
+    &__content{
+        width: 100%;
+        padding: 15px;
+        &-qr{
+            display: flex;
+            justify-content: space-between;
+            &__item{
+                display: flex;
+                span{
+                    writing-mode: vertical-rl;
+                    text-orientation: mixed;
+                    transform: rotate(180deg);
+                    text-align: center;
+                    font-size: 18px;
+                    margin-left: 5px;
+                }
+            }
+        }
+        &-text{
+            span{
+                font-weight: bold;
+            }
+        }
+    }
+}

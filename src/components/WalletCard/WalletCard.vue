@@ -9,7 +9,8 @@
                 </span>
             </v-flex>
             
-            <v-flex xs12>
+            <v-flex xs12 style='display: flex; justify-content: flex-start;'>
+                <span class="print-icon" v-html="IconPrint" @click="createPaperWalletDialog=true"></span>
                 <router-link style="display:flex;" :to="{ path: '/address/'+address}">
                     {{ address }} 
                     <span style="display:flex;" class="icon" v-html="IconSearch"></span>
@@ -55,6 +56,9 @@
         <v-dialog v-model="deleteWalletNameDialog" max-width="800px">
             <delete-wallet-name :senderAddress="address" :deleteWalletNameDialogClosed="deleteWalletNameDialogClosed"></delete-wallet-name>
         </v-dialog>
+        <v-dialog v-model="createPaperWalletDialog" max-width="800px">
+            <create-paper-wallet :senderAddress="address" :createPaperWalletDialogClosed="createPaperWalletDialogClosed"></create-paper-wallet>
+        </v-dialog>
 
     </div>
 </template>
@@ -66,11 +70,14 @@ import { Timeouts } from "Constants/timeouts";
 import transferFunds from "Components/Dialogs/TransferFunds";
 import SetWalletName from "Components/Dialogs/SetWalletName";
 import DeleteWalletName from "Components/Dialogs/DeleteWalletName";
+import CreatePaperWallet from "Components/Dialogs/CreatePaperWallet";
+
 export default {
     components:{
         transferFunds,
         SetWalletName,
-        DeleteWalletName
+        DeleteWalletName,
+        CreatePaperWallet
     },
     props: {
         address: String,
@@ -82,6 +89,7 @@ export default {
           setWalletNameDialog:false,
           deleteWalletNameDialog:false,
           transferFundsDialog:false,
+          createPaperWalletDialog:false,
           removeDialog:false,
           balance:0,
           balanceUSD:0,
@@ -105,6 +113,9 @@ export default {
             IconClose: function () {
                 return feather.icons['x'].toSvg()
             },
+            IconPrint: function () {
+                return feather.icons['printer'].toSvg()
+            },
             IconEye: function () {
                 if(this.activeClass === 'eye'){
                     return feather.icons['eye'].toSvg()
@@ -117,14 +128,17 @@ export default {
     methods: {
         transferModalClosed(){
             this.getBalance();
-            this.transferFundsDialog =false;
+            this.transferFundsDialog = false;
         },
         setWalletNameDialogClosed(){
             
-            this.setWalletNameDialog =false;
+            this.setWalletNameDialog = false;
         },
         deleteWalletNameDialogClosed(){
-            this.deleteWalletNameDialog =false;
+            this.deleteWalletNameDialog = false;
+        },
+        createPaperWalletDialogClosed(){
+            this.createPaperWalletDialog = false;
         },
         getBalance(){
 			if(this.address){

@@ -17,7 +17,7 @@
 					<qrcode-vue :value="pk" :size="200" level="H"></qrcode-vue>
 					<span>{{ $t('message.yourPrivateKey') }}</span>
 				</div>
-				<div class='paper-wallet__content-qr__item'>
+				<div v-if="pwd.length>0" class='paper-wallet__content-qr__item'>
 					<qrcode-vue :value="pwd" :size="200" level="H"></qrcode-vue>
 					<span>{{ $t('message.yourWalletPassword') }}</span>
 				</div>
@@ -33,7 +33,7 @@
 				{{pk}}
 				</p>
 			</div>
-			<div class="paper-wallet__content-text">
+			<div v-if="pwd.length>0" class="paper-wallet__content-text">
 				<p><span>{{ $t('message.yourWalletPassword') }}</span>:<br>
 				{{pwd}}
 				</p>

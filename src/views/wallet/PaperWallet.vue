@@ -47,6 +47,7 @@ html, body{
 	overflow-x: auto !important;
 	overflow-y: auto !important;
 }
+@media print{@page {size: landscape}}
 </style>
 <script>
 import QrcodeVue from 'qrcode.vue';
@@ -54,11 +55,17 @@ export default {
 	components: {
 		QrcodeVue
 	},
-	props: ['pk', 'addr', 'pwd'],
 	data() {
 		return {
-	  		
+	  		pk: "",
+	  		addr: "",
+	  		pwd: ""
 		};
+	},
+	created: function(){
+		this.pk = this.$route.query.pk
+		this.addr = this.$route.query.addr
+		this.pwd = this.$route.query.pwd
 	},
 	mounted: function(){
 		let body = document.getElementsByTagName('body')

@@ -113,11 +113,9 @@
                                     </v-flex>
                                 </v-layout>
 								<v-layout row wrap>
-	                            	<router-link :to="{ name: 'PaperWallet', params: {pk: pk, addr: addr, pwd: password}}">
-	                            	<v-btn color="primary" large><span v-html="printIcon" class="icon"></span>
+	                            	<v-btn color="primary" @click="openPaperWallet" large><span v-html="printIcon" class="icon"></span>
 	                                	{{$t('message.printPaperWallet')}}
 	                            	</v-btn>
-									</router-link> 
                                 </v-layout>
                                 <v-layout row wrap>
                                     <v-flex xs12>
@@ -167,6 +165,10 @@
                     this.wallet= null;
                     this.e1= 1;
                     this.createWalletModalClosed();
+            },
+            openPaperWallet(){
+				let routeData = this.$router.resolve({name: 'PaperWallet', query: {pk: this.pk, addr: this.addr, pwd: this.password}});
+				window.open(routeData.href, '_blank');
             },
 			createWallet(){
 				if(this.valid){

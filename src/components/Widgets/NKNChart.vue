@@ -23,11 +23,11 @@
 			<div class="d-custom-flex w-20 w-xs-full">
 				<div class="w-50 d-md-full w-xs-full">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">NKN/ETH</p>
-					<h4 class="blue-gradient--text mb-0">ETH {{nknETH}}</h4>
+					<h4 class="orange-gradient--text mb-0">ETH {{nknETH}}</h4>
 				</div>
 				<div class="w-50 d-md-full w-xs-full">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">NKN/USD</p>
-					<h4 class="orange-gradient--text mb-0">$ {{nknUSD}}</h4>
+					<h4 class="blue-gradient--text mb-0">$ {{nknUSD}}</h4>
 				</div>
 			</div>
 		</div>

@@ -41,7 +41,7 @@
       </v-card-title>
 
       <v-card-actions style='background-color: #24397d; color: rgba(255,255,255,0.5)' class="justify-center">
-        © Copyright 2018 nknX - All Rights Reserved
+        © Copyright 2018-2019 nknX - All Rights Reserved
       </v-card-actions>
     </v-card>
 </template>

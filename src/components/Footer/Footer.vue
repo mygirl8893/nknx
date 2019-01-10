@@ -23,6 +23,16 @@
           dark
           icon
           large
+          target='_blank'
+          v-html='trello'
+          href='https://trello.com/b/qw9los55/nknx'
+        >
+        </v-btn>
+        <v-btn
+          class="mx-3"
+          dark
+          icon
+          large
           v-html='docs'
           target='_blank'
           href='https://api.nknx.org/docs/'
@@ -62,6 +72,9 @@ export default {
       },
       twitter: function () {
           return feather.icons['twitter'].toSvg()
+      },
+      trello: function () {
+          return feather.icons['trello'].toSvg()
       }
   }
 };

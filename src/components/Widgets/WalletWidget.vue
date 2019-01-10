@@ -23,6 +23,7 @@
 					<div style='margin: 10px 0px;'>
 					<v-btn color="primary" large  @click.native.stop="createWalletDialog = true" ><span v-html="addWalletIcon" class="icon"></span>{{$t('message.newWallet')}}</v-btn>
 					<v-btn color="primary" large  @click.native.stop="addWalletDialog = true" ><span v-html="openWalletIcon" class="icon"></span>{{$t('message.openWallet')}}</v-btn>
+					<v-btn color="primary" large  @click.native.stop="restoreWalletDialog = true" ><span v-html="restoreWalletIcon" class="icon"></span>{{$t('message.restoreWallet')}}</v-btn>
 					</div>
 				</v-layout>
 		<v-dialog v-model="addWalletDialog" max-width="800">
@@ -35,6 +36,11 @@
 				<create-wallet :createWalletModalClosed="createWalletModalClosed"></create-wallet>
 			</v-card>
 		</v-dialog>
+		<v-dialog v-model="restoreWalletDialog" max-width="800">
+			<v-card>
+				<restore-wallet :restoreWalletModalClosed="restoreWalletModalClosed"></restore-wallet>
+			</v-card>
+		</v-dialog>
     </div>
 </template>
 <script>
@@ -43,13 +49,15 @@ import WalletCard from "../WalletCard/WalletCard";
 import { mapGetters } from 'vuex';
 import OpenWallet from "Components/Dialogs/OpenWallet";
 import CreateWallet from "Components/Dialogs/CreateWallet";
+import RestoreWallet from "Components/Dialogs/RestoreWallet";
 import feather from 'feather-icons';
 
 export default {
 	components: {
 		WalletCard,
 		OpenWallet,
-		CreateWallet
+		CreateWallet,
+		RestoreWallet
 	},
 	watch:{
 		selectedWallet: function () {
@@ -62,6 +70,9 @@ export default {
            },
 			addWalletIcon: function () {
 				return feather.icons['plus'].toSvg()
+           },
+           	restoreWalletIcon: function () {
+				return feather.icons['repeat'].toSvg()
            },
         ...mapGetters({
 			selectedWallet: 'selectedWallet',
@@ -101,6 +112,9 @@ export default {
 		},
 		openWalletModalClosed(){
 			this.addWalletDialog=false;
+		},
+		restoreWalletModalClosed(){
+			this.restoreWalletDialog=false;
 		}
 	},
 	data(){
@@ -109,6 +123,7 @@ export default {
 			newbalance:0,
 			addWalletDialog:false,
 			createWalletDialog:false,
+			restoreWalletDialog:false
 		}
 	}
 }

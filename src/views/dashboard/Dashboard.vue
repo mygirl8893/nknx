@@ -15,14 +15,14 @@
 			<v-layout row wrap>
 				<app-card
 						:heading="$t('message.yourWallet')"
-						colClasses="xl6 lg6 md6 sm12 xs12"
+						colClasses="xl5 lg5 md5 sm12 xs12"
 						customClasses="mb-30"
 					>
 					<wallet-widget></wallet-widget>
 				</app-card>
 				<app-card
 						:heading="$t('message.map')"
-						colClasses="xl6 lg6 md6 sm12 xs12"
+						colClasses="xl7 lg7 md7 sm12 xs12"
 						customClasses="mb-30"
 						:fullScreen="true"
 						:footer="true"

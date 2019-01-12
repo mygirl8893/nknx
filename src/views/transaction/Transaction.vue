@@ -76,7 +76,7 @@
                                         </div>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout row wrap v-if="!loader && transaction.txType === 66">
+                                <v-layout row wrap v-if="!loader && transaction.txType === 66" class="single-tx-map">
                                     <v-flex xl12 lg12 md12 sm12 xs12 b-50 style="padding: 1rem 1.25rem;">
                                         <map-widget :query="query"></map-widget>
                                     </v-flex>
@@ -216,7 +216,7 @@ export default {
 };
 </script>
 <style>
-.nkn-explorer-index-internet-topology-panel h5{
+.single-tx-map h5{
   display: none;
 }
 </style>

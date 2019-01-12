@@ -14,6 +14,7 @@ import axios from "axios";
 import { Timeouts } from "Constants/timeouts";
 
 export default {
+    props: ["query"],
     data() {
         return {
             interval: null,
@@ -68,7 +69,7 @@ export default {
                           "stroke-width": 1
                       },
                       attrsHover: {
-                          fill: "#bedaff",
+                          fill: "#0073E7",
                       }
                   }
               },
@@ -150,21 +151,33 @@ export default {
       },
       relayPath() {
           const self = this
+          let cityNames = []
           let btweens = []
           let j = 0
-          axios.get("transactions/?latest=1&txType=66").then(function(response){
-          let nodeTracer = response.data[0].node_tracing
-          let c1 = nodeTracer[1].city
-          for (let i = 2; i < nodeTracer.length - 1; i++) {
-              let c2 = nodeTracer[i].city
+          axios.get("transactions/"+self.query).then(function(response){
+          if(self.query === "?latest=1&txType=66"){
+            var nodeTracer = response.data[0].node_tracing
+          } else{
+            var nodeTracer = response.data.node_tracing
+          }
+
+          for (let i = 1; i<nodeTracer.length-1;i++){
+            if(nodeTracer[i].city != null){
+              cityNames.push(nodeTracer[i].city)
+            }
+          }
+          let c1 = cityNames[0]
+          if(cityNames.length>1){
+            for (let i = 1; i < cityNames.length; i++) {
+              let c2 = cityNames[i]
               btweens[j] = [c1, c2]
               c1 = c2
               j++
+            }
           }
             self.clearMapRelayLine(function() {
-              self.mapRelayAni(btweens, 0)
+            self.mapRelayAni(btweens, 0)
           })
-
           });
           
       },

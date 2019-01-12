@@ -146,7 +146,7 @@ export default {
     };
   },
   mounted() {
-      self = this;
+      const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("blocks/"+this.$route.params.height).then(function(response){
           self.block = response.data;

@@ -27,7 +27,7 @@
 						:fullScreen="true"
 						:footer="true"
 					>
-					<map-widget></map-widget>
+					<map-widget :query="query"></map-widget>
 					<v-btn slot="footer" :to="{path: '/network'}" color="primary" small>{{$t('message.viewDetails')}}</v-btn>
 				</app-card>
 			</v-layout>
@@ -77,7 +77,8 @@ export default {
   },
   data() {
     return {
-      isActive: "Blocks"
+      isActive: "Blocks",
+      query: "?latest=1&txType=66"
     };
   }
 };

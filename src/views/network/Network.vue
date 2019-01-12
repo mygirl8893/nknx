@@ -12,7 +12,7 @@
 				>
 					<v-layout row wrap>
 						<v-flex xs12>
-							<map-widget></map-widget>
+							<map-widget :query="query"></map-widget>
 						</v-flex>
 					</v-layout>
 				</app-card>
@@ -92,11 +92,12 @@ export default {
 	NetworkProvidersChart,
 	NetworkBlocksChart,
 	NetworkTransactionsChart,
-	NetworkTransfersChart
+	NetworkTransfersChart,
   },
   data() {
     return {
-		loader: true
+		loader: true,
+		query: "?latest=1&txType=66"
     };
   },
 	mounted: function(){

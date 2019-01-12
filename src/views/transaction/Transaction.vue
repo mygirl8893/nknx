@@ -70,10 +70,15 @@
                                 </v-layout>
                                 <v-layout row wrap>
                                     <v-flex xl12 lg12 md12 sm12 xs12 b-50 style="padding: 1rem 1.25rem;">
-                                        <div v-for='item in nodeTracer' :key="item.node_pk">
+                                        <div v-for='item in nodeTracer' :key="item.id">
                                           <div style="margin-bottom:10px;"><span v-html='tracerIcon(item.icon)' style="height:24px; width:24px; position:relative; top:8px;margin-right:10px;"></span> <b>{{item.user}}</b> {{item.node_pk}} <b>{{item.action}}</b> <span style="margin-left: 8px; font-weight:300; color: #0073e7"><span v-if='item.city!=null'>{{$t('message.basedIn')}} {{item.city}}, <span style='font-weight: 500;'>{{item.country_name}}</span><span style='position:relative'><country-flag style='position: absolute; top: -22px; left: 10px;' :country='item.country_code2' size='normal'/></span>
                                           </span></span></div>
                                         </div>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap v-if="!loader && transaction.txType === 66">
+                                    <v-flex xl12 lg12 md12 sm12 xs12 b-50 style="padding: 1rem 1.25rem;">
+                                        <map-widget :query="query"></map-widget>
                                     </v-flex>
                                 </v-layout>
                                 </div>
@@ -123,10 +128,12 @@
 import axios from "axios"
 import feather from 'feather-icons';
 import CountryFlag from 'vue-country-flag'
+import MapWidget from "Components/Widgets/Map";
 
 export default {
   components: {
-      CountryFlag
+      CountryFlag,
+      MapWidget
   },
   data() {
     return {
@@ -136,17 +143,18 @@ export default {
       loader:true,
       transaction: null, 
       payload:null,
-      nodeTracer: null
+      nodeTracer: null,
+      query: this.$route.params.hash
     };
   },
   mounted() {
-      self = this;
+      const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("transactions/"+this.$route.params.hash+'?&withoutattributes=true&withoutinputs=true').then(function(response){
           self.transaction = response.data;
           let nodeTracer = response.data.node_tracing
           for(let i = 0; i < nodeTracer.length; i++){
-            //first node
+            nodeTracer[i].id = i
             if(i === 0){
               nodeTracer[i].user = self.$t('message.client')
               nodeTracer[i].action = self.$t('message.sentData')
@@ -179,7 +187,7 @@ export default {
     },
     $route (to, from){
       this.loader=true;
-      self = this;
+      const self = this;
       //Call to NKN-API https://github.com/CrackDavid/nkn-api
       axios.get("transactions/"+this.$route.params.hash+'?&withoutattributes=true&withoutinputs=true').then(function(response){
           self.transaction = response.data;
@@ -190,7 +198,7 @@ export default {
   methods: {
       getPayload(){
         this.payloadloader=true;
-        self = this;
+        const self = this;
         axios.get("payloads/"+this.transaction.id).then(function(response){
           self.payload = response.data;
           self.payloadloader=false;
@@ -207,3 +215,8 @@ export default {
   }
 };
 </script>
+<style>
+.nkn-explorer-index-internet-topology-panel h5{
+  display: none;
+}
+</style>

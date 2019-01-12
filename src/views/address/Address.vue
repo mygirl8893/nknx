@@ -215,7 +215,7 @@ export default {
     };
   },
   mounted() {
-    self = this;
+    const self = this;
     this.error = false;
     //Call to NKN-API https://github.com/CrackDavid/nkn-api
     axios.get("addresses/"+this.$route.params.address).then(function(response){

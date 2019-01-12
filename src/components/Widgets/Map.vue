@@ -192,9 +192,12 @@ export default {
           } else{
             btweens[j] = [c1, c1]
           }
-            self.clearMapRelayLine(function() {
-            self.mapRelayAni(btweens, 0)
-          })
+            if(cityNames.length>0){
+              self.clearMapRelayLine(function() {
+                self.mapRelayAni(btweens, 0)
+              })
+            }
+            
             self.currentPlots = cityNames
           });
           

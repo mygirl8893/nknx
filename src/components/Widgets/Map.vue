@@ -21,7 +21,8 @@ export default {
             plotsName: [],
             plots: {},
             crawlCounter: null,
-            countryNodeList: {}
+            countryNodeList: {},
+            currentPlots: []
         }
     },
     created(){
@@ -127,7 +128,7 @@ export default {
                   "stroke-width": 1
               },
               attrsHover: {
-                  fill: "#fb5b40",
+                  fill: "#0073E7",
                   "stroke-width": 2
               }
           }
@@ -166,29 +167,54 @@ export default {
               cityNames.push(nodeTracer[i].city)
             }
           }
+
+          if (self.currentPlots.length > 0){
+            let $this = $(".nkn-explorer-index-internet-topology-panel")
+            let updatedPlots = self.plots
+              for (let i =0;i<self.currentPlots.length;i++){
+                updatedPlots[self.currentPlots[i]].attrs.fill = "#28B725"
+                updatedPlots[self.currentPlots[i]].attrs.transform = "s1"
+              }
+              $this.trigger('update', [{
+                deletePlotKeys: self.currentPlots,
+                newPlots: updatedPlots
+              }])
+          }
+
           let c1 = cityNames[0]
-          if(cityNames.length>1){
+          if(cityNames.length>2){
             for (let i = 1; i < cityNames.length; i++) {
               let c2 = cityNames[i]
               btweens[j] = [c1, c2]
               c1 = c2
               j++
             }
+          } else{
+            btweens[j] = [c1, c1]
           }
             self.clearMapRelayLine(function() {
             self.mapRelayAni(btweens, 0)
           })
+            self.currentPlots = cityNames
           });
           
       },
       mapRelayAni(betweens, idx) {
-          if (idx >= betweens.length) {
+          if (idx >= betweens.length) {                
               return
           }
 
           let $this = $(this.$el)
           let _this = this
           let newLink = {}
+          let updatedPlots = this.plots
+          let deletePlots = []
+          for (let i = 0; i<betweens[idx].length;i++){
+            let activeItem = betweens[idx][i]
+            updatedPlots[activeItem].attrs.fill = "#fb5b40"
+            updatedPlots[activeItem].attrs.transform = "s1.5"
+            deletePlots.push(activeItem)
+          }
           newLink[idx] = {
               between: betweens[idx],
               attrs: {
@@ -196,8 +222,11 @@ export default {
                   "stroke-width": 2
               }
           }
+
           $this.trigger('update', [{
               newLinks: newLink,
+              deletePlotKeys: deletePlots,
+              newPlots: updatedPlots,
               animDuration: 400,
               afterUpdate: function() {
                   setTimeout(function() {

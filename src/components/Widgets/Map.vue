@@ -177,7 +177,8 @@ export default {
               }
               $this.trigger('update', [{
                 deletePlotKeys: self.currentPlots,
-                newPlots: updatedPlots
+                newPlots: updatedPlots,
+                deleteLinkKeys: "all"
               }])
           }
 

@@ -31,12 +31,12 @@
 				<open-wallet :openWalletModalClosed="openWalletModalClosed" :walletLoaded="walletLoaded"></open-wallet>
 			</v-card>
 		</v-dialog>
-		<v-dialog v-model="createWalletDialog" max-width="1000">
+		<v-dialog v-model="createWalletDialog" max-width="1100">
 			<v-card>
 				<create-wallet :createWalletModalClosed="createWalletModalClosed"></create-wallet>
 			</v-card>
 		</v-dialog>
-		<v-dialog v-model="restoreWalletDialog" max-width="800">
+		<v-dialog v-model="restoreWalletDialog" max-width="1000">
 			<v-card>
 				<restore-wallet :restoreWalletModalClosed="restoreWalletModalClosed"></restore-wallet>
 			</v-card>

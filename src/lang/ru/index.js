@@ -236,7 +236,7 @@ export default {
   isIn: "имеет",
   state: "статус",
   versionOutdated: "имеет устаревшую версию",
-  networkState: "Current network state is",
+  networkState: "Текущий статус сети",
   latestBlockNotSync: "не синхронизированна с сетью",
   forLongerThan1Hour:"больше часа",
   networkLatestBlock: "Последний блок в сети был создан больше часа назад",

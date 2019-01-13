@@ -183,7 +183,7 @@ export default {
           }
 
           let c1 = cityNames[0]
-          if(cityNames.length>2){
+          if(cityNames.length>=2){
             for (let i = 1; i < cityNames.length; i++) {
               let c2 = cityNames[i]
               btweens[j] = [c1, c2]

@@ -3,8 +3,8 @@
         <v-btn class="notification-icon ma-0" v-bind:class="{ active: active}" icon large slot="activator" v-html="iconSvg"></v-btn>
         <div class="dropdown-content">
             <div class="dropdown-top d-custom-flex justify-space-between">
-                <span class="white--text fw-bold">Notifications</span>
-                <span class="v-badge warning">{{notifications.length}} NEW</span>
+                <span class="white--text fw-bold">{{$t('message.notifications')}}</span>
+                <span class="v-badge warning">{{notifications.length}} {{$t('message.new')}}</span>
             </div>
             <v-list class="dropdown-list">
                 <v-list-tile v-for="notification in notifications" :key="notification.id">
@@ -103,7 +103,7 @@ export default {
                                             }
 
 
-                                            //SyncStarted and SyncFinished warning
+                                            //SyncStarted warning
                                             if (nodes[i].syncState === "SyncStarted" && moment(nodes[i].updated_at).isAfter(moment().subtract(1, 'hours'))) {
                                                 errorId++
                                                 self.notifications.push({
@@ -115,7 +115,7 @@ export default {
                                                     state: nodes[i].syncState
                                                 })
                                             }
-                                            //SyncStarted and SyncFinished warning
+                                            //SyncFinished warning
                                             if (nodes[i].syncState === "SyncFinished") {
                                                 errorId++
                                                 self.notifications.push({

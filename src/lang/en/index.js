@@ -248,7 +248,7 @@ export default {
   notificationCenter: "Notification Center",
   nodeOfflineNotify: "Receive an eMail if one of my nodes go offline",
   nodeOutdatedNotify: "Receive an eMail if one of my nodes is outdated",
-  nodeStuckedNotify: "Receive an eMail if one of my nodes is stucked",
+  nodeStuckedNotify: "Receive an eMail if one of my nodes is stuck",
   weeklyMiningOutputNotify: "Receive a weekly eMail with my mining stats",
   printPaperWallet: "Create paper wallet",
   myNknWallet: "My NKN Wallet",
@@ -261,4 +261,6 @@ export default {
   restoreWallet: "Restore wallet",
   newWalletPassword: "New wallet password",
   restoreWalletAdvice: "<p>Enter private key of your existing wallet, then choose password for the new one.</p><p><b>You will need new password and old private key to unlock your new wallet.</b></p>",
+  notifications: "Notifications",
+  new: "New"
 }

@@ -9,7 +9,7 @@ export const languages = [
     icon: "de",
     locale: "de"
   },
-  {
+/*  {
     name: "Français",
     icon: "fr",
     locale: "fr"
@@ -33,7 +33,7 @@ export const languages = [
     name: "한글",
     icon: "ko",
     locale: "ko"
-  },
+  },*/
   {
     name: "Suomi",
     icon: "fi",

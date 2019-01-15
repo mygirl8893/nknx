@@ -245,7 +245,7 @@ export default {
   notificationCenter: "Центр уведомлений",
   nodeOfflineNotify: "Получать письмо, если одна из нод отключилась",
   nodeOutdatedNotify: "Получать письмо, если одна из нод имеет устаревшую версию",
-  nodeStuckedNotify: "Получать письмо, если одна из не синхронизированна с сетью",
+  nodeStuckedNotify: "Получать письмо, если одна из нод не синхронизированна с сетью",
   weeklyMiningOutputNotify: "Получать еженедельные письма с моей статистикой майнинга",
   printPaperWallet: "Создать бумажный кошелек",
   myNknWallet: "Мой NKN кошелек",

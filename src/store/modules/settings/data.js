@@ -24,25 +24,25 @@ export const languages = [
     icon: "ru",
     locale: "ru"
   },
- /*{
-    name: "日本語",
-    icon: "ja",
-    locale: "ja"
-  },
   {
     name: "简体中文",
     icon: "zh",
     locale: "zh"
   },
   {
-    name: "한글",
-    icon: "ko",
-    locale: "ko"
-  },*/
-  {
     name: "Suomi",
     icon: "fi",
     locale: "fi"
   }
+  // {
+  //   name: "한글",
+  //   icon: "ko",
+  //   locale: "ko"
+  // },
+ // {
+ //    name: "日本語",
+ //    icon: "ja",
+ //    locale: "ja"
+ //  },
 ]
 

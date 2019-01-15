@@ -101,6 +101,11 @@ export default {
           icon: "fi",
           language: "Suomi",
           name: "anttu"
+        },
+        {
+          icon: "zh",
+          language: "简体中文",
+          name: "Bruce"
         }
 
       ]

@@ -9,12 +9,17 @@ export const languages = [
     icon: "de",
     locale: "de"
   },
-/*  {
+  {
+    name: "Polski",
+    icon: "pl",
+    locale: "pl"
+  },
+  {
     name: "Français",
     icon: "fr",
     locale: "fr"
   },
-  {
+ /* {
     name: "Русский",
     icon: "ru",
     locale: "ru"

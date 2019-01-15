@@ -12,6 +12,7 @@ import ro from './ro';
 import pt from './pt';
 import cs from './cs';
 import fr from './fr';
+import pl from './pl';
 
 
 export default {
@@ -56,5 +57,8 @@ export default {
     },
     fr: {
         message: fr
+    },
+    pl: {
+        message: pl
     }
 }

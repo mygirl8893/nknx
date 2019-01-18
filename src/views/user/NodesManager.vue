@@ -52,7 +52,7 @@
                                 v-clipboard:copy="props.item.addr"
                                 v-clipboard:success="onCopy1"
                                 class='cursor-pointer'
-                                >{{props.item.addr}} <span style="color: #0073e7" v-if='props.item.alias'>({{props.item.alias}})</span></td>
+                                >{{props.item.addr}} <span style="color: #0073e7" v-if='props.item.alias != props.item.addr'>({{props.item.alias}})</span></td>
                                 <td >{{props.item.syncState}}
 								<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>

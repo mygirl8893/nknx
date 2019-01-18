@@ -131,7 +131,7 @@ export default {
                                             //Version out of date warning
                                             let networkVersionArray = version.data.result.split('-')[0]
                                             networkVersionArray = networkVersionArray.match( /[1-9]/ig ).join('')
-                                            let nodeVersionArray = nodes[i].softwareVersion.split('-')[0]
+                                            let nodeVersionArray = nodes[i].version.split('-')[0]
                                             nodeVersionArray = nodeVersionArray.match( /[1-9]/ig ).join('')
                                             if (networkVersionArray > nodeVersionArray) {
                                                 errorId++

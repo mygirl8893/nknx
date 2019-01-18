@@ -235,5 +235,6 @@ export default {
   nodesSuccessfullyAdded: "Dodanie węzłów udane",
   basedIn: "położone w",
   notifications: "notyfikacje",
-  new: "nowe"
+  new: "nowe",
+  relayedMessages: "Przesyłane pakiety danych"
 }

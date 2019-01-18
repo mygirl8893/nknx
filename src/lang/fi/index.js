@@ -258,5 +258,6 @@ export default {
 	newWalletPassword: "Uusi lompakon salasana",
 	restoreWalletAdvice: "<p>Anna vanhan lompakkosi yksityinen avain ja sen jälkeen salasana uutta varten.</p><p><b>Tarvitsesi uuden salasanasi ja vanhan yksityisen avaimesi lompakon avaamiseksi.</b></p>",
   notifications: "ilmoitukset",
-  new: "uusi"  
+  new: "uusi",
+  relayedMessages: "Lähetetyt datapaketit"
 }

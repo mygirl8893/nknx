@@ -260,5 +260,6 @@ export default {
 	newWalletPassword: "Nouveau mot de passe de portefeuille",
 	restoreWalletAdvice: "<p>Entrez la clé privée de votre portefeuille existant, puis choisissez un mot de passe pour le nouveau.</p><p><b>Vous aurez besoin d'un nouveau mot de passe et de l'ancienne clé privée pour déverouiller votre nouveau portefeuille.</b></p>",
 	notifications: "notifications",
-	new: "nouveau"
+	new: "nouveau",
+  relayedMessages: "Paquets de données transférés"
 }

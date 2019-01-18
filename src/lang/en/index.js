@@ -262,5 +262,6 @@ export default {
   newWalletPassword: "New wallet password",
   restoreWalletAdvice: "<p>Enter private key of your existing wallet, then choose password for the new one.</p><p><b>You will need new password and old private key to unlock your new wallet.</b></p>",
   notifications: "Notifications",
-  new: "New"
+  new: "New",
+  relayedMessages: "Relayed Messages"
 }

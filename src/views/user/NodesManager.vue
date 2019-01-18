@@ -40,7 +40,7 @@
                                     <th>{{ $t('message.node') }}</th>
                                     <th>{{ $t('message.status') }}</th>
                                     <th>{{ $t('message.latestBlock') }}</th>
-                                    <th>{{ $t('message.tx') }}</th>
+                                    <th>{{ $t('message.relayedMessages') }}</th>
                                     <th>{{ $t('message.version') }}</th>
                                     <th>{{ $t('message.label') }}</th>
                                     <th style="text-align:center;width:75px;">{{ $t('message.actions') }}</th>
@@ -58,8 +58,8 @@
                                 <span slot="badge">!</span>
                                 </v-badge></span> </td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.rxTxnCnt}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.softwareVersion}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
                                 <td><v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
                                 <td style="text-align:center;">
                                 <v-menu bottom left>
@@ -285,6 +285,11 @@ export default {
         		label: "",
         		count: 0
         	},
+            {
+                value: "WaitForSyncing",
+                label: "",
+                count: 0
+            },
         	{
         		value: "SyncFinished",
         		label: "",
@@ -524,6 +529,7 @@ export default {
             self.userNodesDataCounter.sf = 0
             self.userNodesDataCounter.ss = 0
             self.userNodesDataCounter.er = 0
+            self.userNodesDataCounter.ws = 0
             for (let i in self.userNodesData) {
                 switch (self.userNodesData[i].syncState) {
                     case 'PersistFinished':
@@ -534,6 +540,9 @@ export default {
                         break;
                     case 'SyncStarted':
                         self.userNodesDataCounter.ss++
+                        break;
+                    case 'WaitForSyncing':
+                        self.userNodesDataCounter.ws++
                         break;
                     case 'Error':
                         self.userNodesDataCounter.er++
@@ -558,6 +567,10 @@ export default {
                         self.orderOptions[y].count = self.userNodesDataCounter.ss
                         self.orderOptions[y].label = self.orderOptions[y].value + " (" + self.orderOptions[y].count+")"
                         break;
+                    case 'WaitForSyncing':
+                        self.orderOptions[y].count = self.userNodesDataCounter.ws
+                        self.orderOptions[y].label = self.orderOptions[y].value + " (" + self.orderOptions[y].count+")"
+                        break;                        
                     case 'Error':
                         self.orderOptions[y].count = self.userNodesDataCounter.er
                         self.orderOptions[y].label = self.orderOptions[y].value + " (" + self.orderOptions[y].count+")"

@@ -19,8 +19,8 @@
                 <div class="network-card__item-value"><span v-html="blockIcon" class="icon"></span>{{seedLatestBlock}}</div>
             </div>
             <div class="network-card__item">
-                <div class="network-card__item-title">{{$t('message.networkMempool')}}</div>
-                <div class="network-card__item-value"><span v-html="mempoolIcon" class="icon"></span>{{seedMempool}}</div>
+                <div class="network-card__item-title">{{$t('message.network')}} {{$t('message.latestBlock')}} {{$t('message.created')}}</div>
+                <div class="network-card__item-value"><span v-html="timeIcon" class="icon"></span>{{ $moment(seedLatestBlockTime).fromNow() }}</div>
             </div>
         </div>
     </div>
@@ -36,10 +36,10 @@ export default {
             interval: null,
             loader: true,
             crawlCounter: "Loading...",
-            seedMempool: "Loading...",
             seedStatus: "Loading...",
             seedVersion: "Loading...",
-            seedLatestBlock: "Loading..."
+            seedLatestBlock: "Loading...",
+            seedLatestBlockTime: "Loading..."
         };
     },
     destroyed() {
@@ -64,8 +64,8 @@ export default {
         blockIcon: function () {
             return feather.icons['box'].toSvg()
         },
-        mempoolIcon: function () {
-            return feather.icons['layers'].toSvg()
+        timeIcon: function () {
+            return feather.icons['clock'].toSvg()
         }
     },
     methods: {
@@ -73,26 +73,12 @@ export default {
             const self = this
             axios.post('https://nknx.org:30003/', {
                     "jsonrpc": "2.0",
-                    "method": "getrawmempool",
-                    "params": {},
-                    "id": 1
-                })
-                .then((response) => {
-                    self.seedMempool = response.data.result.length
-
-                })
-                .catch((error) => {
-
-                });
-
-            axios.post('https://nknx.org:30003/', {
-                    "jsonrpc": "2.0",
                     "method": "getnodestate",
                     "params": {},
                     "id": 1
                 })
                 .then((response) => {
-                    self.seedStatus = response.data.result.SyncState
+                    self.seedStatus = response.data.result.syncState
                 })
                 .catch((error) => {
 
@@ -105,27 +91,17 @@ export default {
                     "id": 1
                 })
                 .then((response) => {
-                    self.seedVersion = response.data.result.substring(0, 7)
+                    self.seedVersion = response.data.result.substring(0, 6)
 
                 })
                 .catch((error) => {
 
                 });
 
-            axios.post('https://nknx.org:30003/', {
-                    "jsonrpc": "2.0",
-                    "method": "getlatestblockheight",
-                    "params": {},
-                    "id": 1
-                })
-                .then((response) => {
-                    self.seedLatestBlock = response.data.result
-
-                })
-                .catch((error) => {
-
-                });
-
+            axios.get('blocks/?latest=5').then(function(response){
+                self.seedLatestBlock = response.data[0].height
+                self.seedLatestBlockTime = response.data[0].timestamp
+            });
 
             axios.get('crawledNodes', {})
             .then((response) => {

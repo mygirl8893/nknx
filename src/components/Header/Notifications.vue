@@ -77,7 +77,7 @@ export default {
                             "id": 1
                         })
                         .then((nknxState) => {
-                            let networkState = nknxState.data.result.SyncState
+                            let networkState = nknxState.data.result.syncState
 
                             axios.get('blocks/').then(function(blocks) {
                                 let latestNetworkBlock = blocks.data.data[0].height

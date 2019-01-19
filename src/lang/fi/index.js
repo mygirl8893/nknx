@@ -244,7 +244,7 @@ export default {
 	notificationCenter: "Ilmoituskeskus",
 	nodeOfflineNotify: "Sähköposti, jos solmuni menettää yhteyden",
 	nodeOutdatedNotify: "Sähköposti, jos solmuni ei ole ajan tasalla",
-	nodeStuckedNotify: "Sähköposti, jos solmuni jumiutuu",
+	nodeStuckNotify: "Sähköposti, jos solmuni jumiutuu",
 	weeklyMiningOutputNotify: "Louhintatilastot sähköpostitse viikoittain",
 	printPaperWallet: "Luo paperilompakko",
 	myNknWallet: "NKN-lompakkoni",

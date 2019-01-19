@@ -244,7 +244,7 @@ export default {
     notificationCenter: "通知和警告中心",
     nodeOfflineNotify: "如果我的节点有一个下线了，接收警告电子邮件",
     nodeOutdatedNotify: "如果我的节点有一个版本过期，接收警告电子邮件",
-    nodeStuckedNotify: "如果我的节点有一个同步出错，接收警告电子邮件",
+    nodeStuckNotify: "如果我的节点有一个同步出错，接收警告电子邮件",
     weeklyMiningOutputNotify: "每周接收一个我的挖矿统计的电子邮件",
     printPaperWallet: "创建纸钱包",
     myNknWallet: "我的NKN钱包",

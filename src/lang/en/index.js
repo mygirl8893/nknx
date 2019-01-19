@@ -248,7 +248,7 @@ export default {
   notificationCenter: "Notification Center",
   nodeOfflineNotify: "Receive an eMail if one of my nodes go offline",
   nodeOutdatedNotify: "Receive an eMail if one of my nodes is outdated",
-  nodeStuckedNotify: "Receive an eMail if one of my nodes is stuck",
+  nodeStuckNotify: "Receive an eMail if one of my nodes is stuck",
   weeklyMiningOutputNotify: "Receive a weekly eMail with my mining stats",
   printPaperWallet: "Create paper wallet",
   myNknWallet: "My NKN Wallet",

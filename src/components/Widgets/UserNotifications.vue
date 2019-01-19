@@ -15,8 +15,8 @@
         @change="updateNotifications"
         ></v-switch>
         <v-switch
-        :label="$t('message.nodeStuckedNotify')"
-        v-model="notifications.nodeStucked"
+        :label="$t('message.nodeStuckNotify')"
+        v-model="notifications.nodeStuck"
         color = "primary"
         @change="updateNotifications"
         ></v-switch>

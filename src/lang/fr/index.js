@@ -246,7 +246,7 @@ export default {
 	notificationCenter: "Centre de Notification",
 	nodeOfflineNotify: "Recevoir un email si un de mes noeuds devient hors-ligne",
 	nodeOutdatedNotify: "Recevoir un email si un de mes noeuds n'est plus à jour",
-	nodeStuckedNotify: "Recevoir un email si un de mes noeuds est bloqué",
+	nodeStuckNotify: "Recevoir un email si un de mes noeuds est bloqué",
 	weeklyMiningOutputNotify: "Recevoir un email hebdomadaire avec mes statistiques de mining",
 	printPaperWallet: "Créer un portefeuille papier",
 	myNknWallet: "Mon portefeuille NKN",

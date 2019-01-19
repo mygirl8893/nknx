@@ -16,7 +16,7 @@
         ></v-switch>
         <v-switch
         :label="$t('message.nodeStuckNotify')"
-        v-model="notifications.nodeStuck"
+        v-model="notifications.nodeStucked"
         color = "primary"
         @change="updateNotifications"
         ></v-switch>

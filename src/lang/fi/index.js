@@ -259,5 +259,6 @@ export default {
 	restoreWalletAdvice: "<p>Anna vanhan lompakkosi yksityinen avain ja sen jälkeen salasana uutta varten.</p><p><b>Tarvitsesi uuden salasanasi ja vanhan yksityisen avaimesi lompakon avaamiseksi.</b></p>",
   notifications: "ilmoitukset",
   new: "uusi",
-  relayedMessages: "Lähetetyt datapaketit"
+  relayedMessages: "Lähetetyt datapaketit",
+  searchEverything: "Haku"
 }

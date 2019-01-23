@@ -259,5 +259,6 @@ export default {
 	restoreWalletAdvice: "<p>Gebe nun deinen privaten Schlüssel ein, danach das neue Passwort für dein neues Wallet.</p><p><b>Du kannst das neu generierte Wallet ab sofort mit diesem Passwort entsperren.</b></p>",
   notifications: "Benachrichtigungen",
   new: "neu",
-  relayedMessages: "Weitergeleitete Datenpakete"
+  relayedMessages: "Weitergeleitete Datenpakete",
+  searchEverything: "Suche"
 }

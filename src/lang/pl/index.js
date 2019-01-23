@@ -236,5 +236,6 @@ export default {
   basedIn: "położone w",
   notifications: "notyfikacje",
   new: "nowe",
-  relayedMessages: "Przesyłane pakiety danych"
+  relayedMessages: "Przesyłane pakiety danych",
+  searchEverything: "Szukaj"
 }

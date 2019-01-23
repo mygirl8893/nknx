@@ -24,44 +24,48 @@
                 </div>
             </v-layout>
             <v-layout row wrap>
+			
 				<app-card 
-                :heading="$t('message.myNodes')" 
                 colClasses="xl12 lg12 md12 sm12 xs12" 
                 customClasses="mb-0" 
                 :fullBlock="true" 
                 :footer="true"
                 >
+				<v-card-title>
+      <h3>{{ $t('message.myNodes') }}</h3>
+      <v-spacer></v-spacer>
+      <v-text-field style="flex:unset"
+	  class="h5"
+        v-model="search"
+        append-icon="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+				
+										
+      
                 	<div class="table-responsive">
                         <app-section-loader :status="loader"></app-section-loader>
-                        <v-data-table :items="sortedArray" hide-actions item-key='props.item.index'>
-                            <template slot='headers' slot-scope='props'>
-                                <tr>
-                                    <th style="width:40px;">#</th>
-                                    <th>{{ $t('message.node') }}</th>
-                                    <th>{{ $t('message.status') }}</th>
-                                    <th>{{ $t('message.latestBlock') }}</th>
-                                    <th>{{ $t('message.relayedMessages') }}</th>
-                                    <th>{{ $t('message.version') }}</th>
-                                    <th>{{ $t('message.label') }}</th>
-                                    <th style="text-align:center;width:75px;">{{ $t('message.actions') }}</th>
-                                </tr>
-                            </template>
+                        <v-data-table :headers="headers" :items="sortedArray" :search="search" v-bind:pagination.sync="nodeLabel" hide-actions item-key='props.item.index'>
+        
                             <template slot="items" slot-scope="props">
-                                <td>{{props.index+1}}</td>
+                                <td class="text-center">{{props.index+1}}</td>
                                 <td
                                 v-clipboard:copy="props.item.addr"
                                 v-clipboard:success="onCopy1"
-                                class='cursor-pointer'
+                                class='cursor-pointer text-center'
                                 >{{props.item.addr}} <span style="color: #0073e7" v-if='props.item.alias != props.item.addr'>({{props.item.alias}})</span></td>
-                                <td >{{props.item.syncState}}
+                                <td class="text-center">{{props.item.syncState}}
 								<span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                 </v-badge></span> </td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
-                                <td><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
-                                <td><v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
-                                <td style="text-align:center;">
+                                <td class="text-center"><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
+                                <td class="text-center"><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
+                                <td class="text-center"><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
+                                <td class="text-center"><v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip></td>
+                                <td class="text-center">
                                 <v-menu bottom left>
                                     <v-btn
                                       slot="activator"
@@ -244,7 +248,55 @@ export default {
     NetworkStats
     },
     data() {
-        return {
+        return {		
+		search: '',
+		nodeLabel: {'sortBy': 'label', 'descending': true, 'rowsPerPage': -1},
+		headers: [
+          {text: '#',value: 'index', align:'center',sortable: false},
+		  {
+		    text: 'Node',
+            align: 'center',
+            sortable: true,
+            value: 'addr'
+		  },
+		  		  {
+		    text: 'Status',
+            align: 'center',
+            sortable: true,
+            value: 'Status'
+		  },
+		  		  {
+		    text: 'Latest Block',
+            align: 'center',
+            sortable: true,
+            value: 'latestBlockHeight'
+		  },
+		  		  {
+		    text: 'Relayed Messages',
+            align: 'center',
+            sortable: true,
+            value: 'relayMessageCount'
+		  },
+		  		  {
+		    text: 'Version',
+            align: 'center',
+            sortable: true,
+            value: 'Version'
+		  },
+		  		  {
+		    text: 'Node label',
+            align: 'center',
+            sortable: true,
+            value: 'label'
+		  },
+		  		  {
+		    text: 'Actions',
+            align: 'center',
+            sortable: false,
+            value: 'actions'
+		  },
+		  
+        ],
 			interval: null,
             loader: true,
             valid: false,

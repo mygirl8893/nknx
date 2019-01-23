@@ -127,6 +127,12 @@ Vue.use(require('@websanova/vue-auth'), {
 });
 
 
+Vue.auth.options.http._invalidToken = function(res){
+	if (res.status === 400) {
+		return true;
+	}
+}
+
 /* eslint-disable no-new */
 new Vue({
 	store,

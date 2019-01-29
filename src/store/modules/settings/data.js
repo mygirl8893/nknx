@@ -33,16 +33,16 @@ export const languages = [
     name: "Suomi",
     icon: "fi",
     locale: "fi"
-  }
+  },
   // {
   //   name: "한글",
   //   icon: "ko",
   //   locale: "ko"
   // },
- // {
- //    name: "日本語",
- //    icon: "ja",
- //    locale: "ja"
- //  },
+ {
+    name: "日本語",
+    icon: "ja",
+    locale: "ja"
+  }
 ]
 

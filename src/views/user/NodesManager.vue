@@ -36,7 +36,10 @@
                                     <span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                     </v-badge></span> </td>
-                                <td><span v-if='props.item.online != 0'><span class="latencyStatus" :class="props.item.latencyStatus"></span> {{props.item.latency}} ms</span></td>
+                                <td><span v-if='props.item.online != 0'>
+                                    <v-tooltip right>
+                                    <span class="latencyStatus" :class="props.item.latencyStatus" slot="activator"></span><span>{{props.item.latencyDesc}}</span></v-tooltip> 
+                                {{props.item.latency}} ms</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
@@ -475,22 +478,25 @@ export default {
             const self = this;
             axios.get('statistics/network', {})
                 .then((networkData) => {
-                    let networkLatency = Number((networkData.data.network_lat*1000).toFixed(0))
+                    let networkLatency = Number((networkData.data.network_lat * 1000).toFixed(0))
                     //20 percent spread
-                    let networkLatencyUp = networkLatency + networkLatency/5
-                    let networkLatencyDown = networkLatency - networkLatency/5
+                    let networkLatencyUp = networkLatency + networkLatency / 5
+                    let networkLatencyDown = networkLatency - networkLatency / 5
                     axios.get('nodes', {})
                         .then((response) => {
                             self.userNodesData = response.data
                             for (let node in self.userNodesData) {
                                 self.userNodesData[node].latency = Number((self.userNodesData[node].latency * 1000).toFixed(0))
                                 let nodeLatency = self.userNodesData[node].latency
-                                if(nodeLatency >= networkLatencyDown && nodeLatency <= networkLatencyUp){
+                                if (nodeLatency >= networkLatencyDown && nodeLatency <= networkLatencyUp) {
                                     self.userNodesData[node].latencyStatus = "ok"
-                                } else if (nodeLatency < networkLatencyDown){
+                                    self.userNodesData[node].latencyDesc = "Your current latency will lead to default mining reward, because it doesn't deviate from the average network latency by more than 20%."
+                                } else if (nodeLatency < networkLatencyDown) {
                                     self.userNodesData[node].latencyStatus = "good"
-                                } else{
+                                    self.userNodesData[node].latencyDesc = "Your current latency will lead to higher mining reward, because it's 20% lower than the average network latency."
+                                } else {
                                     self.userNodesData[node].latencyStatus = "bad"
+                                    self.userNodesData[node].latencyDesc = "Your current latency will lead to lower mining reward, because it's 20% higher than the average network latency."
                                 }
 
                                 if (self.userNodesData[node].online === 0) {

@@ -260,5 +260,8 @@ export default {
   notifications: "ilmoitukset",
   new: "uusi",
   relayedMessages: "Lähetetyt datapaketit",
-  searchEverything: "Haku"
+  searchEverything: "Haku",
+  latOk: "Louhintapalkkiosi on tällä hetkellä oletusarvossa, koska yhteytesi viive on 20% sisällä verkon keskimääräisestä viiveestä.",
+  latGood: "Louhintapalkkiotasi on tällä hetkellä korotettu, koska yhteytesi viive on yli 20% verkon keskimääräistä viivettä pienempi.",
+  latBad: "Louhintapalkkiotasi on tällä hetkellä alennettu, koska yhteytesi viive on yli 20% verkon keskimääräistä viivettä suuremmpi."
 }

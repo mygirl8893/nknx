@@ -260,5 +260,8 @@ export default {
   notifications: "Benachrichtigungen",
   new: "neu",
   relayedMessages: "Weitergeleitete Datenpakete",
-  searchEverything: "Suche"
+  searchEverything: "Suche",
+  latOk: "Mit deiner aktuellen Latenzzeit wirst du ein durchschnittliches Miningeinkommen haben, da sich diese im Durchschnitt bewegt.",
+  latGood: "Mit deiner aktuellen Latenzzeit wirst du ein sehr gutes Miningeinkommen haben, da diese überdurchschnittlich ist.",
+  latBad: "Mit deiner aktuellen Latenzzeit wirst du wenig bis gar kein Miningeinkommen haben, da diese unterdurchschnittlich ist."
 }

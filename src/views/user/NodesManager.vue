@@ -38,8 +38,8 @@
                                     </v-badge></span> </td>
                                 <td><span v-if='props.item.online != 0'>
                                     <v-tooltip right>
-                                    <span class="latencyStatus" :class="props.item.latencyStatus" slot="activator"></span><span>{{props.item.latencyDesc}}</span></v-tooltip> 
-                                {{props.item.latency}} ms</span></td>
+                                    <span slot="activator" style="cursor:pointer;"><span class="latencyStatus" :class="props.item.latencyStatus" ></span> {{props.item.latency}} ms</span><span>{{props.item.latencyDesc}}</span></v-tooltip> 
+                                </span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
@@ -490,13 +490,13 @@ export default {
                                 let nodeLatency = self.userNodesData[node].latency
                                 if (nodeLatency >= networkLatencyDown && nodeLatency <= networkLatencyUp) {
                                     self.userNodesData[node].latencyStatus = "ok"
-                                    self.userNodesData[node].latencyDesc = "Your current latency will lead to default mining reward, because it doesn't deviate from the average network latency by more than 20%."
+                                    self.userNodesData[node].latencyDesc = self.$t('message.latOk');
                                 } else if (nodeLatency < networkLatencyDown) {
                                     self.userNodesData[node].latencyStatus = "good"
-                                    self.userNodesData[node].latencyDesc = "Your current latency will lead to higher mining reward, because it's 20% lower than the average network latency."
+                                    self.userNodesData[node].latencyDesc = self.$t('message.latGood');
                                 } else {
                                     self.userNodesData[node].latencyStatus = "bad"
-                                    self.userNodesData[node].latencyDesc = "Your current latency will lead to lower mining reward, because it's 20% higher than the average network latency."
+                                    self.userNodesData[node].latencyDesc = self.$t('message.latBad');
                                 }
 
                                 if (self.userNodesData[node].online === 0) {

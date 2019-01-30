@@ -106,6 +106,11 @@ export default {
           icon: "zh",
           language: "简体中文",
           name: "Bruce"
+        },
+        {
+          icon: "ja",
+          language: "日本語",
+          name: "katakoto"
         }
 
       ]

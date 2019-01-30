@@ -237,5 +237,8 @@ export default {
   notifications: "notyfikacje",
   new: "nowe",
   relayedMessages: "Przesyłane pakiety danych",
-  searchEverything: "Szukaj"
+  searchEverything: "Szukaj",
+  latOk: "Twoje obecne opóźnienie doprowadzi do domyślnego wynagrodzenia kopania ponieważ nie zbacza się powyżej 20% od przeciętnego opóźnienia sieci.",
+  latGood: "Twoje obecne opóźnienie doprowadzi do wyższego wynagrodzenia kopania ponieważ jest ono 20% niżej przeciętnego opóźnienia sieci.",
+  latBad: "Twoje obecne opóźnienie doprowadzi do niższego lub żadnego wynagrodzenia kopania ponieważ jest ono 20% wyższe od przeciętnego opóźnienia sieci."
 }

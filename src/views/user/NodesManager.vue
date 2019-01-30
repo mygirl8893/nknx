@@ -30,19 +30,20 @@
                         <app-section-loader :status="loader"></app-section-loader>
                         <v-data-table :headers="headers" :items="sortedArray" :search="search" v-bind:pagination.sync="nodeLabel" hide-actions item-key='props.item.index'>
                             <template slot="items" slot-scope="props">
-                                <td class="text-center">{{props.index+1}}</td>
-                                <td v-clipboard:copy="props.item.addr" v-clipboard:success="onCopy1" class='cursor-pointer text-center'>{{props.item.addr}} <span style="color: #0073e7" v-if='props.item.alias != props.item.addr'>({{props.item.alias}})</span></td>
-                                <td class="text-center">{{props.item.syncState}}
+                                <td>{{props.index+1}}</td>
+                                <td v-clipboard:copy="props.item.addr" v-clipboard:success="onCopy1" class='cursor-pointer'>{{props.item.addr}} <span style="color: #0073e7" v-if='props.item.alias != props.item.addr'>({{props.item.alias}})</span></td>
+                                <td>{{props.item.syncState}}
                                     <span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                     </v-badge></span> </td>
-                                <td class="text-center"><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
-                                <td class="text-center"><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
-                                <td class="text-center"><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
-                                <td class="text-center">
+                                <td><span v-if='props.item.online != 0'><span class="latencyStatus" :class="props.item.latencyStatus"></span> {{props.item.latency}} ms</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
+                                <td><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
+                                <td>
                                     <v-chip v-if="props.item.label !=null" label outline color="orange">{{props.item.label}}</v-chip>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                     <v-menu bottom left>
                                         <v-btn slot="activator" dark icon>
                                             <v-icon color='primary' style='font-size:30px;'>more_vert</v-icon>
@@ -168,46 +169,44 @@ export default {
             search: '',
             nodeLabel: { 'sortBy': 'label', 'descending': true, 'rowsPerPage': -1 },
             headers: [
-                { text: '#', value: 'index', align: 'center', sortable: false },
+                { text: '#', value: 'index', sortable: false },
                 {
                     text: 'Node',
-                    align: 'center',
                     sortable: true,
                     value: 'addr'
                 },
                 {
                     text: 'Status',
-                    align: 'center',
                     sortable: true,
                     value: 'Status'
                 },
                 {
+                    text: 'Latency',
+                    sortable: true,
+                    value: 'latency'
+                },
+                {
                     text: 'Latest Block',
-                    align: 'center',
                     sortable: true,
                     value: 'latestBlockHeight'
                 },
                 {
                     text: 'Relayed Messages',
-                    align: 'center',
                     sortable: true,
                     value: 'relayMessageCount'
                 },
                 {
                     text: 'Version',
-                    align: 'center',
                     sortable: true,
                     value: 'Version'
                 },
                 {
                     text: 'Node label',
-                    align: 'center',
                     sortable: true,
                     value: 'label'
                 },
                 {
                     text: 'Actions',
-                    align: 'center',
                     sortable: false,
                     value: 'actions'
                 },
@@ -474,15 +473,32 @@ export default {
         },
         getUserNodes() {
             const self = this;
-            axios.get('nodes', {})
-                .then((response) => {
-                    self.userNodesData = response.data
-                    for (let node in self.userNodesData) {
-                        if (self.userNodesData[node].online === 0) {
-                            self.userNodesData[node].syncState = 'Error'
-                        }
-                    }
-                    this.getNodesDataCounter()
+            axios.get('statistics/network', {})
+                .then((networkData) => {
+                    let networkLatency = Number((networkData.data.network_lat*1000).toFixed(0))
+                    //20 percent spread
+                    let networkLatencyUp = networkLatency + networkLatency/5
+                    let networkLatencyDown = networkLatency - networkLatency/5
+                    axios.get('nodes', {})
+                        .then((response) => {
+                            self.userNodesData = response.data
+                            for (let node in self.userNodesData) {
+                                self.userNodesData[node].latency = Number((self.userNodesData[node].latency * 1000).toFixed(0))
+                                let nodeLatency = self.userNodesData[node].latency
+                                if(nodeLatency >= networkLatencyDown && nodeLatency <= networkLatencyUp){
+                                    self.userNodesData[node].latencyStatus = "ok"
+                                } else if (nodeLatency < networkLatencyDown){
+                                    self.userNodesData[node].latencyStatus = "good"
+                                } else{
+                                    self.userNodesData[node].latencyStatus = "bad"
+                                }
+
+                                if (self.userNodesData[node].online === 0) {
+                                    self.userNodesData[node].syncState = 'Error'
+                                }
+                            }
+                            this.getNodesDataCounter()
+                        })
                 })
 
             self.loader = false

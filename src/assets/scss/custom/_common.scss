@@ -444,6 +444,26 @@ hr {
     }
   }
 }
+
+.latencyStatus{
+  height: 9px;
+  border-radius: 100em;
+  display: inline-block;
+  width: 9px;
+  margin-right: 10px;
+  &.bad{
+    box-shadow: 0px 0px 0px 3px rgba(244, 67, 54, 0.25);
+    background: #f44336; 
+  }
+  &.ok{
+    box-shadow: 0px 0px 0px 3px rgba(255, 183, 15, 0.25);
+    background: #ffb70f;
+  }
+  &.good{
+    box-shadow: 0px 0px 0px 3px rgba(43, 181, 38, 0.25);
+    background: #28B725;
+  }
+}
 /*======== Card Masonry =======*/
 
 .card-columns .card {

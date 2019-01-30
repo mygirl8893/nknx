@@ -52,61 +52,36 @@ export default {
         this.interval = setInterval(this.getNetworkState, Timeouts.short);
     },
     computed: {
-        statusIcon: function () {
+        statusIcon: function() {
             return feather.icons['activity'].toSvg()
         },
-        nodeIcon: function () {
+        nodeIcon: function() {
             return feather.icons['droplet'].toSvg()
         },
-        versionIcon: function () {
+        versionIcon: function() {
             return feather.icons['git-branch'].toSvg()
         },
-        blockIcon: function () {
+        blockIcon: function() {
             return feather.icons['box'].toSvg()
         },
-        timeIcon: function () {
+        timeIcon: function() {
             return feather.icons['clock'].toSvg()
         }
     },
     methods: {
-    getNetworkState(){
+        getNetworkState() {
             const self = this
-            axios.post('https://nknx.org:30003/', {
-                    "jsonrpc": "2.0",
-                    "method": "getnodestate",
-                    "params": {},
-                    "id": 1
-                })
-                .then((response) => {
-                    self.seedStatus = response.data.result.syncState
-                })
-                .catch((error) => {
-
-                });
-
-            axios.post('https://nknx.org:30003/', {
-                    "jsonrpc": "2.0",
-                    "method": "getversion",
-                    "params": {},
-                    "id": 1
-                })
-                .then((response) => {
-                    self.seedVersion = response.data.result.substring(0, 6)
-
-                })
-                .catch((error) => {
-
-                });
-
-            axios.get('blocks/?latest=5').then(function(response){
-                self.seedLatestBlock = response.data[0].height
-                self.seedLatestBlockTime = response.data[0].timestamp
+            axios.get('statistics/network').then(function(response) {
+                self.seedStatus = response.data.status
+                self.seedLatestBlock = response.data.current_height
+                self.seedLatestBlockTime = response.data.latest_block
+                self.seedVersion = response.data.version
             });
 
             axios.get('crawledNodes', {})
-            .then((response) => {
-                self.crawlCounter = response.data.length
-            })  
+                .then((response) => {
+                    self.crawlCounter = response.data.length
+                })
 
             self.loader = false
         }

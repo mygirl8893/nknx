@@ -262,5 +262,8 @@ export default {
 	notifications: "notifications",
 	new: "nouveau",
   relayedMessages: "Paquets de données transférés",
-  searchEverything: "Recherche"
+  searchEverything: "Recherche",
+  latOk: "Votre latence actuelle vous permettra d'obtenir les récompenses de mining par défaut car elle est ne dévie pas de plus de 20% de la moyenne du réseau.",
+  latGood: "Votre latence actuelle vous permettra d'obtenir de meilleures récompenses de mining car elle est 20% plus basse que la latence moyenne du réseau.",
+  latBad: "Votre latence actuelle vous permettra d'obtenir de moins bonnes récompenses de mining voir pas du tout car elle est 20% plus haute que la latence moyenne du réseau."
 }

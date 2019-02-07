@@ -108,11 +108,15 @@ export default {
           name: "Bruce"
         },
         {
+          icon: "ja",
+          language: "日本語",
+          name: "katakoto"
+        },
+        {
           icon: "tr",
           language: "Türk",
           name: "ulimuli"
         }
-
       ]
 
       

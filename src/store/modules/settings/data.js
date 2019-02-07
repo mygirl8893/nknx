@@ -29,6 +29,11 @@ export const languages = [
     icon: "zh",
     locale: "zh"
   },
+  { 
+    name: "日本語",
+    icon: "ja",
+    locale: "ja"
+  },
   {
     name: "Suomi",
     icon: "fi",
@@ -39,15 +44,5 @@ export const languages = [
     icon: "tr",
     locale: "tr"
   }
-  // {
-  //   name: "한글",
-  //   icon: "ko",
-  //   locale: "ko"
-  // },
- // {
- //    name: "日本語",
- //    icon: "ja",
- //    locale: "ja"
- //  },
 ]
 

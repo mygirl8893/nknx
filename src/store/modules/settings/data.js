@@ -33,6 +33,11 @@ export const languages = [
     name: "Suomi",
     icon: "fi",
     locale: "fi"
+  },
+  {
+    name: "Türk",
+    icon: "tr",
+    locale: "tr"
   }
   // {
   //   name: "한글",

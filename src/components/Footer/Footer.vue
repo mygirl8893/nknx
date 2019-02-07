@@ -106,6 +106,11 @@ export default {
           icon: "zh",
           language: "简体中文",
           name: "Bruce"
+        },
+        {
+          icon: "tr",
+          language: "Türk",
+          name: "ulimuli"
         }
 
       ]

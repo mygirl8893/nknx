@@ -128,7 +128,7 @@ Vue.use(require('@websanova/vue-auth'), {
 
 
 Vue.auth.options.http._invalidToken = function(res){
-	if ((res.status === 400 && res.data.error == "token_invalid") || res.status === 401) {
+	if ((res.status === 400 && res.data.error == "token_invalid") || (res.status === 400 && res.data.error == "token_expired") || res.status === 401) {
 		return true;
 	}
 }

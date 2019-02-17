@@ -9,7 +9,7 @@
 				</div>
 				<div class="w-20 d-md-half-block">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.dailyVolume')}}</p>
-					<h4 class="blue-dark--text mb-0">${{nknVolume}}K</h4>
+					<h4 class="blue-dark--text mb-0">${{nknVolume}}M</h4>
 				</div>
 				<div class="w-20 d-md-half-block">
 					<p class="fs-12 gray-dark--text fw-semi-bold mb-15">{{$t('message.marketRank')}}</p>
@@ -82,13 +82,15 @@ export default {
 				self.nknETH  = 'error';
 			})
 
-			axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
+			axios.get('https://price.nknx.org/price?quote=NKN&currency=USD')
                 .then(response => {
-                    self.nknRank = response.data.data.rank
-                    self.nknCap = ((response.data.data.quotes.USD.market_cap) / 1000000).toFixed(2)
-                    self.nknVolume = ((response.data.data.quotes.USD.volume_24h) / 1000).toFixed(2)
-                    self.nkn24 = response.data.data.quotes.USD.percent_change_24h
-                    self.nknWeekly = response.data.data.quotes.USD.percent_change_7d
+					let data = response.data[0]
+					let price = response.data[0].prices[0]
+                    self.nknRank = data.cmc_rank
+                    self.nknCap = (price.market_cap / 1000000).toFixed(2)
+                    self.nknVolume = (price.volume_24h / 1000000).toFixed(2)
+                    self.nkn24 = price.percent_change_24h.toFixed(2)
+					self.nknWeekly = price.percent_change_7d.toFixed(2)
 
                     if(self.nkn24 < 0){
                     	self.priceClass = 'red-main--text'

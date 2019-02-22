@@ -138,8 +138,8 @@ export default {
               "<span class='internet-topology-tooltip-point'></span>" +
               "<span class='internet-topology-tooltip-cnnt'>connected</span>" +
               "</div>" +
-              "<div class='internet-topology-tooltip-text'>" + city + "</div>" +
-              "<div class='internet-topology-tooltip-text'>IP: " + ip + "</div>"
+              "<div class='internet-topology-tooltip-text'>" + city + "</div>"
+              // + "<div class='internet-topology-tooltip-text'>IP: " + ip + "</div>"
       },
       clearMapRelayLine(callback) {
           let $this = $(".nkn-explorer-index-internet-topology-panel")

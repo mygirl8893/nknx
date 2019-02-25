@@ -29,7 +29,7 @@ export const languages = [
     icon: "zh",
     locale: "zh"
   },
-  { 
+  {
     name: "日本語",
     icon: "ja",
     locale: "ja"
@@ -40,7 +40,7 @@ export const languages = [
     locale: "fi"
   },
   {
-    name: "Türk",
+    name: "Türkçe",
     icon: "tr",
     locale: "tr"
   },
@@ -49,5 +49,4 @@ export const languages = [
     icon: "vi",
     locale: "vi"
   }
-]
-
+];

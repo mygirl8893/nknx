@@ -233,5 +233,6 @@ export default {
   portsClosed: "Düğümünüzün portları kapalı",
   nodeIsTracked: "Bu düğüm zaten izlendi",
   nodesSuccessfullyAdded: "Düğümleriniz başarıyla eklendi",
-  basedIn: "Merkezi"
+  basedIn: "Merkezi",
+  searchEverything: "Arama"
 }

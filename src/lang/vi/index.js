@@ -235,5 +235,6 @@ export default {
   nodesSuccessfullyAdded: "Node của bạn đã được thêm thành công",
   basedIn: "trụ sở tại",
   notifications: "các thông báo",
-  new: "mới"
+  new: "mới",
+  searchEverything: "Tìm kiếm"
 }

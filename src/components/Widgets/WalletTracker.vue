@@ -37,9 +37,9 @@ export default {
         getWalletsBalance(){
         const self = this;
         self.loader = true;
-        axios.get('https://api.coinmarketcap.com/v2/ticker/2780/')
+        axios.get('https://price.nknx.org/price?quote=NKN&currency=USD')
         .then(response => {
-            self.nknPrice = response.data.data.quotes.USD.price
+            self.nknPrice = response.data[0].prices[0].price
         })
 
         axios.get('walletAddresses/', {

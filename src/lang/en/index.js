@@ -263,5 +263,9 @@ export default {
   restoreWalletAdvice: "<p>Enter private key of your existing wallet, then choose password for the new one.</p><p><b>You will need new password and old private key to unlock your new wallet.</b></p>",
   notifications: "Notifications",
   new: "New",
-  relayedMessages: "Relayed Messages"
+  relayedMessages: "Relayed Messages",
+  searchEverything: "Search",
+  latOk: "Your current latency will lead to default mining reward because it doesn't deviate from the average network latency by more than 20%.",
+  latGood: "Your current latency will lead to higher mining reward because it's 20% lower than the average network latency.",
+  latBad: "Your current latency will lead to lower or no mining reward because it's 20% higher than the average network latency."
 }

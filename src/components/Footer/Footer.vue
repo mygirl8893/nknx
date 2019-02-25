@@ -116,6 +116,11 @@ export default {
           icon: "tr",
           language: "Türk",
           name: "ulimuli"
+        },
+        {
+          icon: "vi",
+          language: "Tiếng Việt",
+          name: "secretcat"
         }
       ]
 

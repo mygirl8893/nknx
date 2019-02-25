@@ -148,9 +148,9 @@ export default {
                     self.publicWalletName=addressBookItem.data.name;
                 });
 
-                axios.get('https://min-api.cryptocompare.com/data/price?fsym=NKN&tsyms=USD')
+                axios.get('https://price.nknx.org/price?quote=NKN&currency=USD')
                 .then(price => {
-                    self.nknPrice = price.data.USD
+                    self.nknPrice = price.data[0].prices[0].price
                 
 				axios.post('https://nknx.org:30003',{
 					"jsonrpc": "2.0",

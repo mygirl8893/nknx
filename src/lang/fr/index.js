@@ -261,5 +261,9 @@ export default {
 	restoreWalletAdvice: "<p>Entrez la clé privée de votre portefeuille existant, puis choisissez un mot de passe pour le nouveau.</p><p><b>Vous aurez besoin d'un nouveau mot de passe et de l'ancienne clé privée pour déverouiller votre nouveau portefeuille.</b></p>",
 	notifications: "notifications",
 	new: "nouveau",
-  relayedMessages: "Paquets de données transférés"
+  relayedMessages: "Paquets de données transférés",
+  searchEverything: "Recherche",
+  latOk: "Votre latence actuelle vous permettra d'obtenir les récompenses de mining par défaut car elle est ne dévie pas de plus de 20% de la moyenne du réseau.",
+  latGood: "Votre latence actuelle vous permettra d'obtenir de meilleures récompenses de mining car elle est 20% plus basse que la latence moyenne du réseau.",
+  latBad: "Votre latence actuelle vous permettra d'obtenir de moins bonnes récompenses de mining voir pas du tout car elle est 20% plus haute que la latence moyenne du réseau."
 }

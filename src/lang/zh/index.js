@@ -259,5 +259,6 @@ export default {
     restoreWalletAdvice: "<p>先输入您已有钱包的密钥，再为新钱包选择密码。</p><p><b>为了解锁您的新钱包，需要您新的密码和老的密钥。</b></p>",
   	notifications: "通知和警告",
   	new: "新",
-  	relayedMessages: "转发消息"
+  	relayedMessages: "转发消息",
+  	searchEverything: "搜索"
 }

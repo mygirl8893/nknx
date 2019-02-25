@@ -259,5 +259,9 @@ export default {
 	restoreWalletAdvice: "<p>Gebe nun deinen privaten Schlüssel ein, danach das neue Passwort für dein neues Wallet.</p><p><b>Du kannst das neu generierte Wallet ab sofort mit diesem Passwort entsperren.</b></p>",
   notifications: "Benachrichtigungen",
   new: "neu",
-  relayedMessages: "Weitergeleitete Datenpakete"
+  relayedMessages: "Weitergeleitete Datenpakete",
+  searchEverything: "Suche",
+  latOk: "Mit deiner aktuellen Latenzzeit wirst du ein durchschnittliches Miningeinkommen haben, da sich diese im Durchschnitt bewegt.",
+  latGood: "Mit deiner aktuellen Latenzzeit wirst du ein sehr gutes Miningeinkommen haben, da diese überdurchschnittlich ist.",
+  latBad: "Mit deiner aktuellen Latenzzeit wirst du wenig bis gar kein Miningeinkommen haben, da diese unterdurchschnittlich ist."
 }

@@ -36,10 +36,10 @@
                                     <span v-if='props.item.online != 1'><v-badge color="red">
                                 <span slot="badge">!</span>
                                     </v-badge></span> </td>
-                                <td><span v-if='props.item.online != 0'>
+                                <!-- <td><span v-if='props.item.online != 0'>
                                     <v-tooltip right>
                                     <span slot="activator" style="cursor:pointer;"><span class="latencyStatus" :class="props.item.latencyStatus" ></span> {{props.item.latency}} ms</span><span>{{props.item.latencyDesc}}</span></v-tooltip> 
-                                </span></td>
+                                </span></td> -->
                                 <td><span v-if='props.item.online != 0'>{{props.item.latestBlockHeight}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.relayMessageCount}}</span></td>
                                 <td><span v-if='props.item.online != 0'>{{props.item.version}}</span></td>
@@ -183,11 +183,11 @@ export default {
                     sortable: true,
                     value: 'Status'
                 },
-                {
-                    text: 'Latency',
-                    sortable: true,
-                    value: 'latency'
-                },
+                // {
+                //     text: 'Latency',
+                //     sortable: true,
+                //     value: 'latency'
+                // },
                 {
                     text: 'Latest Block',
                     sortable: true,

@@ -43,6 +43,11 @@ export const languages = [
     name: "Türk",
     icon: "tr",
     locale: "tr"
+  },
+  {
+    name: "Tiếng Việt",
+    icon: "vi",
+    locale: "vi"
   }
 ]
 

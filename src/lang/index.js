@@ -13,7 +13,7 @@ import pt from './pt';
 import cs from './cs';
 import fr from './fr';
 import pl from './pl';
-
+import vi from './vi';
 
 export default {
     en: {
@@ -60,5 +60,8 @@ export default {
     },
     pl: {
         message: pl
+    },
+    vi: {
+        message: vi
     }
 }

@@ -40,36 +40,36 @@ import messages from "./lang";
 
 // navigation guards before each
 router.beforeEach((to, from, next) => {
-  Nprogress.start();
-  next();
+	Nprogress.start();
+	next();
 });
 
 // navigation guard after each
 router.afterEach((to, from) => {
-  Nprogress.done();
-  setTimeout(() => {
-    const contentWrapper = document.querySelector(".v-content__wrap");
-    if (contentWrapper !== null) {
-      contentWrapper.scrollTop = 0;
-    }
-    const boxedLayout = document.querySelector(
-      ".app-boxed-layout .app-content"
-    );
-    if (boxedLayout !== null) {
-      boxedLayout.scrollTop = 0;
-    }
-    const miniLayout = document.querySelector(".app-mini-layout .app-content");
-    if (miniLayout !== null) {
-      miniLayout.scrollTop = 0;
-    }
-  }, 200);
+	Nprogress.done();
+	setTimeout(() => {
+		const contentWrapper = document.querySelector(".v-content__wrap");
+		if (contentWrapper !== null) {
+			contentWrapper.scrollTop = 0;
+		}
+		const boxedLayout = document.querySelector(
+			".app-boxed-layout .app-content"
+		);
+		if (boxedLayout !== null) {
+			boxedLayout.scrollTop = 0;
+		}
+		const miniLayout = document.querySelector(".app-mini-layout .app-content");
+		if (miniLayout !== null) {
+			miniLayout.scrollTop = 0;
+		}
+	}, 200);
 });
 
 VueClipboard.config.autoSetContainer = true; // add this line
 
 // plugins
 Vue.use(Vuetify, {
-  theme: primaryTheme
+	theme: primaryTheme
 });
 Vue.use(VueI18n);
 Vue.use(VueBreadcrumbs);
@@ -82,65 +82,65 @@ Vue.use(VueAxios, axios);
 
 moment.tz.setDefault("Atlantic/Reykjavik");
 moment.locale(store.getters.selectedLocale.locale);
-axios.defaults.baseURL = "https://api2.nknx.org/";
+axios.defaults.baseURL = "https://api.nknx.org/";
 
 axios.defaults.transformResponse = [
-  function(data) {
-    return JSONBigInt.parse(data);
-  }
+	function (data) {
+		return JSONBigInt.parse(data);
+	}
 ];
 
 Vue.prototype.$moment = moment;
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({
-  locale: store.getters.selectedLocale.locale, // set locale
-  messages // set locale messages
+	locale: store.getters.selectedLocale.locale, // set locale
+	messages // set locale messages
 });
 
 Vue.router = router;
 
 Vue.use(require("@websanova/vue-auth"), {
-  auth: {
-    request: function(req, token) {
-      if (req.url.startsWith(req.baseURL) || !req.url.startsWith("http")) {
-        this.options.http._setHeaders.call(this, req, {
-          Authorization: "Bearer " + token
-        });
-      }
-    },
+	auth: {
+		request: function (req, token) {
+			if (req.url.startsWith(req.baseURL) || !req.url.startsWith("http")) {
+				this.options.http._setHeaders.call(this, req, {
+					Authorization: "Bearer " + token
+				});
+			}
+		},
 
-    response: function(res) {
-      var headers = this.options.http._getHeaders.call(this, res),
-        token = headers.Authorization || headers.authorization;
+		response: function (res) {
+			var headers = this.options.http._getHeaders.call(this, res),
+				token = headers.Authorization || headers.authorization;
 
-      if (token) {
-        token = token.split(/Bearer\:?\s?/i);
+			if (token) {
+				token = token.split(/Bearer\:?\s?/i);
 
-        return token[token.length > 1 ? 1 : 0].trim();
-      }
-    }
-  },
-  http: require("@websanova/vue-auth/drivers/http/axios.1.x.js"),
-  router: require("@websanova/vue-auth/drivers/router/vue-router.2.x.js"),
-  authRedirect: { path: "/login" }
+				return token[token.length > 1 ? 1 : 0].trim();
+			}
+		}
+	},
+	http: require("@websanova/vue-auth/drivers/http/axios.1.x.js"),
+	router: require("@websanova/vue-auth/drivers/router/vue-router.2.x.js"),
+	authRedirect: { path: "/login" }
 });
 
-Vue.auth.options.http._invalidToken = function(res) {
-  if (
-    (res.status === 400 && res.data.error == "token_invalid") ||
-    (res.status === 400 && res.data.error == "token_expired") ||
-    res.status === 401
-  ) {
-    return true;
-  }
+Vue.auth.options.http._invalidToken = function (res) {
+	if (
+		(res.status === 400 && res.data.error == "token_invalid") ||
+		(res.status === 400 && res.data.error == "token_expired") ||
+		res.status === 401
+	) {
+		return true;
+	}
 };
 
 /* eslint-disable no-new */
 new Vue({
-  store,
-  i18n,
-  router,
-  render: h => h(App),
-  components: { App }
+	store,
+	i18n,
+	router,
+	render: h => h(App),
+	components: { App }
 }).$mount("#app");
